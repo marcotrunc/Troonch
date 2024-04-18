@@ -22,7 +22,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Troonch.DataAccess.Base\Troonch.DataAccess.Base.csproj" />
-    <ProjectReference Include="..\Troonch.Sales.Domain\Troonch.Sales.Domain.csproj" />
+    <ProjectReference Include="..\Troonch.Sales.Domain\Troonch.RetailSales.Product.Domain.csproj" />
   </ItemGroup>
 
 </Project>
