@@ -8,11 +8,11 @@ using Troonch.Sales.DataAccess;
 
 #nullable disable
 
-namespace Troonch.Sales.DataAccess.Migrations
+namespace Troonch.RetailSales.Product.DataAccess.Migrations
 {
-    [DbContext(typeof(RetailSalesDataContext))]
-    [Migration("20240414210045_ProductMigration")]
-    partial class ProductMigration
+    [DbContext(typeof(RetailSalesProductDataContext))]
+    [Migration("20240418081244_add_CurrencyColumn_To_ProductItemTable")]
+    partial class addCurrencyColumnToProductItemTable
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -198,6 +198,9 @@ namespace Troonch.Sales.DataAccess.Migrations
 
                     b.Property<DateTime>("CreatedOn")
                         .HasColumnType("datetime(6)");
+
+                    b.Property<int>("Currency")
+                        .HasColumnType("int");
 
                     b.Property<decimal>("OriginalPrice")
                         .ValueGeneratedOnAdd()
