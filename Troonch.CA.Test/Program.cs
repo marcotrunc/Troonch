@@ -38,7 +38,7 @@ namespace Troonch.CA.Test
                 .Build();
 
             var connectionString = configuration.GetConnectionString("AppDbConnectionString");
-            services.AddDbContext<RetailSalesDataContext>(options => options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
+            services.AddDbContext<RetailSalesProductDataContext>(options => options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
 
             services.AddDataAccess(configuration);
 
