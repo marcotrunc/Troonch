@@ -16,10 +16,13 @@ namespace Troonch.DataAccess.Base.Repositories
         {
             _dbContext = dbContext;
         }
-
+        public async Task<List<TEntity>> GetAllAsync()
+        {
+            return await _dbContext.Set<TEntity>().AsNoTracking().ToListAsync();
+        }
         public async Task<TEntity?> GetByIdAsync(Guid id)
         {
-            return  await _dbContext.Set<TEntity>().FirstOrDefaultAsync(e => e.Id == id);
+            return  await _dbContext.Set<TEntity>().AsNoTracking().FirstOrDefaultAsync(e => e.Id == id);
         }
         public async Task AddAsync(TEntity entity)
         {
