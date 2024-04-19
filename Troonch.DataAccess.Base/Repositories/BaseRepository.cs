@@ -17,6 +17,10 @@ namespace Troonch.DataAccess.Base.Repositories
             _dbContext = dbContext;
         }
 
+        public async Task<TEntity?> GetByIdAsync(Guid id)
+        {
+            return  await _dbContext.Set<TEntity>().FirstOrDefaultAsync(e => e.Id == id);
+        }
         public async Task AddAsync(TEntity entity)
         {
             await _dbContext.Set<TEntity>().AddAsync(entity);

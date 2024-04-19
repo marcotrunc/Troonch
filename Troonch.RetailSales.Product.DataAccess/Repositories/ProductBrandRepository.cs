@@ -2,6 +2,7 @@
 using Troonch.DataAccess.Base.Repositories;
 using Troonch.Sales.DataAccess;
 using Troonch.RetailSales.Product.DataAccess.Repositories.Interfaces;
+using Microsoft.EntityFrameworkCore;
 
 namespace Troonch.RetailSales.Product.DataAccess.Repositories
 {
@@ -11,5 +12,9 @@ namespace Troonch.RetailSales.Product.DataAccess.Repositories
         {
         }
 
+        public async Task<bool> IsUniqueNameAsync(string name)
+        {
+            return !await _dbContext.ProductBrands.AnyAsync(p => p.Name.Equals(name, StringComparison.OrdinalIgnoreCase));
+        }
     }
 }
