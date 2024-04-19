@@ -20,7 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Troonch.RetailSales.Product.DataAccess\Troonch.RetailSales.Product.DataAccess.csproj" />
+    <ProjectReference Include="..\Troonch.RetailSales.Product.Application\Troonch.RetailSales.Product.Application.csproj" />
   </ItemGroup>
 
   <ItemGroup>
