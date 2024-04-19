@@ -3,6 +3,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Troonch.Sales.DataAccess;
+using Troonch.RetailSales.Product.Application;
 
 namespace Troonch.CA.Test
 {
@@ -40,7 +41,7 @@ namespace Troonch.CA.Test
             var connectionString = configuration.GetConnectionString("AppDbConnectionString");
             services.AddDbContext<RetailSalesProductDataContext>(options => options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
 
-            services.AddDataAccess(configuration);
+            services.AddRetailSalesProductApplication(configuration);
 
             services.AddSingleton<TestApp>();
         }
