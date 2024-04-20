@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.Reflection;
+using Troonch.Domain.Base.Entities;
 using Troonch.Sales.Domain.Entities;
 
 namespace Troonch.Sales.DataAccess
@@ -21,6 +22,7 @@ namespace Troonch.Sales.DataAccess
         public DbSet<ProductSizeType> ProductSizeTypes { get; set; }
         public DbSet<ProductTag> ProductTag { get; set; }
         public DbSet<ProductTag> ProductTagLookup { get; set; }
+        public DbSet<Log> Logs { get; set; }
 
        
         protected override void OnModelCreating(ModelBuilder modelBuilder)
