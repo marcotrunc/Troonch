@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Serilog;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -16,8 +17,8 @@ namespace Troonch.CA.Test
             {
                 var host = Host.CreateDefaultBuilder(args)
                                     .ConfigureServices(ConfigureServices)
-                                    //.UseSerilog((context, configuration) =>
-                                    //        configuration.ReadFrom.Configuration(context.Configuration))
+                                    .UseSerilog((context, configuration) =>
+                                            configuration.ReadFrom.Configuration(context.Configuration))
                                     .Build();
 
                 services = host.Services;
@@ -28,6 +29,7 @@ namespace Troonch.CA.Test
             {
                 Console.WriteLine(ex.Message);
             }
+            Console.ReadLine();
         }
 
         private static void ConfigureServices(HostBuilderContext hostingContext, IServiceCollection services)
@@ -38,12 +40,9 @@ namespace Troonch.CA.Test
                 .AddEnvironmentVariables()
                 .Build();
 
-            var connectionString = configuration.GetConnectionString("AppDbConnectionString");
-            services.AddDbContext<RetailSalesProductDataContext>(options => options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
-
             services.AddRetailSalesProductApplication(configuration);
 
-            services.AddSingleton<TestApp>();
+            services.AddScoped<TestApp>();
         }
     }
 }
