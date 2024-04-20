@@ -13,8 +13,15 @@ namespace Troonch.Application.Base.UnitOfWork
 
         public async Task<bool> CommitAsync(CancellationToken cancellationToken)
         {
-            SetTimestamps();
-            return await _dbcontext.SaveChangesAsync(cancellationToken) > 0;
+            try
+            {
+                SetTimestamps();
+                return await _dbcontext.SaveChangesAsync(cancellationToken) > 0;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
         }
 
         public async Task<bool> UpdateAsync<T>(T entity, CancellationToken cancellationToken = default) where T : class
