@@ -7,11 +7,11 @@ namespace Troonch.CA.Test
     public class TestApp
     {
         private readonly ILogger<TestApp> _logger;
-        private readonly ProductBrandService _productBrandService;
-        public TestApp(ILogger<TestApp> logger, ProductBrandService productBrandService) 
+        private readonly ProductCategoryServices _productCategoryService;
+        public TestApp(ILogger<TestApp> logger, ProductCategoryServices productCategoryService) 
         { 
            _logger = logger;
-            _productBrandService = productBrandService;
+           _productCategoryService = productCategoryService;    
         }
 
         public async Task Run(string[] args)
@@ -20,20 +20,24 @@ namespace Troonch.CA.Test
             {
                 _logger.LogInformation($"Start Test at {DateTime.UtcNow}");
 
-                var brands = await _productBrandService.GetAllProductBrandAsync();
 
-                Console.WriteLine("brands", brands);
+                var catUp = await _productCategoryService.UpdateProductCategoryAsync(Guid.Parse("08dc6185-8a6d-4593-8f8d-866e8ccd7f78"), new ProductCategoryRequestDTO
+                {
+                    Id = Guid.Parse("08dc6185-8a6d-4593-8f8d-866e8ccd7f78"),
+                    Name = "Vestiti Bimba",
+                    ProductSizeTypeId = Guid.Parse("d637d939-783a-4896-8ae2-be8fe2d20e53"),
+                });
 
-                //var newBrand = await _productBrandService.AddProductBrandAsync(new ProductBrandRequestDTO
+                //var catAdd = await _productCategoryService.AddProductCategoryAsync(new ProductCategoryRequestDTO
                 //{
-                //    Name = "Nuovo Brando!!",
-                //    Description = "Descrizione del nuovo Brando"
+                //    Name = "Vestiti Bimbo",
+                //    ProductSizeTypeId = Guid.Parse("d637d939-783a-4896-8ae2-be8fe2d20e53"),
                 //});
-                //Console.WriteLine("newBrand", newBrand);
 
 
-                var brandSearched = await _productBrandService.GetProductBrandByAsync(Guid.Parse("08dc6173-76ff-4f76-87db-039bf9659cc4"));
-                Console.WriteLine("brandSearched", brandSearched);
+                var cat = await _productCategoryService.GetProductCategoriesAsync();
+                Guid id = cat.Where(c => c.Name.Contains("Bimba")).First().Id;
+                var rem = await _productCategoryService.RemoveProductCategoryAsync(id);
 
                 _logger.LogInformation($"Finish Test at {DateTime.UtcNow}");
             }

@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Troonch.Application.Base.UnitOfWork;
+using Troonch.Application.Base.Utilities;
 using Troonch.RetailSales.Product.DataAccess.Repositories.Interfaces;
 using Troonch.RetailSales.Product.Domain.DTOs.Requests;
 using Troonch.Sales.Domain.Entities;
@@ -69,21 +70,20 @@ public class ProductBrandService
 
         await _validator.ValidateAndThrowAsync(productBrandRequest);
 
-        var slugHelper = new SlugHelper();
 
         var brandToAdd = new ProductBrand
         {
             Name = productBrandRequest.Name,
             Description = productBrandRequest.Description,
-            Slug = slugHelper.GenerateSlug(productBrandRequest.Name)
+            Slug = SlugUtility.GenerateSlug(productBrandRequest.Name)
         };
 
-        var productAdded = await _productBrandRepository.AddAsync(brandToAdd);
+        var brandAdded = await _productBrandRepository.AddAsync(brandToAdd);
 
-        if (productAdded is null)
+        if (brandAdded is null)
         {
             _logger.LogError("ProductBrandService::AddProductBrandAsync productAdded is null");
-            throw new ArgumentException(nameof(productAdded));
+            throw new ArgumentException(nameof(brandAdded));
         }
 
         var isProductBrandSaved = await _unitOfWork.CommitAsync();
@@ -91,11 +91,77 @@ public class ProductBrandService
         if (!isProductBrandSaved)
         {
             _logger.LogError("ProductBrandService::AddProductBrandAsync isProductBrandSaved is false");
-            throw new Exception(nameof(isProductBrandSaved));
+            return false;
         }
 
         return true;
     }
 
+    public async Task<bool> UpdateProductBrandAsync(Guid id, ProductBrandRequestDTO productBrandRequest)
+    {
+        if (id == Guid.Empty) {
+            _logger.LogError("ProductBrandService::UpdateProductBrandAsync id is empty");
+            throw new ArgumentNullException(nameof(id));
+        }
+        
+        if(productBrandRequest is null)
+        {
+            _logger.LogError("ProductBrandService::UpdateProductBrandAsync productBrandRequest is empty");
+            throw new ArgumentNullException(nameof(productBrandRequest));
+        }
 
+        var brandToUpdate = await _productBrandRepository.GetByIdAsync(id);
+
+        if(brandToUpdate is null)
+        {
+            _logger.LogError("ProductBrandService::UpdateProductBrandAsync brandToUpdate is empty");
+            throw new ArgumentNullException(nameof(brandToUpdate));
+        }
+
+        await _validator.ValidateAndThrowAsync(productBrandRequest);
+
+        brandToUpdate.Name = productBrandRequest.Name;
+        brandToUpdate.Slug = SlugUtility.GenerateSlug(productBrandRequest.Name);
+        brandToUpdate.Description = productBrandRequest.Description;
+
+        var isBrandUpdated = await _unitOfWork.UpdateAsync(brandToUpdate);
+
+        if(!isBrandUpdated)
+        {
+            _logger.LogError("ProductBrandService::UpdateProductBrandAsync isBrandUpdated is false");
+            return false;
+        }
+
+        return true;
+    }
+
+    public async Task<bool> RemoveProductBrandAsync(Guid id)
+    {
+        if (id == Guid.Empty)
+        {
+            _logger.LogError("ProductBrandService::RemoveProductBrandAsync id is empty");
+            throw new ArgumentNullException(nameof(id));
+        }
+
+        var brandToRemove = await _productBrandRepository.GetByIdAsync(id);
+
+        if(brandToRemove is null)
+        {
+            _logger.LogError("ProductBrandService::RemoveProductBrandAsync brandToRemove not exists");
+            throw new ArgumentNullException(nameof(brandToRemove)); 
+        }
+
+        try
+        {
+            _productBrandRepository.Delete(brandToRemove);
+
+            return await _unitOfWork.CommitAsync();
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex.Message, ex);
+            return false;
+        }
+
+    }
 }

@@ -16,7 +16,7 @@ public class ProductBrandReqValidator :  AbstractValidator<ProductBrandRequestDT
             .MaximumLength(128).WithMessage("das")
             .MinimumLength(1).WithMessage("dasa")
             .NotNull().WithMessage("dsa")
-            .MustAsync(async (b, name, _) => await _productBrandRepository.IsUniqueNameAsync(name));
+            .MustAsync(async (b, name, _) => await _productBrandRepository.IsUniqueNameAsync(name)).When(b => b.Id == Guid.Empty);
 
         RuleFor(pb => pb.Description)
             .MaximumLength(256).WithMessage("dsa");
