@@ -1,7 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Troonch.DataAccess.Base.Repositories;
 using Troonch.Sales.DataAccess;
-using SalesEntity = Troonch.Sales.Domain.Entities; 
 
 namespace Troonch.RetailSales.Product.DataAccess.Repositories
 {
