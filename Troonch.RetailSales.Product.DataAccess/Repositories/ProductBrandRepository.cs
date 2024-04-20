@@ -14,7 +14,7 @@ namespace Troonch.RetailSales.Product.DataAccess.Repositories
 
         public async Task<bool> IsUniqueNameAsync(string name)
         {
-            return !await _dbContext.ProductBrands.AnyAsync(p => p.Name.Equals(name, StringComparison.OrdinalIgnoreCase));
+            return !await _dbContext.ProductBrands.AnyAsync(p => p.Name == name);
         }
     }
 }

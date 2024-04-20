@@ -10,5 +10,6 @@ namespace Troonch.RetailSales.Product.DataAccess.Repositories.Interfaces
 {
     public interface IProductBrandRepository : IBaseRepository<ProductBrand>
     {
+        Task<bool> IsUniqueNameAsync(string name);
     }
 }

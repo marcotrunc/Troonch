@@ -19,6 +19,35 @@ namespace Troonch.RetailSales.Product.DataAccess.Migrations
                 .HasAnnotation("ProductVersion", "7.0.7")
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
+            modelBuilder.Entity("Troonch.Domain.Base.Entities.Log", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<string>("Exception")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Level")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Message")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("MessageTemplate")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Properties")
+                        .HasColumnType("longtext");
+
+                    b.Property<DateTime>("TimeStamp")
+                        .HasColumnType("datetime(6)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Logs");
+                });
+
             modelBuilder.Entity("Troonch.Sales.Domain.Entities.Product", b =>
                 {
                     b.Property<Guid>("Id")
@@ -26,7 +55,7 @@ namespace Troonch.RetailSales.Product.DataAccess.Migrations
                         .HasColumnType("char(36)");
 
                     b.Property<string>("CoverImageLink")
-                        .HasColumnType("longtext");
+                        .HasColumnType("varchar(255)");
 
                     b.Property<DateTime>("CreatedOn")
                         .HasColumnType("datetime(6)");
@@ -70,6 +99,12 @@ namespace Troonch.RetailSales.Product.DataAccess.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("CoverImageLink")
+                        .IsUnique();
+
+                    b.HasIndex("Name")
+                        .IsUnique();
+
                     b.HasIndex("ProductBrandId");
 
                     b.HasIndex("ProductCategoryId");
@@ -77,6 +112,9 @@ namespace Troonch.RetailSales.Product.DataAccess.Migrations
                     b.HasIndex("ProductGenderId");
 
                     b.HasIndex("ProductMaterialId");
+
+                    b.HasIndex("Slug")
+                        .IsUnique();
 
                     b.ToTable("Products");
                 });
@@ -99,10 +137,22 @@ namespace Troonch.RetailSales.Product.DataAccess.Migrations
                         .HasMaxLength(128)
                         .HasColumnType("varchar(128)");
 
+                    b.Property<string>("Slug")
+                        .IsRequired()
+                        .HasMaxLength(128)
+                        .IsUnicode(true)
+                        .HasColumnType("varchar(128)");
+
                     b.Property<DateTime>("UpdatedOn")
                         .HasColumnType("datetime(6)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("Name")
+                        .IsUnique();
+
+                    b.HasIndex("Slug")
+                        .IsUnique();
 
                     b.ToTable("ProductBrands");
                 });
@@ -129,6 +179,9 @@ namespace Troonch.RetailSales.Product.DataAccess.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("Name")
+                        .IsUnique();
+
                     b.HasIndex("ProductSizeTypeId");
 
                     b.ToTable("ProductCategories");
@@ -145,7 +198,7 @@ namespace Troonch.RetailSales.Product.DataAccess.Migrations
 
                     b.Property<string>("HexadecimalValue")
                         .HasPrecision(7)
-                        .HasColumnType("longtext");
+                        .HasColumnType("varchar(255)");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -156,6 +209,12 @@ namespace Troonch.RetailSales.Product.DataAccess.Migrations
                         .HasColumnType("datetime(6)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("HexadecimalValue")
+                        .IsUnique();
+
+                    b.HasIndex("Name")
+                        .IsUnique();
 
                     b.ToTable("ProductColors");
                 });
@@ -178,6 +237,9 @@ namespace Troonch.RetailSales.Product.DataAccess.Migrations
                         .HasColumnType("datetime(6)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("Name")
+                        .IsUnique();
 
                     b.ToTable("ProductGenders");
                 });
@@ -229,6 +291,9 @@ namespace Troonch.RetailSales.Product.DataAccess.Migrations
                         .HasColumnType("datetime(6)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("Barcode")
+                        .IsUnique();
 
                     b.HasIndex("ProductColorId");
 
