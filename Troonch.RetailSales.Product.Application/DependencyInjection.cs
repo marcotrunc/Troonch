@@ -16,6 +16,7 @@ namespace Troonch.RetailSales.Product.Application;
         services.AddValidatorsFromAssemblyContaining<ProductBrandReqValidator>();
         services.AddScoped<IUnitOfWork, UnitOfWork<RetailSalesProductDataContext>>();
         services.AddScoped<ProductBrandService>();
+        services.AddScoped<ProductCategoryServices>();
 
         return services;
     }
