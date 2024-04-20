@@ -17,6 +17,8 @@ namespace Troonch.Sales.DataAccess.Configurations
 
             builder.Property(pg => pg.Name).IsRequired().HasMaxLength(128);
 
+            builder.HasIndex(pg => pg.Name).IsUnique();
+
             builder.HasMany(pg => pg.Products)
                 .WithOne(p => p.ProductGender)
                 .HasForeignKey(pg => pg.ProductGenderId)

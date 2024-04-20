@@ -17,7 +17,10 @@ namespace Troonch.Sales.DataAccess.Configurations
             builder.Property(b => b.Slug).IsRequired().HasMaxLength(50);
             builder.Property(p => p.IsDeleted).HasDefaultValue(false);
             builder.Property(p => p.CoverImageLink).IsRequired(false);
-            
+
+            builder.HasIndex(p => p.Name).IsUnique();
+            builder.HasIndex(p => p.Slug).IsUnique();
+            builder.HasIndex(p => p.CoverImageLink).IsUnique();
 
             builder.HasMany(p => p.ProductItems)
                 .WithOne(pi => pi.Product)

@@ -17,6 +17,8 @@ namespace Troonch.Sales.DataAccess.Configurations
             builder.Property(pi => pi.Barcode).IsRequired(false).HasMaxLength(30).IsUnicode();
             builder.Property(pi => pi.QuantityAvailable).IsRequired().HasDefaultValue(0);
 
+            builder.HasIndex(pi => pi.Barcode).IsUnique();
+
             builder.HasOne(pi => pi.Product)
                 .WithMany(p => p.ProductItems)
                 .HasForeignKey(p => p.ProductId)

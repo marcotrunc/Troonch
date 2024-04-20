@@ -18,6 +18,9 @@ namespace Troonch.Sales.DataAccess.Configurations
             builder.Property(pcol=> pcol.Name).IsRequired().HasMaxLength(80);
             builder.Property(pcol => pcol.HexadecimalValue).IsRequired(false).HasPrecision(7);
 
+            builder.HasIndex(pcol => pcol.Name).IsUnique();
+            builder.HasIndex(pcol => pcol.HexadecimalValue).IsUnique();
+
             builder.HasMany(pcol => pcol.ProductItems)
                 .WithOne(pi => pi.ProductColor)
                 .HasForeignKey(pi => pi.ProductColorId)

@@ -12,6 +12,10 @@ namespace Troonch.Sales.DataAccess.Configurations
 
             builder.Property(pb => pb.Name).IsRequired().HasMaxLength(128);
             builder.Property(pb => pb.Description).IsRequired(false).HasMaxLength(256);
+            builder.Property(b => b.Slug).IsUnicode().IsRequired().HasMaxLength(128);
+
+            builder.HasIndex(b => b.Name).IsUnique();
+            builder.HasIndex(b => b.Slug).IsUnique();
 
             builder.HasMany(pb => pb.Products)
                 .WithOne(p => p.ProductBrand)
