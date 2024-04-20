@@ -1,4 +1,5 @@
-﻿using Troonch.Domain.Base.Entities;
+﻿using Microsoft.EntityFrameworkCore.ChangeTracking;
+using Troonch.Domain.Base.Entities;
 
 namespace Troonch.DataAccess.Base.Repositories
 {
@@ -6,7 +7,7 @@ namespace Troonch.DataAccess.Base.Repositories
     {
         Task<List<TEntity>> GetAllAsync();
         Task<TEntity?> GetByIdAsync(Guid id);
-        Task AddAsync(TEntity entity);
+        Task<TEntity?> AddAsync(TEntity entity);
         void Delete(TEntity entity);
         void Update(TEntity entity);
     }

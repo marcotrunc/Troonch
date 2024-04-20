@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,9 +25,10 @@ namespace Troonch.DataAccess.Base.Repositories
         {
             return  await _dbContext.Set<TEntity>().AsNoTracking().FirstOrDefaultAsync(e => e.Id == id);
         }
-        public async Task AddAsync(TEntity entity)
+        public async Task<TEntity?> AddAsync(TEntity entity)
         {
-            await _dbContext.Set<TEntity>().AddAsync(entity);
+            var entityAdded = await _dbContext.Set<TEntity>().AddAsync(entity);
+            return entityAdded?.Entity;
         }
 
         public void Update(TEntity entity)
