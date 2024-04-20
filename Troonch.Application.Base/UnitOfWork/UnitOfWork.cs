@@ -1,14 +1,17 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 
 namespace Troonch.Application.Base.UnitOfWork
 {
     public class UnitOfWork<TDbContext> : IUnitOfWork where TDbContext : DbContext
     {
         private readonly TDbContext _dbcontext;
+        private readonly ILogger<UnitOfWork<TDbContext>> _logger;
 
-        public UnitOfWork(TDbContext dbcontext)
+        public UnitOfWork(TDbContext dbcontext, ILogger<UnitOfWork<TDbContext>> logger)
         {
             _dbcontext = dbcontext;
+            _logger = logger;
         }
 
         public async Task<bool> CommitAsync(CancellationToken cancellationToken)
@@ -20,6 +23,7 @@ namespace Troonch.Application.Base.UnitOfWork
             }
             catch (Exception ex)
             {
+                _logger.LogError(ex.Message);
                 return false;
             }
         }
@@ -30,7 +34,14 @@ namespace Troonch.Application.Base.UnitOfWork
 
             _dbcontext.Entry(entity).State = EntityState.Modified;
 
-            return await this.CommitAsync(cancellationToken);
+            bool isCommited = await this.CommitAsync(cancellationToken);
+            if(isCommited)
+            {
+                _dbcontext.Entry(entity).State = EntityState.Detached;
+                _dbcontext.ChangeTracker.Clear();
+            }
+
+            return isCommited;
         }
 
         private void SetTimestamps()
