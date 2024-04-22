@@ -40,5 +40,11 @@ namespace Troonch.DataAccess.Base.Repositories
         {
             _dbContext.Set<TEntity>().Remove(entity);
         }
+
+        public async Task<bool> IsExistingById(Guid id)
+        {
+            return await _dbContext.Set<TEntity>().AsNoTracking().AnyAsync(e => e.Id == id);
+        }
+        
     }
 }

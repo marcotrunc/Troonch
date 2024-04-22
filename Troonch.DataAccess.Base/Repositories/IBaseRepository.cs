@@ -10,5 +10,6 @@ namespace Troonch.DataAccess.Base.Repositories
         Task<TEntity?> AddAsync(TEntity entity);
         void Delete(TEntity entity);
         void Update(TEntity entity);
+        Task<bool> IsExistingById(Guid id);
     }
 }

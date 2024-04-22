@@ -17,6 +17,7 @@ namespace Troonch.RetailSales.Product.Application;
         services.AddScoped<IUnitOfWork, UnitOfWork<RetailSalesProductDataContext>>();
         services.AddScoped<ProductBrandService>();
         services.AddScoped<ProductCategoryServices>();
+        services.AddScoped<ProductServices>();
 
         return services;
     }
