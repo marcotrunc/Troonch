@@ -73,7 +73,7 @@ public class ProductBrandService
 
         var brandToAdd = new ProductBrand
         {
-            Name = productBrandRequest.Name,
+            Name = productBrandRequest.Name.Trim(),
             Description = productBrandRequest.Description,
             Slug = SlugUtility.GenerateSlug(productBrandRequest.Name)
         };
@@ -120,7 +120,7 @@ public class ProductBrandService
 
         await _validator.ValidateAndThrowAsync(productBrandRequest);
 
-        brandToUpdate.Name = productBrandRequest.Name;
+        brandToUpdate.Name = productBrandRequest.Name.Trim();
         brandToUpdate.Slug = SlugUtility.GenerateSlug(productBrandRequest.Name);
         brandToUpdate.Description = productBrandRequest.Description;
 

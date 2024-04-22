@@ -7,11 +7,11 @@ namespace Troonch.CA.Test
     public class TestApp
     {
         private readonly ILogger<TestApp> _logger;
-        private readonly ProductCategoryServices _productCategoryService;
-        public TestApp(ILogger<TestApp> logger, ProductCategoryServices productCategoryService) 
+        private readonly ProductServices _productService;
+        public TestApp(ILogger<TestApp> logger, ProductServices productService) 
         { 
            _logger = logger;
-           _productCategoryService = productCategoryService;    
+           _productService = productService;    
         }
 
         public async Task Run(string[] args)
@@ -20,25 +20,17 @@ namespace Troonch.CA.Test
             {
                 _logger.LogInformation($"Start Test at {DateTime.UtcNow}");
 
-
-                var catUp = await _productCategoryService.UpdateProductCategoryAsync(Guid.Parse("08dc6185-8a6d-4593-8f8d-866e8ccd7f78"), new ProductCategoryRequestDTO
+                var isProductAdded = await _productService.AddProductAsync(new ProductRequestDTO
                 {
-                    Id = Guid.Parse("08dc6185-8a6d-4593-8f8d-866e8ccd7f78"),
-                    Name = "Vestiti Bimba",
-                    ProductSizeTypeId = Guid.Parse("d637d939-783a-4896-8ae2-be8fe2d20e53"),
+                    Name = "Prodotto Test 1",
+                    IsPublished = true,
+                    ProductBrandId = Guid.Parse("08dc60b3-a4dc-4b98-8c50-1144b04ad0a3"),
+                    ProductCategoryId = Guid.Parse("08dc6188-f2f9-4b89-8b6e-af0ce1b94b3d"),
+                    ProductGenderId = Guid.Parse("d0319a0f-0088-11ef-a87d-00ffe260d4ac"),
+                    
                 });
 
-                //var catAdd = await _productCategoryService.AddProductCategoryAsync(new ProductCategoryRequestDTO
-                //{
-                //    Name = "Vestiti Bimbo",
-                //    ProductSizeTypeId = Guid.Parse("d637d939-783a-4896-8ae2-be8fe2d20e53"),
-                //});
-
-
-                var cat = await _productCategoryService.GetProductCategoriesAsync();
-                Guid id = cat.Where(c => c.Name.Contains("Bimba")).First().Id;
-                var rem = await _productCategoryService.RemoveProductCategoryAsync(id);
-
+                _logger.LogInformation($"ProductAdded -> {isProductAdded}");
                 _logger.LogInformation($"Finish Test at {DateTime.UtcNow}");
             }
             catch (Exception ex)

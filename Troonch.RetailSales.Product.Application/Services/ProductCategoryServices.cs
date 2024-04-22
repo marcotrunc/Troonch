@@ -74,7 +74,7 @@ public class ProductCategoryServices
 
         var categoryToAdd = new ProductCategory
         {
-            Name = productCategoryRequest.Name,
+            Name = productCategoryRequest.Name.Trim(),
             ProductSizeTypeId = productCategoryRequest.ProductSizeTypeId,
         };
 
@@ -113,7 +113,7 @@ public class ProductCategoryServices
 
         await _validator.ValidateAndThrowAsync(productCategoryRequest);
 
-        categoryToUpdate.Name = productCategoryRequest.Name;
+        categoryToUpdate.Name = productCategoryRequest.Name.Trim();
         categoryToUpdate.ProductSizeTypeId = productCategoryRequest.ProductSizeTypeId;
 
         return await _unitOfWork.UpdateAsync(categoryToUpdate);

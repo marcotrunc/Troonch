@@ -13,7 +13,10 @@ namespace Troonch.Sales.DataAccess
         {
             services.AddScoped<IProductBrandRepository,ProductBrandRepository>();
             services.AddScoped<IProductCategoryRepository,ProductCategoryRepository>(); 
-            services.AddScoped<IProductSizeTypeRepository,ProductSizeTypeRepository>(); 
+            services.AddScoped<IProductSizeTypeRepository,ProductSizeTypeRepository>();
+            services.AddScoped<IProductGenderRepository,ProductGenderRepository>(); 
+            services.AddScoped<IProductMaterialRepository,ProductMaterialRepository>(); 
+            services.AddScoped<IProductRepository, ProductRepository>();
 
             string? connectionString = configuration.GetValue<string>("ConnectionStrings:AppDbConnectionString");
             services.AddDbContext<RetailSalesProductDataContext>(options => options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));

@@ -86,7 +86,7 @@ namespace Troonch.RetailSales.Product.DataAccess.Migrations
                     b.Property<Guid>("ProductGenderId")
                         .HasColumnType("char(36)");
 
-                    b.Property<Guid>("ProductMaterialId")
+                    b.Property<Guid?>("ProductMaterialId")
                         .HasColumnType("char(36)");
 
                     b.Property<string>("Slug")
