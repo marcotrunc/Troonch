@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System.Reflection.Metadata.Ecma335;
+using Troonch.DataAccess.Base.Helpers;
 using Troonch.DataAccess.Base.Repositories;
+using Troonch.Domain.Base.Entities;
 using Troonch.RetailSales.Product.DataAccess.Repositories.Interfaces;
 using Troonch.Sales.DataAccess;
 
@@ -11,12 +12,56 @@ namespace Troonch.RetailSales.Product.DataAccess.Repositories
         public ProductRepository(RetailSalesProductDataContext dbContext) : base(dbContext)
         {
         }
-        public async Task<bool> IsNameUniqueAync(string name)
+        public async Task<bool> IsNameUniqueAync(Guid? id,string name)
         {
-            bool isUnique = !await _dbContext.Products.AnyAsync(p => p.Name == name);
-            return isUnique;
+            if (id == null || id == Guid.Empty)
+            {
+                return !await _dbContext.Products.AnyAsync(p => p.Name == name.Trim());
+            }
+
+            return !await _dbContext.Products.Where(p=> p.Id != id).AnyAsync(p => p.Name == name.Trim());
+
         }
 
+        public async Task<IEnumerable<SalesEntity.Product>> GetProductsAsync(string? searchTerm)
+        {
+            IQueryable<SalesEntity.Product> productsQuery = _dbContext.Products
+                                        .AsNoTracking()
+                                        .OrderByDescending(p => p.UpdatedOn)
+                                        .Include(p => p.ProductGender)
+                                        .Include(p => p.ProductBrand)
+                                        .Include(p => p.ProductCategory)
+                                        .Include(p => p.ProductMaterial);
+                                        
+
+            if (!string.IsNullOrEmpty(searchTerm) && !string.IsNullOrWhiteSpace(searchTerm))
+            {
+                productsQuery = productsQuery.Where(p =>
+                    p.Name.Contains(searchTerm) ||
+                    p.Description.Contains(searchTerm) ||
+                    p.ProductBrand.Name.Contains(searchTerm) ||
+                    p.ProductGender.Name.Contains(searchTerm) ||
+                    p.ProductMaterial.Value.Contains(searchTerm) ||
+                    p.ProductCategory.Name.Contains(searchTerm) ||
+                    p.ProductItems.Any(
+                        pi => 
+                            pi.Barcode.Contains(searchTerm) ||
+                            pi.ProductColor.Name.Contains(searchTerm)
+                    ));
+            }
+         
+            return await productsQuery.ToListAsync();  
+        }
+
+        public async Task<SalesEntity.Product?> GetProductByIdAsync(Guid id)
+        {
+            return await _dbContext.Products.AsNoTracking()
+                .Include(p => p.ProductGender)
+                .Include(p => p.ProductBrand)
+                .Include(p => p.ProductCategory)
+                .Include(p => p.ProductMaterial)
+                .SingleOrDefaultAsync(p => p.Id == id); 
+        }
         public async Task<IEnumerable<SalesEntity.Product>> GetProductsByCategoryIdAsync(Guid categoryId)
         {
             return await _dbContext.Products.AsNoTracking()
@@ -43,13 +88,44 @@ namespace Troonch.RetailSales.Product.DataAccess.Repositories
 
 
         #region Ecommerce Product Repository
-            public async Task<IEnumerable<SalesEntity.Product>> GetProductsPublishedAsync()
+            public async Task<IEnumerable<SalesEntity.Product>> GetProductsPublishedAsync(string? searchTerm)
+            {
+            IQueryable<SalesEntity.Product> productsQuery = _dbContext.Products
+                                    .AsNoTracking()
+                                    .OrderByDescending(p => p.UpdatedOn)
+                                    .Include(p => p.ProductGender)
+                                    .Include(p => p.ProductBrand)
+                                    .Include(p => p.ProductCategory)
+                                    .Include(p => p.ProductMaterial)
+                                    .Where(p => !p.IsDeleted && p.IsPublished == true)
+                                    .Where(p => p.ProductItems.AsEnumerable().Any(pi => pi.QuantityAvailable > 0));
+
+                if (!string.IsNullOrEmpty(searchTerm) && !string.IsNullOrWhiteSpace(searchTerm))
+                {
+                    productsQuery = productsQuery
+                        .Where(p =>
+                            p.Name.Contains(searchTerm) ||
+                            p.Description.Contains(searchTerm) ||
+                            p.ProductBrand.Name.Contains(searchTerm) ||
+                            p.ProductGender.Name.Contains(searchTerm) ||
+                            p.ProductMaterial.Value.Contains(searchTerm) ||
+                            p.ProductCategory.Name.Contains(searchTerm) ||
+                            p.ProductItems.Any(
+                                pi =>
+                                    pi.Barcode.Contains(searchTerm) ||
+                                    pi.ProductColor.Name.Contains(searchTerm)
+                            ));
+                }
+
+                return await productsQuery.ToListAsync();
+            }
+            public async Task<SalesEntity.Product?> GetProductPublishedByIdAsync(Guid id)
             {
                 return await _dbContext.Products.AsNoTracking()
-                    .OrderByDescending(p => p.UpdatedOn)
-                    .Where(p => !p.IsDeleted && p.IsPublished == true)
-                    .Where(p => p.ProductItems.AsEnumerable().Any(pi => pi.QuantityAvailable > 0))
-                    .ToListAsync();
+                       .OrderByDescending(p => p.UpdatedOn)
+                       .Where(p => !p.IsDeleted && p.IsPublished == true)
+                       .Where(p => p.ProductItems.AsEnumerable().Any(pi => pi.QuantityAvailable > 0))
+                       .SingleOrDefaultAsync(p => p.Id == id);
             }
             public async Task<IEnumerable<SalesEntity.Product>> GetProductsPublishedByCategoryIdAsync(Guid categoryId)
             {
@@ -75,14 +151,7 @@ namespace Troonch.RetailSales.Product.DataAccess.Repositories
                     .Where(p => p.ProductItems.AsEnumerable().Any(pi => pi.QuantityAvailable > 0))
                     .ToListAsync();
             }
-            public async Task<SalesEntity.Product?> GetProductPublishedByIdAsync(Guid id)
-            {
-                return await _dbContext.Products.AsNoTracking()
-                       .OrderByDescending(p => p.UpdatedOn)
-                       .Where(p => !p.IsDeleted && p.IsPublished == true)
-                       .Where(p => p.ProductItems.AsEnumerable().Any(pi => pi.QuantityAvailable > 0))
-                       .SingleOrDefaultAsync(p => p.Id == id);
-            }
+           
         #endregion
 
     }
