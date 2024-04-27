@@ -111,6 +111,8 @@ public class ProductCategoryServices
             throw new ArgumentNullException(nameof(categoryToUpdate));
         }
 
+        productCategoryRequest.Id = id;
+
         await _validator.ValidateAndThrowAsync(productCategoryRequest);
 
         categoryToUpdate.Name = productCategoryRequest.Name.Trim();
