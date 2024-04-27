@@ -118,6 +118,8 @@ public class ProductBrandService
             throw new ArgumentNullException(nameof(brandToUpdate));
         }
 
+        productBrandRequest.Id = id;
+
         await _validator.ValidateAndThrowAsync(productBrandRequest);
 
         brandToUpdate.Name = productBrandRequest.Name.Trim();
