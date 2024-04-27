@@ -20,7 +20,7 @@ namespace Troonch.CA.Test
                                     .UseSerilog((context, configuration) =>
                                             configuration.ReadFrom.Configuration(context.Configuration))
                                     .Build();
-
+                
                 services = host.Services;
 
                 await services.GetRequiredService<TestApp>().Run(args);

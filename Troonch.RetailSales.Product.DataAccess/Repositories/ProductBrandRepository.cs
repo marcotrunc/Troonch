@@ -11,9 +11,14 @@ namespace Troonch.RetailSales.Product.DataAccess.Repositories
         {
         }
 
-        public async Task<bool> IsUniqueNameAsync(string name)
+        public async Task<bool> IsUniqueNameAsync(Guid? id, string name)
         {
-            return !await _dbContext.ProductBrands.AnyAsync(p => p.Name == name);
+            if (id == null || id == Guid.Empty)
+            {
+                return !await _dbContext.ProductBrands.AnyAsync(p => p.Name == name.Trim());
+            }
+
+            return !await _dbContext.ProductBrands.Where(p => p.Id != id).AnyAsync(p => p.Name == name.Trim());
         }
     }
 }

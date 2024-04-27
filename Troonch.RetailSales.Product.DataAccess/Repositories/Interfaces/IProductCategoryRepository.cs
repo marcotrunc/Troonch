@@ -5,7 +5,7 @@ namespace Troonch.RetailSales.Product.DataAccess.Repositories.Interfaces;
 
 public interface IProductCategoryRepository : IBaseRepository<ProductCategory>
 {
-    Task<bool> IsUniqueNameAsync(string name);
+    Task<bool> IsUniqueNameAsync(Guid? id,string name);
     Task<IEnumerable<ProductCategory>> GetAllProductCategoriesWithSizeAsync();
     Task<ProductCategory?> GetCategoryWithSizeAsync(Guid id);
 }

@@ -9,7 +9,7 @@ namespace Troonch.RetailSales.Product.Domain.DTOs.Requests
         public Guid? Id { get; set; } = Guid.Empty;
         public string Name { get; set; }
         public string Description { get; set; } = null;
-        public bool? IsDeleted { get; set; } = false;
+        public bool IsDeleted { get; set; } = false;
         public bool IsPublished { get; set; } = true;
         public string CoverImageLink { get; set; } = null;
         public Guid ProductGenderId { get; set; } 

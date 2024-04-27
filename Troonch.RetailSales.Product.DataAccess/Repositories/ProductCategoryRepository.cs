@@ -11,10 +11,14 @@ public sealed class ProductCategoryRepository : BaseRepository<ProductCategory, 
     public ProductCategoryRepository(RetailSalesProductDataContext dbContext) : base(dbContext)
     {
     }
-    public async Task<bool> IsUniqueNameAsync(string name)
+    public async Task<bool> IsUniqueNameAsync(Guid? id, string name)
     {
-        bool isUnique = !await _dbContext.ProductCategories.AnyAsync(p => p.Name == name);
-        return isUnique;
+        if (id == null || id == Guid.Empty)
+        {
+            return !await _dbContext.ProductCategories.AnyAsync(p => p.Name == name.Trim());
+        }
+
+        return !await _dbContext.ProductCategories.Where(p => p.Id != id).AnyAsync(p => p.Name == name.Trim());
     }
 
     public async Task<IEnumerable<ProductCategory>> GetAllProductCategoriesWithSizeAsync()
