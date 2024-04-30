@@ -14,6 +14,11 @@ namespace Troonch.RetailSales.Product.DataAccess.Repositories
         }
         public async Task<bool> IsNameUniqueAync(Guid? id,string name)
         {
+            if (string.IsNullOrWhiteSpace(name))
+            {
+                return true;
+            }
+
             if (id == null || id == Guid.Empty)
             {
                 return !await _dbContext.Products.AnyAsync(p => p.Name == name.Trim());
