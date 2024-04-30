@@ -22,6 +22,8 @@ namespace Troonch.RetailSales.Product.Application;
         services.AddScoped<ProductBrandService>();
         services.AddScoped<ProductCategoryServices>();
         services.AddScoped<ProductServices>();
+        services.AddScoped<ProductGenderService>();
+        services.AddScoped<ProductMaterialService>();
 
         services.Configure<RequestLocalizationOptions>(options =>
         {

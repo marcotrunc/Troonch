@@ -35,9 +35,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Troonch.RetailSales.Product
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Person", "Person", "{6FFF679C-C176-4D7C-B3B6-3E1EA0EE3D7D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Troonch.Person.Domain", "Troonch.Person.Domain\Troonch.Person.Domain.csproj", "{FE0462DA-F4C2-4D8B-B7F0-13E76FAF05AA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Troonch.Person.Domain", "Troonch.Person.Domain\Troonch.Person.Domain.csproj", "{FE0462DA-F4C2-4D8B-B7F0-13E76FAF05AA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Troonch.Person.DataAccess", "Troonch.Person.DataAccess\Troonch.Person.DataAccess.csproj", "{5822073D-84FA-498C-8A3C-225FBFCEB77E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Troonch.Person.DataAccess", "Troonch.Person.DataAccess\Troonch.Person.DataAccess.csproj", "{5822073D-84FA-498C-8A3C-225FBFCEB77E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{274A5B2F-9723-48D9-A823-F01BC6EEB02F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Troonch.Retail.App", "Troonch.Retail.App\Troonch.Retail.App.csproj", "{5DF64839-BB1E-4DBC-9CB2-0A3936EE3DAE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -81,6 +85,10 @@ Global
 		{5822073D-84FA-498C-8A3C-225FBFCEB77E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5822073D-84FA-498C-8A3C-225FBFCEB77E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5822073D-84FA-498C-8A3C-225FBFCEB77E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5DF64839-BB1E-4DBC-9CB2-0A3936EE3DAE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5DF64839-BB1E-4DBC-9CB2-0A3936EE3DAE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5DF64839-BB1E-4DBC-9CB2-0A3936EE3DAE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5DF64839-BB1E-4DBC-9CB2-0A3936EE3DAE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -103,6 +111,8 @@ Global
 		{6FFF679C-C176-4D7C-B3B6-3E1EA0EE3D7D} = {B7BCC3B9-4D25-4D67-A4B0-BF8006354440}
 		{FE0462DA-F4C2-4D8B-B7F0-13E76FAF05AA} = {6FFF679C-C176-4D7C-B3B6-3E1EA0EE3D7D}
 		{5822073D-84FA-498C-8A3C-225FBFCEB77E} = {6FFF679C-C176-4D7C-B3B6-3E1EA0EE3D7D}
+		{274A5B2F-9723-48D9-A823-F01BC6EEB02F} = {08CE1004-C18E-4C3A-B8CB-6A67003AC1F8}
+		{5DF64839-BB1E-4DBC-9CB2-0A3936EE3DAE} = {274A5B2F-9723-48D9-A823-F01BC6EEB02F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B68A1CD8-FDD9-42B6-8006-20F5D44E6F2F}
