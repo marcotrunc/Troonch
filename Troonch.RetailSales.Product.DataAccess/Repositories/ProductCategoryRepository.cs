@@ -13,6 +13,11 @@ public sealed class ProductCategoryRepository : BaseRepository<ProductCategory, 
     }
     public async Task<bool> IsUniqueNameAsync(Guid? id, string name)
     {
+        if (String.IsNullOrWhiteSpace(name))
+        {
+            return true;
+        }
+
         if (id == null || id == Guid.Empty)
         {
             return !await _dbContext.ProductCategories.AnyAsync(p => p.Name == name.Trim());
