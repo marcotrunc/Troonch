@@ -8,6 +8,7 @@ using Troonch.RetailSales.Product.Domain.DTOs.Requests;
 
 namespace Troonch.Retail.App.Controllers
 {
+   
     public class ProductController : Controller
     {
         private readonly ILogger<ProductController> _logger;
@@ -17,6 +18,7 @@ namespace Troonch.Retail.App.Controllers
         private readonly ProductGenderService _productGenderService;
         private readonly ProductMaterialService _productMaterialService;
 
+        
         [ActivatorUtilitiesConstructor]
         public ProductController(
             ILogger<ProductController> logger, 
@@ -35,6 +37,7 @@ namespace Troonch.Retail.App.Controllers
             _productMaterialService = productMaterialService;
         }
 
+        
         [HttpGet]
         public async Task<IActionResult> Index()
         {
@@ -43,6 +46,24 @@ namespace Troonch.Retail.App.Controllers
             return View(products);
         }
 
+        [HttpGet]
+        public async Task<IActionResult> GetProductForm()
+        {
+            try
+            {
+                await GetProductBagForm();
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"ProductController::Create -> {ex.Message}");
+            }
+
+            var productModel = new ProductRequestDTO();
+
+            return PartialView("_Form", productModel);
+        }
+
+        [HttpGet]
         public async Task<IActionResult> Create()
         {
             try
@@ -56,22 +77,39 @@ namespace Troonch.Retail.App.Controllers
 
             var productModel = new ProductRequestDTO();
 
-            return View("Create", productModel);
+            return PartialView("_Form", productModel);
         }
 
-        [HttpPost]
-        public async Task<IActionResult> Create(ProductRequestDTO model)
+        [HttpGet]
+        public async Task<IActionResult> GetProductFormPartialAsync()
         {
             try
             {
-                var isProductAdded = await _productService.AddProductAsync(model);
+                await GetProductBagForm();
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"ProductController::Create -> {ex.Message}");
+            }
+
+            var productModel = new ProductRequestDTO();
+
+            return PartialView("_Form", productModel);
+        }
+        
+        [HttpPost]
+        public async Task<IActionResult> Create([FromForm]ProductRequestDTO productModel)
+        {
+            try
+            {
+                var isProductAdded = await _productService.AddProductAsync(productModel);
 
             }
             catch(ValidationException ex) 
             {
                 ModelState.SetModelState(ex.Errors, _logger);
                 await GetProductBagForm();
-                return View("Create", model);
+                return PartialView("_Form", productModel);
             }
             catch(Exception ex)
             {

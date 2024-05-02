@@ -8,12 +8,16 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Host.UseSerilog((context, configuration) =>
                         configuration.ReadFrom.Configuration(context.Configuration));
 
+builder.Services.AddRazorPages();
+builder.Services.AddControllers();
 
-// Add services to the container.
-builder.Services.AddControllersWithViews();
+
 
 // Add Retail Sales Product Service
 builder.Services.AddRetailSalesProductApplication(builder.Configuration);
+
+// Add services to the container.
+builder.Services.AddControllersWithViews();
 
 var app = builder
     .Build();
@@ -30,10 +34,6 @@ else
     app.UseStatusCodePagesWithRedirects("/Error/{0}");
 }
 
-
-
-
-
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
@@ -41,8 +41,23 @@ app.UseRouting();
 
 app.UseAuthorization();
 
+
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapRazorPages();
+    endpoints.MapControllers();
+});
+
+
+
+app.MapControllerRoute(
+    name: "Api",
+    pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
+
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.Run();
+
+

@@ -13,4 +13,8 @@
     <PackageReference Include="Slugify.Core" Version="4.0.1" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Troonch.DataAccess.Base\Troonch.DataAccess.Base.csproj" />
+  </ItemGroup>
+
 </Project>
