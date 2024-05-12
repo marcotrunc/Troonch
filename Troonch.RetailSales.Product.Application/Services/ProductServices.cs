@@ -1,6 +1,7 @@
 ﻿
 using FluentValidation;
 using Microsoft.Extensions.Logging;
+using System.Xml.Linq;
 using Troonch.Application.Base.UnitOfWork;
 using Troonch.Application.Base.Utilities;
 using Troonch.DataAccess.Base.Helpers;
@@ -62,9 +63,48 @@ public class ProductServices
 
         return mapFromProductToProductResponseDTO(product);
     }
+
+    public async Task<ProductRequestDTO> GetProductByIdForUpdateAsync(Guid id)
+    {
+        if (id == Guid.Empty)
+        {
+            _logger.LogError("ProductCategoryServices::GetProductByIdForUpdateAsync id is empty");
+            throw new ArgumentNullException(nameof(id));
+        }
+
+        var product = await _productRepository.GetProductByIdAsync(id);
+
+        if (product is null)
+        {
+            _logger.LogError("ProductCategoryServices::GetProductByIdForUpdateAsync product is null");
+            throw new ArgumentNullException(nameof(product));
+        }
+
+        return mapFromProductResponseToRequestDto(product);
+    }
+
+    public async Task<ProductResponseDTO> GetProductBySlugAsync(string slug)
+    {
+        if (String.IsNullOrWhiteSpace(slug))
+        {
+            _logger.LogError("ProductCategoryServices::GetProductBySlugAsync slug is not valid");
+            throw new ArgumentNullException(nameof(slug));
+        }
+
+        var product = await _productRepository.GetProductBySlugAsync(slug.Trim().ToLower());
+
+        if (product is null)
+        {
+            _logger.LogError("ProductCategoryServices::GetProductBySlugAsync product is null");
+            throw new ArgumentNullException(nameof(product));
+        }
+
+        return mapFromProductToProductResponseDTO(product);
+
+    }
     public async Task<bool> AddProductAsync(ProductRequestDTO productRequest)
     {
-        if(productRequest == null)
+        if(productRequest is null)
         {
             _logger.LogError("ProductServices::AddProductAsync productRequest is null");
             throw new ArgumentNullException(nameof(productRequest));
@@ -328,5 +368,17 @@ public class ProductServices
                 ProductMaterialId = p.ProductMaterialId,
                 ProductMaterialName = p.ProductMaterial?.Value ?? null
             };
-
+    private ProductRequestDTO mapFromProductResponseToRequestDto(SalesEntity.Product p) =>
+        new ProductRequestDTO
+        {
+            Id = p.Id,
+            Name = p.Name,
+            ProductBrandId = p.ProductBrandId,
+            ProductCategoryId = p.ProductCategoryId,
+            ProductGenderId = p.ProductGenderId,
+            ProductMaterialId = p.ProductMaterialId ?? Guid.Empty,
+            Description = p.Description,
+            IsDeleted = p.IsDeleted,
+            IsPublished = p.IsPublished
+        };
 }

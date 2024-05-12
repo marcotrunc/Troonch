@@ -9,6 +9,7 @@ namespace Troonch.RetailSales.Product.DataAccess.Repositories.Interfaces
         Task<bool> IsNameUniqueAync(Guid? id, string name);
         Task<IEnumerable<SalesEntity.Product>> GetProductsAsync(string? searchTerm);
         Task<SalesEntity.Product?> GetProductByIdAsync(Guid id);
+        Task<SalesEntity.Product?> GetProductBySlugAsync(string slug);
         Task<IEnumerable<SalesEntity.Product>> GetProductsByCategoryIdAsync(Guid categoryId);
         Task<IEnumerable<SalesEntity.Product>> GetProductsByBrandIdAsync(Guid brandId);
         Task<IEnumerable<SalesEntity.Product>> GetProductsDeletedAsync();

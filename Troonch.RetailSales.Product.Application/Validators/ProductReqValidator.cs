@@ -62,13 +62,13 @@ namespace Troonch.RetailSales.Product.Application.Validators
 
 
             RuleFor(p => p.Description)
-                .MinimumLength(1).When(p => p.Description is not null)
+                .MinimumLength(1).When(p => !String.IsNullOrWhiteSpace(p.Description))
                     .WithMessage(_resourceHelper.GetString("MINIMUM_LENGTH_ERROR", new List<ResourceHelperParameter>
                     {
                         new ResourceHelperParameter {ParameterKey = "DESCRIPTION_TRANSLATE"},
                         new ResourceHelperParameter {ParameterKey = "1", IsInResource = false},
                     }))
-                .MaximumLength(256).When(p => p.Description is not null)
+                .MaximumLength(256).When(p => !String.IsNullOrWhiteSpace(p.Description))
                     .WithMessage(_resourceHelper.GetString("MAXIMUM_LENGTH_ERROR", new List<ResourceHelperParameter>
                     {
                         new ResourceHelperParameter {ParameterKey = "DESCRIPTION_TRANSLATE"},

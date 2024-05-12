@@ -67,6 +67,15 @@ namespace Troonch.RetailSales.Product.DataAccess.Repositories
                 .Include(p => p.ProductMaterial)
                 .SingleOrDefaultAsync(p => p.Id == id); 
         }
+        public async Task<SalesEntity.Product?> GetProductBySlugAsync(string slug)
+        {
+            return await _dbContext.Products.AsNoTracking()
+                .Include(p => p.ProductGender)
+                .Include(p => p.ProductBrand)
+                .Include(p => p.ProductCategory)
+                .Include(p => p.ProductMaterial)
+                .SingleOrDefaultAsync(p => p.Slug == slug);
+        }
         public async Task<IEnumerable<SalesEntity.Product>> GetProductsByCategoryIdAsync(Guid categoryId)
         {
             return await _dbContext.Products.AsNoTracking()
