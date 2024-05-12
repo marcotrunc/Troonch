@@ -7,20 +7,20 @@ using Troonch.RetailSales.Product.Domain.DTOs.Requests;
 
 namespace Troonch.Retail.App.Areas.Api.Controllers
 {
+    [ApiController]
     [Area("Api")]
     [Route("api/[controller]")]
-    [ApiController]
-    public class ProductController : ControllerBase
+    public class ProductsController : ControllerBase
     {
-        private readonly ILogger<ProductController> _logger;
+        private readonly ILogger<ProductsController> _logger;
         private readonly ProductServices _productService;
         private readonly ProductBrandService _brandService;
         private readonly ProductCategoryServices _categoryService;
         private readonly ProductGenderService _productGenderService;
         private readonly ProductMaterialService _productMaterialService;
 
-        public ProductController(
-            ILogger<ProductController> logger,
+        public ProductsController(
+            ILogger<ProductsController> logger,
             ProductServices productService,
             ProductBrandService brandService,
             ProductCategoryServices categoryService,
@@ -36,11 +36,11 @@ namespace Troonch.Retail.App.Areas.Api.Controllers
             _productMaterialService = productMaterialService;
         }
 
-
         [HttpPost("Create")]
-        public async Task<ActionResult<ResponseModel<bool>>> Create([FromForm]ProductRequestDTO productModel)
+        public async Task<ActionResult<ResponseModel<bool>>> Create([FromBody] ProductRequestDTO productModel)
         {
             var responseModel = new ResponseModel<bool>();
+
             try
             {
                 var isProductAdded = await _productService.AddProductAsync(productModel);
@@ -48,6 +48,42 @@ namespace Troonch.Retail.App.Areas.Api.Controllers
                 responseModel.Data = isProductAdded;
 
                 return StatusCode(200, responseModel);
+            }
+            catch (ValidationException ex)
+            {
+                responseModel.Status = ResponseStatus.Error.ToString();
+                responseModel.Error.ValidationErrors = FluentValidationUtility.SetValidationErrors(ex.Errors, _logger);
+                responseModel.Error.Message = "Validation Error";
+                return StatusCode(422, responseModel);
+            }
+            catch (ArgumentNullException ex)
+            {
+                responseModel.Status = ResponseStatus.Error.ToString();
+                responseModel.Error.Message = ex.Message;
+                return StatusCode(400, responseModel);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Api/ProductController::Create -> {ex.Message}");
+                responseModel.Status = ResponseStatus.Error.ToString();
+                responseModel.Error.Message = ex.Message;
+                return StatusCode(500, responseModel);
+            }
+        }
+
+        [HttpPut("Update")]
+        public async Task<ActionResult<ResponseModel<bool>>> Update([FromBody] ProductRequestDTO productModel)
+        {
+            var responseModel = new ResponseModel<bool>();
+            
+            try { 
+
+                var isProductUpdated = await _productService.UpdateProductAsync(productModel.Id ?? Guid.Empty, productModel);
+
+                responseModel.Data = isProductUpdated;
+
+                return StatusCode(200, responseModel);
+
             }
             catch (ValidationException ex)
             {
