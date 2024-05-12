@@ -1,0 +1,119 @@
+﻿@using Troonch.RetailSales.Product.Domain.DTOs.Responses;
+@model ProductResponseDTO;
+
+<div class="row">
+   @* Product Form Container*@
+    <div class="col-md-6 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <div class="clearfix">
+                    <h4 class="card-title float-start">Prodotto</h4>
+                    <section id="product-form-container">
+                    </section>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @* Product Tags Form Container*@
+    <div class="col-md-6 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <div class="clearfix">
+                    <h4 class="card-title float-start">Prodotto</h4>
+                    <section>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @* Product Item Form Container*@
+    <div class="col-md-6 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <div class="clearfix">
+                    <h4 class="card-title float-start">Prodotto</h4>
+                    <section>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts{
+    <script>
+        
+        window.addEventListener('load', (event) => showProductForm());
+
+        const showProductForm = async () => {
+            try {
+                
+                const response = await fetch(`@Url.Action("GetProductForm","Products", new {@id= Model.Id})`);
+                
+
+                if (!response.ok) {
+                    window.location.href = `/Error/${response.status}`;
+                }
+
+
+                const htmlFormContent = await response.text();
+
+                if (htmlFormContent) {
+                    const modalBody = document.getElementById('product-form-container');
+                    modalBody.innerHTML = htmlFormContent;
+                }
+
+            } catch (error) {
+                console.log('showProductForm error message ->', error)
+            }
+        }
+
+        const submitProductForm = async (event) => {
+
+            event.preventDefault();
+
+            const formId = 'product-form';
+
+            const productForm = document.getElementById(formId);
+
+
+            const formData = new FormData(productForm);
+
+            cleanFormFromErrorMessage();
+
+            let payload = {};
+            formData.forEach((value, key) => {
+                if (value == 'false') value = false;
+                if (value == 'true') value = true;
+                payload[key] = value;
+            });
+
+            disableForm(formId);
+
+            const jsonData = JSON.stringify(payload);
+
+            try {
+                const response = await fetch('@Url.Action("Update", "Products", new { area = "Api" })', {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json; charset=utf-8'
+                    },
+                    body: jsonData
+                })
+
+                if(!response.ok){
+                    return await handleFormInError(response, formId);
+                }
+
+                enableForm(formId);
+                showNotification(false);
+            }
+            catch (error) {
+                handleExceptionInFormWithRedirect(error);
+            }
+        }
+    </script>
+}

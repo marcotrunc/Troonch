@@ -5,12 +5,12 @@
 @functions {
     public bool IsUpdateForm()
     {
-        if (Model == null)
+        if (Model is null)
         {
             return true;
         }
 
-        if (Model.Id == Guid.Empty || Model.Id == null)
+        if (Model.Id == Guid.Empty || Model.Id is null)
         {
             return true;
         }
@@ -22,11 +22,8 @@
     bool isUpdate = IsUpdateForm();
 }
 
-
-
-
 <div class="card-body">
-    @using (Html.BeginForm("Create", "Product", new { @area = "Api" }, FormMethod.Post, false, new { @onsubmit = "submitProductForm(event)", @id = "product-form", @class = "forms-sample row" }))
+    @using (Html.BeginForm("Create", "Products", new { @area = "Api" }, FormMethod.Post, false, new { @onsubmit = "submitProductForm(event)", @id = "product-form", @class = "forms-sample row" }))
         {
          
             @Html.ValidationSummary(true)
@@ -35,43 +32,43 @@
             <div class="form-group">
                 @Html.LabelFor(m => m.Name, "Nome")
                 @Html.TextBoxFor(m => m.Name, new { @class="form-control", @id="name", @placeholder="name"})
-                @Html.ValidationMessageFor(m => m.Name,"", new { @class="text-danger mt-1 my-2 ms-1 d-block"})
+                @Html.ValidationMessageFor(m => m.Name,"", new { @class="text-danger mt-1 my-2 ms-1 d-block error-message", data_error="name"})
             </div>
 
             <div class="form-group col-md-6">
                 @Html.LabelFor(m => m.ProductBrandId, "Brand")
                 @Html.DropDownListFor(m => m.ProductBrandId, new SelectList(ViewBag.Brands,"Id","Name"), new {@class="col-md-6 form-control", @id="brand"} )
-                @Html.ValidationMessageFor(m => m.ProductBrandId,"", new { @class="text-danger mt-1 my-2 ms-1 d-block"})
+                @Html.ValidationMessageFor(m => m.ProductBrandId,"", new { @class="text-danger mt-1 my-2 ms-1 d-block error-message", data_error="productbrandid"})
             </div>
             
             <div class="form-group col-md-6">
                 @Html.LabelFor(m => m.ProductCategoryId, "Categoria")
                 @Html.DropDownListFor(m => m.ProductCategoryId, new SelectList(ViewBag.Categories,"Id","Name"), new {@class="col-md-6 form-control", @id="category"} )
-                @Html.ValidationMessageFor(m => m.ProductCategoryId,"", new { @class="text-danger mt-1 my-2 ms-1 d-block"})
+                @Html.ValidationMessageFor(m => m.ProductCategoryId,"", new { @class="text-danger mt-1 my-2 ms-1 d-block error-message", data_error="productcategoryid"})
             </div>
 
             <div class="form-group col-md-6">
                 @Html.LabelFor(m => m.ProductGenderId, "Sesso")
                 @Html.DropDownListFor(m => m.ProductGenderId, new SelectList(ViewBag.Genders,"Id","Name"), new {@class="col-md-6 form-control" , @id="gender"} )
-                @Html.ValidationMessageFor(m => m.ProductGenderId,"", new { @class="text-danger mt-1 my-2 ms-1 d-block"})
+                @Html.ValidationMessageFor(m => m.ProductGenderId,"", new { @class="text-danger mt-1 my-2 ms-1 d-block error-message", data_error="productgenderid"})
             </div>
 
             <div class="form-group col-md-6">
                 @Html.LabelFor(m => m.ProductMaterialId, "Materiali")
-            @Html.DropDownListFor(m => m.ProductMaterialId, new SelectList(ViewBag.Materials,"Id","Value"), new {@class="col-md-6 form-control",  @id="material"} )
-                @Html.ValidationMessageFor(m => m.ProductMaterialId,"", new { @class="text-danger mt-1 my-2 ms-1 d-block"})
+                @Html.DropDownListFor(m => m.ProductMaterialId, new SelectList(ViewBag.Materials,"Id","Value"), new {@class="col-md-6 form-control",  @id="material"} )
+                @Html.ValidationMessageFor(m => m.ProductMaterialId,"", new { @class="text-danger mt-1 my-2 ms-1 d-block error-message", data_error="productmaterialid"})
             </div>
 
             <div class="form-group">
                 @Html.LabelFor(m => m.Description, "Descrizione")
                 @Html.TextAreaFor(m => m.Description, new { @class="form-control", @id="description"})
-                @Html.ValidationMessageFor(m => m.Description,"", new { @class="text-danger mt-1 my-2 ms-1 d-block"})
+                @Html.ValidationMessageFor(m => m.Description,"", new { @class="text-danger mt-1 my-2 ms-1 d-block error-message", data_error="description"})
             </div>
             
             <div class="d-flex justify-content-end">
                 <div class="form-check form-check-flat form-check-primary">
-                    @Html.CheckBoxFor(m => m.IsPublished,new {@id="is-published",@class="form-check-input", @checked= isUpdate ? "": "checked"})Pubblica<i class="input-helper"></i>
-                </div>
+                @Html.CheckBoxFor(m => m.IsPublished,new {@id="is-published",@class="form-check-input",@onclick="toogleValue(this)" ,@checked= ((!isUpdate || Model.IsPublished ) ? "true": "false")})Pubblica<i class="input-helper"></i>
+            </div>
             </div>
 
             <div class="form-group">
@@ -80,7 +77,7 @@
 
             <div class="d-flex justify-content-end">
                 <button type="button" class="btn btn-light me-2" data-bs-dismiss="modal">Cancel</button>
-                <button type="submit"  class="btn btn-gradient-primary mr-2">Submit</button>
+                <button type="submit" class="btn btn-gradient-primary mr-2">Submit</button>
             </div>
         }
 </div>
