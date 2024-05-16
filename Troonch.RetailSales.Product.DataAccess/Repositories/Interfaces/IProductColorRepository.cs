@@ -3,6 +3,6 @@ using Troonch.Sales.Domain.Entities;
 
 namespace Troonch.RetailSales.Product.DataAccess.Repositories.Interfaces;
 
-public interface IProductMaterialRepository : IBaseRepository<ProductMaterial>
+public interface IProductColorRepository : IBaseRepository<ProductColor>
 {
 }
