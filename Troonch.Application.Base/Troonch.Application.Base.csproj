@@ -17,4 +17,8 @@
     <ProjectReference Include="..\Troonch.DataAccess.Base\Troonch.DataAccess.Base.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Services\" />
+  </ItemGroup>
+
 </Project>

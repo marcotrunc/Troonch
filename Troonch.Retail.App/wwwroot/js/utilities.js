@@ -55,14 +55,43 @@ const showNotification = (isInError, errorMessage = "Errore di validazione") =>
         stopOnFocus: true,
     }).showToast();
 
-const handleFormInError = async (response, formId) => {
+const renderHTML = async (action, containerId, modalId = null) => {
+    try {
+        
+        const response = await fetch(action);
+
+
+        if (!response.ok) {
+            return await handleRequestInError(response);
+        }
+
+
+        const htmlFormContent = await response.text();
+
+        if (htmlFormContent) {
+            const modalBody = document.getElementById(containerId);
+            modalBody.innerHTML = htmlFormContent;
+        }
+
+        if (modalId != null) {
+            const variationModal = new bootstrap.Modal(document.getElementById(modalId));
+            variationModal.show();
+        }
+
+    } catch (error) {
+        handleExceptionInFormWithRedirect(error);
+    }
+}
+
+
+const handleRequestInError = async (response, formId = null) => {
     const errorResult = await response.json();
 
     if (!errorResult) {
         throw new Error("ErrorResult not retrived");
     }
 
-    if (response.status == errorCodes.validation) {
+    if (formId != null && response.status == errorCodes.validation) {
         showNotification(true);
         enableForm(formId);
         return showErrors(errorResult.error)
@@ -70,11 +99,13 @@ const handleFormInError = async (response, formId) => {
 
     showNotification(true, errorResult.error.message);
 
-    enableForm(formId);
+    if (formId != null) {
+        enableForm(formId);
+    }
 }
 
 const handleExceptionInFormWithRedirect = (error) => {
     console.error(error);
-    window.location.href = `/Error/${errorCodes.notFound}`;
+    window.location.href = `/Error/${errorCodes.internalServer}`;
 }
 

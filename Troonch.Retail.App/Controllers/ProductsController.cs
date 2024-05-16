@@ -43,17 +43,60 @@ namespace Troonch.Retail.App.Controllers
         [HttpGet]
         public async Task<IActionResult> Index()
         {
-            var products = await _productService.GetProductsAsync(null);
-            ViewData["Title"] = "Prodotti";
-            return View(products);
+            try
+            {
+                var products = await _productService.GetProductsAsync(null);
+                ViewData["Title"] = "Prodotti";
+                return View(products);
+            }
+            catch (ArgumentNullException ex)
+            {
+                _logger.LogError($"ProductsController::Index -> {ex.Message}");
+                var responseModel = new ResponseModel<bool>();
+                responseModel.Status = ResponseStatus.Error.ToString();
+                responseModel.Error.Message = ex.Message;
+                return StatusCode(400, responseModel);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"ProductsController::Index -> {ex.Message}");
+                var responseModel = new ResponseModel<bool>();
+                responseModel.Status = ResponseStatus.Error.ToString();
+                responseModel.Error.Message = ex.Message;
+                return StatusCode(500, responseModel);
+            }
         }
 
         [HttpGet("Detail/{slug}")]
         public async Task<IActionResult> Detail(string slug)
         {
-            var product = await _productService.GetProductBySlugAsync(slug);
+            try
+            {
+                var product = await _productService.GetProductBySlugAsync(slug);
 
-            return View(product);
+                if(product is null)
+                {
+                    throw new ArgumentNullException(nameof(product));
+                }
+
+                return View(product);
+            }
+            catch (ArgumentNullException ex)
+            {
+                _logger.LogError($"ProductsController::Detail -> {ex.Message}");
+                var responseModel = new ResponseModel<bool>();
+                responseModel.Status = ResponseStatus.Error.ToString();
+                responseModel.Error.Message = ex.Message;
+                return StatusCode(400, responseModel);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"ProductsController::Detail -> {ex.Message}");
+                var responseModel = new ResponseModel<bool>();
+                responseModel.Status = ResponseStatus.Error.ToString();
+                responseModel.Error.Message = ex.Message;
+                return StatusCode(500, responseModel);
+            }
         }
 
         [HttpGet("GetProductForm/{id?}")]
@@ -69,32 +112,47 @@ namespace Troonch.Retail.App.Controllers
                     productModel = await _productService.GetProductByIdForUpdateAsync(Guid.Parse(id));
                 }
 
+                return PartialView("_Form", productModel);
+            }
+            catch (ArgumentNullException ex)
+            {
+                _logger.LogError($"ProductsController::GetProductForm -> {ex.Message}");
+                var responseModel = new ResponseModel<bool>();
+                responseModel.Status = ResponseStatus.Error.ToString();
+                responseModel.Error.Message = ex.Message;
+                return StatusCode(400, responseModel);
             }
             catch (Exception ex)
             {
-                _logger.LogError($"ProductController::Create -> {ex.Message}");
+                _logger.LogError($"ProductsController::GetProductForm -> {ex.Message}");
+                var responseModel = new ResponseModel<bool>();
+                responseModel.Status = ResponseStatus.Error.ToString();
+                responseModel.Error.Message = ex.Message;
+                return StatusCode(500, responseModel);
             }
 
-            return PartialView("_Form", productModel);
         }
-
-        
 
         [HttpGet]
         public async Task<IActionResult> Create()
         {
             try
             {
+            
+                var productModel = new ProductRequestDTO();
                 await GetProductBagForm();
+
+                return PartialView("_Form", productModel);
             }
             catch (Exception ex)
             {
-                _logger.LogError($"ProductController::Create -> {ex.Message}");
+                _logger.LogError($"ProductsController::Create -> {ex.Message}");
+                var responseModel = new ResponseModel<bool>();
+                responseModel.Status = ResponseStatus.Error.ToString();
+                responseModel.Error.Message = ex.Message;
+                return StatusCode(500, responseModel);
             }
 
-            var productModel = new ProductRequestDTO();
-
-            return PartialView("_Form", productModel);
         }
 
         [HttpPost("Create")]
@@ -119,6 +177,7 @@ namespace Troonch.Retail.App.Controllers
             }
             catch (ArgumentNullException ex)
             {
+                _logger.LogError($"Api/ProductController::Create -> {ex.Message}");
                 responseModel.Status = ResponseStatus.Error.ToString();
                 responseModel.Error.Message = ex.Message;
                 return StatusCode(400, responseModel);
@@ -158,13 +217,14 @@ namespace Troonch.Retail.App.Controllers
             }
             catch (ArgumentNullException ex)
             {
+                _logger.LogError($"Api/ProductController::Update -> {ex.Message}");
                 responseModel.Status = ResponseStatus.Error.ToString();
                 responseModel.Error.Message = ex.Message;
                 return StatusCode(400, responseModel);
             }
             catch (Exception ex)
             {
-                _logger.LogError($"Api/ProductController::Create -> {ex.Message}");
+                _logger.LogError($"Api/ProductController::Update -> {ex.Message}");
                 responseModel.Status = ResponseStatus.Error.ToString();
                 responseModel.Error.Message = ex.Message;
                 return StatusCode(500, responseModel);
@@ -173,15 +233,10 @@ namespace Troonch.Retail.App.Controllers
 
         private async Task GetProductBagForm()
         {
-            var brands = await _brandService.GetAllProductBrandAsync();
-            var categories = await _categoryService.GetProductCategoriesAsync();
-            var genders = await _productGenderService.GetProductGendersAsync();
-            var materials = await _productMaterialService.GetAllProductMaterialAsync();
-
-            ViewBag.Brands = brands;
-            ViewBag.Categories = categories;
-            ViewBag.Genders = genders;
-            ViewBag.Materials = materials;
+            ViewBag.Brands = await _brandService.GetAllProductBrandAsync();
+            ViewBag.Categories = await _categoryService.GetProductCategoriesAsync();
+            ViewBag.Genders = await _productGenderService.GetProductGendersAsync();
+            ViewBag.Materials = await _productMaterialService.GetAllProductMaterialAsync();
         }
     }
 }

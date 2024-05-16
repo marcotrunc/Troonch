@@ -23,7 +23,7 @@
 }
 
 <div class="card-body">
-    @using (Html.BeginForm("Create", "Products", new { @area = "Api" }, FormMethod.Post, false, new { @onsubmit = "submitProductForm(event)", @id = "product-form", @class = "forms-sample row" }))
+    @using (Html.BeginForm("Create", "Products", FormMethod.Post, new { @onsubmit = "submitProductForm(event)", @id = "product-form", @class = "forms-sample row" }))
         {
          
             @Html.ValidationSummary(true)

@@ -16,6 +16,8 @@ namespace Troonch.Sales.DataAccess
             services.AddScoped<IProductSizeTypeRepository,ProductSizeTypeRepository>();
             services.AddScoped<IProductGenderRepository,ProductGenderRepository>(); 
             services.AddScoped<IProductMaterialRepository,ProductMaterialRepository>(); 
+            services.AddScoped<IProductColorRepository,ProductColorRepository>();
+            services.AddScoped<IProductSizeOptionRepository,ProductSizeOptionRepository>();
             services.AddScoped<IProductRepository, ProductRepository>();
 
             string? connectionString = configuration.GetValue<string>("ConnectionStrings:AppDbConnectionString");

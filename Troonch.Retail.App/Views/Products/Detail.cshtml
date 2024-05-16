@@ -1,9 +1,15 @@
 ﻿@using Troonch.RetailSales.Product.Domain.DTOs.Responses;
 @model ProductResponseDTO;
 
+@*Header Page*@
+
+<div class="page-header">
+    <h3 class="page-title">@Model.ProductBrandName @Model.Name</h3>
+</div>
+
 <div class="row">
    @* Product Form Container*@
-    <div class="col-md-6 grid-margin stretch-card">
+    <div class="col-md-8 grid-margin stretch-card">
         <div class="card">
             <div class="card-body">
                 <div class="clearfix">
@@ -16,7 +22,7 @@
     </div>
 
     @* Product Tags Form Container*@
-    <div class="col-md-6 grid-margin stretch-card">
+    <div class="col-md-4 grid-margin stretch-card">
         <div class="card">
             <div class="card-body">
                 <div class="clearfix">
@@ -29,48 +35,145 @@
     </div>
 
     @* Product Item Form Container*@
-    <div class="col-md-6 grid-margin stretch-card">
+    <div class="col-12 grid-margin stretch-card">
         <div class="card">
             <div class="card-body">
-                <div class="clearfix">
-                    <h4 class="card-title float-start">Prodotto</h4>
-                    <section>
-                    </section>
+                <div class="d-flex justify-content-between mb-2">
+                    <h4 class="card-title float-start">Variazioni</h4>
+                    <button type="button" id="add-variation-button-product" class="btn btn-outline-primary btn-icon-text" onclick="showVariationModal()">
+                        <i class="mdi mdi-plus-box btn-icon-prepend"></i> Aggiungi
+                    </button>
+                    <div id="variation-products-buttons" class="d-none">
+                        <button type="button" class="btn btn-outline-danger btn-icon-text">
+                            <i class="mdi mdi-delete btn-icon-prepend"></i> Elimina
+                        </button>
+                        <button type="button" class="btn btn-outline-primary btn-icon-text">
+                            <i class="mdi mdi-pencil-box btn-icon-prepend"></i> Modifica
+                        </button>
+                        <button type="button" class="btn btn-outline-info btn-icon-text">
+                            <i class="mdi mdi-printer btn-icon-prepend"></i> Stampa
+                        </button>
+                    </div>
+
                 </div>
+                    <table id="variations-table" class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>Colore</th>
+                                <th>Quantità</th>
+                                <th>Taglia</th>
+                                <th>Prezzo di Acquisto</th>
+                                <th>Prezzo di Vendita</th>
+                                <th>Barcode</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <div class="form-check form-check-primary">
+                                        <label class="form-check-label">
+                                            <input type="checkbox" class="form-check-input" onclick="handleVariation(this)">
+                                        </label>
+                                    </div>
+                                </td>
+                                <td>Giallo</td>
+                                <td>1</td>
+                                <td>L</td>
+                                <td>5.99€</td>
+                                <td>19.99€</td>
+                                <td><label class="badge badge-primary">hds-lsp-8394</label></td>
+                                    
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="form-check form-check-primary">
+                                        <label class="form-check-label">
+                                            <input type="checkbox" class="form-check-input" onclick="handleVariation(this)">
+                                        </label>
+                                    </div>
+                                </td>
+                                <td>Verde</td>
+                                <td>3</td>
+                                <td>L</td>
+                                <td>5.99€</td>
+                                <td>19.99€</td>
+                                <td><label class="badge badge-primary">hds-lsp-8394</label></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="form-check form-check-primary">
+                                        <label class="form-check-label">
+                                            <input type="checkbox" class="form-check-input" onclick="handleVariation(this)">
+                                        </label>
+                                    </div>
+                                </td>
+                                <td>Blu</td>
+                                <td>2</td>
+                                <td>XS</td>
+                                <td>5.99€</td>
+                                <td>19.99€</td>
+                                <td><label class="badge badge-primary">hds-lsp-8394</label></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="form-check form-check-primary">
+                                        <label class="form-check-label">
+                                            <input type="checkbox" class="form-check-input" onclick="handleVariation(this)">
+                                        </label>
+                                    </div>
+                                </td>
+                                <td>Viola</td>
+                                <td>5</td>
+                                <td>M</td>
+                                <td>5.99€</td>
+                                <td>19.99€</td>
+                                <td><label class="badge badge-primary">hds-lsp-8394</label></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="form-check form-check-primary">
+                                        <label class="form-check-label">
+                                            <input type="checkbox" class="form-check-input" onclick="handleVariation(this)">
+                                        </label>
+                                    </div>
+                                </td>
+                                <td>Giallo</td>
+                                <td>6</td>
+                                <td>S</td>
+                                <td>5.99€</td>
+                                <td>19.99€</td>
+                                <td><label class="badge badge-primary">hds-lsp-8394</label></td>
+                            </tr>
+                        </tbody>
+                    </table>
             </div>
         </div>
     </div>
 </div>
 
+<!-- Modal -->
+<div class="modal fade" id="variation-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Nuova Variazione</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div id="variation-modal-body" class="modal-body">
+            </div>
+        </div>
+    </div>
+</div>
 
 @section Scripts{
     <script>
+
+        window.addEventListener('load', async (event) => await renderHTML(`@Url.Action("GetProductForm","Products", new {@id= Model.Id})`, 'product-form-container'));
+
+        const showVariationModal = async () => 
+                         await renderHTML('@Url.Action("GetProductItemsForm","ProductItems",new { categoryId = Model.ProductCategoryId, productId = Model.Id })', 'variation-modal-body', 'variation-modal');
         
-        window.addEventListener('load', (event) => showProductForm());
-
-        const showProductForm = async () => {
-            try {
-                
-                const response = await fetch(`@Url.Action("GetProductForm","Products", new {@id= Model.Id})`);
-                
-
-                if (!response.ok) {
-                    window.location.href = `/Error/${response.status}`;
-                }
-
-
-                const htmlFormContent = await response.text();
-
-                if (htmlFormContent) {
-                    const modalBody = document.getElementById('product-form-container');
-                    modalBody.innerHTML = htmlFormContent;
-                }
-
-            } catch (error) {
-                console.log('showProductForm error message ->', error)
-            }
-        }
-
         const submitProductForm = async (event) => {
 
             event.preventDefault();
@@ -96,7 +199,7 @@
             const jsonData = JSON.stringify(payload);
 
             try {
-                const response = await fetch('@Url.Action("Update", "Products", new { area = "Api" })', {
+                const response = await fetch('@Url.Action("Update", "Products")', {
                     method: 'PUT',
                     headers: {
                         'Content-Type': 'application/json; charset=utf-8'
@@ -105,7 +208,7 @@
                 })
 
                 if(!response.ok){
-                    return await handleFormInError(response, formId);
+                    return await handleRequestInError(response, formId);
                 }
 
                 enableForm(formId);
@@ -115,5 +218,31 @@
                 handleExceptionInFormWithRedirect(error);
             }
         }
+
+        const handleVariation = (checkbox) => {
+            const buttonBox = document.getElementById('variation-products-buttons');
+            const addVariationButton = document.getElementById('add-variation-button-product');
+            const table = document.getElementById('variations-table');
+
+            const checkboxes = table.querySelectorAll("input[type='checkbox']");
+
+            checkboxes.forEach(item => {
+                if (item !== checkbox) {
+                    item.checked = false;
+                }
+            });
+
+            if (checkbox.checked) {
+                buttonBox.classList.remove("d-none");
+                addVariationButton.classList.add("d-none");
+            } else {
+                buttonBox.classList.add("d-none");
+                addVariationButton.classList.remove("d-none");
+            }
+        }
+
+
+
+        
     </script>
 }
