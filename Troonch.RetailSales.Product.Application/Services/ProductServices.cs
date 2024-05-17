@@ -126,7 +126,6 @@ public class ProductServices
             ProductMaterialId = productRequest.ProductMaterialId == Guid.Empty ? null : productRequest.ProductMaterialId,
         };
 
-        //TODO Implement the saving 
 
         var productAdded = await _productRepository.AddAsync(productToAdd); 
 

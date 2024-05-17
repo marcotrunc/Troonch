@@ -26058,7 +26058,7 @@ code {
 }
 
     .card .card-body {
-        padding: 2.5rem 2.5rem;
+        padding: 1.5rem 1rem;
     }
 
         .card .card-body + .card-body {
@@ -29747,3 +29747,10 @@ dl {
     flex-grow: 1;
 }
 /*# sourceMappingURL=maps/style.css.map */
+
+/*Custom Class*/
+
+.overflow-section {
+    max-height: 500px;
+    overflow-y: auto;
+}

@@ -112,9 +112,10 @@
             disableForm(formId);
 
             const jsonData = JSON.stringify(payload);
+            const url = '@Url.Action("Create", "Products")';
 
             try {
-                const response = await fetch('@Url.Action("Create", "Products")', {
+                const response = await fetch(url, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json; charset=utf-8'

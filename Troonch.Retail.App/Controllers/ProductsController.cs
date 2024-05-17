@@ -155,7 +155,7 @@ namespace Troonch.Retail.App.Controllers
 
         }
 
-        [HttpPost("Create")]
+        [HttpPost]
         public async Task<ActionResult<ResponseModel<bool>>> Create([FromBody] ProductRequestDTO productModel)
         {
             var responseModel = new ResponseModel<bool>();
@@ -193,7 +193,7 @@ namespace Troonch.Retail.App.Controllers
 
         
 
-        [HttpPut("Update")]
+        [HttpPut]
         public async Task<ActionResult<ResponseModel<bool>>> Update([FromBody] ProductRequestDTO productModel)
         {
             var responseModel = new ResponseModel<bool>();

@@ -85,7 +85,7 @@ namespace Troonch.RetailSales.Product.Application.Validators
                     .WithMessage(_resourceHelper.GetString("EMPTY_FIELD_ERROR", new List<ResourceHelperParameter> {
                         new ResourceHelperParameter {ParameterKey =  "PRODUCT_GENDER_TRANSLATE" }
                     }))
-                .MustAsync(async (b, producrGenderId, _) => await _productGenderRepository.IsExistingById(producrGenderId))
+                .MustAsync(async (b, productGenderId, _) => await _productGenderRepository.IsExistingById(productGenderId))
                     .WithMessage(_resourceHelper.GetString("EXISTING_FIELD_ERROR", new List<ResourceHelperParameter> {
                         new ResourceHelperParameter {ParameterKey =  "PRODUCT_GENDER_TRANSLATE" }
                     }));

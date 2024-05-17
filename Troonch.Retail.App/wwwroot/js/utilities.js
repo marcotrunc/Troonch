@@ -13,8 +13,12 @@ const showErrors = (errors) => {
     const fields = validationErrors.map(e => e.field).filter((item, index, currentArray) => currentArray.indexOf(item) == index);
 
     fields.forEach(field => {
-        let errorElement = document.querySelector(`[data-error="${field}"]`);
-        errorElement.textContent = validationErrors.filter(error => error.field == field)[0].message;
+        try {
+            let errorElement = document.querySelector(`[data-error="${field}"]`);
+            errorElement.textContent = validationErrors.filter(error => error.field == field)[0].message;
+        } catch (error) {
+            console.error(error);
+        }
     });
 }
 
@@ -44,6 +48,16 @@ const enableForm = (id) => {
     [...form.elements].forEach(input => input.disabled = false);
 } 
 
+const setPayloadFromFormData = (formData) => {
+    let payload = {};
+    formData.forEach((value, key) => {
+        if (value == 'false') value = false;
+        if (value == 'true') value = true;
+        payload[key] = value;
+    });
+
+    return payload;
+}
 
 const showNotification = (isInError, errorMessage = "Errore di validazione") => 
     Toastify({
@@ -109,3 +123,27 @@ const handleExceptionInFormWithRedirect = (error) => {
     window.location.href = `/Error/${errorCodes.internalServer}`;
 }
 
+const handleInput = (element) => {
+    debugger;
+
+    const inputElement = document.getElementById('original-price');
+    console.log(inputElement);
+
+    inputElement.addEventListener('input', function (event) {
+        // Prevent the default behavior
+        event.preventDefault();
+
+        // Get the value typed by the user
+        var typedValue = event.target.value;
+
+        // Replace any commas with periods
+        var modifiedValue = typedValue.replace(',', '.');
+
+        // Set the modified value back to the input
+        event.target.value = modifiedValue;
+
+        // Now you can use 'modifiedValue' as needed
+        console.log('Typed value:', typedValue);
+        console.log('Modified value:', modifiedValue);
+    });
+}

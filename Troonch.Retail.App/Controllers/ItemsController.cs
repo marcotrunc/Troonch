@@ -1,32 +1,71 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using FluentValidation;
+using Microsoft.AspNetCore.Mvc;
 using System;
+using Troonch.Application.Base.Utilities;
 using Troonch.Domain.Base.DTOs.Response;
 using Troonch.RetailSales.Product.Application.Services;
 using Troonch.RetailSales.Product.Domain.DTOs.Requests;
 
 namespace Troonch.Retail.App.Controllers
 {
-    public class ProductItemsController : Controller
+    public class ItemsController : Controller
     {
-        private readonly ILogger<ProductItemsController> _logger;
+        private readonly ILogger<ItemsController> _logger;
+        private readonly ProductItemService _productItemService;
         private readonly ProductColorService _productColorService;
         private readonly ProductCategoryServices _productCategoryServices;
         private readonly ProductSizeOptionService _productSizeOptionService;
-        public ProductItemsController(
-            ILogger<ProductItemsController> logger,
+        public ItemsController(
+            ILogger<ItemsController> logger,
+            ProductItemService productItemService,
             ProductColorService productColorService,
             ProductCategoryServices productCategoryServices,
             ProductSizeOptionService productSizeOptionService
             )
         {
             _logger = logger;
+            _productItemService = productItemService;
             _productColorService = productColorService;
             _productCategoryServices = productCategoryServices;
             _productSizeOptionService = productSizeOptionService;
         }
-        public IActionResult Index()
+
+
+        [HttpGet("items/Index/{productId?}")]
+        public async Task<IActionResult> Index(string? productId)
         {
-            return View();
+            try
+            {
+                if(productId is null)
+                {
+                    throw new ArgumentNullException(productId);
+                }
+
+                var productItems = await _productItemService.GetProductItemsByProductIdAsync(Guid.Parse(productId));
+                
+                if(productItems is null)
+                {
+                    throw new ArgumentNullException($"product items list is null");
+                }
+
+                return PartialView("_Index", productItems);
+            }
+            catch (ArgumentNullException ex)
+            {
+                _logger.LogError($"ItemsController::RenderProductItemListByProductId -> {ex.Message}");
+                var responseModel = new ResponseModel<bool>();
+                responseModel.Status = ResponseStatus.Error.ToString();
+                responseModel.Error.Message = ex.Message;
+                return StatusCode(400, responseModel);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"ItemsController::RenderProductItemListByProductId -> {ex.Message}");
+                var responseModel = new ResponseModel<bool>();
+                responseModel.Status = ResponseStatus.Error.ToString();
+                responseModel.Error.Message = "Internal Server Error";
+                return StatusCode(500, responseModel);
+            }
         }
 
         [HttpGet("GetProductItemsForm/{categoryId}/{productId}/{itemId?}")]
@@ -39,8 +78,17 @@ namespace Troonch.Retail.App.Controllers
 
             try
             {
-                await GetProductItemsBag(Guid.Parse(categoryId));
-                
+                if (Guid.TryParse(categoryId,out Guid categoryIdParsed))
+                {
+                    await GetProductItemsBag(categoryIdParsed);
+                }
+
+                if (itemId is not null && Guid.TryParse(itemId, out Guid itemIdParsed))
+                {
+                    itemModel = await _productItemService.GetProductByIdForUpdateAsync(itemIdParsed);
+                }
+
+
                 return PartialView("_Form", itemModel);
             }
             catch (ArgumentNullException ex)
@@ -56,12 +104,11 @@ namespace Troonch.Retail.App.Controllers
                 var responseModel = new ResponseModel<bool>();
                 _logger.LogError($"ProductItemsController::GetProductItemsForm -> {ex.Message}");
                 responseModel.Status = ResponseStatus.Error.ToString();
-                responseModel.Error.Message = ex.Message;
+                responseModel.Error.Message = "Internal Server Error";
                 return StatusCode(500, responseModel);
             }
         }
-
-        [HttpGet("GenerateBarcode")]
+        [HttpGet]
         public async Task<IActionResult> GenerateBarcode()
         {
             var responseModel = new ResponseModel<string>();
@@ -108,7 +155,48 @@ namespace Troonch.Retail.App.Controllers
             {
                 _logger.LogError($"ProductItemsController::GenerateBarcode -> {ex.Message}");
                 responseModel.Status = ResponseStatus.Error.ToString();
+                responseModel.Error.Message = "Internal Server Error";
+                return StatusCode(500, responseModel);
+            }
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> CreateItem([FromBody] ProductItemRequestDTO productItemModel)
+        {
+            var responseModel = new ResponseModel<bool>();
+
+            try
+            {
+                var isProductAdded = await _productItemService.AddProductItemAsync(productItemModel);
+                responseModel.Data = isProductAdded;
+
+                if (!isProductAdded)
+                {
+                    throw new Exception();
+                }
+
+
+                return StatusCode(200, responseModel);
+            }
+            catch (ValidationException ex)
+            {
+                responseModel.Status = ResponseStatus.Error.ToString();
+                responseModel.Error.ValidationErrors = FluentValidationUtility.SetValidationErrors(ex.Errors, _logger);
+                responseModel.Error.Message = "Validation Error";
+                return StatusCode(422, responseModel);
+            }
+            catch (ArgumentNullException ex)
+            {
+                _logger.LogError($"ProductItemsController::Create -> {ex.Message}");
+                responseModel.Status = ResponseStatus.Error.ToString();
                 responseModel.Error.Message = ex.Message;
+                return StatusCode(400, responseModel);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"ProductItemsController::Create -> {ex.Message}");
+                responseModel.Status = ResponseStatus.Error.ToString();
+                responseModel.Error.Message = "Internal Server Error";
                 return StatusCode(500, responseModel);
             }
         }

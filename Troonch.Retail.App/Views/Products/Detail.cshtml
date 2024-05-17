@@ -11,12 +11,12 @@
    @* Product Form Container*@
     <div class="col-md-8 grid-margin stretch-card">
         <div class="card">
+            <div class="px-2 py-2">
+                <h4 class="card-title float-start">Prodotto</h4>
+            </div>
             <div class="card-body">
-                <div class="clearfix">
-                    <h4 class="card-title float-start">Prodotto</h4>
-                    <section id="product-form-container">
-                    </section>
-                </div>
+                <section id="product-form-container">
+                </section>
             </div>
         </div>
     </div>
@@ -37,116 +37,44 @@
     @* Product Item Form Container*@
     <div class="col-12 grid-margin stretch-card">
         <div class="card">
-            <div class="card-body">
-                <div class="d-flex justify-content-between mb-2">
-                    <h4 class="card-title float-start">Variazioni</h4>
-                    <button type="button" id="add-variation-button-product" class="btn btn-outline-primary btn-icon-text" onclick="showVariationModal()">
-                        <i class="mdi mdi-plus-box btn-icon-prepend"></i> Aggiungi
-                    </button>
-                    <div id="variation-products-buttons" class="d-none">
-                        <button type="button" class="btn btn-outline-danger btn-icon-text">
-                            <i class="mdi mdi-delete btn-icon-prepend"></i> Elimina
+            <div class="card-body overflow-section">
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                    <h4 class="card-title">Variazioni</h4>
+                    @* Add Buttons*@
+                    <div id="add-variation-button-product">
+                        <button type="button"  class="btn btn-outline-primary btn-icon-text d-none d-md-block" onclick="showVariationModal()">
+                            <i class="mdi mdi-plus-box btn-icon-prepend"></i> Aggiungi
                         </button>
-                        <button type="button" class="btn btn-outline-primary btn-icon-text">
-                            <i class="mdi mdi-pencil-box btn-icon-prepend"></i> Modifica
-                        </button>
-                        <button type="button" class="btn btn-outline-info btn-icon-text">
-                            <i class="mdi mdi-printer btn-icon-prepend"></i> Stampa
+                        <button type="button"  class="btn btn-outline-primary btn-icon-text btn-sm d-md-none" onclick="showVariationModal()">
+                            <i class="mdi mdi-plus-box"></i>
                         </button>
                     </div>
 
+                    <div id="variation-products-buttons" class="d-none">
+                        <button type="button" class="btn btn-outline-danger btn-icon-text d-none d-md-inline">
+                            <i class="mdi mdi-delete btn-icon-prepend"></i> Elimina
+                        </button>
+                        <button type="button" class="btn btn-outline-danger btn-icon-text btn-sm d-md-none">
+                            <i class="mdi mdi-delete"></i>
+                        </button>
+
+                        <button type="button" class="btn btn-outline-primary btn-icon-text d-none d-md-inline" onclick="showVariationModal()">
+                            <i class="mdi mdi-pencil-box btn-icon-prepend"></i> Modifica
+                        </button>
+                        <button type="button" class="btn btn-outline-primary btn-icon-text btn-sm d-md-none" onclick="showVariationModal()">
+                            <i class="mdi mdi-pencil-box"></i> 
+                        </button>
+
+                        <button type="button" class="btn btn-outline-info btn-icon-text d-none d-md-inline">
+                            <i class="mdi mdi-printer btn-icon-prepend"></i> Stampa
+                        </button>
+                        <button type="button" class="btn btn-outline-info btn-icon-text btn-sm d-md-none">
+                            <i class="mdi mdi-printer"></i> 
+                        </button>
+                    </div>
                 </div>
-                    <table id="variations-table" class="table table-hover">
-                        <thead>
-                            <tr>
-                                <th></th>
-                                <th>Colore</th>
-                                <th>Quantità</th>
-                                <th>Taglia</th>
-                                <th>Prezzo di Acquisto</th>
-                                <th>Prezzo di Vendita</th>
-                                <th>Barcode</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>
-                                    <div class="form-check form-check-primary">
-                                        <label class="form-check-label">
-                                            <input type="checkbox" class="form-check-input" onclick="handleVariation(this)">
-                                        </label>
-                                    </div>
-                                </td>
-                                <td>Giallo</td>
-                                <td>1</td>
-                                <td>L</td>
-                                <td>5.99€</td>
-                                <td>19.99€</td>
-                                <td><label class="badge badge-primary">hds-lsp-8394</label></td>
-                                    
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="form-check form-check-primary">
-                                        <label class="form-check-label">
-                                            <input type="checkbox" class="form-check-input" onclick="handleVariation(this)">
-                                        </label>
-                                    </div>
-                                </td>
-                                <td>Verde</td>
-                                <td>3</td>
-                                <td>L</td>
-                                <td>5.99€</td>
-                                <td>19.99€</td>
-                                <td><label class="badge badge-primary">hds-lsp-8394</label></td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="form-check form-check-primary">
-                                        <label class="form-check-label">
-                                            <input type="checkbox" class="form-check-input" onclick="handleVariation(this)">
-                                        </label>
-                                    </div>
-                                </td>
-                                <td>Blu</td>
-                                <td>2</td>
-                                <td>XS</td>
-                                <td>5.99€</td>
-                                <td>19.99€</td>
-                                <td><label class="badge badge-primary">hds-lsp-8394</label></td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="form-check form-check-primary">
-                                        <label class="form-check-label">
-                                            <input type="checkbox" class="form-check-input" onclick="handleVariation(this)">
-                                        </label>
-                                    </div>
-                                </td>
-                                <td>Viola</td>
-                                <td>5</td>
-                                <td>M</td>
-                                <td>5.99€</td>
-                                <td>19.99€</td>
-                                <td><label class="badge badge-primary">hds-lsp-8394</label></td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="form-check form-check-primary">
-                                        <label class="form-check-label">
-                                            <input type="checkbox" class="form-check-input" onclick="handleVariation(this)">
-                                        </label>
-                                    </div>
-                                </td>
-                                <td>Giallo</td>
-                                <td>6</td>
-                                <td>S</td>
-                                <td>5.99€</td>
-                                <td>19.99€</td>
-                                <td><label class="badge badge-primary">hds-lsp-8394</label></td>
-                            </tr>
-                        </tbody>
-                    </table>
+                <section id="product-item-list-container" class="h-100">
+                </section>
             </div>
         </div>
     </div>
@@ -168,37 +96,41 @@
 
 @section Scripts{
     <script>
+        let productItemIdSelected = null;
 
-        window.addEventListener('load', async (event) => await renderHTML(`@Url.Action("GetProductForm","Products", new {@id= Model.Id})`, 'product-form-container'));
 
-        const showVariationModal = async () => 
-                         await renderHTML('@Url.Action("GetProductItemsForm","ProductItems",new { categoryId = Model.ProductCategoryId, productId = Model.Id })', 'variation-modal-body', 'variation-modal');
+        
+
+
+        window.addEventListener('load', async (event) => { 
+            await renderHTML(`@Url.Action("GetProductForm","Products", new {@id= Model.Id})`, 'product-form-container');
+            await renderHTML(`@Url.Action("Index","Items", new {@productId= Model.Id})`, 'product-item-list-container');
+        }); 
+
+        const showVariationModal = async () => {
+            await renderHTML('@Url.Action("GetProductItemsForm","Items",new { categoryId = Model.ProductCategoryId, productId = Model.Id,})' + `/${productItemIdSelected}` ?? '', 'variation-modal-body', 'variation-modal');
+        }
         
         const submitProductForm = async (event) => {
 
-            event.preventDefault();
-
-            const formId = 'product-form';
-
-            const productForm = document.getElementById(formId);
-
-
-            const formData = new FormData(productForm);
-
-            cleanFormFromErrorMessage();
-
-            let payload = {};
-            formData.forEach((value, key) => {
-                if (value == 'false') value = false;
-                if (value == 'true') value = true;
-                payload[key] = value;
-            });
-
-            disableForm(formId);
-
-            const jsonData = JSON.stringify(payload);
-
             try {
+                event.preventDefault();
+
+                const formId = 'product-form';
+
+                const productForm = document.getElementById(formId);
+
+
+                const formData = new FormData(productForm);
+
+                cleanFormFromErrorMessage();
+
+                let payload = setPayloadFromFormData(formData);
+
+                disableForm(formId);
+
+                const jsonData = JSON.stringify(payload);
+
                 const response = await fetch('@Url.Action("Update", "Products")', {
                     method: 'PUT',
                     headers: {
@@ -223,10 +155,18 @@
             const buttonBox = document.getElementById('variation-products-buttons');
             const addVariationButton = document.getElementById('add-variation-button-product');
             const table = document.getElementById('variations-table');
+            const list = document.getElementById('variations-list');
 
             const checkboxes = table.querySelectorAll("input[type='checkbox']");
+            const lCheckBoxes = list.querySelectorAll("input[type='checkbox']");
 
             checkboxes.forEach(item => {
+                if (item !== checkbox) {
+                    item.checked = false;
+                }
+            });
+
+            lCheckBoxes.forEach(item => {
                 if (item !== checkbox) {
                     item.checked = false;
                 }
@@ -235,14 +175,84 @@
             if (checkbox.checked) {
                 buttonBox.classList.remove("d-none");
                 addVariationButton.classList.add("d-none");
+                productItemIdSelected = checkbox.value;
             } else {
                 buttonBox.classList.add("d-none");
                 addVariationButton.classList.remove("d-none");
+                productItemIdSelected = null;
+            }
+
+            
+        }
+
+        const generateBarcode = async () => {
+            debugger;
+            try {
+                const response = await fetch('@Url.Action("GenerateBarcode", "Items")');
+
+
+                if (!response.ok) {
+                    return await handleRequestInError(response);
+                }
+
+                const result = await response.json();
+
+                const barcodeInput = document.getElementById('barcode');
+
+                if (!barcodeInput) {
+                    return;
+                }
+                
+                if (result.data && result.data != '') {
+                    barcodeInput.value = result.data;
+                }
+            }
+            catch (error) {
+                handleExceptionInFormWithRedirect(error);
             }
         }
 
+        const submitProductItemsForm = async (event) => {
+            
+            try {
+                debugger;
+                event.preventDefault();
 
+                const formId = 'product-item-form';
+                const productItemsForm = document.getElementById(formId);
 
+                const formData = new FormData(productItemsForm);
+
+                cleanFormFromErrorMessage();
+
+                let payload = setPayloadFromFormData(formData);
+
+                disableForm(formId);
+
+                const jsonData = JSON.stringify(payload);
+
+                const response = await fetch('@Url.Action("CreateItem", "Items")', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json; charset=utf-8'
+                    },
+                    body: jsonData
+                })
+
+                if (!response.ok) {
+                    return await handleRequestInError(response, formId);
+                }
+
+                enableForm(formId);
+                showNotification(false);
+
+                await renderHTML(`@Url.Action("Index","Items", new {@productId= Model.Id})`, 'product-item-list-container');
+
+            }
+            catch (error) {
+                handleExceptionInFormWithRedirect(error);
+            }
+        } 
         
     </script>
 }
