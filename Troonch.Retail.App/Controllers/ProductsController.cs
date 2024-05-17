@@ -217,16 +217,16 @@ namespace Troonch.Retail.App.Controllers
             }
             catch (ArgumentNullException ex)
             {
-                _logger.LogError($"Api/ProductController::Update -> {ex.Message}");
+                _logger.LogError($"ProductController::Update -> {ex.Message}");
                 responseModel.Status = ResponseStatus.Error.ToString();
-                responseModel.Error.Message = ex.Message;
+                responseModel.Error.Message = "Bad Request";
                 return StatusCode(400, responseModel);
             }
             catch (Exception ex)
             {
-                _logger.LogError($"Api/ProductController::Update -> {ex.Message}");
+                _logger.LogError($"ProductController::Update -> {ex.Message}");
                 responseModel.Status = ResponseStatus.Error.ToString();
-                responseModel.Error.Message = ex.Message;
+                responseModel.Error.Message = "Internal Server Error";
                 return StatusCode(500, responseModel);
             }
         }

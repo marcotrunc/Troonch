@@ -27,7 +27,7 @@
         {
          
             @Html.ValidationSummary(true)
-            @Html.HiddenFor(m => m.Id)
+            @Html.HiddenFor(m => m.Id, new{@id="product-id"})
 
             <div class="form-group">
                 @Html.LabelFor(m => m.Name, "Nome")

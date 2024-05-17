@@ -142,13 +142,6 @@ namespace Troonch.Retail.App.Controllers
                 
                 responseModel.Data = barcode;
 
-                //Check if is unique
-                //var isUnique = await _product.IsBarcodeUnique(barcode);
-                //if(!isUnique)
-                //{
-                //  GenerateBarcode();
-                //}
-
                 return StatusCode(200, responseModel);
             }
             catch (Exception ex)
@@ -184,6 +177,76 @@ namespace Troonch.Retail.App.Controllers
                 responseModel.Error.ValidationErrors = FluentValidationUtility.SetValidationErrors(ex.Errors, _logger);
                 responseModel.Error.Message = "Validation Error";
                 return StatusCode(422, responseModel);
+            }
+            catch (ArgumentNullException ex)
+            {
+                _logger.LogError($"ProductItemsController::Create -> {ex.Message}");
+                responseModel.Status = ResponseStatus.Error.ToString();
+                responseModel.Error.Message = ex.Message;
+                return StatusCode(400, responseModel);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"ProductItemsController::Create -> {ex.Message}");
+                responseModel.Status = ResponseStatus.Error.ToString();
+                responseModel.Error.Message = "Internal Server Error";
+                return StatusCode(500, responseModel);
+            }
+        }
+
+        [HttpPut]
+        public async Task<IActionResult> Update([FromBody] ProductItemRequestDTO productItemModel)
+        {
+            var responseModel = new ResponseModel<bool>();
+
+            try
+            {
+
+                var isProductUpdated = await _productItemService.UpdateProductItemAsync(productItemModel.Id ?? Guid.Empty, productItemModel);
+
+                responseModel.Data = isProductUpdated;
+
+                return StatusCode(200, responseModel);
+
+            }
+            catch (ValidationException ex)
+            {
+                responseModel.Status = ResponseStatus.Error.ToString();
+                responseModel.Error.ValidationErrors = FluentValidationUtility.SetValidationErrors(ex.Errors, _logger);
+                responseModel.Error.Message = "Validation Error";
+                return StatusCode(422, responseModel);
+            }
+            catch (ArgumentNullException ex)
+            {
+                _logger.LogError($"ProductItemsController::Update -> {ex.Message}");
+                responseModel.Status = ResponseStatus.Error.ToString();
+                responseModel.Error.Message = "Bad Request";
+                return StatusCode(400, responseModel);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"ProductItemsController::Update -> {ex.Message}");
+                responseModel.Status = ResponseStatus.Error.ToString();
+                responseModel.Error.Message = "Internal Server Error";
+                return StatusCode(500, responseModel);
+            }
+        }
+
+        [HttpGet("items/Delete/{productItemId?}")]
+        public async Task<IActionResult> Delete(string? productItemId)
+        {
+            var responseModel = new ResponseModel<bool>();
+            try
+            {
+                if (Guid.TryParse(productItemId, out Guid productItemIdParsed))
+                {
+                    responseModel.Data = await _productItemService.DeleteProductItemByIdAsync(productItemIdParsed);
+                    return StatusCode(200, responseModel);
+                }
+                else
+                {
+                    throw new Exception(nameof(productItemId));
+                }
             }
             catch (ArgumentNullException ex)
             {

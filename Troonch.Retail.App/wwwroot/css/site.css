@@ -29750,7 +29750,7 @@ dl {
 
 /*Custom Class*/
 
-.overflow-section {
+.overflow-y-section {
     max-height: 500px;
     overflow-y: auto;
 }

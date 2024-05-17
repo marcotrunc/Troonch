@@ -16,7 +16,7 @@
             <th>Barcode</th>
         </tr>
     </thead>
-    <tbody class="mh-100 overflow-auto">
+    <tbody class="overflow-y-section">
         @foreach(var item in Model)
         {
             <tr>
@@ -38,7 +38,7 @@
     </tbody>
 </table>
 
-<ul id="variations-list" class="list-group d-block d-md-none">
+<ul id="variations-list" class="list-group d-block d-md-none overflow-y-section">
     @foreach (var item in Model)
     {
         <li class="list-group-item">

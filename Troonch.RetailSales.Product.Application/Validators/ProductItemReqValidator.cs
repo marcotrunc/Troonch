@@ -53,13 +53,13 @@ public class ProductItemReqValidator : AbstractValidator<ProductItemRequestDTO>
         RuleFor(pi => pi.SalePrice)
             .NotEmpty()
                 .WithMessage("Must contain an value")
-             .Matches("^[0-9]([.,][0-9]{1,3})?$")
+             .Matches("^(1000000000000000000000000000000000(\\.0{1,2})?|([1-9]\\d{0,29}|0)(\\.\\d{1,2})?|\\.\\d{1,2})$")
                 .WithMessage("The input must be a valid decimal number.")
-            .Must(salePrice => decimal.TryParse(salePrice, NumberStyles.AllowDecimalPoint, CultureInfo.InvariantCulture, out decimal result) && result >= 0)
+            .Must(salePrice => decimal.TryParse(salePrice, NumberStyles.AllowDecimalPoint, CultureInfo.InvariantCulture, out decimal result) && result > 0)
                 .WithMessage("Money value must be greater than zero.");
 
         RuleFor(pi => pi.OriginalPrice)
-            .Matches("^[0-9]([.,][0-9]{1,3})?$")
+            .Matches("^(1000000000000000000000000000000000(\\.0{1,2})?|([1-9]\\d{0,29}|0)(\\.\\d{1,2})?|\\.\\d{1,2})$")
                 .WithMessage("The input must be a valid decimal number.")
             .Must(originalPrice => decimal.TryParse(originalPrice, out decimal result) && result >= 0)
                 .WithMessage("The input must be greater than or equal to 0.");

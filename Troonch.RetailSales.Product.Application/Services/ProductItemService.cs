@@ -51,9 +51,6 @@ public class ProductItemService
         return MapProductItemsToProductItemResponse(productItems);
     }
 
-
-
-
     public async Task<bool> AddProductItemAsync(ProductItemRequestDTO productItemRequest)
     {
         if (productItemRequest is null)
@@ -88,7 +85,6 @@ public class ProductItemService
         return await _unitOfWork.CommitAsync();
     }
 
-
     public async Task<ProductItemRequestDTO> GetProductByIdForUpdateAsync(Guid productItemId)
     {
         if (productItemId == Guid.Empty)
@@ -106,6 +102,64 @@ public class ProductItemService
         }
 
         return MapFromProductItemToItemRequest(productItem);
+    }
+
+    public async Task<bool> UpdateProductItemAsync(Guid productItemId, ProductItemRequestDTO productItemRequest)
+    {
+        if (productItemId == Guid.Empty)
+        {
+            _logger.LogError("ProductItemService::UpdateProductItemAsync id is empty");
+            throw new ArgumentNullException(nameof(productItemId));
+        }
+
+        if (productItemRequest is null)
+        {
+            _logger.LogError("ProductItemService::UpdateProductItemAsync productItemRequest is null");
+            throw new ArgumentNullException(nameof(productItemRequest));
+        }
+
+        var productItemToUpdate = await _productItemRepository.GetByIdAsync(productItemId);
+
+        if (productItemToUpdate is null)
+        {
+            _logger.LogError("ProductItemService::UpdateProductItemAsync productItemToUpdate is null");
+            throw new ArgumentNullException(nameof(productItemToUpdate));
+        }
+
+        await _validator.ValidateAndThrowAsync(productItemRequest);
+
+        productItemToUpdate.ProductSizeOptionId = productItemRequest.ProductSizeOptionId;
+        productItemToUpdate.ProductColorId = productItemRequest.ProductColorId;
+        productItemToUpdate.OriginalPrice = decimal.TryParse(productItemRequest.OriginalPrice, NumberStyles.AllowDecimalPoint, CultureInfo.InvariantCulture, out decimal originalPriceParsed) ? originalPriceParsed : throw new FormatException(nameof(productItemRequest.OriginalPrice));
+        productItemToUpdate.ProductId = productItemRequest.ProductId;
+        //TODO
+        //productItemToUpdate.Currency =  get Currency fron config table
+        productItemToUpdate.SalePrice = decimal.TryParse(productItemRequest.SalePrice, NumberStyles.AllowDecimalPoint, CultureInfo.InvariantCulture, out decimal salePriceParsed) ? salePriceParsed : throw new FormatException(nameof(productItemRequest.SalePrice));
+        productItemToUpdate.Barcode = productItemRequest.Barcode;
+        productItemToUpdate.QuantityAvailable = productItemRequest.QuantityAvailable;
+
+        return await  _unitOfWork.UpdateAsync(productItemToUpdate);
+
+    }
+    public async Task<bool> DeleteProductItemByIdAsync(Guid productItemId)
+    {
+        if (productItemId == Guid.Empty)
+        {
+            _logger.LogError("ProductItemService::DeleteProductItemByIdAsync productItemId is empty");
+            throw new ArgumentNullException(nameof(productItemId));
+        }
+
+        var productItemToDelete = await _productItemRepository.GetByIdAsync(productItemId);
+
+        if (productItemToDelete is null)
+        {
+            _logger.LogError("ProductItemService::DeleteProductItemByIdAsync productItemToDelete is null");
+            throw new ArgumentNullException(nameof(productItemToDelete));
+        }
+
+        _productItemRepository.Delete(productItemToDelete);
+
+        return await _unitOfWork.CommitAsync();
     }
 
     private ProductItemRequestDTO MapFromProductItemToItemRequest(ProductItem productItem) => new ProductItemRequestDTO()

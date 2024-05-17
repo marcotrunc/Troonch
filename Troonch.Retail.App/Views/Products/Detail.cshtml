@@ -37,31 +37,31 @@
     @* Product Item Form Container*@
     <div class="col-12 grid-margin stretch-card">
         <div class="card">
-            <div class="card-body overflow-section">
+            <div class="card-body">
                 <div class="d-flex justify-content-between align-items-center mb-2">
                     <h4 class="card-title">Variazioni</h4>
                     @* Add Buttons*@
                     <div id="add-variation-button-product">
-                        <button type="button"  class="btn btn-outline-primary btn-icon-text d-none d-md-block" onclick="showVariationModal()">
+                        <button type="button" class="btn btn-outline-primary btn-icon-text d-none d-md-block" onclick="showVariationModal('@Url.Action("GetProductItemsForm","Items",new { categoryId = Model.ProductCategoryId, productId = Model.Id,})')">
                             <i class="mdi mdi-plus-box btn-icon-prepend"></i> Aggiungi
                         </button>
-                        <button type="button"  class="btn btn-outline-primary btn-icon-text btn-sm d-md-none" onclick="showVariationModal()">
+                        <button type="button" class="btn btn-outline-primary btn-icon-text btn-sm d-md-none" onclick="showVariationModal('@Url.Action("GetProductItemsForm","Items",new { categoryId = Model.ProductCategoryId, productId = Model.Id,})')">
                             <i class="mdi mdi-plus-box"></i>
                         </button>
                     </div>
 
                     <div id="variation-products-buttons" class="d-none">
-                        <button type="button" class="btn btn-outline-danger btn-icon-text d-none d-md-inline">
+                        <button type="button" class="btn btn-outline-danger btn-icon-text d-none d-md-inline" onclick="deleteProductItem()">
                             <i class="mdi mdi-delete btn-icon-prepend"></i> Elimina
                         </button>
-                        <button type="button" class="btn btn-outline-danger btn-icon-text btn-sm d-md-none">
+                        <button type="button" class="btn btn-outline-danger btn-icon-text btn-sm d-md-none" onclick="deleteProductItem()">
                             <i class="mdi mdi-delete"></i>
                         </button>
 
-                        <button type="button" class="btn btn-outline-primary btn-icon-text d-none d-md-inline" onclick="showVariationModal()">
+                        <button type="button" class="btn btn-outline-primary btn-icon-text d-none d-md-inline" onclick="showVariationModal('@Url.Action("GetProductItemsForm","Items",new { categoryId = Model.ProductCategoryId, productId = Model.Id,})')">
                             <i class="mdi mdi-pencil-box btn-icon-prepend"></i> Modifica
                         </button>
-                        <button type="button" class="btn btn-outline-primary btn-icon-text btn-sm d-md-none" onclick="showVariationModal()">
+                        <button type="button" class="btn btn-outline-primary btn-icon-text btn-sm d-md-none" onclick="showVariationModal('@Url.Action("GetProductItemsForm","Items",new { categoryId = Model.ProductCategoryId, productId = Model.Id,})')">
                             <i class="mdi mdi-pencil-box"></i> 
                         </button>
 
@@ -73,7 +73,7 @@
                         </button>
                     </div>
                 </div>
-                <section id="product-item-list-container" class="h-100">
+                <section id="product-item-list-container">
                 </section>
             </div>
         </div>
@@ -95,164 +95,11 @@
 </div>
 
 @section Scripts{
+    <script src="~/js/productItem.js"></script>
     <script>
-        let productItemIdSelected = null;
-
-
-        
-
-
-        window.addEventListener('load', async (event) => { 
+        window.addEventListener('load', async (event) => {
             await renderHTML(`@Url.Action("GetProductForm","Products", new {@id= Model.Id})`, 'product-form-container');
             await renderHTML(`@Url.Action("Index","Items", new {@productId= Model.Id})`, 'product-item-list-container');
         }); 
-
-        const showVariationModal = async () => {
-            await renderHTML('@Url.Action("GetProductItemsForm","Items",new { categoryId = Model.ProductCategoryId, productId = Model.Id,})' + `/${productItemIdSelected}` ?? '', 'variation-modal-body', 'variation-modal');
-        }
-        
-        const submitProductForm = async (event) => {
-
-            try {
-                event.preventDefault();
-
-                const formId = 'product-form';
-
-                const productForm = document.getElementById(formId);
-
-
-                const formData = new FormData(productForm);
-
-                cleanFormFromErrorMessage();
-
-                let payload = setPayloadFromFormData(formData);
-
-                disableForm(formId);
-
-                const jsonData = JSON.stringify(payload);
-
-                const response = await fetch('@Url.Action("Update", "Products")', {
-                    method: 'PUT',
-                    headers: {
-                        'Content-Type': 'application/json; charset=utf-8'
-                    },
-                    body: jsonData
-                })
-
-                if(!response.ok){
-                    return await handleRequestInError(response, formId);
-                }
-
-                enableForm(formId);
-                showNotification(false);
-            }
-            catch (error) {
-                handleExceptionInFormWithRedirect(error);
-            }
-        }
-
-        const handleVariation = (checkbox) => {
-            const buttonBox = document.getElementById('variation-products-buttons');
-            const addVariationButton = document.getElementById('add-variation-button-product');
-            const table = document.getElementById('variations-table');
-            const list = document.getElementById('variations-list');
-
-            const checkboxes = table.querySelectorAll("input[type='checkbox']");
-            const lCheckBoxes = list.querySelectorAll("input[type='checkbox']");
-
-            checkboxes.forEach(item => {
-                if (item !== checkbox) {
-                    item.checked = false;
-                }
-            });
-
-            lCheckBoxes.forEach(item => {
-                if (item !== checkbox) {
-                    item.checked = false;
-                }
-            });
-
-            if (checkbox.checked) {
-                buttonBox.classList.remove("d-none");
-                addVariationButton.classList.add("d-none");
-                productItemIdSelected = checkbox.value;
-            } else {
-                buttonBox.classList.add("d-none");
-                addVariationButton.classList.remove("d-none");
-                productItemIdSelected = null;
-            }
-
-            
-        }
-
-        const generateBarcode = async () => {
-            debugger;
-            try {
-                const response = await fetch('@Url.Action("GenerateBarcode", "Items")');
-
-
-                if (!response.ok) {
-                    return await handleRequestInError(response);
-                }
-
-                const result = await response.json();
-
-                const barcodeInput = document.getElementById('barcode');
-
-                if (!barcodeInput) {
-                    return;
-                }
-                
-                if (result.data && result.data != '') {
-                    barcodeInput.value = result.data;
-                }
-            }
-            catch (error) {
-                handleExceptionInFormWithRedirect(error);
-            }
-        }
-
-        const submitProductItemsForm = async (event) => {
-            
-            try {
-                debugger;
-                event.preventDefault();
-
-                const formId = 'product-item-form';
-                const productItemsForm = document.getElementById(formId);
-
-                const formData = new FormData(productItemsForm);
-
-                cleanFormFromErrorMessage();
-
-                let payload = setPayloadFromFormData(formData);
-
-                disableForm(formId);
-
-                const jsonData = JSON.stringify(payload);
-
-                const response = await fetch('@Url.Action("CreateItem", "Items")', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json; charset=utf-8'
-                    },
-                    body: jsonData
-                })
-
-                if (!response.ok) {
-                    return await handleRequestInError(response, formId);
-                }
-
-                enableForm(formId);
-                showNotification(false);
-
-                await renderHTML(`@Url.Action("Index","Items", new {@productId= Model.Id})`, 'product-item-list-container');
-
-            }
-            catch (error) {
-                handleExceptionInFormWithRedirect(error);
-            }
-        } 
-        
     </script>
 }

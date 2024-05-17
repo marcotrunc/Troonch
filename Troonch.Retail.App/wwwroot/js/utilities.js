@@ -6,8 +6,12 @@ const errorCodes = {
     internalServer: 500
 }
 
+const guidEmpty = '00000000-0000-0000-0000-000000000000';
+
 
 //# Functions
+ 
+
 const showErrors = (errors) => {
     const { validationErrors } = errors;
     const fields = validationErrors.map(e => e.field).filter((item, index, currentArray) => currentArray.indexOf(item) == index);
@@ -123,27 +127,8 @@ const handleExceptionInFormWithRedirect = (error) => {
     window.location.href = `/Error/${errorCodes.internalServer}`;
 }
 
-const handleInput = (element) => {
-    debugger;
-
-    const inputElement = document.getElementById('original-price');
-    console.log(inputElement);
-
-    inputElement.addEventListener('input', function (event) {
-        // Prevent the default behavior
-        event.preventDefault();
-
-        // Get the value typed by the user
-        var typedValue = event.target.value;
-
-        // Replace any commas with periods
-        var modifiedValue = typedValue.replace(',', '.');
-
-        // Set the modified value back to the input
-        event.target.value = modifiedValue;
-
-        // Now you can use 'modifiedValue' as needed
-        console.log('Typed value:', typedValue);
-        console.log('Modified value:', modifiedValue);
-    });
+const closeModal = (modalId) => {
+    const modal = document.getElementById(modalId);
+    const modalInstance = bootstrap.Modal.getInstance(modal)
+    modalInstance.hide();
 }
