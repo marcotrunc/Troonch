@@ -67,7 +67,7 @@ namespace Troonch.Retail.App.Controllers
             }
         }
 
-        [HttpGet("Detail/{slug}")]
+        [HttpGet("Products/Detail/{slug}")]
         public async Task<IActionResult> Detail(string slug)
         {
             try

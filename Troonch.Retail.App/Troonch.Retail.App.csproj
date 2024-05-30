@@ -35,6 +35,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Update="wwwroot\js\product.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Update="wwwroot\js\productItem.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
