@@ -59,6 +59,24 @@ public class ProductBrandService
         
         return productBrand;
     }
+    public async Task<ProductBrandRequestDTO> GetProductBrandForUpdateByAsync(Guid id)
+    {
+        if (id == Guid.Empty)
+        {
+            _logger.LogError("ProductBrandService::GetProductBrandByAsync id is Guid.Empty");
+            throw new ArgumentNullException(nameof(id));
+        }
+
+        var productBrand = await _productBrandRepository.GetByIdAsync(id);
+
+        if (productBrand is null)
+        {
+            _logger.LogError("ProductBrandService::GetProductBrandByAsync productBrand is null");
+            throw new ArgumentNullException(nameof(productBrand));
+        }
+
+        return MapFromProductBrandToBroductBrandRequest(productBrand);
+    }
 
     public async Task<bool> AddProductBrandAsync(ProductBrandRequestDTO productBrandRequest)
     {
@@ -166,4 +184,11 @@ public class ProductBrandService
         }
 
     }
+
+    private ProductBrandRequestDTO MapFromProductBrandToBroductBrandRequest(ProductBrand productBrand) => new ProductBrandRequestDTO
+    {
+        Id = productBrand.Id,
+        Name = productBrand.Name,
+        Description = productBrand.Description
+    };
 }

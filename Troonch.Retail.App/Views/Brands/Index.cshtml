@@ -1,0 +1,98 @@
+﻿@using Troonch.Sales.Domain.Entities;
+
+@model List<ProductBrand>;
+
+<section>
+    <div class="page-header">
+        <h3 class="page-title">
+            <span class="page-title-icon bg-gradient-primary text-white me-2">
+                <i class="mdi mdi-tshirt-crew"></i>
+            </span> @ViewData["Title"]
+        </h3>
+        <nav aria-label="breadcrumb">
+            <ul class="breadcrumb">
+                <li class="breadcrumb-item active" aria-current="page">
+                    <!--Button for modal showing-->
+                    <div id="add-brand-button">
+                        <button type="button" class="btn btn-outline-primary btn-icon-text d-none d-md-block" onclick="showBrandModal()">
+                            <i class="mdi mdi-plus-box btn-icon-prepend"></i> Aggiungi
+                        </button>
+                        <button type="button" class="btn btn-outline-primary btn-icon-text btn-sm d-md-none" onclick="showBrandModal()">
+                            <i class="mdi mdi-plus-box"></i>
+                        </button>
+                    </div>
+
+                    <div id="brand-action-buttons" class="d-none">
+                        <button type="button" class="btn btn-outline-danger btn-icon-text d-none d-md-inline" onclick="">
+                            <i class="mdi mdi-delete btn-icon-prepend"></i> Elimina
+                        </button>
+                        <button type="button" class="btn btn-outline-danger btn-icon-text btn-sm d-md-none" onclick="">
+                            <i class="mdi mdi-delete"></i>
+                        </button>
+                        <button type="button" class="btn btn-outline-primary btn-icon-text d-none d-md-inline" onclick="showBrandModal()">
+                            <i class="mdi mdi-pencil-box btn-icon-prepend"></i> Modifica
+                        </button>
+                        <button type="button" class="btn btn-outline-primary btn-icon-text btn-sm d-md-none" onclick="showBrandModal()">
+                            <i class="mdi mdi-pencil-box"></i>
+                        </button>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+    </div>
+
+    @* Brand Table *@
+    <div class="row">
+        <div class="col-md-12 grid-margin stretch-card">
+            <div class="card px-2 py-2">
+                <table id="brands-table" class="table-hover w-100 mt-5">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>Nome</th>
+                            <th class="d-none d-md-table-cell">Descrizione</th>
+                            <th class="d-none d-md-table-cell">Creato il</th>
+                            <th class="d-none d-md-table-cell">Modificato il</th>
+                        </tr>
+                    </thead>
+                    <tbody class="overflow-y-section">
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    <div class="form-check form-check-primary">
+                                        <label class="form-check-label">
+                                            <input type="checkbox" class="form-check-input" onclick="handleBrand(this)" value="@item.Id"><i class="input-helper"></i>
+                                        </label>
+                                    </div>
+                                </td>
+                                <td>@item.Name</td>
+                                <td class="d-none d-md-table-cell">@item.Description</td>
+                                <td class="d-none d-md-table-cell">@item.CreatedOn</td>
+                                <td class="d-none d-md-table-cell">@item.UpdatedOn</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+
+@* Brand Modal *@
+<div class="modal fade" id="brand-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Nuova Variazione</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div id="brand-modal-body" class="modal-body">
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script src="~/js/brand.js"></script>
+}
