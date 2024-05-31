@@ -121,6 +121,7 @@ const handleRequestInError = async (response, formId = null) => {
     if (formId != null) {
         enableForm(formId);
     }
+    
 }
 
 const handleExceptionInFormWithRedirect = (error) => {

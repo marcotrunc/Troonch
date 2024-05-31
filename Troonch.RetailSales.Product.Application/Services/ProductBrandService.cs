@@ -170,18 +170,18 @@ public class ProductBrandService
             _logger.LogError("ProductBrandService::RemoveProductBrandAsync brandToRemove not exists");
             throw new ArgumentNullException(nameof(brandToRemove)); 
         }
+        
+        var isBrandDeletable = await _productBrandRepository.IsDeletableAsync(id);
+        
 
-        try
+        if (!isBrandDeletable)
         {
-            _productBrandRepository.Delete(brandToRemove);
+            throw new ValidationException($"Too product related to {brandToRemove.Name}, delete product first");
+        }
 
-            return await _unitOfWork.CommitAsync();
-        }
-        catch (Exception ex)
-        {
-            _logger.LogError(ex.Message, ex);
-            return false;
-        }
+        _productBrandRepository.Delete(brandToRemove);
+
+        return await _unitOfWork.CommitAsync();
 
     }
 

@@ -25,4 +25,15 @@ public sealed class ProductBrandRepository : BaseRepository<SalesEntity.ProductB
 
         return !await _dbContext.ProductBrands.Where(p => p.Id != id).AnyAsync(p => p.Name == name.Trim());
     }
+
+    public async Task<bool> IsDeletableAsync(Guid id)
+    {
+        var isDeletable = await _dbContext.ProductBrands.AsNoTracking()
+                                    .Include(pb => pb.Products)
+                                    .Where(pb => pb.Id == id)
+                                    .AnyAsync(pb => !pb.Products.Any());
+
+        return isDeletable; 
+
+    }
 }

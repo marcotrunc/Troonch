@@ -3,7 +3,7 @@
 @model ProductBrandRequestDTO;
 
 <div>
-    @using (Html.BeginForm("Create", "Brands", FormMethod.Post, new { @onsubmit = Model.Id == Guid.Empty ? $"submitBrandForm(event, \"{Url.Action("Create", "Brands")}\")" : $"submitBrandForm(event, \"{Url.Action("Update", "Brands")}\")", @id = "brand-form", @class = "forms-sample row" }))
+    @using (Html.BeginForm("Create", "Brands", FormMethod.Post, new { @onsubmit = Model.Id == Guid.Empty ? $"submitBrandForm(event)" : $"submitBrandFormInUpdated(event)", @id = "brand-form", @class = "forms-sample row" }))
     { 
         @Html.ValidationSummary(true)
         @Html.HiddenFor(m => m.Id, new {@id="brand-id"})
@@ -26,3 +26,4 @@
         </div>
     }
 </div>
+

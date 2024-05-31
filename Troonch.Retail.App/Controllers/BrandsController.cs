@@ -1,8 +1,11 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using FluentValidation;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Troonch.Application.Base.Utilities;
 using Troonch.Domain.Base.DTOs.Response;
 using Troonch.RetailSales.Product.Application.Services;
 using Troonch.RetailSales.Product.Domain.DTOs.Requests;
+using Troonch.Sales.Domain.Entities;
 
 namespace Troonch.Retail.App.Controllers
 {
@@ -54,66 +57,119 @@ namespace Troonch.Retail.App.Controllers
             return View();
         }
 
-        // GET: Brands/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
+       
         // POST: Brands/Create
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public async Task<IActionResult> Create([FromBody] ProductBrandRequestDTO brandModel)
         {
+            var responseModel = new ResponseModel<bool>();
             try
             {
-                return RedirectToAction(nameof(Index));
+                var isBrandAdded = await _brandService.AddProductBrandAsync(brandModel);
+
+                responseModel.Data = isBrandAdded;
+
+                return StatusCode(200,responseModel);
             }
-            catch
+            catch (ValidationException ex)
             {
-                return View();
+                _logger.LogError($"BrandsController::Create -> {ex.Message}");
+                responseModel.Status = ResponseStatus.Error.ToString();
+                responseModel.Error.ValidationErrors = FluentValidationUtility.SetValidationErrors(ex.Errors, _logger);
+                responseModel.Error.Message = "Validation Error";
+                return StatusCode(422, responseModel);
+            }
+            catch (ArgumentNullException ex)
+            {
+                _logger.LogError($"BrandsController::Create -> {ex.Message}");
+                responseModel.Status = ResponseStatus.Error.ToString();
+                responseModel.Error.Message = "Bad Request";
+                return StatusCode(400, responseModel);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"BrandsController::Create -> {ex.Message}");
+                responseModel.Status = ResponseStatus.Error.ToString();
+                responseModel.Error.Message = ex.Message;
+                return StatusCode(500, responseModel);
             }
         }
 
-        // GET: Brands/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
 
-        // POST: Brands/Edit/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+
+        // PUT: Brands/Update
+        [HttpPut]
+        public async Task<IActionResult> Update([FromBody] ProductBrandRequestDTO brandModel)
         {
+            var responseModel = new ResponseModel<bool>();
             try
             {
-                return RedirectToAction(nameof(Index));
+                var isBrandUpdated = await _brandService.UpdateProductBrandAsync(brandModel.Id ?? Guid.Empty,brandModel);
+                responseModel.Data = isBrandUpdated;
+
+                return StatusCode(200,responseModel);
             }
-            catch
+            catch (ValidationException ex)
             {
-                return View();
+                responseModel.Status = ResponseStatus.Error.ToString();
+                responseModel.Error.ValidationErrors = FluentValidationUtility.SetValidationErrors(ex.Errors, _logger);
+                responseModel.Error.Message = "Validation Error";
+                return StatusCode(422, responseModel);
+            }
+            catch (ArgumentNullException ex)
+            {
+                _logger.LogError($"BrandsController::Update -> {ex.Message}");
+                responseModel.Status = ResponseStatus.Error.ToString();
+                responseModel.Error.Message = "Bad Request";
+                return StatusCode(400, responseModel);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"BrandsController::Update -> {ex.Message}");
+                responseModel.Status = ResponseStatus.Error.ToString();
+                responseModel.Error.Message = "Internal Server Error";
+                return StatusCode(500, responseModel);
             }
         }
+
 
         // GET: Brands/Delete/5
-        public ActionResult Delete(int id)
+        [HttpGet("Brands/Delete/{brandId?}")]
+        public async Task<IActionResult> Delete(string? brandId)
         {
-            return View();
-        }
-
-        // POST: Brands/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
-        {
+            var responseModel = new ResponseModel<bool>();
             try
             {
-                return RedirectToAction(nameof(Index));
+                if (Guid.TryParse(brandId, out Guid brandIdParsed))
+                {
+                    responseModel.Data = await _brandService.RemoveProductBrandAsync(brandIdParsed);
+                    return StatusCode(200, responseModel);
+                }
+                else
+                {
+                    throw new Exception(nameof(brandId));
+                }
             }
-            catch
+            catch (ValidationException ex)
             {
-                return View();
+                responseModel.Status = ResponseStatus.Error.ToString();
+                responseModel.Error.ValidationErrors = FluentValidationUtility.SetValidationErrors(ex.Errors, _logger);
+                responseModel.Error.Message = ex.Message;
+                return StatusCode(422, responseModel);
+            }
+            catch (ArgumentNullException ex)
+            {
+                _logger.LogError($"ProductItemsController::Create -> {ex.Message}");
+                responseModel.Status = ResponseStatus.Error.ToString();
+                responseModel.Error.Message = "Bad Request";
+                return StatusCode(400, responseModel);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"ProductItemsController::Create -> {ex.Message}");
+                responseModel.Status = ResponseStatus.Error.ToString();
+                responseModel.Error.Message = "Internal Server Error";
+                return StatusCode(500, responseModel);
             }
         }
 

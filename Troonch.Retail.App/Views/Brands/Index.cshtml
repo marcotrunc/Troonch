@@ -23,10 +23,10 @@
                     </div>
 
                     <div id="brand-action-buttons" class="d-none">
-                        <button type="button" class="btn btn-outline-danger btn-icon-text d-none d-md-inline" onclick="">
+                        <button type="button" class="btn btn-outline-danger btn-icon-text d-none d-md-inline" onclick="deleteBrand()">
                             <i class="mdi mdi-delete btn-icon-prepend"></i> Elimina
                         </button>
-                        <button type="button" class="btn btn-outline-danger btn-icon-text btn-sm d-md-none" onclick="">
+                        <button type="button" class="btn btn-outline-danger btn-icon-text btn-sm d-md-none" onclick="deleteBrand()">
                             <i class="mdi mdi-delete"></i>
                         </button>
                         <button type="button" class="btn btn-outline-primary btn-icon-text d-none d-md-inline" onclick="showBrandModal()">
@@ -42,8 +42,8 @@
     </div>
 
     @* Brand Table *@
-    <div class="row">
-        <div class="col-md-12 grid-margin stretch-card">
+    <div class="row overflow-y-section-700">
+        <div class="col-md-12 grid-margin stretch-card ">
             <div class="card px-2 py-2">
                 <table id="brands-table" class="table-hover w-100 mt-5">
                     <thead>
@@ -95,4 +95,14 @@
 
 @section Scripts{
     <script src="~/js/brand.js"></script>
+    
+    <script>
+        window.addEventListener('load', async (event) => {
+            await resetBrandIndexPage();
+        });
+
+        window.addEventListener('resize', async (event) => {
+            await resetBrandIndexPage();
+        });
+    </script>
 }

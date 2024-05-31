@@ -29754,3 +29754,8 @@ dl {
     max-height: 500px;
     overflow-y: auto;
 }
+
+.overflow-y-section-700 {
+    max-height: 700px;
+    overflow-y: auto;
+}
