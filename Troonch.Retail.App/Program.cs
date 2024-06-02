@@ -1,7 +1,7 @@
 using Microsoft.Extensions.Configuration;
 using Serilog;
 using Troonch.RetailSales.Product.Application;
-
+using Troonch.User.DataAccess;
 var builder = WebApplication.CreateBuilder(args);
     
 // Serilog cofiguration
@@ -15,6 +15,9 @@ builder.Services.AddControllers();
 
 // Add Retail Sales Product Service
 builder.Services.AddRetailSalesProductApplication(builder.Configuration);
+
+// Add User Service
+builder.Services.AddUserDataAccess(builder.Configuration);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();

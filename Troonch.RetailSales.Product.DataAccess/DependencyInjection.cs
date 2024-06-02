@@ -3,7 +3,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Troonch.RetailSales.Product.DataAccess.Repositories;
 using Troonch.RetailSales.Product.DataAccess.Repositories.Interfaces;
-using Troonch.Sales.DataAccess.DBMSConfiguration;
 
 namespace Troonch.Sales.DataAccess
 {
@@ -22,7 +21,13 @@ namespace Troonch.Sales.DataAccess
             services.AddScoped<IProductRepository, ProductRepository>();
 
             string? connectionString = configuration.GetValue<string>("ConnectionStrings:AppDbConnectionString");
-            services.AddDbContext<RetailSalesProductDataContext>(options => options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
+            if (!String.IsNullOrWhiteSpace(connectionString))
+            {
+                services.AddDbContext<RetailSalesProductDataContext>(options =>
+                {
+                    options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString));
+                });
+            }
 
             return services;
         }
