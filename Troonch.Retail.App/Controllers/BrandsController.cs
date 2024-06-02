@@ -1,14 +1,14 @@
 ﻿using FluentValidation;
-using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Troonch.Application.Base.Utilities;
 using Troonch.Domain.Base.DTOs.Response;
 using Troonch.RetailSales.Product.Application.Services;
 using Troonch.RetailSales.Product.Domain.DTOs.Requests;
-using Troonch.Sales.Domain.Entities;
 
 namespace Troonch.Retail.App.Controllers
 {
+    [Authorize]
     public class BrandsController : Controller
     {
         private readonly ILogger<BrandsController> _logger;

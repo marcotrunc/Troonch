@@ -1,4 +1,5 @@
 ﻿using FluentValidation;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using Troonch.Application.Base.Utilities;
@@ -8,6 +9,7 @@ using Troonch.RetailSales.Product.Domain.DTOs.Requests;
 
 namespace Troonch.Retail.App.Controllers
 {
+    [Authorize]
     public class ItemsController : Controller
     {
         private readonly ILogger<ItemsController> _logger;

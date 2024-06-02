@@ -1,4 +1,5 @@
 ﻿using FluentValidation;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Troonch.Application.Base.Utilities;
@@ -11,6 +12,7 @@ using Troonch.RetailSales.Product.Domain.DTOs.Responses;
 namespace Troonch.Retail.App.Controllers
 {
 
+    [Authorize]
     public class ProductsController : Controller
     {
         private readonly ILogger<ProductsController> _logger;

@@ -2,7 +2,17 @@ using Microsoft.Extensions.Configuration;
 using Serilog;
 using Troonch.RetailSales.Product.Application;
 using Troonch.User.DataAccess;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+using Troonch.Retail.App;
+using Troonch.User.DataAccess.DataContext;
+using Troonch.User.Domain;
 var builder = WebApplication.CreateBuilder(args);
+var connectionString = builder.Configuration.GetConnectionString("TroonchRetailAppContextConnection") ?? throw new InvalidOperationException("Connection string 'TroonchRetailAppContextConnection' not found.");
+
+//builder.Services.AddDbContext<UserDataContext>(options => options.UseSqlServer(connectionString));
+
+builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<UserDataContext>();
     
 // Serilog cofiguration
 builder.Host.UseSerilog((context, configuration) =>
@@ -48,18 +58,24 @@ app.UseAuthorization();
 app.UseEndpoints(endpoints =>
 {
     endpoints.MapRazorPages();
-    endpoints.MapControllers();
+    //endpoints.MapControllers();
+
+    endpoints.MapControllerRoute(
+        name:"default",
+        pattern: "{controller=Home}/{action=Index}/{id?}"
+    );
+
+    endpoints.MapGet("/", context =>
+    {
+        context.Response.Redirect("Identity/Account/Login");
+        return Task.CompletedTask;
+    });
 });
 
 
-
-app.MapControllerRoute(
-    name: "Api",
-    pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
-
-app.MapControllerRoute(
-    name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+//app.MapControllerRoute(
+//    name: "default",
+//    pattern: "{controller=Account}/{action=Login}/{id?}");
 
 app.Run();
 
