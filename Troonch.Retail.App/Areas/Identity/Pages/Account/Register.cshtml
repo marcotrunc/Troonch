@@ -7,34 +7,75 @@
     ViewData["Title"] = "Register";
 }
 
-<h1>@ViewData["Title"]</h1>
+<div class="page-header">
+    <h3 class="page-title">Nuovo Utente</h3>
+</div>
 
-<div class="row">
-    <div class="col-md-4">
-        <form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post">
-            <h2>Create a new account.</h2>
+
+@using (Html.BeginForm("Register", "Users", FormMethod.Post, new {@id = "user-form", @class = "forms-sample row" }))
+{
+    @Html.ValidationSummary(true)
+    @Html.HiddenFor(m => m.Input.Id, new { @id = "user-id" })
+
+    <div class="form-group col-12 col-md-6">
+        @Html.LabelFor(m => m.Input.Name, "Nome")
+        @Html.TextBoxFor(m => m.Input.Name, new { @class = "form-control", @id = "name", @placeholder = "Nome" })
+        @Html.ValidationMessageFor(m => m.Input.Name, "", new { @class = "text-danger mt-1 my-2 ms-1 d-block error-message", data_error = "name" })
+    </div>
+
+    <div class="form-group col-12 col-md-6">
+        @Html.LabelFor(m => m.Input.LastName, "Cognome")
+        @Html.TextBoxFor(m => m.Input.LastName, new { @class = "form-control", @id = "lastname", @placeholder = "Cognome" })
+        @Html.ValidationMessageFor(m => m.Input.LastName, "", new { @class = "text-danger mt-1 my-2 ms-1 d-block error-message", data_error = "lastname" })
+    </div>
+
+    <div class="form-group col-12 col-md-6">
+        @Html.LabelFor(m => m.Input.Email, "Email")
+        @Html.TextBoxFor(m => m.Input.Email, new { @class = "form-control", @id = "email", @placeholder = "Email" })
+        @Html.ValidationMessageFor(m => m.Input.Email, "", new { @class = "text-danger mt-1 my-2 ms-1 d-block error-message", data_error = "email" })
+    </div>
+
+    <div class="form-group col-12 col-md-6">
+        @Html.LabelFor(m => m.Input.DateOfBirth, "Data di nascita")
+        @Html.TextBoxFor(m => m.Input.DateOfBirth, "{0:dd-MM-yyyy}", new { @class = "form-control", @id = "birthdate", @type = "date", @placeholder = "yyyy-MM-dd" })
+        @Html.ValidationMessageFor(m => m.Input.DateOfBirth, "", new { @class = "text-danger mt-1 my-2 ms-1 d-block error-message", data_error = "birthdate" })
+    </div>
+
+    <div class="form-group col-12 col-md-6">
+        @Html.LabelFor(m => m.Input.PhoneNumber, "Telefono")
+        @Html.TextBoxFor(m => m.Input.PhoneNumber, new { @class = "form-control", @id = "phonenumber", @placeholder = "Telefono", @type = "tel" })
+        @Html.ValidationMessageFor(m => m.Input.PhoneNumber, "", new { @class = "text-danger mt-1 my-2 ms-1 d-block error-message", data_error = "phonenumber" })
+    </div>
+
+
+    <div class="d-flex justify-content-end">
+        <button type="button" class="btn btn-light me-2">Annulla</button>
+        <button type="submit" class="btn btn-gradient-primary">Registra</button>
+    </div>
+}
+    
+
+       @*  @* <form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post"> *@
+            @* <h2>Create a new account.</h2>
             <hr />
             <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
+            <input 
             <div class="form-floating mb-3">
                 <input asp-for="Input.Email" class="form-control" autocomplete="username" aria-required="true" placeholder="name@example.com" />
                 <label asp-for="Input.Email">Email</label>
-                <span asp-validation-for="Input.Email" class="text-danger"></span>
+                <span asp-validation-for="Input.Email" class="text-danger"></span> *@
             </div>
-            <div class="form-floating mb-3">
-                <input asp-for="Input.Password" class="form-control" autocomplete="new-password" aria-required="true" placeholder="password" />
+           @*  <div class="form-floating mb-3">
+                <input asp-for="Input.Password" class="form-control" autocomplete="new-password"  placeholder="password" />
                 <label asp-for="Input.Password">Password</label>
                 <span asp-validation-for="Input.Password" class="text-danger"></span>
             </div>
             <div class="form-floating mb-3">
-                <input asp-for="Input.ConfirmPassword" class="form-control" autocomplete="new-password" aria-required="true" placeholder="password" />
+                <input asp-for="Input.ConfirmPassword" class="form-control" autocomplete="new-password"  placeholder="password" />
                 <label asp-for="Input.ConfirmPassword">Confirm Password</label>
                 <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
-            </div>
-            <button id="registerSubmit" type="submit" class="w-100 btn btn-lg btn-primary">Register</button>
-        </form>
-    </div>
-</div>
+            </div> *@
+            @* <button id="registerSubmit" type="submit" class="w-100 btn btn-lg btn-primary">Register</button> *@
+        @* </form> *@ 
 
-@section Scripts {
-    <partial name="_ValidationScriptsPartial" />
-}
+

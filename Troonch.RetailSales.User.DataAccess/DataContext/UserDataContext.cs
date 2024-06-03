@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using Troonch.User.Domain;
+using Troonch.User.Domain.Entities;
 
 namespace Troonch.User.DataAccess.DataContext;
 

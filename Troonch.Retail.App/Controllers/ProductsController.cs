@@ -109,7 +109,7 @@ namespace Troonch.Retail.App.Controllers
             {
                 await GetProductBagForm();
 
-                if (id is not null)
+                if (!String.IsNullOrEmpty(id))
                 {
                     productModel = await _productService.GetProductByIdForUpdateAsync(Guid.Parse(id));
                 }

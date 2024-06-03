@@ -39,9 +39,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Troonch.Retail.App", "Troon
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Auth&Users", "Auth&Users", "{E759678C-8FC3-404C-BC2E-F7F559E57B2F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Troonch.User.DataAccess", "Troonch.RetailSales.User.DataAccess\Troonch.User.DataAccess.csproj", "{0C928123-8EA7-4EA6-B17F-5315291DBED8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Troonch.User.DataAccess", "Troonch.RetailSales.User.DataAccess\Troonch.User.DataAccess.csproj", "{0C928123-8EA7-4EA6-B17F-5315291DBED8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Troonch.User.Domain", "Troonch.User.Domain\Troonch.User.Domain.csproj", "{E285FDA4-E18D-4843-AFB9-BF35404588BC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Troonch.User.Domain", "Troonch.User.Domain\Troonch.User.Domain.csproj", "{E285FDA4-E18D-4843-AFB9-BF35404588BC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Troonch.User.Application", "Troonch.User.Services\Troonch.User.Application.csproj", "{24CFC555-1276-491B-9F24-614572040A6C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -89,6 +91,10 @@ Global
 		{E285FDA4-E18D-4843-AFB9-BF35404588BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E285FDA4-E18D-4843-AFB9-BF35404588BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E285FDA4-E18D-4843-AFB9-BF35404588BC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{24CFC555-1276-491B-9F24-614572040A6C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{24CFC555-1276-491B-9F24-614572040A6C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{24CFC555-1276-491B-9F24-614572040A6C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{24CFC555-1276-491B-9F24-614572040A6C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -113,6 +119,7 @@ Global
 		{E759678C-8FC3-404C-BC2E-F7F559E57B2F} = {B7BCC3B9-4D25-4D67-A4B0-BF8006354440}
 		{0C928123-8EA7-4EA6-B17F-5315291DBED8} = {E759678C-8FC3-404C-BC2E-F7F559E57B2F}
 		{E285FDA4-E18D-4843-AFB9-BF35404588BC} = {E759678C-8FC3-404C-BC2E-F7F559E57B2F}
+		{24CFC555-1276-491B-9F24-614572040A6C} = {E759678C-8FC3-404C-BC2E-F7F559E57B2F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B68A1CD8-FDD9-42B6-8006-20F5D44E6F2F}

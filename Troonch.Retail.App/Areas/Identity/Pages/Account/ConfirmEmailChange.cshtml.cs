@@ -10,7 +10,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
-using Troonch.User.Domain;
+using Troonch.User.Domain.Entities;
 
 namespace Troonch.Retail.App.Areas.Identity.Pages.Account
 {

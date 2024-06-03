@@ -11,7 +11,7 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Troonch.User.Domain;
+using Troonch.User.Domain.Entities;
 
 namespace Troonch.Retail.App.Areas.Identity.Pages.Account.Manage
 {

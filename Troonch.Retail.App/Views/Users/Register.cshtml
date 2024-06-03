@@ -1,0 +1,52 @@
+﻿@using Troonch.User.Domain.DTOs.Requests
+@model UserRequestDTO;
+@{
+    ViewData["Title"] = "Register";
+}
+
+<div class="page-header">
+    <h3 class="page-title">Nuovo Utente</h3>
+</div>
+
+
+@using (Html.BeginForm("Register", "Users", FormMethod.Post, new { @id = "user-form", @class = "forms-sample row" }))
+{
+    @Html.ValidationSummary(true)
+    @Html.HiddenFor(m => m.Id, new { @id = "user-id" })
+
+    <div class="form-group col-12 col-md-6">
+        @Html.LabelFor(m => m.Name, "Nome")
+        @Html.TextBoxFor(m => m.Name, new { @class = "form-control", @id = "name", @placeholder = "Nome" })
+        @Html.ValidationMessageFor(m => m.Name, "", new { @class = "text-danger mt-1 my-2 ms-1 d-block error-message", data_error = "name" })
+    </div>
+
+    <div class="form-group col-12 col-md-6">
+        @Html.LabelFor(m => m.LastName, "Cognome")
+        @Html.TextBoxFor(m => m.LastName, new { @class = "form-control", @id = "lastname", @placeholder = "Cognome" })
+        @Html.ValidationMessageFor(m => m.LastName, "", new { @class = "text-danger mt-1 my-2 ms-1 d-block error-message", data_error = "lastname" })
+    </div>
+
+    <div class="form-group col-12 col-md-6">
+        @Html.LabelFor(m => m.Email, "Email")
+        @Html.TextBoxFor(m => m.Email, new { @class = "form-control", @id = "email", @placeholder = "Email" })
+        @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger mt-1 my-2 ms-1 d-block error-message", data_error = "email" })
+    </div>
+
+    <div class="form-group col-12 col-md-6">
+        @Html.LabelFor(m => m.DateOfBirth, "Data di nascita")
+        @Html.TextBoxFor(m => m.DateOfBirth, "{0:dd-MM-yyyy}", new { @class = "form-control", @id = "birthdate", @type = "date", @placeholder = "yyyy-MM-dd" })
+        @Html.ValidationMessageFor(m => m.DateOfBirth, "", new { @class = "text-danger mt-1 my-2 ms-1 d-block error-message", data_error = "birthdate" })
+    </div>
+
+    <div class="form-group col-12 col-md-6">
+        @Html.LabelFor(m => m.PhoneNumber, "Telefono")
+        @Html.TextBoxFor(m => m.PhoneNumber, new { @class = "form-control", @id = "phonenumber", @placeholder = "Telefono", @type = "tel" })
+        @Html.ValidationMessageFor(m => m.PhoneNumber, "", new { @class = "text-danger mt-1 my-2 ms-1 d-block error-message", data_error = "phonenumber" })
+    </div>
+
+
+    <div class="d-flex justify-content-end">
+        <button type="button" class="btn btn-light me-2">Annulla</button>
+        <button type="submit" class="btn btn-gradient-primary">Registra</button>
+    </div>
+}

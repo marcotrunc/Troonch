@@ -1,11 +1,5 @@
 ﻿using FluentValidation;
 using Microsoft.Extensions.Logging;
-using Slugify;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Troonch.Application.Base.UnitOfWork;
 using Troonch.Application.Base.Utilities;
 using Troonch.RetailSales.Product.DataAccess.Repositories.Interfaces;

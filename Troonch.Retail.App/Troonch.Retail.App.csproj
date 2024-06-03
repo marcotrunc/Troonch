@@ -27,7 +27,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Troonch.RetailSales.Product.Application\Troonch.RetailSales.Product.Application.csproj" />
-    <ProjectReference Include="..\Troonch.RetailSales.User.DataAccess\Troonch.User.DataAccess.csproj" />
+    <ProjectReference Include="..\Troonch.User.Services\Troonch.User.Application.csproj" />
   </ItemGroup>
 
   <ItemGroup>

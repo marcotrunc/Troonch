@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Troonch.Retail.App;
 using Troonch.User.DataAccess.DataContext;
-using Troonch.User.Domain;
+using Troonch.User.Domain.Entities;
 var builder = WebApplication.CreateBuilder(args);
 var connectionString = builder.Configuration.GetConnectionString("TroonchRetailAppContextConnection") ?? throw new InvalidOperationException("Connection string 'TroonchRetailAppContextConnection' not found.");
 
@@ -26,8 +26,7 @@ builder.Services.AddControllers();
 // Add Retail Sales Product Service
 builder.Services.AddRetailSalesProductApplication(builder.Configuration);
 
-// Add User Service
-builder.Services.AddUserDataAccess(builder.Configuration);
+builder.Services.AddUserService(builder.Configuration);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();

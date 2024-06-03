@@ -1,4 +1,5 @@
 ﻿using FluentValidation.Results;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.Extensions.Logging;
 using System.Collections.Generic;
@@ -18,6 +19,17 @@ public static class FluentValidationUtility
         return modelStateDictionary;
     }
 
+    public static ModelStateDictionary SetModelState<T>(this ModelStateDictionary modelStateDictionary, IEnumerable<IdentityError> errors, ILogger<T> _logger)
+    {
+        foreach (var error in errors)
+        {
+            _logger.LogError($"ModelStateDictionary -> ${error.Description}");
+            modelStateDictionary.AddModelError(String.Empty, error.Description);
+        }
+        return modelStateDictionary;
+    }
+
+
     public static IEnumerable<ValidationError> SetValidationErrors<T>(IEnumerable<ValidationFailure> validationFailure, ILogger<T> _logger)
     {
         var validationErrors = new List<ValidationError>();
@@ -32,4 +44,5 @@ public static class FluentValidationUtility
         }
         return validationErrors;
     }
+    
 }
