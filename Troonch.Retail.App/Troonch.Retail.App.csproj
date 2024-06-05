@@ -7,6 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="JetBrains.Annotations" Version="2023.3.0" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.6" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="8.0.6" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.6">
@@ -27,7 +28,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Troonch.RetailSales.Product.Application\Troonch.RetailSales.Product.Application.csproj" />
-    <ProjectReference Include="..\Troonch.User.Services\Troonch.User.Application.csproj" />
+    <ProjectReference Include="..\Troonch.User.Presentation\Troonch.User.Presentation.csproj" />
   </ItemGroup>
 
   <ItemGroup>

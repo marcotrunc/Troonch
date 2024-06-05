@@ -1,11 +1,13 @@
 ﻿using FluentValidation;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using Troonch.Application.Base.Utilities;
 using Troonch.User.Application.Services;
 using Troonch.User.Domain.DTOs.Requests;
 
-namespace Troonch.Retail.App.Controllers;
+namespace Troonch.Users.Controllers;
 
 [Authorize]
 public class UsersController : Controller

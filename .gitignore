@@ -363,4 +363,5 @@ MigrationBackup/
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
 /Troonch.RetailSales.Product.DataAccess/Migrations/*
-/Troonch.RetailSales.User.DataAccess/Migrations/20240602140745_FirstUserMigration.cs
+/Troonch.RetailSales.User.DataAccess/Migrations/*
+

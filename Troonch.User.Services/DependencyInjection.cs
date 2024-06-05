@@ -2,8 +2,9 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Troonch.User.Application.Services;
+using Troonch.User.DataAccess;
 
-namespace Troonch.User.DataAccess;
+namespace Troonch.User.Application;
 
 public static class DependencyInjection
 {
