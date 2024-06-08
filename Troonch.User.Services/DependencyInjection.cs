@@ -13,6 +13,7 @@ public static class DependencyInjection
         services.AddUserDataAccess(configuration);
         
         services.AddScoped<UserService>();
+        services.AddScoped<AuthService>();
         services.AddSingleton<IActionContextAccessor, ActionContextAccessor>();
 
         return services;

@@ -77,7 +77,7 @@ app.UseEndpoints(endpoints =>
 
     endpoints.MapGet("/", context =>
     {
-        context.Response.Redirect("Identity/Account/Login");
+        context.Response.Redirect("Auth/Login");
         return Task.CompletedTask;
     });
 });

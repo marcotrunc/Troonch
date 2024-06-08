@@ -1,11 +1,15 @@
 ﻿using FluentValidation;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Troonch.Application.Base.Utilities;
 using Troonch.User.Application.Services;
 using Troonch.User.Domain.DTOs.Requests;
+using Troonch.User.Domain.Entities;
 
 namespace Troonch.Users.Controllers;
 
@@ -13,15 +17,18 @@ namespace Troonch.Users.Controllers;
 public class UsersController : Controller
 {
     private readonly ILogger<UsersController> _logger;
+    private readonly SignInManager<ApplicationUser> _signInManager;
     private readonly UserService _userService;
 
     [ActivatorUtilitiesConstructor]
     public UsersController(
         ILogger<UsersController> logger,
+        SignInManager<ApplicationUser> signInManager,
         UserService userService
     )
     {
         _logger = logger;
+        _signInManager = signInManager;
         _userService = userService;
     }
     public IActionResult Index()

@@ -22,6 +22,7 @@ namespace Troonch.Retail.App.Middlewares
             catch (Exception ex)
             {
                 _logger.LogError(ex, "An unhandled exception occurred.");
+                throw;
             }
         }
 
