@@ -22,9 +22,10 @@
                 <i class="mdi mdi-cached me-2 text-success"></i> Activity Log
             </a>
             <div class="dropdown-divider"></div>
-            <form id="logout-form" class="dropdown-item" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/Identity/Account/Login", new { area = "" })" method="post">
-                <a id="logout-command" onclick="document.getElementById('logout-form').submit();"><i class="mdi mdi-logout me-2 text-primary"></i> Disconnettiti</a>
-            </form>
+            @using (Html.BeginForm("Loguot", "Auth", FormMethod.Post, new { @id = "logout-form", @class = "dropdown-item" }))
+            {
+                <a id="logout-command"   onclick="document.getElementById('logout-form').submit();"><i class="mdi mdi-logout me-2 text-primary"></i> Disconnettiti</a>
+            }
         </div>
     </li>
 }

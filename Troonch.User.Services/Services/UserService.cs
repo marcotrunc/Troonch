@@ -11,6 +11,7 @@ using System;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.Routing;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
+using FluentValidation;
 
 namespace Troonch.User.Application.Services;
 
@@ -22,6 +23,7 @@ public class UserService
     private readonly IUserEmailStore<ApplicationUser> _emailStore;
     private readonly IEmailSender _emailSender;
     private readonly IUrlHelper _urlHelper;
+    private readonly IValidator<UserRequestDTO> _validator;
 
     public UserService(
         ILogger<UserService> logger,
@@ -29,7 +31,8 @@ public class UserService
         IUserStore<ApplicationUser> userStore,
         IEmailSender emailSender,
         IUrlHelperFactory urlHelperFactory,
-        IActionContextAccessor actionContextAccessor
+        IActionContextAccessor actionContextAccessor,
+        IValidator<UserRequestDTO> validator
     )
     {
         _logger = logger;
@@ -38,6 +41,7 @@ public class UserService
         _emailStore = GetEmailStore();
         _emailSender = emailSender;
         _urlHelper = urlHelperFactory.GetUrlHelper(actionContextAccessor.ActionContext);
+        _validator = validator;
     }
 
     public async Task<UserRequestDTO> GetUserByForUpdateAsync(string? id)
@@ -68,10 +72,9 @@ public class UserService
             throw new ArgumentNullException(nameof(userRequest));
         }
 
-        //ADD VALIDATION
+        await _validator.ValidateAndThrowAsync(userRequest);
 
         var user = MapRequestDtoToApplicationUser(userRequest);
-
 
         await _userStore.SetUserNameAsync(user, user.Email, CancellationToken.None);
         await _emailStore.SetEmailAsync(user, user.Email, CancellationToken.None);

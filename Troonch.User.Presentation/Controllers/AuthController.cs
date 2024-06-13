@@ -119,4 +119,22 @@ public class AuthController : Controller
         return View();
     }
 
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public async Task<IActionResult> Logout()
+    {
+        await _signInManager.SignOutAsync();
+
+
+        _logger.LogInformation($"AuthController::Logout POST -> User Logged Out");
+        if (_returnUrl != null)
+        {
+            return Redirect(_returnUrl);
+        }
+        else
+        {
+            return View();
+        }
+    }
+
 }

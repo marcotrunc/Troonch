@@ -134,3 +134,7 @@ const closeModal = (modalId) => {
     const modalInstance = bootstrap.Modal.getInstance(modal)
     modalInstance.hide();
 }
+
+const resetFormById = (formId) => {
+    document.getElementById(formId).reset();
+}
