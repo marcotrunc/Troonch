@@ -45,7 +45,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Troonch.User.Domain", "Troo
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Troonch.User.Application", "Troonch.User.Services\Troonch.User.Application.csproj", "{24CFC555-1276-491B-9F24-614572040A6C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Troonch.User.Presentation", "Troonch.User.Presentation\Troonch.User.Presentation.csproj", "{6B70598C-5F15-458A-98E2-4D35B7B6CBB8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Troonch.User.Presentation", "Troonch.User.Presentation\Troonch.User.Presentation.csproj", "{6B70598C-5F15-458A-98E2-4D35B7B6CBB8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "EmailSender", "EmailSender", "{A9958315-1AAC-476B-B851-6D95D0C4E002}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Troonch.EmailSender.Rdcom", "Troonch.EmailSender.Application\Troonch.EmailSender.Rdcom.csproj", "{CEB54E01-5974-4F39-8B6B-8F6A0D0BDF14}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Troonch.EmailSender.MailTrap", "Troonch.EmailSender.MailTrap\Troonch.EmailSender.MailTrap.csproj", "{5E5C8615-084A-4999-BCEA-9FF08933355C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -101,6 +107,14 @@ Global
 		{6B70598C-5F15-458A-98E2-4D35B7B6CBB8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6B70598C-5F15-458A-98E2-4D35B7B6CBB8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6B70598C-5F15-458A-98E2-4D35B7B6CBB8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CEB54E01-5974-4F39-8B6B-8F6A0D0BDF14}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CEB54E01-5974-4F39-8B6B-8F6A0D0BDF14}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CEB54E01-5974-4F39-8B6B-8F6A0D0BDF14}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CEB54E01-5974-4F39-8B6B-8F6A0D0BDF14}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5E5C8615-084A-4999-BCEA-9FF08933355C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5E5C8615-084A-4999-BCEA-9FF08933355C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5E5C8615-084A-4999-BCEA-9FF08933355C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5E5C8615-084A-4999-BCEA-9FF08933355C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -127,6 +141,9 @@ Global
 		{E285FDA4-E18D-4843-AFB9-BF35404588BC} = {E759678C-8FC3-404C-BC2E-F7F559E57B2F}
 		{24CFC555-1276-491B-9F24-614572040A6C} = {E759678C-8FC3-404C-BC2E-F7F559E57B2F}
 		{6B70598C-5F15-458A-98E2-4D35B7B6CBB8} = {E759678C-8FC3-404C-BC2E-F7F559E57B2F}
+		{A9958315-1AAC-476B-B851-6D95D0C4E002} = {B7BCC3B9-4D25-4D67-A4B0-BF8006354440}
+		{CEB54E01-5974-4F39-8B6B-8F6A0D0BDF14} = {A9958315-1AAC-476B-B851-6D95D0C4E002}
+		{5E5C8615-084A-4999-BCEA-9FF08933355C} = {A9958315-1AAC-476B-B851-6D95D0C4E002}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B68A1CD8-FDD9-42B6-8006-20F5D44E6F2F}

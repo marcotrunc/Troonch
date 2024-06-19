@@ -27,6 +27,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Troonch.EmailSender.Application\Troonch.EmailSender.Rdcom.csproj" />
+    <ProjectReference Include="..\Troonch.EmailSender.MailTrap\Troonch.EmailSender.MailTrap.csproj" />
     <ProjectReference Include="..\Troonch.RetailSales.Product.Application\Troonch.RetailSales.Product.Application.csproj" />
     <ProjectReference Include="..\Troonch.User.Presentation\Troonch.User.Presentation.csproj" />
   </ItemGroup>

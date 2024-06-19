@@ -125,7 +125,6 @@ const handleRequestInError = async (response, formId = null) => {
 }
 
 const handleExceptionInFormWithRedirect = (error) => {
-    console.error(error);
     window.location.href = `/Error/${errorCodes.internalServer}`;
 }
 

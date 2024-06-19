@@ -1,0 +1,5 @@
+{
+  "BaseUri": "https://platform.rdcom.com/api/v2/",
+  "GetToken": "tokens/",
+  "TransactionalEmail": "{account_code}/email/messages/transactional/"
+}

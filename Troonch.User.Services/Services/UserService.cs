@@ -1,17 +1,18 @@
-﻿using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.UI.Services;
+﻿using FluentValidation;
+using Microsoft.AspNetCore.Http.Extensions;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Infrastructure;
+using Microsoft.AspNetCore.Mvc.Routing;
+using Microsoft.AspNetCore.Routing;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
+using System;
 using System.Text;
 using System.Text.Encodings.Web;
-using Microsoft.AspNetCore.Mvc;
+using Troonch.Application.Base.Interfaces;
 using Troonch.User.Domain.DTOs.Requests;
 using Troonch.User.Domain.Entities;
-using System;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc.Routing;
-using Microsoft.AspNetCore.Mvc.Infrastructure;
-using FluentValidation;
 
 namespace Troonch.User.Application.Services;
 
@@ -26,13 +27,14 @@ public class UserService
     private readonly IValidator<UserRequestDTO> _validator;
 
     public UserService(
-        ILogger<UserService> logger,
-        UserManager<ApplicationUser> userManager,
-        IUserStore<ApplicationUser> userStore,
-        IEmailSender emailSender,
-        IUrlHelperFactory urlHelperFactory,
-        IActionContextAccessor actionContextAccessor,
-        IValidator<UserRequestDTO> validator
+            ILogger<UserService> logger,
+            UserManager<ApplicationUser> userManager,
+            IUserStore<ApplicationUser> userStore,
+            IEmailSender emailSender,
+            IUrlHelperFactory urlHelperFactory,
+            IActionContextAccessor actionContextAccessor,
+            IValidator<UserRequestDTO> validator
+        
     )
     {
         _logger = logger;
@@ -42,6 +44,7 @@ public class UserService
         _emailSender = emailSender;
         _urlHelper = urlHelperFactory.GetUrlHelper(actionContextAccessor.ActionContext);
         _validator = validator;
+        
     }
 
     public async Task<UserRequestDTO> GetUserByForUpdateAsync(string? id)
@@ -95,6 +98,57 @@ public class UserService
         return result;
     }
 
+    public async Task<bool> ConfirmEmailAsync(string userId, string code)
+    {
+        if (String.IsNullOrWhiteSpace(userId))
+        {
+            throw new ArgumentNullException(nameof(userId));
+        }
+
+        if (String.IsNullOrWhiteSpace(code))
+        {
+            throw new ArgumentNullException(nameof(code));
+        }
+
+        var user = await _userManager.FindByIdAsync(userId);
+        if (user is null)
+        {
+            throw new ArgumentNullException(nameof(userId));
+        }
+
+        code = Encoding.UTF8.GetString(WebEncoders.Base64UrlDecode(code));
+        var result = await _userManager.ConfirmEmailAsync(user, code);
+
+        if (result is null)
+        {
+            throw new ArgumentNullException(nameof(result));
+        }
+
+        return result.Succeeded;
+    }
+
+    public async Task<string> GeneratePasswordResetTokenAsync(string userId)
+    {
+        if (String.IsNullOrWhiteSpace(userId))
+        {
+            throw new ArgumentNullException(nameof(userId));
+        }
+
+        var applicationUser = await _userManager.FindByIdAsync(userId);
+
+        if (applicationUser is null) 
+        { 
+            throw new ArgumentNullException(nameof(applicationUser));
+        }
+        string token = await _userManager.GeneratePasswordResetTokenAsync(applicationUser);
+
+        if (String.IsNullOrWhiteSpace(token))
+        {
+            throw new ArgumentNullException(nameof(token));
+        }
+
+        return token;
+    }
     private async Task SendConfirmationMail(ApplicationUser user, string returnUrl = null)
     {
         returnUrl ??= _urlHelper.Content("~/");
@@ -103,12 +157,14 @@ public class UserService
         var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
         code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
 
-        
-        var callbackUrl = _urlHelper.Page(
-            "/Account/ConfirmEmail",
-            pageHandler: null,
-            values: new { area = "Identity", userId, code, returnUrl },
-            protocol: "https");
+        string callbackUrl = _urlHelper.Action("ConfirmEmail", "Users", values: new { userId, code, returnUrl }, protocol: "https")
+                                                                        .Replace("&amp","&")
+                                                                        .Replace("%2F","/");
+
+        if (String.IsNullOrWhiteSpace(callbackUrl))
+        {
+            throw new ArgumentNullException(nameof(callbackUrl));
+        }
 
         if (String.IsNullOrWhiteSpace(user.Email))
         {
@@ -116,7 +172,7 @@ public class UserService
         }
 
         await _emailSender.SendEmailAsync(user.Email, "Confirm your email",
-            $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
+            $"Please confirm your account by <a href='{callbackUrl}'>clicking here</a>.");
     }
 
     private IUserEmailStore<ApplicationUser> GetEmailStore()

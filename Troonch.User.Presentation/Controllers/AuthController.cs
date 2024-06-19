@@ -3,8 +3,10 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using System.Text;
 using Troonch.Application.Base.Utilities;
 using Troonch.User.Application.Services;
 using Troonch.User.Domain.DTOs.Requests;
@@ -136,5 +138,6 @@ public class AuthController : Controller
             return View();
         }
     }
+
 
 }

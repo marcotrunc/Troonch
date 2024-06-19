@@ -1,8 +1,7 @@
 ﻿using FluentValidation;
-using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http.Extensions;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -19,6 +18,7 @@ public class UsersController : Controller
     private readonly ILogger<UsersController> _logger;
     private readonly SignInManager<ApplicationUser> _signInManager;
     private readonly UserService _userService;
+    private string _returnUrl = "/Home/Index";
 
     [ActivatorUtilitiesConstructor]
     public UsersController(
@@ -71,13 +71,18 @@ public class UsersController : Controller
         {
             var identityResult = await _userService.RegisterUserAsync(request);
 
+            if (identityResult is null) 
+            { 
+                throw new ArgumentNullException(nameof(identityResult));
+            }
+
             if (!identityResult.Succeeded)
             {
                 ModelState.SetModelState(identityResult.Errors, _logger);
-                return View(identityResult.Errors);
+                return View(request);
             }
 
-            return View("Index");
+            return RedirectToAction("Index", "Users");
         }
         catch (ValidationException ex)
         {
@@ -93,6 +98,74 @@ public class UsersController : Controller
         catch (Exception ex)
         {
             _logger.LogError($"UsersController::Register POST-> {ex.Message}");
+            throw;
+        }
+    }
+
+
+    [AllowAnonymous]
+    [HttpGet("Users/ConfirmEmail")]
+    public async Task<IActionResult> ConfirmEmail([FromQuery]string userId, [FromQuery] string code, [FromQuery] string returnUrl)
+    {
+        try
+        {
+
+            if (String.IsNullOrWhiteSpace(userId) || String.IsNullOrWhiteSpace(code))
+            {
+                _logger.LogError(userId is null ? "UserController::ConfirmEmail User Id is null" : "UserController::ConfirmEmail code is null");
+                return Redirect(returnUrl ?? _returnUrl);
+            }
+
+
+            var isEmailConfirmed = await _userService.ConfirmEmailAsync(userId, code);
+
+            string pwdResetToken = string.Empty;
+
+            if (isEmailConfirmed) 
+            {
+                pwdResetToken = await _userService.GeneratePasswordResetTokenAsync(userId);
+            }
+
+            if (String.IsNullOrEmpty(pwdResetToken)) 
+            {
+                throw new ArgumentException(nameof(pwdResetToken));
+            }
+            
+            ViewBag.StatusMessage = isEmailConfirmed ? "Grazie Per Aver confermato la tua email." : "Errore durante la riconferma della tua email, ricontatta l'amministratore";
+            ViewBag.UserId = userId;
+            ViewBag.Code = pwdResetToken;
+            
+            return View("ConfirmEmail");
+        }
+        catch (ArgumentNullException ex)
+        {
+            _logger.LogError($"UsersController::ConfirmEmail GET -> {ex.Message}");
+            throw;
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError($"UsersController::ConfirmEmail GET -> {ex.Message}");
+            throw;
+        }
+    }
+
+    [AllowAnonymous]
+    [HttpGet]
+
+    public async Task<IActionResult> ResetPassword([FromQuery] string userId, [FromQuery] string code)
+    {
+        try
+        {
+            return View();
+        }
+        catch (ArgumentNullException ex)
+        {
+            _logger.LogError($"UsersController::ResetPassword GET -> {ex.Message}");
+            throw;
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError($"UsersController::ResetPassword GET -> {ex.Message}");
             throw;
         }
     }

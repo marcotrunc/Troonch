@@ -7,12 +7,17 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Views\Users\ConfirmEmail.cshtml" />
     <None Remove="Views\Users\Login.cshtml" />
     <None Remove="Views\Users\Register.cshtml" />
   </ItemGroup>
 
   <ItemGroup>
     <EmbeddedResource Include="Views\Auth\Login.cshtml" />
+    <EmbeddedResource Include="Views\Users\ConfirmEmail.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\Users\Register.cshtml">
       <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>

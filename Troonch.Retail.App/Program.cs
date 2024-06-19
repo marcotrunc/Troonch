@@ -1,4 +1,3 @@
-using JetBrains.Annotations;
 using Microsoft.EntityFrameworkCore;
 using Serilog;
 using Troonch.Retail.App.Middlewares;
@@ -6,7 +5,8 @@ using Troonch.RetailSales.Product.Application;
 using Troonch.User.DataAccess.DataContext;
 using Troonch.User.Domain.Entities;
 using Troonch.User.Presentation;
-
+using Troonch.EmailSender.MailTrap;
+using Troonch.EmailSender.Rdcom.Domain.Configuration;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -23,11 +23,12 @@ builder.Host.UseSerilog((context, configuration) =>
 // Add Retail Sales Product Service
 builder.Services.AddRetailSalesProductApplication(builder.Configuration);
 
+// Add Auth and User Service
 builder.Services.AddUserPresentation(builder.Configuration);
 
-
-
-
+// Add Rdcom Email Sender Privider
+builder.Services.Configure<RdcomConfiguration>(builder.Configuration.GetSection("RdcomConfiguration"));
+builder.Services.AddEmailSenderMailTrap(builder.Configuration);
 
 
 //builder.Services.AddRazorPages();
