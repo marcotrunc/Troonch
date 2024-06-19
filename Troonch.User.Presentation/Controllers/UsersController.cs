@@ -1,13 +1,9 @@
 ﻿using FluentValidation;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http.Extensions;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using Newtonsoft.Json.Linq;
-using System.Text;
 using Troonch.Application.Base.Utilities;
 using Troonch.User.Application.Services;
 using Troonch.User.Domain.DTOs.Requests;
@@ -34,9 +30,30 @@ public class UsersController : Controller
         _signInManager = signInManager;
         _userService = userService;
     }
-    public IActionResult Index()
+    public async Task<IActionResult> Index()
     {
-        return View();
+        try
+        {
+            var users = await _userService.GetUsersAsync();
+
+            if (users is null) 
+            {
+                throw new Exception(nameof(users));
+            }
+
+            return View("Index", users);
+        }
+        catch (ArgumentNullException ex)
+        {
+            _logger.LogError($"UsersController::Index GET -> {ex.Message}");
+            throw;
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError($"UsersController::Index GET -> {ex.Message}");
+            throw;
+        }
+
     }
 
     [HttpGet("Users/Register/{id?}")]

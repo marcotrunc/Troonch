@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.AspNetCore.Mvc.Routing;
 using Microsoft.AspNetCore.WebUtilities;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using System.Security.Claims;
 using System.Text;
@@ -43,6 +44,15 @@ public class UserService
         _urlHelper = urlHelperFactory.GetUrlHelper(actionContextAccessor.ActionContext);
         _validator = validator;
         _setPasswordvalidator = setPasswordvalidator;
+    }
+
+    public async Task<List<ApplicationUser>> GetUsersAsync()
+    {
+        var users = await _userManager.Users.ToListAsync();
+
+        // Mapping
+
+        return users;
     }
 
     public async Task<UserRequestDTO> GetUserByForUpdateAsync(string? id)
@@ -140,7 +150,6 @@ public class UserService
 
         return result.Succeeded;
     }
-
     public async Task<string> GeneratePasswordResetTokenAsync(string userId)
     {
         if (String.IsNullOrWhiteSpace(userId))
@@ -163,7 +172,6 @@ public class UserService
         
         return token;
     }
-
     public async Task<IdentityResult?> SetPasswordAsync(SetPasswordRequestDTO setPasswordRequest)
     {
         if (setPasswordRequest is null) 
@@ -222,7 +230,6 @@ public class UserService
         await _emailSender.SendEmailAsync(user.Email, "Confirm your email",
             $"Please confirm your account by <a href='{callbackUrl}'>clicking here</a>.");
     }
-
     private IUserEmailStore<ApplicationUser> GetEmailStore()
     {
         if (!_userManager.SupportsUserEmail)

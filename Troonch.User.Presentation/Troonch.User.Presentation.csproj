@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <None Remove="Views\Users\ConfirmEmail.cshtml" />
+    <None Remove="Views\Users\Index.cshtml" />
     <None Remove="Views\Users\Login.cshtml" />
     <None Remove="Views\Users\Register.cshtml" />
     <None Remove="Views\Users\SetPassword.cshtml" />
@@ -16,6 +17,10 @@
   <ItemGroup>
     <EmbeddedResource Include="Views\Auth\Login.cshtml" />
     <EmbeddedResource Include="Views\Users\ConfirmEmail.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Users\Index.cshtml">
       <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </EmbeddedResource>
