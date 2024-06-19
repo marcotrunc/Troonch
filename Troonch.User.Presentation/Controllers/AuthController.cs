@@ -3,10 +3,8 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using System.Text;
 using Troonch.Application.Base.Utilities;
 using Troonch.User.Application.Services;
 using Troonch.User.Domain.DTOs.Requests;
@@ -121,22 +119,15 @@ public class AuthController : Controller
         return View();
     }
 
-    [HttpPost]
-    [ValidateAntiForgeryToken]
+    [HttpGet("Auth/Logout")]
     public async Task<IActionResult> Logout()
     {
+
         await _signInManager.SignOutAsync();
 
-
-        _logger.LogInformation($"AuthController::Logout POST -> User Logged Out");
-        if (_returnUrl != null)
-        {
-            return Redirect(_returnUrl);
-        }
-        else
-        {
-            return View();
-        }
+        _logger.LogInformation($"AuthController::Logout GET -> User Logged Out");
+        
+        return RedirectToAction("Login", "Auth");
     }
 
 

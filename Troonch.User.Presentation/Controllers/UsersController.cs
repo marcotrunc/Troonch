@@ -3,8 +3,11 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http.Extensions;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Newtonsoft.Json.Linq;
+using System.Text;
 using Troonch.Application.Base.Utilities;
 using Troonch.User.Application.Services;
 using Troonch.User.Domain.DTOs.Requests;
@@ -133,7 +136,7 @@ public class UsersController : Controller
             
             ViewBag.StatusMessage = isEmailConfirmed ? "Grazie Per Aver confermato la tua email." : "Errore durante la riconferma della tua email, ricontatta l'amministratore";
             ViewBag.UserId = userId;
-            ViewBag.Code = pwdResetToken;
+            ViewBag.Code =  pwdResetToken;
             
             return View("ConfirmEmail");
         }
@@ -151,22 +154,75 @@ public class UsersController : Controller
 
     [AllowAnonymous]
     [HttpGet]
-
-    public async Task<IActionResult> ResetPassword([FromQuery] string userId, [FromQuery] string code)
+    public async Task<IActionResult> SetPassword([FromQuery] string userId, [FromQuery] string code)
     {
         try
         {
-            return View();
+            if (String.IsNullOrWhiteSpace(userId) || String.IsNullOrWhiteSpace(code))
+            {
+                _logger.LogError(userId is null ? "UserController::SetPassword User Id is null" : "UserController::SetPassword code is null");
+                return Redirect(_returnUrl);
+            }
+
+            var setPasswordModel = new SetPasswordRequestDTO()
+            {
+                Id = userId,
+                Code = code
+            };
+
+            return View("SetPassword", setPasswordModel);
         }
         catch (ArgumentNullException ex)
         {
-            _logger.LogError($"UsersController::ResetPassword GET -> {ex.Message}");
+            _logger.LogError($"UsersController::SetPassword GET -> {ex.Message}");
             throw;
         }
         catch (Exception ex)
         {
-            _logger.LogError($"UsersController::ResetPassword GET -> {ex.Message}");
+            _logger.LogError($"UsersController::SetPassword GET -> {ex.Message}");
             throw;
         }
     }
+
+    [AllowAnonymous]
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public async Task<IActionResult> SetPassword(SetPasswordRequestDTO request)
+    {
+        try
+        {
+            var identityResult = await _userService.SetPasswordAsync(request);
+
+            if (identityResult is null)
+            {
+                throw new ArgumentNullException(nameof(identityResult));
+            }
+
+            if (!identityResult.Succeeded)
+            {
+                ModelState.SetModelState(identityResult.Errors, _logger);
+                return View(request);
+            }
+
+            return RedirectToAction("Login", "Auth");
+
+        }
+        catch (ValidationException ex)
+        {
+            ModelState.SetModelState(ex.Errors, _logger);
+
+            return View(request);
+        }
+        catch (ArgumentNullException ex)
+        {
+            _logger.LogError($"UsersController::SetPassword POST-> {ex.Message}");
+            throw;
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError($"UsersController::SetPassword POST-> {ex.Message}");
+            throw;
+        }
+    }
+
 }

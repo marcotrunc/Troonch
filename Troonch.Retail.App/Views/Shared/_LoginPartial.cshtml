@@ -1,4 +1,5 @@
 ﻿@using Microsoft.AspNetCore.Identity
+@using System.Security.Claims
 @using Troonch.User.Domain
 @using Troonch.User.Domain.Entities
 
@@ -14,7 +15,14 @@
                 <span class="availability-status online"></span>
             </div>
             <div class="nav-profile-text">
-                <p class="mb-1 text-black">@User.Identity.Name</p>
+                @if (User.Claims.Any(claim => claim.Type.Equals(ClaimTypes.GivenName) && claim.Type.Equals(ClaimTypes.Surname)))
+                {
+                    <span class="mb-1 text-black">@User.Claims.Where(claim => claim.Type.Equals(ClaimTypes.GivenName)).First().Value</span>
+                    <span class="mb-1 text-black">@User.Claims.Where(claim => claim.Type.Equals(ClaimTypes.Surname)).First().Value</span>
+                }
+                else{
+                    <span class="mb-1 text-black">@User.Claims.Where(claim => claim.Type.Equals(ClaimTypes.Name)).First().Value</span>
+                }
             </div>
         </a>
         <div class="dropdown-menu navbar-dropdown" aria-labelledby="profileDropdown">
@@ -22,7 +30,7 @@
                 <i class="mdi mdi-cached me-2 text-success"></i> Activity Log
             </a>
             <div class="dropdown-divider"></div>
-            @using (Html.BeginForm("Loguot", "Auth", FormMethod.Post, new { @id = "logout-form", @class = "dropdown-item" }))
+            @using (Html.BeginForm("Logout", "Auth", FormMethod.Get, new { @id = "logout-form", @class = "dropdown-item" }))
             {
                 <a id="logout-command"   onclick="document.getElementById('logout-form').submit();"><i class="mdi mdi-logout me-2 text-primary"></i> Disconnettiti</a>
             }
