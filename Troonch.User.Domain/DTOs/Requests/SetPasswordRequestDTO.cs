@@ -6,4 +6,5 @@ public class SetPasswordRequestDTO
     public string NewPassword { get; set; }
     public string ConfirmPassword { get; set; }
     public string Code { get; set; }
+    public bool IsFirstSetPassword { get; set; } = true;
 }

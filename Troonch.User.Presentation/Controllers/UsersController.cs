@@ -181,10 +181,13 @@ public class UsersController : Controller
                 return Redirect(_returnUrl);
             }
 
+            var hasAlreadyPassword = await _userService.HasAlreadyPasswordAsync(userId);
+
             var setPasswordModel = new SetPasswordRequestDTO()
             {
                 Id = userId,
-                Code = code
+                Code = code,
+                IsFirstSetPassword = !hasAlreadyPassword
             };
 
             return View("SetPassword", setPasswordModel);
@@ -238,6 +241,109 @@ public class UsersController : Controller
         catch (Exception ex)
         {
             _logger.LogError($"UsersController::SetPassword POST-> {ex.Message}");
+            throw;
+        }
+    }
+
+    [AllowAnonymous]
+    [HttpGet]
+    public async Task<IActionResult> ForgotPassword()
+    {
+        try
+        {
+            var model = new ForgotPasswordRequestDTO();
+
+            return View("ForgotPassword", model);
+        }
+        catch (ArgumentNullException ex)
+        {
+            _logger.LogError($"UsersController::ForgotPassword GET-> {ex.Message}");
+            throw;
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError($"UsersController::ForgotPassword GET-> {ex.Message}");
+            throw;
+        }
+    }
+
+    [AllowAnonymous]
+    [HttpPost]
+    public async Task<IActionResult> ForgotPassword(ForgotPasswordRequestDTO request)
+    {
+        try
+        {
+            await _userService.InitializeForgotPasswordProcessAsync(request);
+
+            return RedirectToAction("ForgotPasswordConfiramtion","Users");
+        }
+        catch (ValidationException ex)
+        {
+            ModelState.SetModelState(ex.Errors, _logger);
+
+            return View(request);
+        }
+        catch (ArgumentNullException ex)
+        {
+            _logger.LogError($"UsersController::ForgotPassword POST-> {ex.Message}");
+            throw;
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError($"UsersController::ForgotPassword POST-> {ex.Message}");
+            throw;
+        }
+    }
+
+    [AllowAnonymous]
+    [HttpGet]
+    public async Task<IActionResult> ForgotPasswordConfiramtion()
+    {
+        try
+        {
+            return View("ForgotPasswordConfirmation");
+        }
+        catch (ArgumentNullException ex)
+        {
+            _logger.LogError($"UsersController::ForgotPasswordConfiramtion GET-> {ex.Message}");
+            throw;
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError($"UsersController::ForgotPasswordConfiramtion GET-> {ex.Message}");
+            throw;
+        }
+    }
+
+    [AllowAnonymous]
+    [HttpGet]
+    public async Task<IActionResult> ResetPassword([FromQuery] string userId, [FromQuery] string code)
+    {
+        try
+        {
+            if (String.IsNullOrWhiteSpace(userId) || String.IsNullOrWhiteSpace(code))
+            {
+                _logger.LogError(userId is null ? "UserController::ResetPassword User Id is null" : "UserController::SetPassword code is null");
+                return Redirect(_returnUrl);
+            }
+
+            var setPasswordModel = new SetPasswordRequestDTO()
+            {
+                Id = userId,
+                Code = code,
+                IsFirstSetPassword = false
+            };
+
+            return View("SetPassword", setPasswordModel);
+        }
+        catch (ArgumentNullException ex)
+        {
+            _logger.LogError($"UsersController::ResetPassword GET -> {ex.Message}");
+            throw;
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError($"UsersController::ResetPassword GET -> {ex.Message}");
             throw;
         }
     }

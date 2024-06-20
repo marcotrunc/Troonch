@@ -130,5 +130,6 @@ public class AuthController : Controller
         return RedirectToAction("Login", "Auth");
     }
 
+   
 
 }

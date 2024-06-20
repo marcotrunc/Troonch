@@ -6,8 +6,10 @@ using Microsoft.AspNetCore.Mvc.Routing;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using System;
 using System.Security.Claims;
 using System.Text;
+using System.Text.Encodings.Web;
 using Troonch.Application.Base.Interfaces;
 using Troonch.User.Domain.DTOs.Requests;
 using Troonch.User.Domain.Entities;
@@ -120,7 +122,22 @@ public class UserService
         return result;
     }
 
-    
+    public async Task<bool> HasAlreadyPasswordAsync(string userId)
+    {
+        if (String.IsNullOrWhiteSpace(userId))
+        {
+            throw new ArgumentNullException(nameof(userId));
+        }
+
+        var applicationUser = await _userManager.FindByIdAsync(userId);
+
+        if(applicationUser is null)
+        {
+            throw new ArgumentNullException(nameof(applicationUser));
+        }
+
+        return await _userManager.HasPasswordAsync(applicationUser);
+    }
 
     public async Task<bool> ConfirmEmailAsync(string userId, string code)
     {
@@ -190,7 +207,7 @@ public class UserService
 
         var hasPassword = await _userManager.HasPasswordAsync(applicationUser);
 
-        if (hasPassword) 
+        if (setPasswordRequest.IsFirstSetPassword && hasPassword) 
         {
             _logger.LogError($"UserService::SetPasswordAsync -> The user Has already the pwd");
             throw new InvalidOperationException(nameof(hasPassword));
@@ -204,6 +221,39 @@ public class UserService
         }
 
         return result;
+    }
+    public async Task InitializeForgotPasswordProcessAsync(ForgotPasswordRequestDTO forgotPasswordRequest)
+    {
+
+        if(forgotPasswordRequest is null)
+        {
+            throw new ArgumentException(nameof(forgotPasswordRequest)); 
+        }
+        
+        var user = await _userManager.FindByEmailAsync(forgotPasswordRequest.Email);
+
+        if(user is null)
+        {
+            throw new ArgumentNullException(nameof(user));
+        }
+        
+        if (!(await _userManager.IsEmailConfirmedAsync(user)))
+        {
+            await SendConfirmationMail(user);
+            return;
+        }
+
+        var code = await _userManager.GeneratePasswordResetTokenAsync(user);
+
+        string callbackUrl = _urlHelper.Action("ResetPassword", "Users", values: new {userId = user.Id, code}, protocol: "https")
+                                                                        .Replace("&amp", "&")
+                                                                        .Replace("%2F", "/");
+        
+
+        await _emailSender.SendEmailAsync(
+            forgotPasswordRequest.Email,
+            "Reset Password",
+            $"Per favore Resetta la tua password <a href='{callbackUrl}'>cliccando qui</a>.");
     }
     private async Task SendConfirmationMail(ApplicationUser user, string returnUrl = null)
     {
