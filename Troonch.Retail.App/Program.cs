@@ -72,19 +72,19 @@ app.UseAuthorization();
 
 app.UseEndpoints(endpoints =>
 {
-    endpoints.MapRazorPages();
-    //endpoints.MapControllers();
-
     endpoints.MapControllerRoute(
         name:"default",
         pattern: "{controller=Home}/{action=Index}/{id?}"
     );
-
     endpoints.MapGet("/", context =>
     {
-        context.Response.Redirect("Auth/Login");
+        context.Response.Redirect("/Auth/Login");
         return Task.CompletedTask;
     });
+    
+    endpoints.MapRazorPages();
+
+
 });
 
 

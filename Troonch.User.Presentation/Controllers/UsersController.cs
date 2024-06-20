@@ -250,7 +250,7 @@ public class UsersController : Controller
     public async Task<IActionResult> ForgotPassword()
     {
         try
-        {
+        { 
             var model = new ForgotPasswordRequestDTO();
 
             return View("ForgotPassword", model);

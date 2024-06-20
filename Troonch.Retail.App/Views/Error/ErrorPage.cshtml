@@ -37,6 +37,16 @@
                                 <h3 class="font-weight-light">@ViewBag.ErrorMessage</h3>
                             </div>
                         </div>
+
+                        @if (!String.IsNullOrWhiteSpace(ViewBag.ExceptionMessage))
+                        {
+                            <div class="row mt-5">
+                                <div class="col-12 mt-xl-2">
+                                    <p class="text-white font-weight-medium text-center">@ViewBag.ExceptionMessage.</p>
+                                </div>
+                            </div>
+                        }
+
                         <div class="row mt-5">
                             <div class="col-12 text-center mt-xl-2">
                                 <a asp-action="index" asp-controller="home" class="text-white font-weight-medium">Back to home</a>

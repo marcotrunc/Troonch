@@ -4,11 +4,13 @@ namespace Troonch.Retail.App.Controllers
 {
     public class ErrorController : Controller
     {
-        [Route("Error/{statuscode}")]
-        public IActionResult HttpStatusCodeHandler(int statuscode)
+        [Route("Error/{statuscode}/{exceptionMessage?}")]
+        public IActionResult HttpStatusCodeHandler(int statuscode, string exceptionMessage = "")
         {
             ViewBag.StatusCode = statuscode;
-            
+
+            ViewBag.ExceptionMessage = exceptionMessage;
+
             switch (statuscode)
             {
                 case 404:
