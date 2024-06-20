@@ -13,12 +13,23 @@ public static class DependencyInjection
 {
     public static IServiceCollection AddUserPresentation(this IServiceCollection services, IConfigurationRoot configuration)
     {
+
         services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
                                                                 .AddRoles<IdentityRole>()
                                                                 .AddEntityFrameworkStores<UserDataContext>();
 
-        
-        
+
+        services.ConfigureApplicationCookie(options =>
+        {
+            options.Cookie.HttpOnly = true;
+            options.ExpireTimeSpan = TimeSpan.FromMinutes(5);
+
+            options.LoginPath = "/Auth/Login";
+            options.AccessDeniedPath = "/Auth/AccessDenied";
+            options.SlidingExpiration = true;
+        });
+
+
         var assembly = typeof(UsersController).Assembly;
 
         services.AddControllersWithViews()
