@@ -12,6 +12,7 @@ using System.Text;
 using System.Text.Encodings.Web;
 using Troonch.Application.Base.Interfaces;
 using Troonch.User.Domain.DTOs.Requests;
+using Troonch.User.Domain.DTOs.Response;
 using Troonch.User.Domain.Entities;
 
 namespace Troonch.User.Application.Services;
@@ -48,13 +49,16 @@ public class UserService
         _setPasswordvalidator = setPasswordvalidator;
     }
 
-    public async Task<List<ApplicationUser>> GetUsersAsync()
+    public async Task<List<UserResponseDTO>> GetUsersAsync()
     {
         var users = await _userManager.Users.ToListAsync();
 
-        // Mapping
+        if(users is null)
+        {
+            throw new ArgumentNullException(nameof(users));
+        }
 
-        return users;
+        return users.Select(u => MapApplicationUserToUserResponseDto(u)).ToList();
     }
 
     public async Task<UserRequestDTO> GetUserByForUpdateAsync(string? id)
@@ -289,6 +293,43 @@ public class UserService
         return (IUserEmailStore<ApplicationUser>)_userStore;
     }
 
+    private int CalculateProgressOfDataComplete (ApplicationUser applicationUser)
+    {
+        var modelType = typeof(ApplicationUser);
+        var properties = modelType.GetProperties();
+        var propertiesName = properties
+                                .Where(p => p.CanWrite)
+                                .Select(p => p.Name);
+
+        var valueMaxOfProgress = 100;
+        var singleProgressItem = valueMaxOfProgress / propertiesName.Count();
+
+        int progressOfDataComplete = 0;
+        
+        foreach (var property in properties)
+        {
+            var value = property.GetValue(applicationUser);
+
+            var defaultValue = property.PropertyType.IsValueType
+                                ? Activator.CreateInstance(property.PropertyType)
+                                : null;
+
+            bool isDifferentFromDefault = !Equals(value, defaultValue);
+
+            if (isDifferentFromDefault)
+            {
+                progressOfDataComplete += singleProgressItem;
+            }
+        }
+
+
+        if (progressOfDataComplete >= 95)
+        {
+            progressOfDataComplete = 100;
+        }
+
+        return progressOfDataComplete;
+    }
 
     #region Mapping
     private UserRequestDTO MapApplicationUserToRequestDto(ApplicationUser applicationUser) => new UserRequestDTO()
@@ -312,6 +353,20 @@ public class UserService
         CreatedOn = DateTime.UtcNow
     };
 
+    private UserResponseDTO MapApplicationUserToUserResponseDto(ApplicationUser applicationUser) => new UserResponseDTO()
+    {
+        Id = applicationUser.Id,
+        Name = applicationUser.Name,
+        LastName = applicationUser.LastName,
+        Email = applicationUser.Email ?? throw new ArgumentNullException(nameof(applicationUser.Email)),
+        IsEmailConfirmed = applicationUser.EmailConfirmed,
+        PhoneNumber = applicationUser.PhoneNumber,
+        ProgressOfDataComplete = CalculateProgressOfDataComplete(applicationUser),
+        TwoFactorEnabled = applicationUser.TwoFactorEnabled,
+        DateOfBirth = applicationUser.DateOfBirth,
+        CreatedOn = applicationUser.CreatedOn,
+        UpdatedOn = applicationUser.UpdatedOn,
+    };
 
     #endregion
 }
