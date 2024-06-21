@@ -29740,6 +29740,7 @@ dl {
 }
 
 .content-wrapper {
+    overflow: auto;
     background: #f2edf3;
     padding: 2.75rem 2.25rem;
     width: 100%;
