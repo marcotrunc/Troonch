@@ -348,4 +348,36 @@ public class UsersController : Controller
         }
     }
 
+    [HttpGet("RenderUserCard/{userId?}")]
+    public async Task<IActionResult> RenderUserCard(string userId)
+    {
+        try
+        {
+            if (String.IsNullOrWhiteSpace(userId))
+            {
+                throw new ArgumentNullException(nameof(userId));
+            }
+
+            var userModel = await _userService.GetUserByIdAsync(userId);
+
+            if (userModel is null) 
+            {
+                throw new ArgumentNullException(nameof(userModel));
+            }
+
+            return PartialView("_UserCard", userModel);
+
+        }
+         catch (ArgumentNullException ex)
+        {
+            _logger.LogError($"UsersController::RenderUserCard GET -> {ex.Message}");
+            throw;
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError($"UsersController::RenderUserCard GET -> {ex.Message}");
+            throw;
+        }
+    }
+
 }

@@ -21,7 +21,7 @@
     <tbody>
         @foreach(var User in Model)
         {
-            <tr id="row-@User.Id" onclick="showUserModal(this)" data-fullname="@User.FullName">
+            <tr id="row-@User.Id" onclick="showUserModal(this)" data-id="@User.Id" data-fullname="@User.FullName" role="button">
                 <td class="py-1 d-none d-md-table-cell">
                     <img src="~/assets/images/faces-clipart/pic-1.png" alt="@User.FullName">
                 </td>
@@ -49,14 +49,14 @@
 </table>
 
 @* Users Modal *@
-<div class="modal fade" id="users-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="user-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-xl">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="user-modal-title"></h5>
+                <h5 id="user-modal-title" class="modal-title"></h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div id="brand-modal-body" class="modal-body">
+            <div id="user-modal-body" class="modal-body">
             </div>
         </div>
     </div>
@@ -67,8 +67,12 @@
 
     <script>
 
-        const showUserModal = async (this) => {
-            console.log(this);
+        const showUserModal = async (element) => {
+
+            const userId = element.getAttribute('data-id');
+
+            await renderHTML(`RenderUserCard\\${userId}`, 'user-modal-body', 'user-modal');
+            
         };
 
 

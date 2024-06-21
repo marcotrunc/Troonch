@@ -61,6 +61,22 @@ public class UserService
         return users.Select(u => MapApplicationUserToUserResponseDto(u)).ToList();
     }
 
+    public async Task<UserResponseDTO> GetUserByIdAsync(string userId)
+    {
+        if (String.IsNullOrWhiteSpace(userId))
+        {
+            throw new ArgumentNullException(nameof(userId));
+        }
+
+        var user = await _userManager.FindByIdAsync(userId);
+
+        if (user is null) 
+        {
+            throw new ArgumentNullException(nameof(user));
+        }
+
+        return MapApplicationUserToUserResponseDto(user);
+    }
     public async Task<UserRequestDTO> GetUserByForUpdateAsync(string? id)
     {
         if (String.IsNullOrWhiteSpace(id))
