@@ -18,11 +18,17 @@ public static class DependencyInjection
                                                                 .AddRoles<IdentityRole>()
                                                                 .AddEntityFrameworkStores<UserDataContext>();
 
+        services.Configure<IdentityOptions>(options =>
+        {
+            options.Lockout.DefaultLockoutTimeSpan = TimeSpan.MaxValue;
+
+            options.SignIn.RequireConfirmedEmail = true;
+        });
 
         services.ConfigureApplicationCookie(options =>
         {
             options.Cookie.HttpOnly = true;
-            options.ExpireTimeSpan = TimeSpan.FromMinutes(15);
+            options.ExpireTimeSpan = TimeSpan.FromMinutes(1);
 
             options.LoginPath = "/Auth/Login";
             options.AccessDeniedPath = "/Auth/AccessDenied";

@@ -8,6 +8,7 @@ public class UserResponseDTO
     public string Email { get; set; }
     public bool IsEmailConfirmed { get; set; } = false;
     public string? PhoneNumber { get; set; } = string.Empty;
+    public bool PhoneNumberConfirmed = false;
     public bool TwoFactorEnabled {  get; set; } = default(bool);
     public DateOnly? DateOfBirth { get; set; } = null;
 

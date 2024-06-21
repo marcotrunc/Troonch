@@ -68,13 +68,78 @@
     <script>
 
         const showUserModal = async (element) => {
-
+            
             const userId = element.getAttribute('data-id');
 
-            await renderHTML(`RenderUserCard\\${userId}`, 'user-modal-body', 'user-modal');
+            await renderHTML(`RenderUserCard/${userId}`, 'user-modal-body', 'user-modal');
             
         };
 
+        const cleanUserModalBody = () =>
+            document.getElementById('user-modal-body').innerHTML = '';
+
+        const confirmEmail = async (userId) => {
+            try{
+                const response = await fetch(`/Users/ConfirmEmail/${userId}`);
+
+                if (!response.ok) {
+                    return await handleRequestInError(response);
+                }
+
+                showNotification(false);
+
+                
+                setTimeout(() => {
+                    cleanUserModalBody();
+                    window.location.href = '/Users';
+                }, 1000);
+            }
+            catch(error){
+                handleExceptionInFormWithRedirect(error);
+            }
+        }
+
+        const handleTwoFactorAuthentication = async (userId, enabled) => {
+            try{
+
+                const response = await fetch(`/Auth/HandleTwoFactorAuthentication/${userId}/${enabled}`);
+
+                if (!response.ok) {
+                    return await handleRequestInError(response);
+                }
+
+                showNotification(false);
+
+                setTimeout(() => {
+                    cleanUserModalBody();
+                    window.location.href = '/Users';
+                }, 1000);
+            }
+            catch (error) {
+                handleExceptionInFormWithRedirect(error);
+            }
+        }
+
+        const confirmPhoneNumber = async (userId) => {
+            try{
+                const response = await fetch(`/Users/ConfirmPhoneNumber/${userId}`);
+
+                if (!response.ok) {
+                    return await handleRequestInError(response);
+                }
+
+                showNotification(false);
+
+
+                setTimeout(() => {
+                    cleanUserModalBody();
+                    window.location.href = '/Users';
+                }, 1000);
+            }
+            catch(error){
+                handleExceptionInFormWithRedirect(error);
+            }
+        }
 
     </script>
 }

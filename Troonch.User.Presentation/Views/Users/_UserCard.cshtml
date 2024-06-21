@@ -21,26 +21,43 @@
                 <i class="mdi mdi-linkedin"></i>
             </button>
         </div>
-        <button type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-rounded btn-lg">
-            Conferma Email
+        <button type="button" class="btn btn-primary btn-rounded btn-lg" onclick="confirmEmail('@Model.Id')">
+            <i class="mdi mdi-email-open-outline mr-1"></i> Conferma Email
         </button>
 
         <h6 class="mt-4 mb-2">Altre Azioni </h6>
+
         <div class="d-flex justify-content-center text-center mt-5 mb-2">
             <div class="btn-group-vertical" role="group" aria-label="Basic example">
-                <button type="button" class="btn btn-primary btn-rounded">
-                    Abilita Autenticazione a due fattori
-                </button>
-                @if (!String.IsNullOrWhiteSpace(Model.PhoneNumber))
+                @if (Model.TwoFactorEnabled)
                 {
-                    <button type="button" class="btn btn-primary btn-rounded">
-                        Conferma numero di telefono
+                    <button type="button" class="btn btn-primary btn-rounded" onclick="handleTwoFactorAuthentication('@Model.Id', false)">
+                        <i class="mdi mdi-email-variant mr-1"></i> Disabilita Autenticazione a due fattori
+                    </button>
+                }
+                else
+                {
+                    <button type="button" class="btn btn-primary btn-rounded" onclick="handleTwoFactorAuthentication('@Model.Id', true)">
+                        <i class="mdi mdi-email-variant mr-1"></i> Abilita Autenticazione a due fattori
+                    </button>
+                }
+
+                @if (!String.IsNullOrWhiteSpace(Model.PhoneNumber) && !Model.PhoneNumberConfirmed)
+                {
+                    <button type="button" class="btn btn-primary btn-rounded" onclick="confirmPhoneNumber('@Model.Id')">
+                        <i class="mdi mdi-cellphone mr-1"></i> Conferma numero di telefono
                     </button>
                 }
                  @if (User.IsInRole("admin"))
                 {
                     <button type="button" class="btn btn-primary btn-rounded">
-                        Promuovi ad Admin
+                        <i class="mdi mdi-account-convert mr-1"></i> Promuovi ad Admin
+                    </button>
+                    <button type="button" class="btn btn-primary btn-rounded">
+                        <i class="mdi mdi-account-off mr-1"></i> Blocca Utente
+                    </button>
+                    <button type="button" class="btn btn-primary btn-rounded">
+                        <i class="mdi mdi-account-remove mr-1"></i> Rimuovi Utente
                     </button>
                 }
             </div>

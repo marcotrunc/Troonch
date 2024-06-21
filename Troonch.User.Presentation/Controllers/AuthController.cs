@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Troonch.Application.Base.Utilities;
+using Troonch.Domain.Base.DTOs.Response;
 using Troonch.User.Application.Services;
 using Troonch.User.Domain.DTOs.Requests;
 using Troonch.User.Domain.Entities;
@@ -130,6 +131,44 @@ public class AuthController : Controller
         return RedirectToAction("Login", "Auth");
     }
 
-   
+    [Authorize(Roles = "admin")]
+    [HttpGet("Auth/HandleTwoFactorAuthentication/{userId}/{enabled}")]
+    public async Task<IActionResult> HandleTwoFactorAuthentication(string userId, bool enabled)
+    {
+        var responseModel = new ResponseModel<bool>();
+
+        try
+        {
+            if (String.IsNullOrWhiteSpace(userId))
+            {
+                _logger.LogError("AuthController::EnableTwoFactorAuthentication GET -> User Id is null");
+                throw new ArgumentException(nameof(userId));
+            }
+
+            var isTwoFactorAuthUpdated = await _authService.HandleTwoFactorAuthenticationAsync(userId, enabled);
+
+            if (!isTwoFactorAuthUpdated) 
+            { 
+                throw new InvalidOperationException(nameof(isTwoFactorAuthUpdated));
+            }
+
+            return StatusCode(200, responseModel);
+        }
+        catch (ArgumentNullException ex)
+        {
+            _logger.LogError($"AuthController::EnableTwoFactorAuthentication GET -> {ex.Message}");
+            responseModel.Status = ResponseStatus.Error.ToString();
+            responseModel.Error.Message = ex.Message;
+            return StatusCode(400, responseModel);
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError($"AuthController::EnableTwoFactorAuthentication GET -> {ex.Message}");
+            responseModel.Status = ResponseStatus.Error.ToString();
+            responseModel.Error.Message = "Internal Server Error";
+            return StatusCode(500, responseModel);
+        }
+    }
+
 
 }

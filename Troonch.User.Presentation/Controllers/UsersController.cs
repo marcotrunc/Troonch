@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Troonch.Application.Base.Utilities;
+using Troonch.Domain.Base.DTOs.Response;
 using Troonch.User.Application.Services;
 using Troonch.User.Domain.DTOs.Requests;
 using Troonch.User.Domain.Entities;
@@ -166,6 +167,85 @@ public class UsersController : Controller
         {
             _logger.LogError($"UsersController::ConfirmEmail GET -> {ex.Message}");
             throw;
+        }
+    }
+    [Authorize(Roles = "admin")]
+    [HttpGet("Users/ConfirmEmail/{userId?}")]
+    public async Task<IActionResult> ConfirmEmail(string userId)
+    {
+        var responseModel = new ResponseModel<bool>();
+        try
+        {
+
+            if (String.IsNullOrWhiteSpace(userId))
+            {
+                _logger.LogError("UserController::ConfirmEmail Authorize -> User Id is null");
+                throw new ArgumentException(nameof(userId));
+            }
+
+
+            var isEmailConfirmed = await _userService.ConfirmEmailFromAdminAsync(userId);
+
+            if (!isEmailConfirmed) 
+            {
+                throw new ArgumentException(nameof(isEmailConfirmed));
+            }
+
+            return StatusCode(200, responseModel);
+        }
+        catch (ArgumentNullException ex)
+        {
+            _logger.LogError($"UsersController::ConfirmEmail Authorize -> {ex.Message}");
+            responseModel.Status = ResponseStatus.Error.ToString();
+            responseModel.Error.Message = ex.Message;
+            return StatusCode(400, responseModel);
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError($"UsersController::ConfirmEmail Authorize -> {ex.Message}");
+            responseModel.Status = ResponseStatus.Error.ToString();
+            responseModel.Error.Message = "Internal Server Error";
+            return StatusCode(500, responseModel);
+        }
+    }
+
+    [Authorize(Roles = "admin")]
+    [HttpGet("Users/ConfirmPhoneNumber/{userId?}")]
+    public async Task<IActionResult> ConfirmPhoneNumber(string userId)
+    {
+        var responseModel = new ResponseModel<bool>();
+        try
+        {
+
+            if (String.IsNullOrWhiteSpace(userId))
+            {
+                _logger.LogError("UserController::ConfirmPhoneNumber Authorize -> User Id is null");
+                throw new ArgumentException(nameof(userId));
+            }
+
+
+            var isPhoneNumberConfirmed = await _userService.ConfirmPhoneNumberFromAdminAsync(userId);
+
+            if (!isPhoneNumberConfirmed)
+            {
+                throw new ArgumentException(nameof(isPhoneNumberConfirmed));
+            }
+
+            return StatusCode(200, responseModel);
+        }
+        catch (ArgumentNullException ex)
+        {
+            _logger.LogError($"UsersController::ConfirmPhoneNumber Authorize -> {ex.Message}");
+            responseModel.Status = ResponseStatus.Error.ToString();
+            responseModel.Error.Message = ex.Message;
+            return StatusCode(400, responseModel);
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError($"UsersController::ConfirmPhoneNumber Authorize -> {ex.Message}");
+            responseModel.Status = ResponseStatus.Error.ToString();
+            responseModel.Error.Message = "Internal Server Error";
+            return StatusCode(500, responseModel);
         }
     }
 

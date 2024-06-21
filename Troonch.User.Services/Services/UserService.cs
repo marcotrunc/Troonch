@@ -6,10 +6,8 @@ using Microsoft.AspNetCore.Mvc.Routing;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
-using System;
 using System.Security.Claims;
 using System.Text;
-using System.Text.Encodings.Web;
 using Troonch.Application.Base.Interfaces;
 using Troonch.User.Domain.DTOs.Requests;
 using Troonch.User.Domain.DTOs.Response;
@@ -176,11 +174,76 @@ public class UserService
         {
             throw new ArgumentNullException(nameof(userId));
         }
-
+        
         code = Encoding.UTF8.GetString(WebEncoders.Base64UrlDecode(code));
         var result = await _userManager.ConfirmEmailAsync(user, code);
 
         if (result is null)
+        {
+            throw new ArgumentNullException(nameof(result));
+        }
+
+        return result.Succeeded;
+    }
+
+    public async Task<bool> ConfirmEmailFromAdminAsync(string userId)
+    {
+        if (String.IsNullOrWhiteSpace(userId))
+        {
+            throw new ArgumentNullException(nameof(userId));
+        }
+
+        var user = await _userManager.FindByIdAsync(userId);
+        if (user is null)
+        {
+            throw new ArgumentNullException(nameof(userId));
+        }
+
+        var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+
+        if(code is null)
+        {
+            throw new ArgumentException(nameof(code));
+        }
+
+        var result = await _userManager.ConfirmEmailAsync(user, code);
+
+        if (result is null)
+        {
+            throw new ArgumentNullException(nameof(result));
+        }
+
+        return result.Succeeded;
+    }
+    public async Task<bool> ConfirmPhoneNumberFromAdminAsync(string userId)
+    {
+        if (String.IsNullOrWhiteSpace(userId))
+        {
+            throw new ArgumentNullException(nameof(userId));
+        }
+
+        var user = await _userManager.FindByIdAsync(userId);
+
+        if(user is null)
+        {
+            throw new ArgumentNullException(nameof(user));
+        }
+
+        if (String.IsNullOrEmpty(user.PhoneNumber))
+        {
+            throw new ArgumentNullException(nameof(user.PhoneNumber));
+        }
+
+        var code = await _userManager.GenerateChangePhoneNumberTokenAsync(user, user.PhoneNumber);
+
+        if(code is null)
+        {
+            throw new ArgumentNullException(nameof(code)); 
+        }
+
+        var result = await _userManager.ChangePhoneNumberAsync(user, user.PhoneNumber, code);
+
+        if(result is null)
         {
             throw new ArgumentNullException(nameof(result));
         }
@@ -308,13 +371,12 @@ public class UserService
         }
         return (IUserEmailStore<ApplicationUser>)_userStore;
     }
-
     private int CalculateProgressOfDataComplete (ApplicationUser applicationUser)
     {
         var modelType = typeof(ApplicationUser);
         var properties = modelType.GetProperties();
         var propertiesName = properties
-                                .Where(p => p.CanWrite)
+                                .Where(p => p.CanWrite && p.Name.ToLower().StartsWith("lockout"))
                                 .Select(p => p.Name);
 
         var valueMaxOfProgress = 100;
@@ -377,6 +439,7 @@ public class UserService
         Email = applicationUser.Email ?? throw new ArgumentNullException(nameof(applicationUser.Email)),
         IsEmailConfirmed = applicationUser.EmailConfirmed,
         PhoneNumber = applicationUser.PhoneNumber,
+        PhoneNumberConfirmed = applicationUser.PhoneNumberConfirmed,
         ProgressOfDataComplete = CalculateProgressOfDataComplete(applicationUser),
         TwoFactorEnabled = applicationUser.TwoFactorEnabled,
         DateOfBirth = applicationUser.DateOfBirth,
