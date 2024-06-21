@@ -62,6 +62,31 @@
     </div>
 </div>
 
+
+<div class="modal fade" id="confirm-user-delete-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 id="confirm-user-modal-title" class="modal-title"></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div id="confirm-user-delete-modal-body" class="modal-body">
+                <p id="confirm-user-delete-answer"></p>
+
+                <div class="d-flex justify-content-end">
+                    <button type="button" class="btn btn-secondary mr-3" data-bs-dismiss="modal" aria-label="Close">
+                        <i class="mdi mdi-checkbox-marked-circle mr-1"></i> Cancel
+                    </button>
+                    <button id="confirm-user-delete-modal-button" type="button" class="btn btn-primary" onclick="deleteUser(this)">
+                        <i class="mdi mdi-checkbox-marked-circle mr-1"></i> Conferma
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 @section Scripts {
    @*  <script src="~/js/brand.js"></script> *@
 
@@ -137,6 +162,47 @@
                 }, 1000);
             }
             catch(error){
+                handleExceptionInFormWithRedirect(error);
+            }
+        }
+
+        const openConfirmDeleteUserModal = async (userId, fullName) => {
+
+            const deleteAnswerParagraph = document.getElementById('confirm-user-delete-answer');
+            deleteAnswerParagraph.innerHTML = `Confermi di voler eliminare ${fullName} ?`;
+
+            const confirmDeleteButton = document.getElementById('confirm-user-delete-modal-button');
+            confirmDeleteButton.setAttribute('data-userid', userId);
+
+            const confirmDeleteUserModal = new bootstrap.Modal(document.getElementById('confirm-user-delete-modal'));
+            confirmDeleteUserModal.show();
+        }
+
+        const deleteUser = async (element) => {
+            try
+            {
+                const userId = element.getAttribute('data-userid');
+
+                if (!userId) {
+                    throw new Error('deleteUser -> User Id not retrived');
+                }
+
+                const response = await fetch(`/Users/DeleteUser/${userId}`);
+
+                if (!response.ok) {
+                    return await handleRequestInError(response);
+                }
+
+                showNotification(false);
+
+                setTimeout(() => {
+                    cleanUserModalBody();
+                    window.location.href = '/Users';
+                }, 1000);
+
+
+            }
+            catch (error) {
                 handleExceptionInFormWithRedirect(error);
             }
         }

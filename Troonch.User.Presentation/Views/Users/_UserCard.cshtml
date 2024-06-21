@@ -56,8 +56,8 @@
                     <button type="button" class="btn btn-primary btn-rounded">
                         <i class="mdi mdi-account-off mr-1"></i> Blocca Utente
                     </button>
-                    <button type="button" class="btn btn-primary btn-rounded">
-                        <i class="mdi mdi-account-remove mr-1"></i> Rimuovi Utente
+                    <button type="button" class="btn btn-primary btn-rounded" onclick="openConfirmDeleteUserModal('@Model.Id','@Model.FullName')">
+                        <i class="mdi mdi-account-remove mr-1" ></i> Rimuovi Utente
                     </button>
                 }
             </div>
