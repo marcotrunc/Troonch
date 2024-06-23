@@ -63,15 +63,35 @@ const setPayloadFromFormData = (formData) => {
     return payload;
 }
 
-const showNotification = (isInError, errorMessage = "Errore di validazione") => 
-    Toastify({
-        text: isInError ? errorMessage : "Operazione completata con successo",
-        duration: 3000, 
-        gravity: "top", 
-        position: "right",
-        backgroundColor: isInError ? "linear-gradient(to right, #FF512F,  #DD2476)": "linear-gradient(to right, #02AABD, #00CDAC)",
-        stopOnFocus: true,
-    }).showToast();
+const decodeHtmlEntities = (htmlString) => {
+    
+    var tempElement = document.createElement('div');
+    tempElement.innerHTML = htmlString;
+
+    var decodedString = tempElement.textContent || tempElement.innerText;
+    return decodedString;
+}
+
+const showNotification = (isInError, message) => {
+
+    if (isInError && !message) {
+        message = "Operation not completed!"
+    }
+
+    if (!isInError && !message) {
+        message = "Operation completed successfully"
+    }
+
+    
+    return Toastify({
+                text: decodeHtmlEntities(message),
+                duration: 3000, 
+                gravity: "top", 
+                position: "right",
+                backgroundColor: isInError ? "linear-gradient(to right, #FF512F,  #DD2476)": "linear-gradient(to right, #02AABD, #00CDAC)",
+                stopOnFocus: true,
+            }).showToast();
+}
 
 
 const renderHTML = async (action, containerId, modalId = null) => {
@@ -138,11 +158,11 @@ const resetFormById = (formId) => {
     document.getElementById(formId).reset();
 }
 
-const handleNotificationFromServer = (boolValue) => {
+const handleNotificationFromServer = (boolValue, message) => {
 
     try {
         var isOperationSucceeded = new Boolean(boolValue);
-        showNotification(!isOperationSucceeded);
+        showNotification(!isOperationSucceeded, message);
     }
     catch (error) {
         console.error(error);

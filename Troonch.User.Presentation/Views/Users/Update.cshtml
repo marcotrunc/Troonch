@@ -9,18 +9,8 @@
 @Html.Partial("_UserForm",Model)
 
 
-@section Scripts {
-    <script>
-        @if (ViewBag.Succeeded != null)
-        {
-            <text>
-                document.addEventListener("DOMContentLoaded", () => handleNotificationFromServer(@ViewBag.Succeeded.ToString().ToLower()));
-            </text>
-        }
+@Html.Partial("_Notification")
 
-    
 
-    </script>
-}
             
 

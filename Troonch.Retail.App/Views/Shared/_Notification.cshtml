@@ -1,0 +1,19 @@
+﻿@{
+    string? message = null;
+
+    if (TempData["message"] != null)
+    {
+        message = TempData["message"]?.ToString();
+    }
+}
+
+@if (TempData["succeeded"] != null)
+{
+    <script type="text/javascript">
+        document.addEventListener("DOMContentLoaded", () => {
+            const isSucceeded = @TempData["succeeded"].ToString().ToLower();
+            
+            handleNotificationFromServer(isSucceeded, '@message');
+        });
+    </script>
+}

@@ -99,6 +99,9 @@ public class UsersController : Controller
                 return View(request);
             }
 
+            TempData["succeeded"] = identityResult.Succeeded;
+            TempData["message"] = $"L' utente {request.Name} {request.LastName} è stato  registrato, una mail gli sarà inviata";
+
             return RedirectToAction("Index", "Users");
         }
         catch (ValidationException ex)
@@ -171,7 +174,8 @@ public class UsersController : Controller
                 throw new ArgumentNullException(nameof(identityResult));
             }
 
-            ViewBag.Succeeded = identityResult.Succeeded;
+            TempData["succeeded"] = identityResult.Succeeded;
+            TempData["message"] = "Il profilo è stato Aggiornato!";
 
             if (!identityResult.Succeeded)
             {
@@ -374,7 +378,7 @@ public class UsersController : Controller
         {
             if (String.IsNullOrWhiteSpace(userId))
             {
-                _logger.LogError("UserController::PromoteToAdmin  -> User Id is null");
+                _logger.LogError("UserController::PromoteToAdmin -> User Id is null");
                 throw new ArgumentNullException(nameof(userId));
             }
 
@@ -402,7 +406,6 @@ public class UsersController : Controller
             return StatusCode(500, responseModel);
         }
     }
-
 
     [AllowAnonymous]
     [HttpGet]
