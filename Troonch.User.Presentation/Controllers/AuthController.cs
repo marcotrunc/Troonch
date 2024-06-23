@@ -46,11 +46,17 @@ public class AuthController : Controller
         var loginModel = new LoginRequestDTO();
 
         loginModel.Email = "marcotrunc@gmail.com";
-        loginModel.Password = "Test1234?";
+        loginModel.Password = "Test1234??";
         loginModel.RememberMe = true;
 
         try
         {
+            return View(loginModel);
+        }
+        catch (ValidationException ex)
+        {
+            ModelState.SetModelState(ex.Errors, _logger);
+
             return View(loginModel);
         }
         catch (ArgumentNullException ex)

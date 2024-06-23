@@ -206,6 +206,88 @@ public class UsersController : Controller
         }
     }
 
+    [HttpGet("Users/{id?}/ChangePassword")]
+    public async Task<IActionResult> ChangePassword(string? id)
+    {
+        try
+        {
+            if (String.IsNullOrWhiteSpace(id))
+            {
+                throw new ArgumentNullException(nameof(id));
+            }
+
+            var userRequest = await _userService.GetUserByIdForUpdateAsync(id);
+
+            if (userRequest is null)
+            {
+                throw new ArgumentNullException(nameof(userRequest));
+            }
+
+            return View(new ChangePasswordRequestDTO());
+        }
+        catch (ArgumentNullException ex)
+        {
+            _logger.LogError($"UsersController::ChangePassword GET -> {ex.Message}");
+            throw;
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError($"UsersController::ChangePassword GET -> {ex.Message}");
+            throw;
+        }
+    }
+
+    [HttpPost("Users/{id?}/ChangePassword")]
+    [ValidateAntiForgeryToken]
+    public async Task<IActionResult> ChangePassword(string id,ChangePasswordRequestDTO request)
+    {
+        try
+        {
+            if (String.IsNullOrWhiteSpace(id))
+            {
+                throw new ArgumentNullException(nameof(id));
+            }
+
+
+            var isPasswordUpdated = await _userService.ChangePasswordAsync(id, request);
+
+            if (isPasswordUpdated is null)
+            {
+                throw new ArgumentNullException(nameof(isPasswordUpdated));
+            }
+
+            if (!isPasswordUpdated.Succeeded)
+            {
+                ModelState.SetModelState(isPasswordUpdated.Errors, _logger);
+            }
+            else
+            {
+                TempData["succeeded"] = isPasswordUpdated.Succeeded;
+                TempData["message"] = "La password è stata modificata con successo";
+            }
+
+            return View(new ChangePasswordRequestDTO());
+        }
+        catch (ValidationException ex)
+        {
+            ModelState.SetModelState(ex.Errors, _logger);
+
+            return View(request);
+        }
+        catch (ArgumentNullException ex)
+        {
+            _logger.LogError($"UsersController::ChangePassword POST-> {ex.Message}");
+            throw;
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError($"UsersController::ChangePassword POST-> {ex.Message}");
+            throw;
+        }
+
+
+    }
+
     [AllowAnonymous]
     [HttpGet("Users/ConfirmEmail")]
     public async Task<IActionResult> ConfirmEmail([FromQuery]string userId, [FromQuery] string code, [FromQuery] string returnUrl)

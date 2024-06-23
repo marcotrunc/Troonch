@@ -26,6 +26,7 @@ public class UserService
     private readonly IUrlHelper _urlHelper;
     private readonly IValidator<UserRequestDTO> _validator;
     private readonly IValidator<SetPasswordRequestDTO> _setPasswordvalidator;
+    IValidator<ChangePasswordRequestDTO> _changePasswordValidator;
 
     public UserService(
                 ILogger<UserService> logger,
@@ -35,7 +36,8 @@ public class UserService
                 IUrlHelperFactory urlHelperFactory,
                 IActionContextAccessor actionContextAccessor,
                 IValidator<UserRequestDTO> validator,
-                IValidator<SetPasswordRequestDTO> setPasswordvalidator
+                IValidator<SetPasswordRequestDTO> setPasswordvalidator,
+                IValidator<ChangePasswordRequestDTO> changePasswordValidator
     )
     {
         _logger = logger;
@@ -46,6 +48,7 @@ public class UserService
         _urlHelper = urlHelperFactory.GetUrlHelper(actionContextAccessor.ActionContext);
         _validator = validator;
         _setPasswordvalidator = setPasswordvalidator;
+        _changePasswordValidator = changePasswordValidator;
     }
 
     public async Task<List<UserResponseDTO>> GetUsersAsync()
@@ -197,7 +200,39 @@ public class UserService
         
         return result;
     }
+    public async Task<IdentityResult> ChangePasswordAsync(string id, ChangePasswordRequestDTO changePasswordRequest)
+    {
+        if (String.IsNullOrWhiteSpace(id))
+        {
+            throw new ArgumentNullException(nameof(id));
+        }
 
+        if (changePasswordRequest is null)
+        {
+            throw new ArgumentNullException(nameof(changePasswordRequest));
+        }
+
+        var user = await _userManager.FindByIdAsync(id);
+        
+        if (user is null)
+        {
+            throw new ArgumentNullException(nameof(user));
+        }
+
+        changePasswordRequest.Email = user.Email;   
+
+        await _changePasswordValidator.ValidateAndThrowAsync(changePasswordRequest);
+
+
+        var changePasswordResult = await _userManager.ChangePasswordAsync(user, changePasswordRequest.OldPassword, changePasswordRequest.NewPassword);
+        
+        if (changePasswordResult is null)
+        {
+            throw new ArgumentNullException(nameof(changePasswordResult));
+        }
+
+        return changePasswordResult;
+    }
     public async Task<bool> HasAlreadyPasswordAsync(string userId)
     {
         if (String.IsNullOrWhiteSpace(userId))

@@ -30,6 +30,10 @@
                 <i class="mdi mdi mdi-account-box me-2 text-success"></i> Modifica Profilo
             </a>
             <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href=" @Url.Action("ChangePassword", "Users", new { id = @User.FindFirstValue(ClaimTypes.NameIdentifier) })">
+                <i class="mdi mdi-security-box me-2 text-success"></i> Cambia Password
+            </a>
+            <div class="dropdown-divider"></div>
             @using (Html.BeginForm("Logout", "Auth", FormMethod.Get, new { @id = "logout-form", @class = "dropdown-item" }))
             {
                 <a id="logout-command"   onclick="document.getElementById('logout-form').submit();"><i class="mdi mdi-logout me-2 text-primary"></i> Disconnettiti</a>
