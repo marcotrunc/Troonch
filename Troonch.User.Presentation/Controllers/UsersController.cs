@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using System.Security.Claims;
 using Troonch.Application.Base.Utilities;
 using Troonch.Domain.Base.DTOs.Response;
 using Troonch.User.Application.Services;
@@ -57,18 +58,13 @@ public class UsersController : Controller
 
     }
 
-    [HttpGet("Users/Register/{id?}")]
-    public async Task<IActionResult> Register(string? id)
+    [HttpGet("Users/Register")]
+    public async Task<IActionResult> Register()
     {
-        var userRequest = new UserRequestDTO();
         
         try
         {
-
-            if (!String.IsNullOrWhiteSpace(id))
-            {
-                userRequest = await _userService.GetUserByForUpdateAsync(id);
-            }
+            var userRequest = new UserRequestDTO();
 
             return View(userRequest);
         }
@@ -123,6 +119,88 @@ public class UsersController : Controller
         }
     }
 
+    [HttpGet("Users/{id?}/Update")]
+    public async Task<IActionResult> Update(string? id)
+    {
+        try
+        {
+            if (String.IsNullOrWhiteSpace(id))
+            {
+                throw new ArgumentNullException(nameof(id));
+            }
+
+            var userRequest = await _userService.GetUserByIdForUpdateAsync(id);
+
+            if(userRequest is null)
+            {
+                throw new ArgumentNullException(nameof(userRequest));
+            }
+
+            return View(userRequest);
+        }
+        catch (ArgumentNullException ex)
+        {
+            _logger.LogError($"UsersController::Update GET -> {ex.Message}");
+            throw;
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError($"UsersController::Update GET -> {ex.Message}");
+            throw;
+        }
+
+    }
+
+    [HttpPost("Users/{id?}/Update")]
+    [ValidateAntiForgeryToken]
+    public async Task<IActionResult> Update(string? id, UserRequestDTO request)
+    {
+        try
+        {
+            if (String.IsNullOrWhiteSpace(id))
+            {
+                throw new ArgumentNullException(nameof(id));
+            }
+
+            request.Id = id;
+
+            var identityResult = await _userService.UpdateUserAsync(request);
+
+            if (identityResult is null)
+            {
+                throw new ArgumentNullException(nameof(identityResult));
+            }
+
+            ViewBag.Succeeded = identityResult.Succeeded;
+
+            if (!identityResult.Succeeded)
+            {
+                ModelState.SetModelState(identityResult.Errors, _logger);
+                return View(request);
+            }
+
+            var userUpdated = await _userService.GetUserByIdForUpdateAsync(id);
+            
+            return View(userUpdated);
+
+        }
+         catch (ValidationException ex)
+        {
+            ModelState.SetModelState(ex.Errors, _logger);
+
+            return View(request);
+        }
+        catch (ArgumentNullException ex)
+        {
+            _logger.LogError($"UsersController::Update POST-> {ex.Message}");
+            throw;
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError($"UsersController::Update POST-> {ex.Message}");
+            throw;
+        }
+    }
 
     [AllowAnonymous]
     [HttpGet("Users/ConfirmEmail")]

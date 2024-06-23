@@ -137,3 +137,14 @@ const closeModal = (modalId) => {
 const resetFormById = (formId) => {
     document.getElementById(formId).reset();
 }
+
+const handleNotificationFromServer = (boolValue) => {
+
+    try {
+        var isOperationSucceeded = new Boolean(boolValue);
+        showNotification(!isOperationSucceeded);
+    }
+    catch (error) {
+        console.error(error);
+    }
+}

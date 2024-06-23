@@ -98,7 +98,7 @@ public class UserService
 
         return MapApplicationUserToUserResponseDto(user, roles);
     }
-    public async Task<UserRequestDTO> GetUserByForUpdateAsync(string? id)
+    public async Task<UserRequestDTO> GetUserByIdForUpdateAsync(string? id)
     {
         if (String.IsNullOrWhiteSpace(id))
         {
@@ -120,7 +120,7 @@ public class UserService
     {
         if(userRequest is null)
         {
-            _logger.LogError("UserService::GetUserByForUpdateAsync userRequest is null");
+            _logger.LogError("UserService::RegisterUserAsync userRequest is null");
             throw new ArgumentNullException(nameof(userRequest));
         }
 
@@ -153,12 +153,51 @@ public class UserService
 
         await _userManager.AddToRoleAsync(user, RoleNameConstants.User);
 
-        _logger.LogInformation($"UserService::GetUserByForUpdateAsync user {user.LastName} {user.Name} added correctly");
+        _logger.LogInformation($"UserService::RegisterUserAsync user {user.LastName} {user.Name} added correctly");
 
         await SendConfirmationMail(user);
 
         return result;
     }
+    public async Task<IdentityResult> UpdateUserAsync(UserRequestDTO userRequest)
+    {
+        if (userRequest is null)
+        {
+            throw new ArgumentNullException(nameof(userRequest));
+        }
+        
+        await _validator.ValidateAndThrowAsync(userRequest);
+
+
+        var user = await _userManager.FindByIdAsync(userRequest.Id);
+
+        if(user is null)
+        {
+            throw new ArgumentNullException(nameof(user));
+        }
+
+        user.Email = userRequest.Email;
+        user.Name = userRequest.Name;
+        user.LastName = userRequest.LastName;
+        user.DateOfBirth = userRequest.DateOfBirth ?? DateOnly.MinValue;
+        user.PhoneNumber = userRequest.PhoneNumber;
+        user.UpdatedOn = DateTime.UtcNow;
+        
+        var result = await _userManager.UpdateAsync(user);
+        
+        if (result is null)
+        {
+            throw new ArgumentNullException(nameof(result));
+        }
+
+        if (result.Succeeded)
+        {
+            _logger.LogInformation($"UserService::UpdateUserAsync user {user.LastName} {user.Name} updated correctly");
+        }
+        
+        return result;
+    }
+
     public async Task<bool> HasAlreadyPasswordAsync(string userId)
     {
         if (String.IsNullOrWhiteSpace(userId))
@@ -474,18 +513,19 @@ public class UserService
     #region Mapping
     private UserRequestDTO MapApplicationUserToRequestDto(ApplicationUser applicationUser) => new UserRequestDTO()
     {
-        Id = Guid.TryParse(applicationUser.Id, out var userId) ? userId : Guid.Empty,
+        Id = applicationUser.Id,
         Email = applicationUser.Email,
         Name = applicationUser.Name,
         LastName = applicationUser.LastName,
         DateOfBirth = applicationUser.DateOfBirth,
-        PhoneNumber = applicationUser.PhoneNumber
+        PhoneNumber = applicationUser.PhoneNumber,
     };
 
     private ApplicationUser MapRequestDtoToApplicationUser(UserRequestDTO request) => new ApplicationUser()
     {
-        Id = Guid.NewGuid().ToString(),
-        Email = request.Email,
+        Id = String.IsNullOrWhiteSpace(request.Id) ? Guid.NewGuid().ToString() : request.Id,
+        Email = request.Email.ToLower().Trim(),
+        UserName = request.Email.ToLower().Trim(),
         Name = request.Name,
         LastName = request.LastName,
         DateOfBirth = request.DateOfBirth ?? DateOnly.MaxValue,

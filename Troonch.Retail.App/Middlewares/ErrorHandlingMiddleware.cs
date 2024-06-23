@@ -1,4 +1,6 @@
-﻿namespace Troonch.Retail.App.Middlewares;
+﻿using System.Text;
+
+namespace Troonch.Retail.App.Middlewares;
 
 public class ErrorHandlingMiddleware
 {
@@ -15,6 +17,20 @@ public class ErrorHandlingMiddleware
     {
         try
         {
+            var request = httpContext.Request;
+            if (request.Method == HttpMethods.Post && request.ContentLength > 0)
+            {
+                request.EnableBuffering();
+                var buffer = new byte[Convert.ToInt32(request.ContentLength)];
+                await request.Body.ReadAsync(buffer, 0, buffer.Length);
+                //get body string here...
+                var requestContent = Encoding.UTF8.GetString(buffer);
+
+                request.Body.Position = 0;  //rewinding the stream to 0
+
+            }
+
+            
             await _next(httpContext);
         }
         catch (Exception ex)

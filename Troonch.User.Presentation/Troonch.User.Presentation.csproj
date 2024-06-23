@@ -14,6 +14,7 @@
     <None Remove="Views\Users\Login.cshtml" />
     <None Remove="Views\Users\Register.cshtml" />
     <None Remove="Views\Users\SetPassword.cshtml" />
+    <None Remove="Views\Users\Update.cshtml" />
     <None Remove="Views\Users\_UserCard.cshtml" />
     <None Remove="Views\Users\_UserForm.cshtml" />
   </ItemGroup>
@@ -25,6 +26,10 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Users\ForgotPasswordConfirmation.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Users\Update.cshtml">
       <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </EmbeddedResource>

@@ -1,0 +1,26 @@
+﻿@using Troonch.User.Domain.DTOs.Requests;
+@model UserRequestDTO;
+
+<div class="page-header">
+    <h3 class="page-title">Modifica Utente</h3>
+</div>
+
+
+@Html.Partial("_UserForm",Model)
+
+
+@section Scripts {
+    <script>
+        @if (ViewBag.Succeeded != null)
+        {
+            <text>
+                document.addEventListener("DOMContentLoaded", () => handleNotificationFromServer(@ViewBag.Succeeded.ToString().ToLower()));
+            </text>
+        }
+
+    
+
+    </script>
+}
+            
+

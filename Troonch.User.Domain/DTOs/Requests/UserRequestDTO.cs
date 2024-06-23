@@ -2,7 +2,7 @@
 
 public class UserRequestDTO
 {
-    public Guid? Id { get; set; } = Guid.Empty; 
+    public string? Id { get; set; } = String.Empty; 
     public string Email { get; set; } 
     public string Name { get; set; }
     public string LastName { get; set; }

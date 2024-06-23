@@ -1,8 +1,10 @@
 ﻿@using Troonch.User.Domain.DTOs.Requests
 @model UserRequestDTO;
 
-@using (Html.BeginForm("Register", "Users", FormMethod.Post, new { @id = "user-form", @class = "forms-sample row" }))
+
+@using (Html.BeginForm(String.IsNullOrWhiteSpace(Model.Id) ? "Register" : "Update", "Users", FormMethod.Post, new { @id = "user-form", @class = "forms-sample row" }))
 {
+    @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
     @Html.HiddenFor(m => m.Id, new { @id = "user-id" })
 
@@ -24,11 +26,14 @@
         @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger mt-1 my-2 ms-1 d-block error-message", data_error = "email" })
     </div>
 
+    
     <div class="form-group col-12 col-md-6">
         @Html.LabelFor(m => m.DateOfBirth, "Data di nascita")
-        @Html.TextBoxFor(m => m.DateOfBirth, "{0:dd-MM-yyyy}", new { @class = "form-control", @id = "birthdate", @type = "date", @placeholder = "yyyy-MM-dd" })
+        @Html.TextBoxFor(m => m.DateOfBirth, "{0:yyyy-MM-dd}", new { @class = "form-control", @id = "birthdate", @type = "date" })
         @Html.ValidationMessageFor(m => m.DateOfBirth, "", new { @class = "text-danger mt-1 my-2 ms-1 d-block error-message", data_error = "birthdate" })
     </div>
+    
+
 
     <div class="form-group col-12 col-md-6">
         @Html.LabelFor(m => m.PhoneNumber, "Telefono")
@@ -39,6 +44,12 @@
 
     <div class="d-flex justify-content-end">
         <button type="button" class="btn btn-light me-2" onclick="resetFormById('user-form')">Annulla</button>
-        <button type="submit" class="btn btn-gradient-primary">Registra</button>
+        <button type="submit" class="btn btn-gradient-primary">@(String.IsNullOrWhiteSpace(Model.Id) ? "Registra" : "Modifica")</button>
     </div>
 }
+
+
+
+    
+    
+        
