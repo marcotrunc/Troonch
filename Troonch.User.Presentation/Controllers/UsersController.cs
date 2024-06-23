@@ -249,8 +249,8 @@ public class UsersController : Controller
         }
     }
     [Authorize(Roles = "admin")]
-    [HttpGet("Users/DeleteUser/{userId?}")]
-    public async Task<IActionResult> DeleteUser(string userId)
+    [HttpDelete("Users/{userId?}")]
+    public async Task<IActionResult> Delete(string userId)
     {
         var responseModel = new ResponseModel<bool>();
         try
@@ -258,16 +258,15 @@ public class UsersController : Controller
             if (String.IsNullOrWhiteSpace(userId))
             {
                 _logger.LogError("UserController::DeleteUser DeleteUser -> User Id is null");
-                throw new ArgumentException(nameof(userId));
+                throw new ArgumentNullException(nameof(userId));
             }
 
-            // TODO Update the correct method
 
-            var isUserDeleted = await _userService.ConfirmPhoneNumberFromAdminAsync(userId);
+            var isUserDeleted = await _userService.DeleteUserAsync(userId);
 
             if (!isUserDeleted)
             {
-                throw new ArgumentException(nameof(isUserDeleted));
+                throw new InvalidOperationException(nameof(isUserDeleted));
             }
 
             return StatusCode(200, responseModel);
@@ -287,6 +286,45 @@ public class UsersController : Controller
             return StatusCode(500, responseModel);
         }
     }
+
+    [Authorize(Roles = "admin")]
+    [HttpGet("Users/{userId}/PromoteToAdmin")]
+    public async Task<IActionResult> PromoteToAdmin(string userId)
+    {
+        var responseModel = new ResponseModel<bool>();
+        try
+        {
+            if (String.IsNullOrWhiteSpace(userId))
+            {
+                _logger.LogError("UserController::PromoteToAdmin  -> User Id is null");
+                throw new ArgumentNullException(nameof(userId));
+            }
+
+            var isUserPromoted = await _userService.PromoteToAdminAsync(userId);
+
+            if (!isUserPromoted)
+            {
+                throw new InvalidOperationException(nameof(isUserPromoted));
+            }
+
+            return StatusCode(200, responseModel);
+        }
+        catch (ArgumentNullException ex)
+        {
+            _logger.LogError($"UsersController::PromoteToAdmin -> {ex.Message}");
+            responseModel.Status = ResponseStatus.Error.ToString();
+            responseModel.Error.Message = ex.Message;
+            return StatusCode(400, responseModel);
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError($"UsersController::PromoteToAdmin -> {ex.Message}");
+            responseModel.Status = ResponseStatus.Error.ToString();
+            responseModel.Error.Message = "Internal Server Error";
+            return StatusCode(500, responseModel);
+        }
+    }
+
 
     [AllowAnonymous]
     [HttpGet]
@@ -498,5 +536,4 @@ public class UsersController : Controller
             throw;
         }
     }
-
 }

@@ -32,4 +32,6 @@ public class UserResponseDTO
         get => $"{LastName} {Name}"; 
     }
     public int ProgressOfDataComplete { get; set; } = 0;
+
+    public IList<string> RoleNames { get; set; }
 }

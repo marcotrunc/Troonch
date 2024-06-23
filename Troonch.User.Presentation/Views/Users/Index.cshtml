@@ -63,7 +63,7 @@
 </div>
 
 
-<div class="modal fade" id="confirm-user-delete-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="confirm-user-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -71,14 +71,14 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div id="confirm-user-delete-modal-body" class="modal-body">
-                <p id="confirm-user-delete-answer"></p>
+                <p id="confirm-user-answer"></p>
 
                 <div class="d-flex justify-content-end">
-                    <button type="button" class="btn btn-secondary mr-3" data-bs-dismiss="modal" aria-label="Close">
-                        <i class="mdi mdi-checkbox-marked-circle mr-1"></i> Cancel
+                    <button type="button" class="btn btn-sm btn-secondary mr-3" data-bs-dismiss="modal" aria-label="Close">
+                        <i class="mdi mdi-close-circle mx-2"></i> Cancel
                     </button>
-                    <button id="confirm-user-delete-modal-button" type="button" class="btn btn-primary" onclick="deleteUser(this)">
-                        <i class="mdi mdi-checkbox-marked-circle mr-1"></i> Conferma
+                    <button id="confirm-user-modal-button" type="button" class="btn btn-sm btn-primary" onclick="onClickConfirmUserModal(this)">
+                        <i class="mdi mdi-checkbox-marked-circle mx-1"></i> Conferma
                     </button>
                 </div>
             </div>
@@ -88,7 +88,6 @@
 
 
 @section Scripts {
-   @*  <script src="~/js/brand.js"></script> *@
 
     <script>
 
@@ -166,16 +165,74 @@
             }
         }
 
-        const openConfirmDeleteUserModal = async (userId, fullName) => {
+        const openConfirmUserModal = async (element,userId, fullName, message) => {
+            
+            const answerParagraph = document.getElementById('confirm-user-answer');
+            answerParagraph.innerHTML = message;
 
-            const deleteAnswerParagraph = document.getElementById('confirm-user-delete-answer');
-            deleteAnswerParagraph.innerHTML = `Confermi di voler eliminare ${fullName} ?`;
+            const actionAttribute = element.getAttribute('data-action');
 
-            const confirmDeleteButton = document.getElementById('confirm-user-delete-modal-button');
-            confirmDeleteButton.setAttribute('data-userid', userId);
+            if (!actionAttribute){
+                console.error = "action attribute is not evaluable";
+            }
 
-            const confirmDeleteUserModal = new bootstrap.Modal(document.getElementById('confirm-user-delete-modal'));
-            confirmDeleteUserModal.show();
+            const confirmButton = document.getElementById('confirm-user-modal-button');
+            confirmButton.setAttribute('data-userid', userId);
+            confirmButton.setAttribute('data-action', actionAttribute);
+
+
+            const confirmUserModal = new bootstrap.Modal(document.getElementById('confirm-user-modal'));
+            confirmUserModal.show();
+        }
+        
+        const onClickConfirmUserModal = async (element) => {
+           
+            const actionAttribute = element.getAttribute('data-action');
+
+            if (!actionAttribute) {
+                console.error = "action attribute is not evaluable";
+            }
+
+            switch (Number(actionAttribute)) {
+                case 0:
+                    await promoteToAdmin(element);
+                    break;
+                case 1:
+                    await deleteUser(element);
+                    break;
+                default:
+                    await promoteToAdmin(element);
+                    break;
+                    
+            }
+        }
+
+        const promoteToAdmin = async (element) => {
+            try {
+                const userId = element.getAttribute('data-userid');
+
+                if (!userId) {
+                    throw new Error('promoteToAdmin -> User Id not retrived');
+                }
+
+                const response = await fetch(`/Users/${userId}/PromoteToAdmin`);
+
+                if (!response.ok) {
+                    return await handleRequestInError(response);
+                }
+
+                showNotification(false);
+
+                setTimeout(() => {
+                    cleanUserModalBody();
+                    window.location.href = '/Users';
+                }, 1000);
+
+
+            }
+            catch (error) {
+                handleExceptionInFormWithRedirect(error);
+            }
         }
 
         const deleteUser = async (element) => {
@@ -187,7 +244,9 @@
                     throw new Error('deleteUser -> User Id not retrived');
                 }
 
-                const response = await fetch(`/Users/DeleteUser/${userId}`);
+                const response = await fetch(`/Users/${userId}`, {
+                method:'DELETE'
+                });
 
                 if (!response.ok) {
                     return await handleRequestInError(response);

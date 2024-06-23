@@ -9,6 +9,7 @@ using Microsoft.Extensions.Logging;
 using System.Security.Claims;
 using System.Text;
 using Troonch.Application.Base.Interfaces;
+using Troonch.User.Domain.Constants;
 using Troonch.User.Domain.DTOs.Requests;
 using Troonch.User.Domain.DTOs.Response;
 using Troonch.User.Domain.Entities;
@@ -49,16 +50,31 @@ public class UserService
 
     public async Task<List<UserResponseDTO>> GetUsersAsync()
     {
-        var users = await _userManager.Users.ToListAsync();
+        var applicationUsers = await _userManager.Users.ToListAsync();
 
-        if(users is null)
+        if(applicationUsers is null)
         {
-            throw new ArgumentNullException(nameof(users));
+            throw new ArgumentNullException(nameof(applicationUsers));
         }
 
-        return users.Select(u => MapApplicationUserToUserResponseDto(u)).ToList();
-    }
+        var users = new List<UserResponseDTO>();
 
+        foreach (var applicationUser in applicationUsers) 
+        { 
+            var roleNames = await _userManager.GetRolesAsync(applicationUser);
+
+            if(roleNames is null)
+            {
+                throw new ArgumentNullException(nameof(roleNames));
+            }
+
+            var userProfiled = MapApplicationUserToUserResponseDto(applicationUser, roleNames);
+
+            users.Add(userProfiled);
+        }
+
+        return users;
+    }
     public async Task<UserResponseDTO> GetUserByIdAsync(string userId)
     {
         if (String.IsNullOrWhiteSpace(userId))
@@ -73,7 +89,14 @@ public class UserService
             throw new ArgumentNullException(nameof(user));
         }
 
-        return MapApplicationUserToUserResponseDto(user);
+        var roles = await _userManager.GetRolesAsync(user);
+
+        if (roles is null) 
+        {
+            throw new ArgumentNullException(nameof(roles));
+        }
+
+        return MapApplicationUserToUserResponseDto(user, roles);
     }
     public async Task<UserRequestDTO> GetUserByForUpdateAsync(string? id)
     {
@@ -93,7 +116,6 @@ public class UserService
 
         return MapApplicationUserToRequestDto(applicationUser);
     }
-
     public async Task<IdentityResult> RegisterUserAsync(UserRequestDTO userRequest)
     {
         if(userRequest is null)
@@ -129,9 +151,7 @@ public class UserService
             throw new InvalidOperationException(claimNameResult.Succeeded ? nameof(claimNameResult) : nameof(claimSurnameResult));
         }
 
-        //TODO -> Handle Role
-
-        await _userManager.AddToRoleAsync(user, "user");
+        await _userManager.AddToRoleAsync(user, RoleNameConstants.User);
 
         _logger.LogInformation($"UserService::GetUserByForUpdateAsync user {user.LastName} {user.Name} added correctly");
 
@@ -139,7 +159,6 @@ public class UserService
 
         return result;
     }
-
     public async Task<bool> HasAlreadyPasswordAsync(string userId)
     {
         if (String.IsNullOrWhiteSpace(userId))
@@ -156,7 +175,6 @@ public class UserService
 
         return await _userManager.HasPasswordAsync(applicationUser);
     }
-
     public async Task<bool> ConfirmEmailAsync(string userId, string code)
     {
         if (String.IsNullOrWhiteSpace(userId))
@@ -185,7 +203,6 @@ public class UserService
 
         return result.Succeeded;
     }
-
     public async Task<bool> ConfirmEmailFromAdminAsync(string userId)
     {
         if (String.IsNullOrWhiteSpace(userId))
@@ -338,6 +355,51 @@ public class UserService
             "Reset Password",
             $"Per favore Resetta la tua password <a href='{callbackUrl}'>cliccando qui</a>.");
     }
+    public async Task<bool> PromoteToAdminAsync(string userId)
+    {
+        if (String.IsNullOrWhiteSpace(userId))
+        {
+            throw new ArgumentNullException(nameof(userId));
+        }
+
+        var user = await _userManager.FindByIdAsync(userId);
+        
+        if (user is null)
+        {
+            throw new ArgumentNullException(nameof(userId));
+        }
+
+        var result = await _userManager.AddToRoleAsync(user, RoleNameConstants.Admin);
+
+        if (result is null)
+        {
+            throw new ArgumentNullException(nameof(result));
+        }
+        
+        return result.Succeeded;
+    }
+    public async Task<bool> DeleteUserAsync(string userId)
+    {
+        if (String.IsNullOrWhiteSpace(userId))
+        {
+            throw new ArgumentNullException(nameof(userId));
+        }
+
+        var user = await _userManager.FindByIdAsync(userId);
+        if (user is null)
+        {
+            throw new ArgumentNullException(nameof(userId));
+        }
+
+        var result = await _userStore.DeleteAsync(user, CancellationToken.None);
+
+        if(result is null)
+        {
+            throw new ArgumentNullException(nameof(result));
+        }
+
+        return result.Succeeded;
+    }
     private async Task SendConfirmationMail(ApplicationUser user, string returnUrl = null)
     {
         returnUrl ??= _urlHelper.Content("~/");
@@ -376,7 +438,7 @@ public class UserService
         var modelType = typeof(ApplicationUser);
         var properties = modelType.GetProperties();
         var propertiesName = properties
-                                .Where(p => p.CanWrite && p.Name.ToLower().StartsWith("lockout"))
+                                .Where(p => p.CanWrite && !p.Name.ToLower().StartsWith("lockout"))
                                 .Select(p => p.Name);
 
         var valueMaxOfProgress = 100;
@@ -431,7 +493,7 @@ public class UserService
         CreatedOn = DateTime.UtcNow
     };
 
-    private UserResponseDTO MapApplicationUserToUserResponseDto(ApplicationUser applicationUser) => new UserResponseDTO()
+    private UserResponseDTO MapApplicationUserToUserResponseDto(ApplicationUser applicationUser, IList<string> RoleNames) => new UserResponseDTO()
     {
         Id = applicationUser.Id,
         Name = applicationUser.Name,
@@ -442,6 +504,7 @@ public class UserService
         PhoneNumberConfirmed = applicationUser.PhoneNumberConfirmed,
         ProgressOfDataComplete = CalculateProgressOfDataComplete(applicationUser),
         TwoFactorEnabled = applicationUser.TwoFactorEnabled,
+        RoleNames = RoleNames,
         DateOfBirth = applicationUser.DateOfBirth,
         CreatedOn = applicationUser.CreatedOn,
         UpdatedOn = applicationUser.UpdatedOn,

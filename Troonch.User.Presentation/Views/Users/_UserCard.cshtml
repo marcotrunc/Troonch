@@ -7,9 +7,24 @@
             <img src="~/assets/images/faces-clipart/pic-1.png" alt="@Model.FullName" class="rounded-circle img-fluid" style="width: 100px;">
         </div>
         <h4 class="mb-2">@Model.FullName</h4>
-        <p class="text-muted mb-4">
+        <p class="text-muted mb-1">
             Email <span class="mx-2">|</span> <a href="mailto:@Model.Email">@Model.Email</a>
-        </p> 
+        </p>
+        <p class="mb-4">
+            @if(Model.RoleNames.Count() == 1)
+            {
+                <span>Ruolo |</span>
+            }
+            else
+            {
+                <span>Ruoli |</span>
+            }
+
+            @foreach (var role in Model.RoleNames)
+            {
+                <span class="mx-1">@role</span>
+            }
+        </p>
         <div class="mb-4 pb-2">
             <button type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-outline-primary btn-floating">
                 <i class="mdi mdi-facebook"></i>
@@ -32,32 +47,32 @@
                 @if (Model.TwoFactorEnabled)
                 {
                     <button type="button" class="btn btn-primary btn-rounded" onclick="handleTwoFactorAuthentication('@Model.Id', false)">
-                        <i class="mdi mdi-email-variant mr-1"></i> Disabilita Autenticazione a due fattori
+                        <i class="mdi mdi-email-variant mx-1"></i> Disabilita Autenticazione a due fattori
                     </button>
                 }
                 else
                 {
                     <button type="button" class="btn btn-primary btn-rounded" onclick="handleTwoFactorAuthentication('@Model.Id', true)">
-                        <i class="mdi mdi-email-variant mr-1"></i> Abilita Autenticazione a due fattori
+                        <i class="mdi mdi-email-variant mx-1"></i> Abilita Autenticazione a due fattori
                     </button>
                 }
 
                 @if (!String.IsNullOrWhiteSpace(Model.PhoneNumber) && !Model.PhoneNumberConfirmed)
                 {
                     <button type="button" class="btn btn-primary btn-rounded" onclick="confirmPhoneNumber('@Model.Id')">
-                        <i class="mdi mdi-cellphone mr-1"></i> Conferma numero di telefono
+                        <i class="mdi mdi-cellphone mx-1"></i> Conferma numero di telefono
                     </button>
                 }
                  @if (User.IsInRole("admin"))
                 {
-                    <button type="button" class="btn btn-primary btn-rounded">
-                        <i class="mdi mdi-account-convert mr-1"></i> Promuovi ad Admin
-                    </button>
-                    <button type="button" class="btn btn-primary btn-rounded">
-                        <i class="mdi mdi-account-off mr-1"></i> Blocca Utente
-                    </button>
-                    <button type="button" class="btn btn-primary btn-rounded" onclick="openConfirmDeleteUserModal('@Model.Id','@Model.FullName')">
-                        <i class="mdi mdi-account-remove mr-1" ></i> Rimuovi Utente
+                    @if (!Model.RoleNames.Any(role => role.Equals("admin",StringComparison.OrdinalIgnoreCase)))
+                    {
+                        <button type="button" class="btn btn-primary btn-rounded" data-action="0"  onclick="openConfirmUserModal(this,'@Model.Id','@Model.FullName', 'Confermi di voler promuovere @Model.FullName?')">
+                            <i class="mdi mdi-account-convert mx-1"></i> Promuovi ad Admin
+                        </button>
+                    }
+                    <button type="button" class="btn btn-primary btn-rounded" data-action="1" onclick="openConfirmUserModal(this,'@Model.Id','@Model.FullName', 'Confermi di voler eliminare @Model.FullName?')">
+                        <i class="mdi mdi-account-remove mx-1" ></i> Rimuovi Utente
                     </button>
                 }
             </div>
