@@ -89,6 +89,30 @@ public class ProductCategoryServices
         return await _unitOfWork.CommitAsync();
     }
     
+    public async Task<ProductCategoryRequestDTO> BuildProductCategoryToUpdateAsync(Guid productCategoryId)
+    {
+        if(productCategoryId == Guid.Empty)
+        {
+            _logger.LogError("ProductCategoryServices::BuildProductCategoryToUpdateAsync  productCategoryId is Empty");
+        }
+
+        var category = await _productCategoryRepository.GetByIdAsync(productCategoryId);
+
+        if(category is null)
+        {
+            _logger.LogError("ProductCategoryServices::BuildProductCategoryToUpdateAsync  category is Null");
+            throw new ArgumentException(nameof(category));
+        }
+
+        var productcategoryRequestDTO = new ProductCategoryRequestDTO
+        {
+            Id = productCategoryId,
+            Name = category.Name,
+            ProductSizeTypeId = category.ProductSizeTypeId,
+        };
+
+        return productcategoryRequestDTO;
+    }
     public async Task<bool> UpdateProductCategoryAsync(Guid id, ProductCategoryRequestDTO productCategoryRequest)
     {
         if(id == Guid.Empty)

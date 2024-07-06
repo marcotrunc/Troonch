@@ -40,7 +40,7 @@ public class UsersController : Controller
 
             if (users is null) 
             {
-                throw new Exception(nameof(users));
+                throw new ArgumentNullException(nameof(users));
             }
 
             return View("Index", users);
@@ -188,7 +188,7 @@ public class UsersController : Controller
             return View(userUpdated);
 
         }
-         catch (ValidationException ex)
+        catch (ValidationException ex)
         {
             ModelState.SetModelState(ex.Errors, _logger);
 
