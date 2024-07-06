@@ -1,0 +1,28 @@
+﻿@using Troonch.RetailSales.Product.Domain.DTOs.Requests;
+
+@model ProductCategoryRequestDTO;
+
+<div>
+    @using (Html.BeginForm("Create", "Categories", FormMethod.Post, new { @onsubmit = Model.Id == Guid.Empty ? $"submitCategoryForm(event)" : $"submitCategoryFormInUpdated(event)", @id = "category-form", @class = "forms-sample row" }))
+    {
+        @Html.ValidationSummary(true);
+        @Html.HiddenFor(m => m.Id, new {@id="category-brand"})
+
+        <div class="form-group col-12">
+            @Html.LabelFor(m => m.Name, "Nome")
+            @Html.TextBoxFor(m => m.Name, new { @class = "form-control", @id = "name", @placeholder = "name" })
+            @Html.ValidationMessageFor(m => m.Name, "", new { @class = "text-danger mt-1 my-2 ms-1 d-block error-message", data_error = "name" })
+        </div>
+
+        <div class="form-group col-12">
+            @Html.LabelFor(m => m.ProductSizeTypeId, "Tipo di taglie")
+            @Html.DropDownListFor(m => m.ProductSizeTypeId, new SelectList(ViewBag.ProductSizeTypes, "Id", "Name"), new { @class = "col-md-6 form-control", @id = "productSizeTypeId" })
+            @Html.ValidationMessageFor(m => m.ProductSizeTypeId, "", new { @class = "text-danger mt-1 my-2 ms-1 d-block error-message", data_error = "productsizetypeid" })
+        </div>
+
+        <div class="">
+            <button type="button" class="btn btn-light w-100 mb-3" data-bs-dismiss="modal">Cancel</button>
+            <button type="submit" class="btn btn-gradient-primary w-100">Submit</button>
+        </div>
+    }
+</div>
