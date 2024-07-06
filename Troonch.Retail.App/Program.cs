@@ -1,13 +1,10 @@
 using Microsoft.EntityFrameworkCore;
 using Serilog;
-using Troonch.Retail.App.Middlewares;
-using Troonch.RetailSales.Product.Application;
-using Troonch.User.DataAccess.DataContext;
-using Troonch.User.Domain.Entities;
-using Troonch.User.Presentation;
 using Troonch.EmailSender.MailTrap;
 using Troonch.EmailSender.Rdcom.Domain.Configuration;
-using Microsoft.AspNetCore.Identity;
+using Troonch.Retail.App.Middlewares;
+using Troonch.User.Presentation;
+using Troonch.RetailSales.Product.Presentation;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -24,7 +21,7 @@ builder.Host.UseSerilog((context, configuration) =>
                         configuration.ReadFrom.Configuration(context.Configuration));
 
 // Add Retail Sales Product Service
-builder.Services.AddRetailSalesProductApplication(builder.Configuration);
+builder.Services.AddRetailSalesProductPresentation(builder.Configuration);
 
 // Add Auth and User Service
 builder.Services.AddUserPresentation(builder.Configuration);
