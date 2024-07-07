@@ -365,3 +365,7 @@ FodyWeavers.xsd
 /Troonch.RetailSales.Product.DataAccess/Migrations/*
 /Troonch.RetailSales.User.DataAccess/Migrations/*
 
+/Troonch.RetailSales.Product.DataAccess/Migrations/20240418081244_add_CurrencyColumn_To_ProductItemTable.Designer.cs
+/Troonch.RetailSales.Product.DataAccess/Migrations/20240418081244_add_CurrencyColumn_To_ProductItemTable.cs
+/Troonch.RetailSales.Product.DataAccess/Migrations/20240418074205_Create_Database.cs
+/Troonch.RetailSales.Product.DataAccess/Migrations/20240418074205_Create_Database.Designer.cs

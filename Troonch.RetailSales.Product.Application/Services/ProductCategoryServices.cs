@@ -34,7 +34,7 @@ public class ProductCategoryServices
         }
 
         return productCategories.Select(pc => new ProductCategoryResponseDTO
-        { Id = pc.Id, Name = pc.Name, ProductSizeTypeId = pc.ProductSizeTypeId, ProductSizeTypeName = pc.ProductSizeType.Name });
+        { Id = pc.Id, Name = pc.Name, ProductSizeTypeId = pc.ProductSizeTypeId, ProductSizeTypeName = pc.ProductSizeType.Name, CreatedOn = pc.CreatedOn, UpdatedOn = pc.UpdatedOn });
     }
 
     public async Task<ProductCategoryResponseDTO> GetProductCategoryByIdAsync(Guid id)
