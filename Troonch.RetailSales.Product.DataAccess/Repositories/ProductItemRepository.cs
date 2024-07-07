@@ -13,7 +13,6 @@ public sealed class ProductItemRepository : BaseRepository<SalesEntity.ProductIt
     public async Task<IEnumerable<ProductItem>> GetProductItemsByProductIdAsync(Guid productId)
     {
         return await _dbContext.ProductItems.AsNoTracking()
-                    .Include(pi => pi.ProductColor)
                     .Include(pi => pi.ProductSizeOption)
                     .OrderByDescending(pi => pi.UpdatedOn)
                     .Where(pi => pi.ProductId == productId)

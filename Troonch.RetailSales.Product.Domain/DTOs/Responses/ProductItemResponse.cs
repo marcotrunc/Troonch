@@ -7,8 +7,7 @@ namespace Troonch.RetailSales.Product.Domain.DTOs.Responses
     {
         public Guid Id { get; set; }
         public Guid ProductId { get; set; } 
-        public string ColorName { get; set; }
-        public string ColorHexadecimal { get; set; } = null;    
+        public string ColorName { get; set; } 
         public int QuantityAvailable { get; set; }
         public string Size {  get; set; }
         public decimal OriginalPrice { get; set; }

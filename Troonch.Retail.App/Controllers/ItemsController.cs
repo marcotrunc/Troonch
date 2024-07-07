@@ -14,20 +14,17 @@ namespace Troonch.Retail.App.Controllers
     {
         private readonly ILogger<ItemsController> _logger;
         private readonly ProductItemService _productItemService;
-        private readonly ProductColorService _productColorService;
         private readonly ProductCategoryServices _productCategoryServices;
         private readonly ProductSizeOptionService _productSizeOptionService;
         public ItemsController(
             ILogger<ItemsController> logger,
             ProductItemService productItemService,
-            ProductColorService productColorService,
             ProductCategoryServices productCategoryServices,
             ProductSizeOptionService productSizeOptionService
             )
         {
             _logger = logger;
             _productItemService = productItemService;
-            _productColorService = productColorService;
             _productCategoryServices = productCategoryServices;
             _productSizeOptionService = productSizeOptionService;
         }
@@ -267,15 +264,6 @@ namespace Troonch.Retail.App.Controllers
         }
         private async Task GetProductItemsBag(Guid categoryId)
         {
-            var colors = await _productColorService.GetProductColorsAsync();
-
-            if (colors is null)
-            {
-                throw new ArgumentNullException(nameof(colors));
-            }
-
-            ViewBag.Colors = colors;
-            
             var category = await _productCategoryServices.GetProductCategoryByIdAsync(categoryId);
 
             if(category is null) 

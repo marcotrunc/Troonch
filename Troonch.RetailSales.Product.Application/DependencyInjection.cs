@@ -24,7 +24,6 @@ public static class DependencyInjection
         services.AddScoped<ProductServices>();
         services.AddScoped<ProductGenderService>();
         services.AddScoped<ProductMaterialService>();
-        services.AddScoped<ProductColorService>();
         services.AddScoped<ProductSizeOptionService>();
         services.AddScoped<ProductSizeTypeService>();
         services.AddScoped<ProductItemService>();

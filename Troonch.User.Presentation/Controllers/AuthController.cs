@@ -45,7 +45,7 @@ public class AuthController : Controller
 
         var loginModel = new LoginRequestDTO();
 
-        loginModel.Email = "marcotrunc@gmail.com";
+        loginModel.Email = "marco.truncellito@outlook.it";
         loginModel.Password = "Test1234??";
         loginModel.RememberMe = true;
 

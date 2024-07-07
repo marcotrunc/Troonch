@@ -15,7 +15,6 @@ namespace Troonch.Sales.DataAccess
             services.AddScoped<IProductSizeTypeRepository,ProductSizeTypeRepository>();
             services.AddScoped<IProductGenderRepository,ProductGenderRepository>(); 
             services.AddScoped<IProductMaterialRepository,ProductMaterialRepository>(); 
-            services.AddScoped<IProductColorRepository,ProductColorRepository>();
             services.AddScoped<IProductSizeOptionRepository,ProductSizeOptionRepository>();
             services.AddScoped<IProductItemRepository,ProductItemRepository>();
             services.AddScoped<IProductRepository, ProductRepository>();

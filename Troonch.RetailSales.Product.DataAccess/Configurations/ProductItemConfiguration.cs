@@ -28,11 +28,6 @@ namespace Troonch.Sales.DataAccess.Configurations
                 .WithMany(pso => pso.ProductItems)
                 .HasForeignKey(pi => pi.ProductSizeOptionId)
                 .IsRequired();
-
-            builder.HasOne(pi => pi.ProductColor)
-                .WithMany(pcol => pcol.ProductItems)
-                .HasForeignKey(pi => pi.ProductColorId)
-                .IsRequired();
         }
     }
 }

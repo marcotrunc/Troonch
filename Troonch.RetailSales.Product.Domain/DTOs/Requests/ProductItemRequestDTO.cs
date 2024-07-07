@@ -10,7 +10,7 @@ namespace Troonch.RetailSales.Product.Domain.DTOs.Requests
         public Guid? Id { get; set; } = Guid.Empty;
         public Guid ProductId { get; set; }
         public Guid ProductSizeOptionId { get; set; }
-        public Guid ProductColorId { get; set; }
+        public string ProductColor { get; set; }
         public CurrencyBase Currency { get; set; } = CurrencyBase.EUR;
         private decimal _originalPrice { get; set; } = decimal.Zero;
         public string OriginalPrice

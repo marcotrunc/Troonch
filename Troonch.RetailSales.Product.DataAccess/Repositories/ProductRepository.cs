@@ -51,7 +51,7 @@ namespace Troonch.RetailSales.Product.DataAccess.Repositories
                     p.ProductItems.Any(
                         pi => 
                             pi.Barcode.Contains(searchTerm) ||
-                            pi.ProductColor.Name.Contains(searchTerm)
+                            pi.Color.Contains(searchTerm)
                     ));
             }
          
@@ -127,7 +127,7 @@ namespace Troonch.RetailSales.Product.DataAccess.Repositories
                             p.ProductItems.Any(
                                 pi =>
                                     pi.Barcode.Contains(searchTerm) ||
-                                    pi.ProductColor.Name.Contains(searchTerm)
+                                    pi.Color.Contains(searchTerm)
                             ));
                 }
 

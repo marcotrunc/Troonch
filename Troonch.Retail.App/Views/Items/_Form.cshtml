@@ -11,9 +11,9 @@
         @Html.HiddenFor(m => m.ProductId, new {id="product-id" ,data_error="productid"})
 
         <div class="form-group col-md-6">
-            @Html.LabelFor(m => m.ProductColorId, "Colore")
-            @Html.DropDownListFor(m => m.ProductColorId, new SelectList(ViewBag.Colors,"Id","Name"), new {@class="col-md-6 form-control",  @id="color"} )
-            @Html.ValidationMessageFor(m => m.ProductColorId,"", new { @class="text-danger mt-1 my-2 ms-1 d-block error-message", data_error="productcolorid"})
+            @Html.LabelFor(m => m.ProductColor, "Colore")
+            @Html.TextBoxFor(m => m.ProductColor, new { @class = "form-control", @id = "product-color"})
+            @Html.ValidationMessageFor(m => m.ProductColor, "", new { @class = "text-danger mt-1 my-2 ms-1 d-block error-message", data_error = "productcolor" })
         </div>
 
         <div class="form-group col-md-6">

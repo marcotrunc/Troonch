@@ -64,7 +64,7 @@ public class ProductItemService
         var productItemToAdd = new ProductItem
         {
             ProductSizeOptionId = productItemRequest.ProductSizeOptionId,
-            ProductColorId = productItemRequest.ProductColorId,
+            Color = productItemRequest.ProductColor,
             OriginalPrice = decimal.TryParse(productItemRequest.OriginalPrice, NumberStyles.AllowDecimalPoint, CultureInfo.InvariantCulture, out decimal originalPriceParsed) ? originalPriceParsed : throw new FormatException(nameof(productItemRequest.OriginalPrice)),
             ProductId = productItemRequest.ProductId,
             //TODO
@@ -129,7 +129,7 @@ public class ProductItemService
         await _validator.ValidateAndThrowAsync(productItemRequest);
 
         productItemToUpdate.ProductSizeOptionId = productItemRequest.ProductSizeOptionId;
-        productItemToUpdate.ProductColorId = productItemRequest.ProductColorId;
+        productItemToUpdate.Color = productItemRequest.ProductColor;
         productItemToUpdate.OriginalPrice = decimal.TryParse(productItemRequest.OriginalPrice, NumberStyles.AllowDecimalPoint, CultureInfo.InvariantCulture, out decimal originalPriceParsed) ? originalPriceParsed : throw new FormatException(nameof(productItemRequest.OriginalPrice));
         productItemToUpdate.ProductId = productItemRequest.ProductId;
         //TODO
@@ -167,7 +167,7 @@ public class ProductItemService
         Id = productItem.Id,
         ProductId = productItem.ProductId,
         ProductSizeOptionId = productItem.ProductSizeOptionId,
-        ProductColorId = productItem.ProductColorId,
+        ProductColor = productItem.Color,
         Currency = productItem.Currency,
         OriginalPrice = Convert.ToString(productItem.OriginalPrice, CultureInfo.InvariantCulture),
         SalePrice = Convert.ToString(productItem.SalePrice, CultureInfo.InvariantCulture),
@@ -190,8 +190,7 @@ public class ProductItemService
                 Barcode= productItem.Barcode,
                 QuantityAvailable = productItem.QuantityAvailable,
                 Currency = productItem.Currency,
-                ColorName = productItem.ProductColor.Name,
-                ColorHexadecimal = productItem.ProductColor.HexadecimalValue ?? null,
+                ColorName = productItem.Color,
                 Size = productItem.ProductSizeOption.Value ?? null,
             };
 

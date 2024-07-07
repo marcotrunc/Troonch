@@ -11,19 +11,16 @@ public class ProductItemReqValidator : AbstractValidator<ProductItemRequestDTO>
 {
     private readonly IProductItemRepository _productItemRepository;
     private readonly IProductRepository _productRepository;
-    private readonly IProductColorRepository _productColorRepository;
     private readonly ResourcesHelper _resourcesHelper;
     
     public ProductItemReqValidator(
         IProductItemRepository productItemRepository,
         IProductRepository productRepository,
-        IProductColorRepository productColorRepository,
         ResourcesHelper resourcesHelper
         )
     {
         _productItemRepository = productItemRepository;
         _productRepository = productRepository;
-        _productColorRepository = productColorRepository;
         _resourcesHelper = resourcesHelper;
 
         RuleFor(pi => pi.ProductId)
@@ -34,13 +31,7 @@ public class ProductItemReqValidator : AbstractValidator<ProductItemRequestDTO>
             .MustAsync(async (b, productId, _) => await _productRepository.IsExistingById(productId))
                 .WithMessage("dsa");
 
-        RuleFor(pi => pi.ProductColorId)
-            .NotNull()
-                .WithMessage("da")
-            .NotEmpty()
-                .WithMessage("da")
-            .MustAsync(async (b, productColorId, _) => await _productColorRepository.IsExistingById(productColorId))
-                .WithMessage("dsa");
+        
 
         RuleFor(pi => pi.Barcode)
             .NotEmpty()

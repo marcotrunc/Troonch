@@ -17,7 +17,7 @@ namespace Troonch.Sales.DataAccess.Configurations
 
             builder.Property(pc => pc.Name).IsRequired().HasMaxLength(128);
 
-            builder.HasIndex(pc => pc.Name).IsUnique();
+            builder.HasIndex(pc => pc.Name);
 
             builder.HasOne(pc => pc.ProductSizeType)
                 .WithMany(pst => pst.ProductCategories)
