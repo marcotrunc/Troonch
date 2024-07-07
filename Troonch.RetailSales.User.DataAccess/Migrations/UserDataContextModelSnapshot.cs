@@ -59,6 +59,12 @@ namespace Troonch.User.DataAccess.Migrations
                             Id = "0ae8de66-8ef8-4705-8f03-be13db5b7c6c",
                             Name = "user",
                             NormalizedName = "User"
+                        },
+                        new
+                        {
+                            Id = "50d59b6f-670d-4f05-b98f-988f91f24bfe",
+                            Name = "systemAdmin",
+                            NormalizedName = "systemAdministrator"
                         });
                 });
 
@@ -149,6 +155,13 @@ namespace Troonch.User.DataAccess.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("AspNetUserRoles", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            UserId = "0ae8de66-8ee8-4715-8f23-be13db5b7a6c",
+                            RoleId = "50d59b6f-670d-4f05-b98f-988f91f24bfe"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
@@ -251,6 +264,29 @@ namespace Troonch.User.DataAccess.Migrations
                         .HasDatabaseName("UserNameIndex");
 
                     b.ToTable("AspNetUsers", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "0ae8de66-8ee8-4715-8f23-be13db5b7a6c",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "515b8f7e-a13f-45c0-bc23-d5f9a03e7fd7",
+                            CreatedOn = new DateTime(2024, 7, 7, 7, 37, 52, 887, DateTimeKind.Utc).AddTicks(5692),
+                            DateOfBirth = new DateOnly(1995, 8, 29),
+                            Email = "marco.truncellito@outlook.it",
+                            EmailConfirmed = true,
+                            LastName = "Admin",
+                            LockoutEnabled = false,
+                            Name = "System",
+                            NormalizedEmail = "marco.truncellito@outlook.it",
+                            NormalizedUserName = "marco.truncellito@outlook.it",
+                            PasswordHash = "AQAAAAIAAYagAAAAEIvJowhfExz9jEW1EgOLUJvQ2GIN3Yg7ayN2LuRJQclkvGDCmyTO8mhq+tomdYstkw==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "77e4cae5-ce7e-4673-8209-04eeb06b8a2e",
+                            TwoFactorEnabled = false,
+                            UpdatedOn = new DateTime(2024, 7, 7, 7, 37, 52, 887, DateTimeKind.Utc).AddTicks(5696),
+                            UserName = "marco.truncellito@outlook.it"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

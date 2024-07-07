@@ -22,7 +22,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Troonch.DataAccess.Base\Troonch.DataAccess.Base.csproj" />
     <ProjectReference Include="..\Troonch.User.Domain\Troonch.User.Domain.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Migrations\" />
   </ItemGroup>
 
 </Project>

@@ -27,7 +27,9 @@ public class UserDataContext : IdentityDbContext<ApplicationUser>
         sysAdmin.Id = "50d59b6f-670d-4f05-b98f-988f91f24bfe";
         sysAdmin.NormalizedName = "systemAdministrator";
 
-        builder.Entity<IdentityRole>().HasData(admin, user, sysAdmin);
+        var rolesToAdd = new IdentityRole[] {admin,user,sysAdmin};  
+
+        builder.Entity<IdentityRole>().HasData(rolesToAdd);
 
         var systemAdmin = new ApplicationUser();
         systemAdmin.Id = "0ae8de66-8ee8-4715-8f23-be13db5b7a6c";
@@ -38,6 +40,7 @@ public class UserDataContext : IdentityDbContext<ApplicationUser>
         systemAdmin.UpdatedOn = DateTime.UtcNow;
         systemAdmin.UserName = "marco.truncellito@outlook.it";
         systemAdmin.Email = "marco.truncellito@outlook.it";
+        systemAdmin.NormalizedEmail = systemAdmin.NormalizedUserName = "marco.truncellito@outlook.it".Normalize();
         systemAdmin.EmailConfirmed = true;
         systemAdmin.PasswordHash = "AQAAAAIAAYagAAAAEIvJowhfExz9jEW1EgOLUJvQ2GIN3Yg7ayN2LuRJQclkvGDCmyTO8mhq+tomdYstkw==";
         
@@ -45,7 +48,7 @@ public class UserDataContext : IdentityDbContext<ApplicationUser>
 
         var identiryUserRole = new IdentityUserRole<string>();
         identiryUserRole.UserId = systemAdmin.Id;
-        identiryUserRole.UserId = sysAdmin.Id;
+        identiryUserRole.RoleId = sysAdmin.Id;
 
         builder.Entity<IdentityUserRole<string>>().HasData(identiryUserRole);
     }
