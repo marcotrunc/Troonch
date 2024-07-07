@@ -2,65 +2,75 @@
 
 @model List<ProductItemResponse>;
 
-
-
-<table id="variations-table" class="table-hover w-100 d-none d-md-table mt-5">
-    <thead>
-        <tr>
-            <th></th>
-            <th>Colore</th>
-            <th>Quantità</th>
-            <th>Taglia</th>
-            <th>Prezzo di Acquisto</th>
-            <th>Prezzo di Vendita</th>
-            <th>Barcode</th>
-        </tr>
-    </thead>
-    <tbody class="overflow-y-section">
-        @foreach(var item in Model)
-        {
+@if(Model.Any()){
+    <table id="variations-table" class="table-hover w-100 d-none d-md-table mt-5">
+        <thead>
             <tr>
-                <td>
-                    <div class="form-check form-check-primary">
-                        <label class="form-check-label">
-                            <input type="checkbox" class="form-check-input" onclick="handleVariation(this)" value="@item.Id"><i class="input-helper"></i>
-                        </label>
-                    </div>
-                </td>
-                <td>@item.ColorName</td>
-                <td>@item.QuantityAvailable</td>
-                <td>@item.Size</td>
-                <td>@item.OriginalPrice @item.Currency</td>
-                <td>@item.SalePrice @item.Currency</td>
-                <td><label class="badge" style="background-color:@item.ColorHexadecimal">@item.Barcode</label></td>
+                <th></th>
+                <th>Colore</th>
+                <th>Quantità</th>
+                <th>Taglia</th>
+                <th>Prezzo di Acquisto</th>
+                <th>Prezzo di Vendita</th>
+                <th>Barcode</th>
             </tr>
-        }
-    </tbody>
-</table>
+        </thead>
+        <tbody class="overflow-y-section">
+            @foreach(var item in Model)
+            {
+                <tr>
+                    <td>
+                        <div class="form-check form-check-primary">
+                            <label class="form-check-label">
+                                <input type="checkbox" class="form-check-input" onclick="handleVariation(this)" value="@item.Id"><i class="input-helper"></i>
+                            </label>
+                        </div>
+                    </td>
+                    <td>@item.ColorName</td>
+                    <td>@item.QuantityAvailable</td>
+                    <td>@item.Size</td>
+                    <td>@item.OriginalPrice @item.Currency</td>
+                    <td>@item.SalePrice @item.Currency</td>
+                    <td><label class="badge" style="background-color:@item.ColorHexadecimal">@item.Barcode</label></td>
+                </tr>
+            }
+        </tbody>
+    </table>
 
-<ul id="variations-list" class="list-group d-block d-md-none overflow-y-section">
-    @foreach (var item in Model)
-    {
-        <li class="list-group-item">
-            <div class="row">
-                <div class="col-1">
-                    <div class="form-check form-check-primary">
-                        <label class="form-check-label">
-                            <input type="checkbox" class="form-check-input" onclick="handleVariation(this)" value="@item.Id"><i class="input-helper"></i>
-                        </label>
+    <ul id="variations-list" class="list-group d-block d-md-none overflow-y-section">
+        @foreach (var item in Model)
+        {
+            <li class="list-group-item">
+                <div class="row">
+                    <div class="col-1">
+                        <div class="form-check form-check-primary">
+                            <label class="form-check-label">
+                                <input type="checkbox" class="form-check-input" onclick="handleVariation(this)" value="@item.Id"><i class="input-helper"></i>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="row">
+                            <div class="col-12"><strong>Colore:</strong> @item.ColorName</div>
+                            <div class="col-12"><strong>Quantità:</strong> @item.QuantityAvailable</div>
+                            <div class="col-12"><strong>Taglia:</strong> @item.Size</div>
+                            <div class="col-12"><strong>Prezzo di Acquisto:</strong> @item.OriginalPrice @item.Currency</div>
+                            <div class="col-12"><strong>Prezzo di Vendita:</strong> @item.SalePrice @item.Currency</div>
+                            <div class="col-12"><strong>Barcode:</strong> <span class="badge" style="background-color:@item.ColorHexadecimal">@item.Barcode</span></div>
+                        </div>
                     </div>
                 </div>
-                <div class="col">
-                    <div class="row">
-                        <div class="col-12"><strong>Colore:</strong> @item.ColorName</div>
-                        <div class="col-12"><strong>Quantità:</strong> @item.QuantityAvailable</div>
-                        <div class="col-12"><strong>Taglia:</strong> @item.Size</div>
-                        <div class="col-12"><strong>Prezzo di Acquisto:</strong> @item.OriginalPrice @item.Currency</div>
-                        <div class="col-12"><strong>Prezzo di Vendita:</strong> @item.SalePrice @item.Currency</div>
-                        <div class="col-12"><strong>Barcode:</strong> <span class="badge" style="background-color:@item.ColorHexadecimal">@item.Barcode</span></div>
-                    </div>
-                </div>
+            </li>
+        }
+    </ul>
+}else{
+    <div class="row overflow-y-section-700">
+        <div class="col-md-12 grid-margin stretch-card ">
+            <div class="card px-5 py-5 d-flex justify-content-center align-items-center">
+                Nessun Brand disponibile al momento
             </div>
-        </li>
-    }
-</ul>
+        </div>
+    </div>
+}
+
+

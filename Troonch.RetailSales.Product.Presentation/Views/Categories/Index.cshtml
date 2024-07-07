@@ -23,10 +23,10 @@
                     </div>
 
                     <div id="category-action-buttons" class="d-none">
-                        <button type="button" class="btn btn-outline-danger btn-icon-text d-none d-md-inline" onclick="deleteBrand()">
+                        <button type="button" class="btn btn-outline-danger btn-icon-text d-none d-md-inline" onclick="deleteCategory()">
                             <i class="mdi mdi-delete btn-icon-prepend"></i> Elimina
                         </button>
-                        <button type="button" class="btn btn-outline-danger btn-icon-text btn-sm d-md-none" onclick="deleteBrand()">
+                        <button type="button" class="btn btn-outline-danger btn-icon-text btn-sm d-md-none" onclick="deleteCategory()">
                             <i class="mdi mdi-delete"></i>
                         </button>
                         <button type="button" class="btn btn-outline-primary btn-icon-text d-none d-md-inline" onclick="showCategoryModal()">
@@ -40,39 +40,50 @@
             </ul>
         </nav>
     </div>
+
+
     @*Category Table*@
     <div class="row overflow-y-section-700">
         <div class="col-md-12 grid-margin stretch-card ">
             <div class="card px-2 py-2">
-                <table id="category-table" class="table-hover w-100 mt-5">
-                    <thead>
-                        <tr>
-                            <th></th>
-                            <th>Nome</th>
-                            <th class="d-none d-md-table-cell">Tipo di Taglia</th>
-                            <th class="d-none d-md-table-cell">Creato il</th>
-                            <th class="d-none d-md-table-cell">Modificato il</th>
-                        </tr>
-                    </thead>
-                    <tbody class="overflow-y-section">
-                        @foreach (var category in Model)
-                        {
+                @if (Model.Any())
+                {
+                    <table id="category-table" class="table-hover w-100 mt-5">
+                        <thead>
                             <tr>
-                                <td>
-                                    <div class="form-check form-check-primary">
-                                        <label class="form-check-label">
-                                            <input type="checkbox" class="form-check-input" onclick="handleCategory(this)" value="@category.Id"><i class="input-helper"></i>
-                                        </label>
-                                    </div>
-                                </td>
-                                <td>@category.Name</td>
-                                <td class="d-none d-md-table-cell">@category.ProductSizeTypeName</td>
-                                <td class="d-none d-md-table-cell">@category.CreatedOn</td>
-                                <td class="d-none d-md-table-cell">@category.UpdatedOn</td>
+                                <th></th>
+                                <th>Nome</th>
+                                <th class="d-none d-md-table-cell">Tipo di Taglia</th>
+                                <th class="d-none d-md-table-cell">Creato il</th>
+                                <th class="d-none d-md-table-cell">Modificato il</th>
                             </tr>
-                        }
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody class="overflow-y-section">
+                            @foreach (var category in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        <div class="form-check form-check-primary">
+                                            <label class="form-check-label">
+                                                <input type="checkbox" class="form-check-input" onclick="handleCategory(this)" value="@category.Id"><i class="input-helper"></i>
+                                            </label>
+                                        </div>
+                                    </td>
+                                    <td>@category.Name</td>
+                                    <td class="d-none d-md-table-cell">@category.ProductSizeTypeName</td>
+                                    <td class="d-none d-md-table-cell">@category.CreatedOn</td>
+                                    <td class="d-none d-md-table-cell">@category.UpdatedOn</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                }
+                else
+                {
+                    <div class="card px-5 py-5 d-flex justify-content-center align-items-center">
+                        Nessuna Categoria disponibile al momento!
+                    </div>
+                }
             </div>
         </div>
     </div>

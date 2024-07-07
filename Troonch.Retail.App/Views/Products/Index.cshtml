@@ -21,32 +21,45 @@
             </ul>
         </nav>
     </div>
-    <div class="row">
-        @foreach (var product in Model.Collections)
-        {
-            <div class="col-12 col-md-4 mb-4">
-                <div class="card border shadow-none mb-0">
-                    <div class="card-body text-center">
-                        @if (String.IsNullOrWhiteSpace(product.CoverImageLink))
-                        {
-                            <img src="https://static.zara.net/assets/public/47a3/2399/f91d4984bcc9/566881ec3896/1689085196541/1689085196541.jpg?ts=1701856748172&w=551" class="img-fluid mb-3" alt="">
-                        }
-                        else{
-                            <img src="@product.CoverImageLink" class="img-fluid mb-3" alt="">
-                        }
-                        <h6 class="product-title">@product.ProductBrandName @product.Name</h6>
-                        <p class="product-price fs-5 mb-1"><small>@product.ProductGenderName</small></p>
-                        <small>@product.ProductMaterialName</small>
-                        <div class="actions d-flex align-items-center justify-content-center gap-2 mt-3">
-                            <a class="btn btn-sm btn-outline-primary" asp-area="" asp-controller="Products" asp-action="Detail" asp-route-slug="@product.Slug">
-                                Dettaglio
-                            </a>
+    @if (Model.Collections.Any())
+    {
+        <div class="row">
+            @foreach (var product in Model.Collections)
+            {
+                <div class="col-12 col-md-4 mb-4">
+                    <div class="card border shadow-none mb-0">
+                        <div class="card-body text-center">
+                            @if (String.IsNullOrWhiteSpace(product.CoverImageLink))
+                            {
+                                <img src="https://static.zara.net/assets/public/47a3/2399/f91d4984bcc9/566881ec3896/1689085196541/1689085196541.jpg?ts=1701856748172&w=551" class="img-fluid mb-3" alt="">
+                            }
+                            else{
+                                <img src="@product.CoverImageLink" class="img-fluid mb-3" alt="">
+                            }
+                            <h6 class="product-title">@product.ProductBrandName @product.Name</h6>
+                            <p class="product-price fs-5 mb-1"><small>@product.ProductGenderName</small></p>
+                            <small>@product.ProductMaterialName</small>
+                            <div class="actions d-flex align-items-center justify-content-center gap-2 mt-3">
+                                <a class="btn btn-sm btn-outline-primary" asp-area="" asp-controller="Products" asp-action="Detail" asp-route-slug="@product.Slug">
+                                    Dettaglio
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
+            }
+        </div>
+    }
+    else
+    {
+        <div class="row overflow-y-section-700">
+            <div class="col-md-12 grid-margin stretch-card ">
+                <div class="card px-5 py-5 d-flex justify-content-center align-items-center">
+                    Nessun prodotto disponibile al momento
+                </div>
             </div>
-        }
-    </div>
+        </div>
+    }
 </section>
 
 <!-- Modal -->

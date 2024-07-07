@@ -45,35 +45,44 @@
     <div class="row overflow-y-section-700">
         <div class="col-md-12 grid-margin stretch-card ">
             <div class="card px-2 py-2">
-                <table id="brands-table" class="table-hover w-100 mt-5">
-                    <thead>
-                        <tr>
-                            <th></th>
-                            <th>Nome</th>
-                            <th class="d-none d-md-table-cell">Descrizione</th>
-                            <th class="d-none d-md-table-cell">Creato il</th>
-                            <th class="d-none d-md-table-cell">Modificato il</th>
-                        </tr>
-                    </thead>
-                    <tbody class="overflow-y-section">
-                        @foreach (var item in Model)
-                        {
+                @if (Model.Any())
+                {
+                    <table id="brands-table" class="table-hover w-100 mt-5">
+                        <thead>
                             <tr>
-                                <td>
-                                    <div class="form-check form-check-primary">
-                                        <label class="form-check-label">
-                                            <input type="checkbox" class="form-check-input" onclick="handleBrand(this)" value="@item.Id"><i class="input-helper"></i>
-                                        </label>
-                                    </div>
-                                </td>
-                                <td>@item.Name</td>
-                                <td class="d-none d-md-table-cell">@item.Description</td>
-                                <td class="d-none d-md-table-cell">@item.CreatedOn</td>
-                                <td class="d-none d-md-table-cell">@item.UpdatedOn</td>
+                                <th></th>
+                                <th>Nome</th>
+                                <th class="d-none d-md-table-cell">Descrizione</th>
+                                <th class="d-none d-md-table-cell">Creato il</th>
+                                <th class="d-none d-md-table-cell">Modificato il</th>
                             </tr>
-                        }
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody class="overflow-y-section">
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        <div class="form-check form-check-primary">
+                                            <label class="form-check-label">
+                                                <input type="checkbox" class="form-check-input" onclick="handleBrand(this)" value="@item.Id"><i class="input-helper"></i>
+                                            </label>
+                                        </div>
+                                    </td>
+                                    <td>@item.Name</td>
+                                    <td class="d-none d-md-table-cell">@item.Description</td>
+                                    <td class="d-none d-md-table-cell">@item.CreatedOn</td>
+                                    <td class="d-none d-md-table-cell">@item.UpdatedOn</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                }
+                else
+                {
+                    <div class="card px-5 py-5 d-flex justify-content-center align-items-center">
+                        Nessun Brand disponibile al momento!
+                    </div>
+                }
             </div>
         </div>
     </div>
@@ -84,7 +93,7 @@
     <div class="modal-dialog modal-xl">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Nuova Variazione</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Nuovo Brand</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div id="brand-modal-body" class="modal-body">
