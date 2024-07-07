@@ -63,9 +63,9 @@
                         <i class="mdi mdi-cellphone mx-1"></i> Conferma numero di telefono
                     </button>
                 }
-                 @if (User.IsInRole("admin"))
+                @if (User.IsInRole("admin") || User.IsInRole("systemAdmin"))
                 {
-                    @if (!Model.RoleNames.Any(role => role.Equals("admin",StringComparison.OrdinalIgnoreCase)))
+                    @if (!Model.RoleNames.Any(role => role.Equals("admin",StringComparison.OrdinalIgnoreCase) && !role.Contains("sys")))
                     {
                         <button type="button" class="btn btn-primary btn-rounded" data-action="0"  onclick="openConfirmUserModal(this,'@Model.Id','@Model.FullName', 'Confermi di voler promuovere @Model.FullName?')">
                             <i class="mdi mdi-account-convert mx-1"></i> Promuovi ad Admin

@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using System.Security.Claims;
 using Troonch.Application.Base.Utilities;
 using Troonch.Domain.Base.DTOs.Response;
 using Troonch.User.Application.Services;

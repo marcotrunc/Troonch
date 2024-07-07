@@ -5,48 +5,62 @@
     <h3 class="page-title">Utenti</h3>
 </div>
 
-<table class="table table-hover">
-    <thead>
-        <tr>
-            <th class="d-none d-md-table-cell"> Icona </th>
-            <th> Nome </th>
-            <th> Email </th>
-            <th> Telefono </th>
-            <th> Data di Nascita </th>
-            <th class="d-none d-md-table-cell"> Completamento profilo </th>
-            <th class="d-none d-md-table-cell"> Creato il </th>
-            <th class="d-none d-md-table-cell"> Ultima modifica </th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach(var User in Model)
-        {
-            <tr id="row-@User.Id" onclick="showUserModal(this)" data-id="@User.Id" data-fullname="@User.FullName" role="button">
-                <td class="py-1 d-none d-md-table-cell">
-                    <img src="~/assets/images/faces-clipart/pic-1.png" alt="@User.FullName">
-                </td>
-                <td> @User.FullName </td>
-                <td> @User.Email </td>
-                <td> @User.PhoneNumber </td>
-                @if (User.DateOfBirthNormalized is null || User.DateOfBirth == default(DateOnly))
-                {
-                    <td></td>
-                }
-                else
-                {
-                    <td>@User.DateOfBirthNormalized</td>
-                }
-                <td class="d-none d-md-table-cell">
-                    <div class="progress">
-                        <div class="progress-bar bg-success" role="progressbar" style="width: @User.ProgressOfDataComplete%" aria-valuenow="@User.ProgressOfDataComplete" aria-valuemin="0" aria-valuemax="100"></div>
-                    </div>
-                </td>
-                <td class="d-none d-md-table-cell"> @User.CreatedOnNormalized </td>
-                <td class="d-none d-md-table-cell"> @User.UpdatedOnNormalized </td>
+@if(Model.Where(u => !u.RoleNames.Any(rn => rn.Contains("sys"))).Any())
+{
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th class="d-none d-md-table-cell"> Icona </th>
+                <th> Nome </th>
+                <th> Email </th>
+                <th> Telefono </th>
+                <th> Data di Nascita </th>
+                <th class="d-none d-md-table-cell"> Completamento profilo </th>
+                <th class="d-none d-md-table-cell"> Creato il </th>
+                <th class="d-none d-md-table-cell"> Ultima modifica </th>
             </tr>
-        }
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+                @foreach (var User in Model.Where(u => !u.RoleNames.Any(rn => rn.Contains("sys"))))
+                {
+                    <tr id="row-@User.Id" onclick="showUserModal(this)" data-id="@User.Id" data-fullname="@User.FullName" role="button">
+                        <td class="py-1 d-none d-md-table-cell">
+                            <img src="~/assets/images/faces-clipart/pic-1.png" alt="@User.FullName">
+                        </td>
+                        <td> @User.FullName </td>
+                        <td> @User.Email </td>
+                        <td> @User.PhoneNumber </td>
+                        @if (User.DateOfBirthNormalized is null || User.DateOfBirth == default(DateOnly))
+                        {
+                            <td></td>
+                        }
+                        else
+                        {
+                            <td>@User.DateOfBirthNormalized</td>
+                        }
+                        <td class="d-none d-md-table-cell">
+                            <div class="progress">
+                                <div class="progress-bar bg-success" role="progressbar" style="width: @User.ProgressOfDataComplete%" aria-valuenow="@User.ProgressOfDataComplete" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                        </td>
+                        <td class="d-none d-md-table-cell"> @User.CreatedOnNormalized </td>
+                        <td class="d-none d-md-table-cell"> @User.UpdatedOnNormalized </td>
+                    </tr>
+                }
+
+        </tbody>
+    </table>
+}
+else
+{
+    <div class="row overflow-y-section-700">
+        <div class="col-md-12 grid-margin stretch-card ">
+            <div class="card px-5 py-5 d-flex justify-content-center align-items-center">
+                Nessuno User Disponibile!
+            </div>
+        </div>
+    </div>
+}
 
 @* Users Modal *@
 <div class="modal fade" id="user-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
