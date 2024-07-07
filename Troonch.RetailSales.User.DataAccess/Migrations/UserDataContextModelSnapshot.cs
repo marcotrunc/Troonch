@@ -50,13 +50,13 @@ namespace Troonch.User.DataAccess.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "de7ac0bf-60b6-4cf8-b6b5-e68f4f780c16",
+                            Id = "4d81368d-983a-4441-b25a-9a1fec482529",
                             Name = "admin",
                             NormalizedName = "Administrator"
                         },
                         new
                         {
-                            Id = "c0e0de01-a976-461d-a75c-c5b17c248afc",
+                            Id = "0ae8de66-8ef8-4705-8f03-be13db5b7c6c",
                             Name = "user",
                             NormalizedName = "User"
                         });
@@ -172,7 +172,7 @@ namespace Troonch.User.DataAccess.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("Troonch.User.Domain.ApplicationUser", b =>
+            modelBuilder.Entity("Troonch.User.Domain.Entities.ApplicationUser", b =>
                 {
                     b.Property<string>("Id")
                         .HasColumnType("varchar(255)");
@@ -264,7 +264,7 @@ namespace Troonch.User.DataAccess.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
                 {
-                    b.HasOne("Troonch.User.Domain.ApplicationUser", null)
+                    b.HasOne("Troonch.User.Domain.Entities.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -273,7 +273,7 @@ namespace Troonch.User.DataAccess.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
-                    b.HasOne("Troonch.User.Domain.ApplicationUser", null)
+                    b.HasOne("Troonch.User.Domain.Entities.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -288,7 +288,7 @@ namespace Troonch.User.DataAccess.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Troonch.User.Domain.ApplicationUser", null)
+                    b.HasOne("Troonch.User.Domain.Entities.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -297,7 +297,7 @@ namespace Troonch.User.DataAccess.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
                 {
-                    b.HasOne("Troonch.User.Domain.ApplicationUser", null)
+                    b.HasOne("Troonch.User.Domain.Entities.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
