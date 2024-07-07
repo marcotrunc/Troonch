@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Logging;
 using Troonch.Application.Base.UnitOfWork;
 using Troonch.Application.Base.Utilities;
+using Troonch.DataAccess.Base.Helpers;
 using Troonch.RetailSales.Product.DataAccess.Repositories.Interfaces;
 using Troonch.RetailSales.Product.Domain.DTOs.Requests;
 using Troonch.Sales.Domain.Entities;
@@ -22,9 +23,9 @@ public class ProductBrandService
         _logger = logger;
     }
 
-    public async Task<IEnumerable<ProductBrand>> GetAllProductBrandAsync()
+    public async Task<PagedList<ProductBrand>> GetAllProductBrandAsync(string? searchTerm, int page = 1, int pagesize = 10)
     {
-        var productBrands = await _productBrandRepository.GetAllAsync();
+        var productBrands = await _productBrandRepository.GetAllAsync(searchTerm);
 
         if(productBrands is null) 
         {
@@ -32,7 +33,7 @@ public class ProductBrandService
             throw new ArgumentNullException(nameof(productBrands));
         }
 
-        return productBrands;
+        return PagedList<ProductBrand>.Create(productBrands, page, pagesize);
     }
 
     public async Task<ProductBrand> GetProductBrandByAsync(Guid id)

@@ -21,7 +21,7 @@ public class ProductGenderService
 
     public async Task<IEnumerable<ProductGender>> GetProductGendersAsync()
     {
-        var productGenders = await _productGenderRepository.GetAllAsync();
+        var productGenders = await _productGenderRepository.GetAllAsync(null);
 
         if (productGenders is null)
         {

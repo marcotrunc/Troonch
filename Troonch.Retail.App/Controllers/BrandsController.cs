@@ -25,11 +25,12 @@ public class BrandsController : Controller
     }
 
     // GET: Brands
-    public async Task<IActionResult> Index()
+    [HttpGet]
+    public async Task<IActionResult> Index([FromQuery] string? searchTerm, [FromQuery] int page = 1, [FromQuery] int pagesize = 10)
     {
         try
         {
-            var brands = await _brandService.GetAllProductBrandAsync();
+            var brands = await _brandService.GetAllProductBrandAsync(searchTerm, page, pagesize);
             ViewData["Title"] = "Brands";
             return View(brands);
         }

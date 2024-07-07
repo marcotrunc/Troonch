@@ -19,7 +19,7 @@ public class ProductSizeTypeService
 
     public async Task<IEnumerable<ProductSizeType>> GetAllProductSizeTypesAsync()
     {
-        var productSizeTypes = await _productSizeTypeRepository.GetAllAsync();
+        var productSizeTypes = await _productSizeTypeRepository.GetAllAsync(null);
 
         if (productSizeTypes is null) 
         {

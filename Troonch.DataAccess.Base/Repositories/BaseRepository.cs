@@ -1,10 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.ChangeTracking;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Reflection;
+using Troonch.DataAccess.Base.Helpers;
 using Troonch.Domain.Base.Entities;
 
 namespace Troonch.DataAccess.Base.Repositories
@@ -17,9 +13,21 @@ namespace Troonch.DataAccess.Base.Repositories
         {
             _dbContext = dbContext;
         }
-        public async Task<List<TEntity>> GetAllAsync()
+        public async Task<List<TEntity>> GetAllAsync(string? searchTerm)
         {
-            return await _dbContext.Set<TEntity>().AsNoTracking().ToListAsync();
+            IQueryable<TEntity> query = _dbContext
+                                        .Set<TEntity>()
+                                        .OrderByDescending(x => x.UpdatedOn)
+                                        .AsNoTracking();
+
+            var properties = typeof(TEntity).GetProperties(BindingFlags.Public | BindingFlags.Instance);
+
+            if (!String.IsNullOrWhiteSpace(searchTerm))
+            {
+                query = query.SearchEntities(searchTerm);
+            }
+
+            return await query.ToListAsync();
         }
         public async Task<TEntity?> GetByIdAsync(Guid id)
         {

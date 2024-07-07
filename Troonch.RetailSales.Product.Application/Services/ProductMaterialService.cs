@@ -19,7 +19,7 @@ public class ProductMaterialService
 
     public async Task<IEnumerable<ProductMaterial>> GetAllProductMaterialAsync()
     {
-        var productMaterials = await _productMaterialRepository.GetAllAsync();
+        var productMaterials = await _productMaterialRepository.GetAllAsync(null);
 
         if( productMaterials is null ) 
         {

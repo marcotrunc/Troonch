@@ -1,6 +1,6 @@
 ﻿@using Troonch.Sales.Domain.Entities;
-
-@model List<ProductBrand>;
+@using Troonch.DataAccess.Base.Helpers;
+@model PagedList<ProductBrand>;
 
 <section>
     <div class="page-header">
@@ -9,6 +9,9 @@
                 <i class="mdi mdi-tshirt-crew"></i>
             </span> @ViewData["Title"]
         </h3>
+
+        @(await Html.PartialAsync("_SearchBar"))
+
         <nav aria-label="breadcrumb">
             <ul class="breadcrumb">
                 <li class="breadcrumb-item active" aria-current="page">
@@ -45,7 +48,7 @@
     <div class="row overflow-y-section-700">
         <div class="col-md-12 grid-margin stretch-card ">
             <div class="card px-2 py-2">
-                @if (Model.Any())
+                @if (Model.Collections.Any())
                 {
                     <table id="brands-table" class="table-hover w-100 mt-5">
                         <thead>
@@ -58,7 +61,7 @@
                             </tr>
                         </thead>
                         <tbody class="overflow-y-section">
-                            @foreach (var item in Model)
+                            @foreach (var item in Model.Collections)
                             {
                                 <tr>
                                     <td>
@@ -76,6 +79,9 @@
                             }
                         </tbody>
                     </table>
+
+                    @(await Html.PartialAsync("_Pagination"))
+                    
                 }
                 else
                 {

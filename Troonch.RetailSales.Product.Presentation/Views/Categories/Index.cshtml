@@ -95,7 +95,7 @@
 </section>
 
 @* Category Modal *@
-<div class="modal fade" id="category-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="category-modal" tabindex="-1" aria-labelledby="category modal" aria-hidden="true">
     <div class="modal-dialog modal-xl">
         <div class="modal-content">
             <div class="modal-header">
@@ -121,20 +121,5 @@
          window.addEventListener('resize', async (event) => {
              await resetCategoryIndexPage();
          });
-
-        const pushToAnotherPage = (element) => {
-            const searchTerm = document.getElementById('search-term').value;
-            const page = element.getAttribute('data-page');
-            const pageSize = element.getAttribute('data-page-size');
-
-            const controllerName = getControllerNameFromLocation();
-
-            window.location.href = '@Url.Action("Index", "__CONTROLLERNAME__")'.replace("__CONTROLLERNAME__", controllerName) +
-                '?searchTerm=' + encodeURIComponent(searchTerm) +
-                '&page=' + page +
-                '&pagesize=' + pageSize;
-
-        };
-
     </script>
 }
