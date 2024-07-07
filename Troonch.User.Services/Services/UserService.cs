@@ -482,7 +482,7 @@ public class UserService
         var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
         code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
 
-        string callbackUrl = _urlHelper.Action("ConfirmEmail", "Users", values: new { userId, code, returnUrl }, protocol: "https")
+        string callbackUrl = _urlHelper.Action("ConfirmUser", "Users", values: new {userId, code, returnUrl }, protocol: "https")
                                                                         .Replace("&amp","&")
                                                                         .Replace("%2F","/");
 

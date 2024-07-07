@@ -13,7 +13,7 @@ using Troonch.User.Domain.Entities;
 
 namespace Troonch.Users.Controllers;
 
-[Authorize]
+//[Authorize]
 public class UsersController : Controller
 {
     private readonly ILogger<UsersController> _logger;
@@ -289,8 +289,8 @@ public class UsersController : Controller
     }
 
     [AllowAnonymous]
-    [HttpGet("Users/ConfirmEmail")]
-    public async Task<IActionResult> ConfirmEmail([FromQuery]string userId, [FromQuery] string code, [FromQuery] string returnUrl)
+    [HttpGet("Users/ConfirmUser")]
+    public async Task<IActionResult> ConfirmEmail([FromQuery] string userId, [FromQuery] string code, [FromQuery] string returnUrl)
     {
         try
         {
