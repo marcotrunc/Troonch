@@ -37,7 +37,7 @@
 
             <div class="form-group col-12 col-md-6">
                 @Html.LabelFor(m => m.ProductBrandId, "Brand")
-                @Html.DropDownListFor(m => m.ProductBrandId, new SelectList(ViewBag.Brands,"Id","Name"), new {@class="col-md-6 form-control", @id="brand"} )
+            @Html.DropDownListFor(m => m.ProductBrandId, new SelectList(ViewBag.Brands, "Id", "Name"), new { @class = "col-md-6 form-control", @id = "brand" })
                 @Html.ValidationMessageFor(m => m.ProductBrandId,"", new { @class="text-danger mt-1 my-2 ms-1 d-block error-message", data_error="productbrandid"})
             </div>
 

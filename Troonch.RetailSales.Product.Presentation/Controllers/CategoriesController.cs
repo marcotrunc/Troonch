@@ -177,13 +177,16 @@ public class CategoriesController : Controller
             }
             
             var isCategoryDeleted = await _productCategoryServices.RemoveProductCategoryAsync(categoryId);
+            
+            responseModel.Data = isCategoryDeleted;
 
             if (!isCategoryDeleted)
             {
-                throw new Exception(nameof(isCategoryDeleted));
+                responseModel.Error.Message = "Eliminare prima i prodotti correlati";
+                responseModel.Status = ResponseStatus.Error.ToString();
+                return StatusCode(400, responseModel);
             }
 
-            responseModel.Data = isCategoryDeleted;
 
             return StatusCode(200, responseModel);
         }

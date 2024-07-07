@@ -14,7 +14,9 @@ public sealed class ProductSizeOptionRepository : BaseRepository<ProductSizeOpti
 
     public async Task<IEnumerable<ProductSizeOption>> GetProductSizeOptionsByTypeIdAsync(Guid typeId)
     {
-        return await _dbContext.ProductSizeOptions.AsNoTracking()
+        return await _dbContext.ProductSizeOptions
+                .AsNoTracking()
+                .OrderBy(so => so.Sort)
                 .Where(so => so.ProductSizeTypeId.Equals(typeId))
                 .ToListAsync();
     }

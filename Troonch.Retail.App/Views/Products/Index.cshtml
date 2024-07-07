@@ -10,6 +10,9 @@
                 <i class="mdi mdi-tshirt-crew"></i>
             </span> @ViewData["Title"]
         </h3>
+
+        @(await Html.PartialAsync("_SearchBar"))
+
         <nav aria-label="breadcrumb">
             <ul class="breadcrumb">
                 <li class="breadcrumb-item active" aria-current="page">
@@ -21,6 +24,7 @@
             </ul>
         </nav>
     </div>
+
     @if (Model.Collections.Any())
     {
         <div class="row">
@@ -48,6 +52,8 @@
                     </div>
                 </div>
             }
+
+            @(await Html.PartialAsync("_Pagination"))
         </div>
     }
     else
@@ -67,7 +73,7 @@
     <div class="modal-dialog modal-xl">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Nuovo Prodotto</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div id="add-product-modal-body" class="modal-body">
@@ -142,7 +148,7 @@
 
                 
                 showNotification(false);
-                setTimeout(() => window.location.href = '/Products/Index', 2000);
+                setTimeout(() => window.location.href = '@Url.Action("Index", "Products")', 2000);
                 
             }
             catch (error) {

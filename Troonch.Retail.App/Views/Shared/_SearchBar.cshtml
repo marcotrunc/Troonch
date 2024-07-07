@@ -30,10 +30,13 @@
     const keepTextSearched = (e) =>{
         e.preventDefault();
 
-        const searchTerm = document.getElementById('search-term').value;
+        const searchTerm = document.getElementById('search-term').value.trim();
+        
         if (!searchTerm) {
             return e.target.submit();
         }
+        
+        document.getElementById('search-term').value = searchTerm;
 
 
         let searchTermStored = localStorage.getItem('searchTerm');

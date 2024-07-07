@@ -151,6 +151,10 @@ const handleRequestInError = async (response, formId = null) => {
         return showErrors(errorResult.error)
     }
 
+    if (response.status == errorCodes.internalServer) {
+        handleExceptionInFormWithRedirect(errorResult.error.message);
+    } 
+
     showNotification(true, errorResult.error.message);
 
     if (formId != null) {
@@ -159,8 +163,8 @@ const handleRequestInError = async (response, formId = null) => {
     
 }
 
-const handleExceptionInFormWithRedirect = (error) => {
-    window.location.href = `/Error/${errorCodes.internalServer}`;
+const handleExceptionInFormWithRedirect = (errorMessage = "") => {
+    window.location.href = `/Error/${errorCodes.internalServer}/${errorMessage}`;
 }
 
 const closeModal = (modalId) => {

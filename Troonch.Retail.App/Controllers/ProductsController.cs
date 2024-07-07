@@ -43,11 +43,11 @@ namespace Troonch.Retail.App.Controllers
 
 
         [HttpGet]
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index([FromQuery] string? searchTerm, [FromQuery] int page = 1, [FromQuery] int pagesize = 10)
         {
             try
             {
-                var products = await _productService.GetProductsAsync(null);
+                var products = await _productService.GetProductsAsync(searchTerm);
                 ViewData["Title"] = "Prodotti";
                 return View(products);
             }
@@ -235,8 +235,13 @@ namespace Troonch.Retail.App.Controllers
 
         private async Task GetProductBagForm()
         {
-            ViewBag.Brands = await _brandService.GetAllProductBrandAsync(null);
-            ViewBag.Categories = await _categoryService.GetProductCategoriesAsync(null);
+            var brands = await _brandService.GetAllProductBrandAsync(null,1,10000);
+            ViewBag.Brands = brands.Collections.OrderBy(b => b.Name);
+
+            var categories = await _categoryService.GetProductCategoriesAsync(null,1, 10000);
+            ViewBag.Categories = categories.Collections.OrderBy(c => c.Name);
+            
+            
             ViewBag.Genders = await _productGenderService.GetProductGendersAsync();
             ViewBag.Materials = await _productMaterialService.GetAllProductMaterialAsync();
         }
