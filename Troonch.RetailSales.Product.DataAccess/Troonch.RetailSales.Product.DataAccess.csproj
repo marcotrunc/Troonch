@@ -25,4 +25,8 @@
     <ProjectReference Include="..\Troonch.RetailSales.Product.Domain\Troonch.RetailSales.Product.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Migrations\" />
+  </ItemGroup>
+
 </Project>

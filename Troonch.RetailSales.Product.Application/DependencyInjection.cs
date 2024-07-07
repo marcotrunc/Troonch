@@ -26,6 +26,7 @@ public static class DependencyInjection
         services.AddScoped<ProductMaterialService>();
         services.AddScoped<ProductColorService>();
         services.AddScoped<ProductSizeOptionService>();
+        services.AddScoped<ProductSizeTypeService>();
         services.AddScoped<ProductItemService>();
 
         services.Configure<RequestLocalizationOptions>(options =>

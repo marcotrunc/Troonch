@@ -1,7 +1,9 @@
-﻿namespace Troonch.RetailSales.Product.DataAccess.Repositories.Interfaces
+﻿using Troonch.DataAccess.Base.Repositories;
+using Troonch.Sales.Domain.Entities;
+
+namespace Troonch.RetailSales.Product.DataAccess.Repositories.Interfaces;
+
+public interface IProductSizeTypeRepository : IBaseRepository<ProductSizeType>
 {
-    public interface IProductSizeTypeRepository 
-    {
-        Task<bool> Exists(Guid id);
-    }
+    Task<bool> Exists(Guid id);
 }

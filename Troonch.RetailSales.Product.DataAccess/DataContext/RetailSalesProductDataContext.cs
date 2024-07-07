@@ -22,7 +22,6 @@ namespace Troonch.Sales.DataAccess
         public DbSet<ProductSizeType> ProductSizeTypes { get; set; }
         public DbSet<ProductTag> ProductTag { get; set; }
         public DbSet<ProductTag> ProductTagLookup { get; set; }
-        public DbSet<Log> Logs { get; set; }
 
        
         protected override void OnModelCreating(ModelBuilder modelBuilder)

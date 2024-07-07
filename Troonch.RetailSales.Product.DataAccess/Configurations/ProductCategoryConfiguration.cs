@@ -27,7 +27,8 @@ namespace Troonch.Sales.DataAccess.Configurations
             builder.HasMany(pc => pc.Products)
                 .WithOne(p => p.ProductCategory)
                 .HasForeignKey(p => p.ProductCategoryId)
-                .IsRequired();
+                .IsRequired()
+                .OnDelete(Microsoft.EntityFrameworkCore.DeleteBehavior.NoAction);
         }
     }
 }
