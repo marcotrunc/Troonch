@@ -1,0 +1,66 @@
+﻿<nav aria-label="Page navigation" class="mt-2 me-2">
+    <ul class="pagination justify-content-end">
+        @if (Model.HasPreviousPage)
+        {
+            <li class="page-item">
+                <a class="page-link text-primary" onclick="pushToAnotherPage(this)" data-page="@(Model.Page - 1)" data-page-size="@Model.PageSize">Prev</a>
+            </li>
+        }
+
+        @if (Model.HasPreviousPage || Model.HasNextPage)
+        {
+            @for (decimal i = 0; i < Model.TotalPages; i++)
+            {
+                @if (i + 1 == Model.Page)
+                {
+                    continue;
+                }
+
+                @if (!(i + 1 > Model.Page + 3) && !(i + 1 < Model.Page))
+                {
+                    <li class="page-item"><a class="page-link text-primary" onclick="pushToAnotherPage(this)" data-page="@(i + 1)" data-page-size="@Model.PageSize">@(i + 1)</a></li>
+                }
+            }
+        }
+        @if (Model.HasNextPage)
+        {
+            <li class="page-item">
+                <a class="page-link text-primary" onclick="pushToAnotherPage(this)" data-page="@(Model.Page + 1)" data-page-size="@Model.PageSize">Succ</a>
+            </li>
+        }
+    </ul>
+</nav>
+
+
+<script type="text/javascript">
+    const pushToAnotherPage = (element) => {
+        let searchTerm = document.getElementById('search-term').value;
+        if (!searchTerm){
+            searchTerm = "";
+        }
+
+        let page = element.getAttribute('data-page');
+
+        if (!page) {
+            page = "1";
+        }
+
+        let pageSize = element.getAttribute('data-page-size');
+
+        if (!pageSize) {
+            page = "10";
+        }
+
+        let controllerName = getControllerNameFromLocation();
+
+        if (controllerName == null) {
+            handleExceptionInFormWithRedirect(null);
+        }
+
+        window.location.href = '@Url.Action("Index", "__CONTROLLERNAME__")'.replace("__CONTROLLERNAME__", controllerName) +
+            '?searchTerm=' + encodeURIComponent(searchTerm) +
+            '&page=' + page +
+            '&pagesize=' + pageSize;
+
+    };
+</script>
