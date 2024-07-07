@@ -10,7 +10,22 @@ const guidEmpty = '00000000-0000-0000-0000-000000000000';
 
 
 //# Functions
- 
+
+const getControllerNameFromLocation = () => {
+    const url = window.location.href;
+    const parser = document.createElement('a');
+    parser.href = url;
+
+    const pathSegments = parser.pathname.split('/');
+    let controllerName = null;
+    
+    if (pathSegments.length > 1) {
+        controllerName = pathSegments[1];
+    }
+
+    return controllerName;
+}
+
 
 const showErrors = (errors) => {
     const { validationErrors } = errors;

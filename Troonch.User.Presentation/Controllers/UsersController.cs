@@ -13,7 +13,7 @@ using Troonch.User.Domain.Entities;
 
 namespace Troonch.Users.Controllers;
 
-//[Authorize]
+[Authorize]
 public class UsersController : Controller
 {
     private readonly ILogger<UsersController> _logger;

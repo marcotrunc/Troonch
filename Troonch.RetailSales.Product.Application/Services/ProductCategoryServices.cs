@@ -1,6 +1,7 @@
 ﻿using FluentValidation;
 using Microsoft.Extensions.Logging;
 using Troonch.Application.Base.UnitOfWork;
+using Troonch.DataAccess.Base.Helpers;
 using Troonch.RetailSales.Product.DataAccess.Repositories;
 using Troonch.RetailSales.Product.DataAccess.Repositories.Interfaces;
 using Troonch.RetailSales.Product.Domain.DTOs.Requests;
@@ -23,9 +24,9 @@ public class ProductCategoryServices
         _validator = validator;
     }
 
-    public async Task<IEnumerable<ProductCategoryResponseDTO>> GetProductCategoriesAsync()
+    public async Task<PagedList<ProductCategoryResponseDTO>> GetProductCategoriesAsync(string? searchTerm, int page = 1, int pagesize = 10)
     {
-        var productCategories = await _productCategoryRepository.GetAllProductCategoriesWithSizeAsync(); 
+        var productCategories = await _productCategoryRepository.GetAllProductCategoriesWithSizeAsync(searchTerm); 
 
         if(productCategories is null)
         {
@@ -33,8 +34,12 @@ public class ProductCategoryServices
             throw new ArgumentNullException(nameof(productCategories));
         }
 
-        return productCategories.Select(pc => new ProductCategoryResponseDTO
+
+        var productCategoriesMapped = productCategories.Select(pc => new ProductCategoryResponseDTO
         { Id = pc.Id, Name = pc.Name, ProductSizeTypeId = pc.ProductSizeTypeId, ProductSizeTypeName = pc.ProductSizeType.Name, CreatedOn = pc.CreatedOn, UpdatedOn = pc.UpdatedOn });
+
+
+        return PagedList<ProductCategoryResponseDTO>.Create(productCategoriesMapped, page ,pagesize); 
     }
 
     public async Task<ProductCategoryResponseDTO> GetProductCategoryByIdAsync(Guid id)

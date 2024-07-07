@@ -25,11 +25,12 @@ public class CategoriesController : Controller
         _productSizeTypesService = productSizeTypesService;
     }
 
-    public async Task<IActionResult> Index()
+    [HttpGet]
+    public async Task<IActionResult> Index([FromQuery] string? searchTerm, [FromQuery] int page = 1, [FromQuery] int pagesize = 10)
     {
         try
         {
-            var categories = await _productCategoryServices.GetProductCategoriesAsync();
+            var categories = await _productCategoryServices.GetProductCategoriesAsync(searchTerm, page, pagesize);
 
             if (categories is null) 
             { 

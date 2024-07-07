@@ -236,7 +236,7 @@ namespace Troonch.Retail.App.Controllers
         private async Task GetProductBagForm()
         {
             ViewBag.Brands = await _brandService.GetAllProductBrandAsync();
-            ViewBag.Categories = await _categoryService.GetProductCategoriesAsync();
+            ViewBag.Categories = await _categoryService.GetProductCategoriesAsync(null);
             ViewBag.Genders = await _productGenderService.GetProductGendersAsync();
             ViewBag.Materials = await _productMaterialService.GetAllProductMaterialAsync();
         }

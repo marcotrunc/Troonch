@@ -26,12 +26,21 @@ public sealed class ProductCategoryRepository : BaseRepository<ProductCategory, 
         return !await _dbContext.ProductCategories.Where(p => p.Id != id).AnyAsync(p => p.Name == name.Trim());
     }
 
-    public async Task<IEnumerable<ProductCategory>> GetAllProductCategoriesWithSizeAsync()
+    public async Task<IEnumerable<ProductCategory>> GetAllProductCategoriesWithSizeAsync(string searchTerm)
     {
-        return await _dbContext.ProductCategories
+        IQueryable<ProductCategory> productCategoryQuery = _dbContext.ProductCategories
             .AsNoTracking()
-            .Include(pc => pc.ProductSizeType)
-            .ToListAsync();
+            .OrderByDescending(pc => pc.UpdatedOn)
+            .Include(pc => pc.ProductSizeType);
+
+        if (!String.IsNullOrWhiteSpace(searchTerm)) 
+        {
+            productCategoryQuery = productCategoryQuery.Where(pc =>
+                pc.Name.Contains(searchTerm)
+            );
+        }
+
+        return await productCategoryQuery.ToListAsync();
     }
 
     public async Task<ProductCategory?> GetCategoryWithSizeAsync(Guid id)

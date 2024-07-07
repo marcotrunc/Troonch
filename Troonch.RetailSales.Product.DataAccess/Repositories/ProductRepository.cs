@@ -39,7 +39,7 @@ namespace Troonch.RetailSales.Product.DataAccess.Repositories
                                         .Include(p => p.ProductMaterial);
                                         
 
-            if (!string.IsNullOrEmpty(searchTerm) && !string.IsNullOrWhiteSpace(searchTerm))
+            if (!string.IsNullOrWhiteSpace(searchTerm))
             {
                 productsQuery = productsQuery.Where(p =>
                     p.Name.Contains(searchTerm) ||

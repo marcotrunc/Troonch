@@ -1,6 +1,6 @@
 ﻿@using Troonch.RetailSales.Product.Domain.DTOs.Responses;
-
-@model IEnumerable<ProductCategoryResponseDTO>;
+@using Troonch.DataAccess.Base.Helpers;
+@model PagedList<ProductCategoryResponseDTO>;
 
 <section class="container">
     <div class="page-header">
@@ -9,10 +9,12 @@
                 <i class="mdi mdi-tshirt-crew"></i>
             </span> @ViewData["Title"]
         </h3>
+
+        @Html.Partial("_SearchBar")
+        
         <nav aria-label="breadcrumb">
             <ul class="breadcrumb">
                 <li class="breadcrumb-item active" aria-current="page">
-                    <!--Button for modal showing-->
                     <div id="add-category-button">
                         <button type="button" class="btn btn-outline-primary btn-icon-text d-none d-md-block" onclick="showCategoryModal()">
                             <i class="mdi mdi-plus-box btn-icon-prepend"></i> Aggiungi
@@ -46,7 +48,7 @@
     <div class="row overflow-y-section-700">
         <div class="col-md-12 grid-margin stretch-card ">
             <div class="card px-2 py-2">
-                @if (Model.Any())
+                @if (Model.Collections.Any())
                 {
                     <table id="category-table" class="table-hover w-100 mt-5">
                         <thead>
@@ -59,7 +61,7 @@
                             </tr>
                         </thead>
                         <tbody class="overflow-y-section">
-                            @foreach (var category in Model)
+                            @foreach (var category in Model.Collections)
                             {
                                 <tr>
                                     <td>
@@ -77,6 +79,34 @@
                             }
                         </tbody>
                     </table>
+
+                    <nav aria-label="Page navigation" class="mt-2 me-2">
+                        <ul class="pagination justify-content-end">
+                            @if (Model.HasPreviousPage)
+                            {
+                                <li class="page-item">
+                                    <a class="page-link" onclick="pushToAnotherPage(this)" data-page="@(Model.Page - 1)" data-page-size="@Model.PageSize">Prev</a>
+                                </li>
+                            }
+
+                            @if(Model.HasPreviousPage || Model.HasNextPage)
+                            {
+                                @for(decimal i = 0; i < Model.TotalPages; i++)
+                                {
+                                    @if(!(i + 1 > Model.Page + 2) && !(i+1 < Model.Page))
+                                    {
+                                        <li class="page-item"><a class="page-link" onclick="pushToAnotherPage(this)" data-page="@(i + 1)" data-page-size="@Model.PageSize">@(i + 1)</a></li>
+                                    }
+                                }
+                            }
+                            @if (Model.HasNextPage)
+                            {
+                                <li class="page-item">
+                                    <a class="page-link" onclick="pushToAnotherPage(this)" data-page="@(Model.Page + 1)" data-page-size="@Model.PageSize">Succ</a>
+                                </li>
+                            }
+                        </ul>
+                    </nav>
                 }
                 else
                 {
@@ -116,5 +146,20 @@
          window.addEventListener('resize', async (event) => {
              await resetCategoryIndexPage();
          });
+
+        const pushToAnotherPage = (element) => {
+            const searchTerm = document.getElementById('search-term').value;
+            const page = element.getAttribute('data-page');
+            const pageSize = element.getAttribute('data-page-size');
+
+            const controllerName = getControllerNameFromLocation();
+
+            window.location.href = '@Url.Action("Index", "__CONTROLLERNAME__")'.replace("__CONTROLLERNAME__", controllerName) +
+                '?searchTerm=' + encodeURIComponent(searchTerm) +
+                '&page=' + page +
+                '&pagesize=' + pageSize;
+
+        };
+
     </script>
 }
