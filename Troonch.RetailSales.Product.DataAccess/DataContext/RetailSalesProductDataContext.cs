@@ -145,18 +145,18 @@ namespace Troonch.Sales.DataAccess
 
             foreach (var sizeType in productSizeTypes)
             {
-                if (sizeType.Name.Contains("Uomo/Donna"))
+                if (sizeType.Name.Contains("Bambino/a"))
                 {
                     var productGenderSizeTypeBoy = new ProductGenderSizeTypeLookup();
                     productGenderSizeTypeBoy.ProductSizeTypeId = sizeType.Id;
                     productGenderSizeTypeBoy.ProductGenderId = productGenders.Where(pg => pg.Name.Contains("Bambino")).First().Id;
                     productGenderSizeTypes.Add(productGenderSizeTypeBoy);
 
+
                     var productGenderSizeTypeGirl = new ProductGenderSizeTypeLookup();
                     productGenderSizeTypeGirl.ProductSizeTypeId = sizeType.Id;
                     productGenderSizeTypeGirl.ProductGenderId = productGenders.Where(pg => pg.Name.Contains("Bambina")).First().Id;
                     productGenderSizeTypes.Add(productGenderSizeTypeGirl);
-
                 }
 
                 if (sizeType.Name.Contains("Uomo/Donna"))
@@ -182,10 +182,8 @@ namespace Troonch.Sales.DataAccess
                         productGenderSizeTypes.Add(productGenderSizeTypeAcc);
                     }
                 }
-
-                modelBuilder.Entity<ProductGenderSizeTypeLookup>().HasData(productGenderSizeTypes);
-
             }
+                modelBuilder.Entity<ProductGenderSizeTypeLookup>().HasData(productGenderSizeTypes);
             #endregion
 
             #region ProductSizeOption Seeding
