@@ -26,6 +26,11 @@ namespace Troonch.Sales.DataAccess.Configurations
                 .WithOne(pc => pc.ProductSizeType)
                 .HasForeignKey(pc => pc.ProductSizeTypeId)
                 .IsRequired();
+
+            builder.HasMany(pst => pst.ProductGenders)
+                .WithOne(psl => psl.ProductSizeType)
+                .HasForeignKey(psl => psl.ProductSizeTypeId)
+                .IsRequired();
         }
     }
 

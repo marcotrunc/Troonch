@@ -18,5 +18,10 @@ public class ProductGenderConfiguration : BaseEntityConfiguration<ProductGender>
             .WithOne(p => p.ProductGender)
             .HasForeignKey(pg => pg.ProductGenderId)
             .IsRequired();
+
+        builder.HasMany(pg => pg.ProductSizeTypes)
+            .WithOne(psl =>psl.ProductGender)
+            .HasForeignKey(psl => psl.ProductGenderId)
+            .IsRequired();
     }
 }
