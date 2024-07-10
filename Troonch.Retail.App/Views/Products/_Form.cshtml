@@ -36,24 +36,24 @@
             </div>
 
             <div class="form-group col-12 col-md-6">
-                @Html.LabelFor(m => m.ProductBrandId, "Brand")
-            @Html.DropDownListFor(m => m.ProductBrandId, new SelectList(ViewBag.Brands, "Id", "Name"), new { @class = "col-md-6 form-control", @id = "brand" })
-                @Html.ValidationMessageFor(m => m.ProductBrandId,"", new { @class="text-danger mt-1 my-2 ms-1 d-block error-message", data_error="productbrandid"})
+                @Html.LabelFor(m => m.ProductGenderId, "Sesso")
+                @Html.DropDownListFor(m => m.ProductGenderId, new SelectList(ViewBag.Genders, "Id", "Name"), new { @class = "col-md-6 form-control", @id = "gender" })
+                @Html.ValidationMessageFor(m => m.ProductGenderId, "", new { @class = "text-danger mt-1 my-2 ms-1 d-block error-message", data_error = "productgenderid" })
             </div>
-
-        <div class="form-group col-12 col-md-6">
+            
+            <div class="form-group col-12 col-md-6">
                 @Html.LabelFor(m => m.ProductCategoryId, "Categoria")
                 @Html.DropDownListFor(m => m.ProductCategoryId, new SelectList(ViewBag.Categories,"Id","Name"), new {@class="col-md-6 form-control", @id="category"} )
                 @Html.ValidationMessageFor(m => m.ProductCategoryId,"", new { @class="text-danger mt-1 my-2 ms-1 d-block error-message", data_error="productcategoryid"})
             </div>
 
-        <div class="form-group col-12 col-md-6">
-                @Html.LabelFor(m => m.ProductGenderId, "Sesso")
-                @Html.DropDownListFor(m => m.ProductGenderId, new SelectList(ViewBag.Genders,"Id","Name"), new {@class="col-md-6 form-control" , @id="gender"} )
-                @Html.ValidationMessageFor(m => m.ProductGenderId,"", new { @class="text-danger mt-1 my-2 ms-1 d-block error-message", data_error="productgenderid"})
+            <div class="form-group col-12 col-md-6">
+                @Html.LabelFor(m => m.ProductBrandId, "Brand")
+                @Html.DropDownListFor(m => m.ProductBrandId, new SelectList(ViewBag.Brands, "Id", "Name"), new { @class = "col-md-6 form-control", @id = "brand" })
+                @Html.ValidationMessageFor(m => m.ProductBrandId,"", new { @class="text-danger mt-1 my-2 ms-1 d-block error-message", data_error="productbrandid"})
             </div>
 
-        <div class="form-group col-12 col-md-6">
+            <div class="form-group col-12 col-md-6">
                 @Html.LabelFor(m => m.ProductMaterialId, "Materiali")
                 @Html.DropDownListFor(m => m.ProductMaterialId, new SelectList(ViewBag.Materials,"Id","Value"), new {@class="col-md-6 form-control",  @id="material"} )
                 @Html.ValidationMessageFor(m => m.ProductMaterialId,"", new { @class="text-danger mt-1 my-2 ms-1 d-block error-message", data_error="productmaterialid"})
