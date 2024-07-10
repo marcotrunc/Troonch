@@ -140,6 +140,54 @@ namespace Troonch.Sales.DataAccess
             modelBuilder.Entity<ProductSizeType>().HasData(productSizeTypes);
             #endregion
 
+            #region ProductGenderSizeTypeLookup Seeding
+            var productGenderSizeTypes = new List<ProductGenderSizeTypeLookup>();
+
+            foreach (var sizeType in productSizeTypes)
+            {
+                if (sizeType.Name.Contains("Uomo/Donna"))
+                {
+                    var productGenderSizeTypeBoy = new ProductGenderSizeTypeLookup();
+                    productGenderSizeTypeBoy.ProductSizeTypeId = sizeType.Id;
+                    productGenderSizeTypeBoy.ProductGenderId = productGenders.Where(pg => pg.Name.Contains("Bambino")).First().Id;
+                    productGenderSizeTypes.Add(productGenderSizeTypeBoy);
+
+                    var productGenderSizeTypeGirl = new ProductGenderSizeTypeLookup();
+                    productGenderSizeTypeGirl.ProductSizeTypeId = sizeType.Id;
+                    productGenderSizeTypeGirl.ProductGenderId = productGenders.Where(pg => pg.Name.Contains("Bambina")).First().Id;
+                    productGenderSizeTypes.Add(productGenderSizeTypeGirl);
+
+                }
+
+                if (sizeType.Name.Contains("Uomo/Donna"))
+                {
+                    var productGenderSizeTypeMan = new ProductGenderSizeTypeLookup();
+                    productGenderSizeTypeMan.ProductSizeTypeId = sizeType.Id;
+                    productGenderSizeTypeMan.ProductGenderId = productGenders.Where(pg => pg.Name.Contains("Uomo")).First().Id;
+                    productGenderSizeTypes.Add(productGenderSizeTypeMan);
+
+                    var productGenderSizeTypeWoman = new ProductGenderSizeTypeLookup();
+                    productGenderSizeTypeWoman.ProductSizeTypeId = sizeType.Id;
+                    productGenderSizeTypeWoman.ProductGenderId = productGenders.Where(pg => pg.Name.Contains("Donna")).First().Id;
+                    productGenderSizeTypes.Add(productGenderSizeTypeWoman);
+                }
+
+                if (sizeType.Name.Contains("Accessori"))
+                {
+                    foreach(var gender in productGenders)
+                    {
+                        var productGenderSizeTypeAcc = new ProductGenderSizeTypeLookup();
+                        productGenderSizeTypeAcc.ProductSizeTypeId = sizeType.Id;
+                        productGenderSizeTypeAcc.ProductGenderId = gender.Id;
+                        productGenderSizeTypes.Add(productGenderSizeTypeAcc);
+                    }
+                }
+
+                modelBuilder.Entity<ProductGenderSizeTypeLookup>().HasData(productGenderSizeTypes);
+
+            }
+            #endregion
+
             #region ProductSizeOption Seeding
 
             var options = new List<ProductSizeOption>();

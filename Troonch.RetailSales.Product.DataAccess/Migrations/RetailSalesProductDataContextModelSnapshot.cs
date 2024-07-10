@@ -162,459 +162,459 @@ namespace Troonch.RetailSales.Product.DataAccess.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("b8b85712-423a-48eb-9b9c-79cca44b55e1"),
-                            CreatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(6272),
+                            Id = new Guid("d5ff2956-a012-4418-a5b0-497cf18d884d"),
+                            CreatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9363),
                             Name = "Abiti - Completi",
-                            ProductSizeTypeId = new Guid("b6829a28-318b-46ff-a059-d6f91743f92c"),
-                            UpdatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(6272)
+                            ProductSizeTypeId = new Guid("b9c10a10-806c-4db3-94ac-87a9b5657442"),
+                            UpdatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9364)
                         },
                         new
                         {
-                            Id = new Guid("a044d4fa-a88e-4c6d-82d8-b9df2a11b5e4"),
-                            CreatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(6276),
+                            Id = new Guid("9e95bcfa-424c-4db1-b3e1-39ab3b891fef"),
+                            CreatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9367),
                             Name = "Giubbino",
-                            ProductSizeTypeId = new Guid("b6829a28-318b-46ff-a059-d6f91743f92c"),
-                            UpdatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(6276)
+                            ProductSizeTypeId = new Guid("b9c10a10-806c-4db3-94ac-87a9b5657442"),
+                            UpdatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9367)
                         },
                         new
                         {
-                            Id = new Guid("16a9a771-61df-492f-ac71-41ced5867920"),
-                            CreatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(6279),
+                            Id = new Guid("8479ca3c-3223-404a-bba9-7607d697c507"),
+                            CreatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9370),
                             Name = "Felpa",
-                            ProductSizeTypeId = new Guid("b6829a28-318b-46ff-a059-d6f91743f92c"),
-                            UpdatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(6279)
+                            ProductSizeTypeId = new Guid("b9c10a10-806c-4db3-94ac-87a9b5657442"),
+                            UpdatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9370)
                         },
                         new
                         {
-                            Id = new Guid("797db858-df20-46a1-b8da-2cfd2ec636af"),
-                            CreatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(6282),
+                            Id = new Guid("13cb2e71-3e9f-4a2d-b3e3-ade4179535cc"),
+                            CreatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9372),
                             Name = "Jeans",
-                            ProductSizeTypeId = new Guid("b6829a28-318b-46ff-a059-d6f91743f92c"),
-                            UpdatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(6282)
+                            ProductSizeTypeId = new Guid("b9c10a10-806c-4db3-94ac-87a9b5657442"),
+                            UpdatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9373)
                         },
                         new
                         {
-                            Id = new Guid("cad9bd4c-169c-45a7-8de5-3107f4472f05"),
-                            CreatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(6284),
+                            Id = new Guid("c4632faa-88d6-4f9b-ae1e-ed1c4226e676"),
+                            CreatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9375),
                             Name = "Cardigan",
-                            ProductSizeTypeId = new Guid("b6829a28-318b-46ff-a059-d6f91743f92c"),
-                            UpdatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(6285)
+                            ProductSizeTypeId = new Guid("b9c10a10-806c-4db3-94ac-87a9b5657442"),
+                            UpdatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9376)
                         },
                         new
                         {
-                            Id = new Guid("dd4fe056-c02f-4479-9e5c-e9b603d2e878"),
-                            CreatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(6288),
+                            Id = new Guid("3d739d33-7860-464c-953f-51b8a5d94935"),
+                            CreatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9379),
                             Name = "Pigiama",
-                            ProductSizeTypeId = new Guid("b6829a28-318b-46ff-a059-d6f91743f92c"),
-                            UpdatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(6289)
+                            ProductSizeTypeId = new Guid("b9c10a10-806c-4db3-94ac-87a9b5657442"),
+                            UpdatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9380)
                         },
                         new
                         {
-                            Id = new Guid("18325a35-5823-4107-93c2-0a557a3da158"),
-                            CreatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(6311),
+                            Id = new Guid("334f3cb9-12ff-4bce-96cb-25df8350cea1"),
+                            CreatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9384),
                             Name = "Top",
-                            ProductSizeTypeId = new Guid("b6829a28-318b-46ff-a059-d6f91743f92c"),
-                            UpdatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(6312)
+                            ProductSizeTypeId = new Guid("b9c10a10-806c-4db3-94ac-87a9b5657442"),
+                            UpdatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9384)
                         },
                         new
                         {
-                            Id = new Guid("d3417860-6f04-4126-8e8b-0953d3062822"),
-                            CreatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(6317),
+                            Id = new Guid("243fe1fd-97be-4cbb-87a7-0d48afbfe0e1"),
+                            CreatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9387),
                             Name = "Maglie",
-                            ProductSizeTypeId = new Guid("b6829a28-318b-46ff-a059-d6f91743f92c"),
-                            UpdatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(6317)
+                            ProductSizeTypeId = new Guid("b9c10a10-806c-4db3-94ac-87a9b5657442"),
+                            UpdatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9387)
                         },
                         new
                         {
-                            Id = new Guid("14c881c8-b508-4d1b-a962-1f7ccde55ad2"),
-                            CreatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(6320),
+                            Id = new Guid("53c1f073-13aa-434c-9a5e-c90caeb18968"),
+                            CreatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9390),
                             Name = "Pantaloni",
-                            ProductSizeTypeId = new Guid("b6829a28-318b-46ff-a059-d6f91743f92c"),
-                            UpdatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(6320)
+                            ProductSizeTypeId = new Guid("b9c10a10-806c-4db3-94ac-87a9b5657442"),
+                            UpdatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9390)
                         },
                         new
                         {
-                            Id = new Guid("f3fe7773-0b30-493c-b0be-1741a3fa5b19"),
-                            CreatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(6324),
+                            Id = new Guid("090a5dbc-6f11-4e91-978c-8d149f5ce171"),
+                            CreatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9394),
                             Name = "Salopette",
-                            ProductSizeTypeId = new Guid("b6829a28-318b-46ff-a059-d6f91743f92c"),
-                            UpdatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(6324)
+                            ProductSizeTypeId = new Guid("b9c10a10-806c-4db3-94ac-87a9b5657442"),
+                            UpdatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9394)
                         },
                         new
                         {
-                            Id = new Guid("8a58f41b-69af-44d0-af4e-a59f46c1805d"),
-                            CreatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(6327),
+                            Id = new Guid("3b624d59-0711-4491-9dd2-4468df8a2e0a"),
+                            CreatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9397),
                             Name = "Camicia",
-                            ProductSizeTypeId = new Guid("b6829a28-318b-46ff-a059-d6f91743f92c"),
-                            UpdatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(6327)
+                            ProductSizeTypeId = new Guid("b9c10a10-806c-4db3-94ac-87a9b5657442"),
+                            UpdatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9397)
                         },
                         new
                         {
-                            Id = new Guid("a830bddd-5ff9-4a66-a4df-989b1b9fa972"),
-                            CreatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(6330),
+                            Id = new Guid("6fc0dbd7-d812-4c1d-a194-a9f3752b90f2"),
+                            CreatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9399),
                             Name = "Shorts",
-                            ProductSizeTypeId = new Guid("b6829a28-318b-46ff-a059-d6f91743f92c"),
-                            UpdatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(6330)
+                            ProductSizeTypeId = new Guid("b9c10a10-806c-4db3-94ac-87a9b5657442"),
+                            UpdatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9400)
                         },
                         new
                         {
-                            Id = new Guid("8b6dc331-1dcd-4646-b236-820846463cb3"),
-                            CreatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(6342),
+                            Id = new Guid("a863ac14-b520-458c-8f84-ab232a3a98f8"),
+                            CreatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9413),
                             Name = "Giacche | Trench",
-                            ProductSizeTypeId = new Guid("9fe00ea4-831a-4044-b45b-556c81017fff"),
-                            UpdatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(6342)
+                            ProductSizeTypeId = new Guid("2870acf6-f145-4714-95b6-168588555c32"),
+                            UpdatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9413)
                         },
                         new
                         {
-                            Id = new Guid("74d8ac55-ea95-4fe9-94b9-9fa4d681f6a2"),
-                            CreatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(6346),
+                            Id = new Guid("6c351900-dd63-414f-b8eb-cb2cfc87b681"),
+                            CreatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9416),
                             Name = "Blazer | Gilet",
-                            ProductSizeTypeId = new Guid("9fe00ea4-831a-4044-b45b-556c81017fff"),
-                            UpdatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(6346)
+                            ProductSizeTypeId = new Guid("2870acf6-f145-4714-95b6-168588555c32"),
+                            UpdatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9416)
                         },
                         new
                         {
-                            Id = new Guid("efedaaea-8c70-4880-8030-5bbf22b152f8"),
-                            CreatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(6349),
+                            Id = new Guid("64058131-2521-40bf-a290-6ec24c70972d"),
+                            CreatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9421),
                             Name = "Vestiti",
-                            ProductSizeTypeId = new Guid("9fe00ea4-831a-4044-b45b-556c81017fff"),
-                            UpdatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(6349)
+                            ProductSizeTypeId = new Guid("2870acf6-f145-4714-95b6-168588555c32"),
+                            UpdatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9421)
                         },
                         new
                         {
-                            Id = new Guid("094d67e4-873d-4464-8ef9-19c311c7f39f"),
-                            CreatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(6354),
+                            Id = new Guid("26fdb3b0-9587-417e-aa4d-13f41abf142f"),
+                            CreatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9424),
                             Name = "Body | Top",
-                            ProductSizeTypeId = new Guid("9fe00ea4-831a-4044-b45b-556c81017fff"),
-                            UpdatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(6354)
+                            ProductSizeTypeId = new Guid("2870acf6-f145-4714-95b6-168588555c32"),
+                            UpdatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9424)
                         },
                         new
                         {
-                            Id = new Guid("1ad7ee6c-0731-4209-8112-08614df16b2a"),
-                            CreatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(6357),
+                            Id = new Guid("49f62b82-d574-4a44-a8b7-82b9bfffc300"),
+                            CreatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9427),
                             Name = "Camicie",
-                            ProductSizeTypeId = new Guid("9fe00ea4-831a-4044-b45b-556c81017fff"),
-                            UpdatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(6357)
+                            ProductSizeTypeId = new Guid("2870acf6-f145-4714-95b6-168588555c32"),
+                            UpdatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9427)
                         },
                         new
                         {
-                            Id = new Guid("d15894fb-11a2-4ac3-839b-bc774713d286"),
-                            CreatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(6361),
+                            Id = new Guid("9317c9c5-8f08-4241-b291-577827ac3eed"),
+                            CreatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9431),
                             Name = "Magliette",
-                            ProductSizeTypeId = new Guid("9fe00ea4-831a-4044-b45b-556c81017fff"),
-                            UpdatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(6361)
+                            ProductSizeTypeId = new Guid("2870acf6-f145-4714-95b6-168588555c32"),
+                            UpdatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9431)
                         },
                         new
                         {
-                            Id = new Guid("a1d471df-5975-4aaa-85b9-0ee4480c7551"),
-                            CreatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(6364),
+                            Id = new Guid("45e741d6-ab00-49a8-aa5a-35e20e5dd0e4"),
+                            CreatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9434),
                             Name = "Felpe",
-                            ProductSizeTypeId = new Guid("9fe00ea4-831a-4044-b45b-556c81017fff"),
-                            UpdatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(6364)
+                            ProductSizeTypeId = new Guid("2870acf6-f145-4714-95b6-168588555c32"),
+                            UpdatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9434)
                         },
                         new
                         {
-                            Id = new Guid("7c1c1b98-a0ec-4818-8262-437167412410"),
-                            CreatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(6367),
+                            Id = new Guid("5d3707bd-52bc-477f-8798-0146b579bf00"),
+                            CreatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9437),
                             Name = "Gonne",
-                            ProductSizeTypeId = new Guid("9fe00ea4-831a-4044-b45b-556c81017fff"),
-                            UpdatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(6367)
+                            ProductSizeTypeId = new Guid("2870acf6-f145-4714-95b6-168588555c32"),
+                            UpdatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9437)
                         },
                         new
                         {
-                            Id = new Guid("bb953d24-bde4-4066-b3b3-573290ffd6d5"),
-                            CreatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(6370),
+                            Id = new Guid("48d52d38-ddfd-4adf-a5db-5bd3c9c6f8f2"),
+                            CreatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9440),
                             Name = "Shorts",
-                            ProductSizeTypeId = new Guid("9fe00ea4-831a-4044-b45b-556c81017fff"),
-                            UpdatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(6370)
+                            ProductSizeTypeId = new Guid("2870acf6-f145-4714-95b6-168588555c32"),
+                            UpdatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9440)
                         },
                         new
                         {
-                            Id = new Guid("35fb8d42-dee9-46cb-bd4c-7e5b7328abdb"),
-                            CreatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(6373),
+                            Id = new Guid("47d38053-4f52-458b-825f-5a06fccb719e"),
+                            CreatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9443),
                             Name = "Pantaloni",
-                            ProductSizeTypeId = new Guid("9fe00ea4-831a-4044-b45b-556c81017fff"),
-                            UpdatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(6373)
+                            ProductSizeTypeId = new Guid("2870acf6-f145-4714-95b6-168588555c32"),
+                            UpdatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9443)
                         },
                         new
                         {
-                            Id = new Guid("e59b116f-7e76-49c3-9253-841307f8a974"),
-                            CreatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(6376),
+                            Id = new Guid("35c84fe1-ae58-4177-b02d-3c5d7146e831"),
+                            CreatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9473),
                             Name = "Jeans",
-                            ProductSizeTypeId = new Guid("9fe00ea4-831a-4044-b45b-556c81017fff"),
-                            UpdatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(6377)
+                            ProductSizeTypeId = new Guid("2870acf6-f145-4714-95b6-168588555c32"),
+                            UpdatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9474)
                         },
                         new
                         {
-                            Id = new Guid("308d3fb9-6206-4c0d-9727-97524afd0878"),
-                            CreatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(6381),
+                            Id = new Guid("c1157196-0f2e-4b0c-b636-7a6b1c57234c"),
+                            CreatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9476),
                             Name = "Intimo",
-                            ProductSizeTypeId = new Guid("9fe00ea4-831a-4044-b45b-556c81017fff"),
-                            UpdatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(6381)
+                            ProductSizeTypeId = new Guid("2870acf6-f145-4714-95b6-168588555c32"),
+                            UpdatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9477)
                         },
                         new
                         {
-                            Id = new Guid("c6f12a49-7ce5-433a-a34c-f700dcdc3522"),
-                            CreatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(6384),
+                            Id = new Guid("45102026-0738-4b5d-9010-347f178a254b"),
+                            CreatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9479),
                             Name = "Costumi da Bagno",
-                            ProductSizeTypeId = new Guid("9fe00ea4-831a-4044-b45b-556c81017fff"),
-                            UpdatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(6384)
+                            ProductSizeTypeId = new Guid("2870acf6-f145-4714-95b6-168588555c32"),
+                            UpdatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9480)
                         },
                         new
                         {
-                            Id = new Guid("e954e82a-64b9-41b3-9b8d-c15381af0897"),
-                            CreatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(6387),
+                            Id = new Guid("88e5268e-d21a-4280-bbf0-babd32712dcd"),
+                            CreatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9482),
                             Name = "Polo",
-                            ProductSizeTypeId = new Guid("9fe00ea4-831a-4044-b45b-556c81017fff"),
-                            UpdatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(6387)
+                            ProductSizeTypeId = new Guid("2870acf6-f145-4714-95b6-168588555c32"),
+                            UpdatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9483)
                         },
                         new
                         {
-                            Id = new Guid("7033555a-7b08-464a-96d9-c77de5ed1194"),
-                            CreatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(6390),
+                            Id = new Guid("ee4786db-4238-4ec4-96b8-8107754ae73e"),
+                            CreatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9485),
                             Name = "Maglioncini",
-                            ProductSizeTypeId = new Guid("9fe00ea4-831a-4044-b45b-556c81017fff"),
-                            UpdatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(6390)
+                            ProductSizeTypeId = new Guid("2870acf6-f145-4714-95b6-168588555c32"),
+                            UpdatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9486)
                         },
                         new
                         {
-                            Id = new Guid("8e43cae0-2987-4f3f-822e-63780d214923"),
-                            CreatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(6402),
+                            Id = new Guid("086e5341-4419-4539-9a2d-f590fe8e8744"),
+                            CreatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9498),
                             Name = "Borse",
-                            ProductSizeTypeId = new Guid("e9424a4f-c953-4a93-ba77-bfbe21ae43e7"),
-                            UpdatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(6402)
+                            ProductSizeTypeId = new Guid("bac9f80e-c261-4d89-8124-9a5c52819828"),
+                            UpdatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9499)
                         },
                         new
                         {
-                            Id = new Guid("aa5112f0-de8e-473e-867b-d4c8f040c197"),
-                            CreatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(6405),
+                            Id = new Guid("166d20b2-a556-476d-8934-9313e97e3849"),
+                            CreatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9502),
                             Name = "Gioielli",
-                            ProductSizeTypeId = new Guid("e9424a4f-c953-4a93-ba77-bfbe21ae43e7"),
-                            UpdatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(6406)
+                            ProductSizeTypeId = new Guid("bac9f80e-c261-4d89-8124-9a5c52819828"),
+                            UpdatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9502)
                         },
                         new
                         {
-                            Id = new Guid("29fefa8a-ab30-4c63-a311-75b79ed29cc7"),
-                            CreatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(6409),
+                            Id = new Guid("b4c4fbde-6d2d-4445-b5d5-bf044bd70455"),
+                            CreatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9504),
                             Name = "Occhiali da Sole",
-                            ProductSizeTypeId = new Guid("e9424a4f-c953-4a93-ba77-bfbe21ae43e7"),
-                            UpdatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(6409)
+                            ProductSizeTypeId = new Guid("bac9f80e-c261-4d89-8124-9a5c52819828"),
+                            UpdatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9505)
                         },
                         new
                         {
-                            Id = new Guid("58b8a6d4-2bb3-425e-a41e-ed8afd2dcad3"),
-                            CreatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(6411),
+                            Id = new Guid("3adf6180-d94d-4256-96a2-01d8a7d55031"),
+                            CreatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9509),
                             Name = "Cappelli",
-                            ProductSizeTypeId = new Guid("e9424a4f-c953-4a93-ba77-bfbe21ae43e7"),
-                            UpdatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(6412)
+                            ProductSizeTypeId = new Guid("bac9f80e-c261-4d89-8124-9a5c52819828"),
+                            UpdatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9509)
                         },
                         new
                         {
-                            Id = new Guid("70937125-1f64-4956-9ae4-562623eff181"),
-                            CreatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(6416),
+                            Id = new Guid("174c5244-e0b7-4361-b73b-b97ffb548f6e"),
+                            CreatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9512),
                             Name = "Foulard",
-                            ProductSizeTypeId = new Guid("e9424a4f-c953-4a93-ba77-bfbe21ae43e7"),
-                            UpdatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(6416)
+                            ProductSizeTypeId = new Guid("bac9f80e-c261-4d89-8124-9a5c52819828"),
+                            UpdatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9512)
                         },
                         new
                         {
-                            Id = new Guid("ab1e2736-fa87-47f8-b554-f41497fe95e7"),
-                            CreatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(6419),
+                            Id = new Guid("c7681e5e-86e5-4ec6-8355-f3d8f0997108"),
+                            CreatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9514),
                             Name = "Cinture",
-                            ProductSizeTypeId = new Guid("e9424a4f-c953-4a93-ba77-bfbe21ae43e7"),
-                            UpdatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(6419)
+                            ProductSizeTypeId = new Guid("bac9f80e-c261-4d89-8124-9a5c52819828"),
+                            UpdatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9515)
                         },
                         new
                         {
-                            Id = new Guid("51d479d4-98c6-4d56-9f0a-e7e71dfe1d23"),
-                            CreatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(6423),
+                            Id = new Guid("4a11dd84-b739-4cf8-861d-51261b8bec4d"),
+                            CreatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9519),
                             Name = "Orologi",
-                            ProductSizeTypeId = new Guid("e9424a4f-c953-4a93-ba77-bfbe21ae43e7"),
-                            UpdatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(6423)
+                            ProductSizeTypeId = new Guid("bac9f80e-c261-4d89-8124-9a5c52819828"),
+                            UpdatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9519)
                         },
                         new
                         {
-                            Id = new Guid("2d1fe279-74ca-47f5-8acf-4e2071892f63"),
-                            CreatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(6426),
+                            Id = new Guid("54b5a280-8377-4c5f-a6ab-49a4215a9558"),
+                            CreatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9522),
                             Name = "Portafogli",
-                            ProductSizeTypeId = new Guid("e9424a4f-c953-4a93-ba77-bfbe21ae43e7"),
-                            UpdatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(6426)
+                            ProductSizeTypeId = new Guid("bac9f80e-c261-4d89-8124-9a5c52819828"),
+                            UpdatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9522)
                         },
                         new
                         {
-                            Id = new Guid("1a4048d6-9916-49fd-adb3-41a8155d8089"),
-                            CreatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(6428),
+                            Id = new Guid("3c6170c9-ef79-423f-a258-aa7174b77728"),
+                            CreatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9524),
                             Name = "Sciarpe",
-                            ProductSizeTypeId = new Guid("e9424a4f-c953-4a93-ba77-bfbe21ae43e7"),
-                            UpdatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(6428)
+                            ProductSizeTypeId = new Guid("bac9f80e-c261-4d89-8124-9a5c52819828"),
+                            UpdatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9525)
                         },
                         new
                         {
-                            Id = new Guid("43ebb7cc-8b27-4712-9a53-2816b4c5e1fd"),
-                            CreatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(6431),
+                            Id = new Guid("01575160-7d19-4181-9b10-2474addee327"),
+                            CreatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9527),
                             Name = "Guanti",
-                            ProductSizeTypeId = new Guid("e9424a4f-c953-4a93-ba77-bfbe21ae43e7"),
-                            UpdatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(6431)
+                            ProductSizeTypeId = new Guid("bac9f80e-c261-4d89-8124-9a5c52819828"),
+                            UpdatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9527)
                         },
                         new
                         {
-                            Id = new Guid("aa72f2c0-3146-44d4-9408-ccb6fe130cc3"),
-                            CreatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(6434),
+                            Id = new Guid("ec93efb2-b18f-4355-b1b3-8e839481273c"),
+                            CreatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9530),
                             Name = "Ombrelli",
-                            ProductSizeTypeId = new Guid("e9424a4f-c953-4a93-ba77-bfbe21ae43e7"),
-                            UpdatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(6434)
+                            ProductSizeTypeId = new Guid("bac9f80e-c261-4d89-8124-9a5c52819828"),
+                            UpdatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9530)
                         },
                         new
                         {
-                            Id = new Guid("83db5f0a-b4b4-4fb7-9df3-aed888e9d15a"),
-                            CreatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(6456),
+                            Id = new Guid("432bd071-e373-4692-8172-66673f8d2ce9"),
+                            CreatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9544),
                             Name = "Sneakers",
-                            ProductSizeTypeId = new Guid("30622354-36db-4221-9903-d3a633b25b26"),
-                            UpdatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(6457)
+                            ProductSizeTypeId = new Guid("519c79e9-5444-4109-bec6-44eec7235ba5"),
+                            UpdatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9544)
                         },
                         new
                         {
-                            Id = new Guid("cfce6141-6ac1-410b-9fe7-5fe027a8837d"),
-                            CreatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(6463),
+                            Id = new Guid("0fb39998-716b-4f77-8da7-1dc6b679b821"),
+                            CreatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9548),
                             Name = "Sandali",
-                            ProductSizeTypeId = new Guid("30622354-36db-4221-9903-d3a633b25b26"),
-                            UpdatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(6463)
+                            ProductSizeTypeId = new Guid("519c79e9-5444-4109-bec6-44eec7235ba5"),
+                            UpdatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9548)
                         },
                         new
                         {
-                            Id = new Guid("b58cfc64-d6e4-454b-9dac-846b13503ca6"),
-                            CreatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(6466),
+                            Id = new Guid("9d48b372-1e55-4cbf-8d44-deea773b07af"),
+                            CreatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9551),
                             Name = "Tacchi",
-                            ProductSizeTypeId = new Guid("30622354-36db-4221-9903-d3a633b25b26"),
-                            UpdatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(6467)
+                            ProductSizeTypeId = new Guid("519c79e9-5444-4109-bec6-44eec7235ba5"),
+                            UpdatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9551)
                         },
                         new
                         {
-                            Id = new Guid("a319f384-e662-47dc-b1c0-78068c1329a9"),
-                            CreatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(6470),
+                            Id = new Guid("b7324cfa-d812-4abc-9756-53fc6ecb9bb9"),
+                            CreatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9554),
                             Name = "Ciabatte",
-                            ProductSizeTypeId = new Guid("30622354-36db-4221-9903-d3a633b25b26"),
-                            UpdatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(6470)
+                            ProductSizeTypeId = new Guid("519c79e9-5444-4109-bec6-44eec7235ba5"),
+                            UpdatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9554)
                         },
                         new
                         {
-                            Id = new Guid("2e0928c7-8d38-44e6-93f7-5e2fdaddeed7"),
-                            CreatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(6473),
+                            Id = new Guid("5944492d-fc23-4989-bf5b-a3c3e0adac93"),
+                            CreatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9557),
                             Name = "Stivaletti",
-                            ProductSizeTypeId = new Guid("30622354-36db-4221-9903-d3a633b25b26"),
-                            UpdatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(6473)
+                            ProductSizeTypeId = new Guid("519c79e9-5444-4109-bec6-44eec7235ba5"),
+                            UpdatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9557)
                         },
                         new
                         {
-                            Id = new Guid("a538f018-dc1d-4970-a63e-ed76abb60015"),
-                            CreatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(6476),
+                            Id = new Guid("b77f1646-a9ad-423e-a5cd-58812b3f5f71"),
+                            CreatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9560),
                             Name = "Stivali",
-                            ProductSizeTypeId = new Guid("30622354-36db-4221-9903-d3a633b25b26"),
-                            UpdatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(6477)
+                            ProductSizeTypeId = new Guid("519c79e9-5444-4109-bec6-44eec7235ba5"),
+                            UpdatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9560)
                         },
                         new
                         {
-                            Id = new Guid("ff47760a-9017-4890-8740-d7b5669c1a73"),
-                            CreatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(6479),
+                            Id = new Guid("2b8dabf6-3fe1-4349-a00a-bfac68bce361"),
+                            CreatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9563),
                             Name = "Ballerine",
-                            ProductSizeTypeId = new Guid("30622354-36db-4221-9903-d3a633b25b26"),
-                            UpdatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(6480)
+                            ProductSizeTypeId = new Guid("519c79e9-5444-4109-bec6-44eec7235ba5"),
+                            UpdatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9563)
                         },
                         new
                         {
-                            Id = new Guid("febb6fae-21be-406d-b1b5-4d94cf8a3dcd"),
-                            CreatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(6482),
+                            Id = new Guid("664e537e-24df-4cca-9ac8-88ab2d9e1c35"),
+                            CreatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9566),
                             Name = "Mare",
-                            ProductSizeTypeId = new Guid("30622354-36db-4221-9903-d3a633b25b26"),
-                            UpdatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(6483)
+                            ProductSizeTypeId = new Guid("519c79e9-5444-4109-bec6-44eec7235ba5"),
+                            UpdatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9566)
                         },
                         new
                         {
-                            Id = new Guid("93e1addc-4c53-4177-b3db-725d306da8e4"),
-                            CreatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(6485),
+                            Id = new Guid("dda2df94-21cc-494f-826a-2214e1d9369b"),
+                            CreatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9571),
                             Name = "Mocassini",
-                            ProductSizeTypeId = new Guid("30622354-36db-4221-9903-d3a633b25b26"),
-                            UpdatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(6486)
+                            ProductSizeTypeId = new Guid("519c79e9-5444-4109-bec6-44eec7235ba5"),
+                            UpdatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9571)
                         },
                         new
                         {
-                            Id = new Guid("3a25a489-136b-4d82-9d12-fca079ecdad1"),
-                            CreatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(6490),
+                            Id = new Guid("dadfde15-8ab9-400a-afab-b3fe38504b30"),
+                            CreatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9574),
                             Name = "Basse",
-                            ProductSizeTypeId = new Guid("30622354-36db-4221-9903-d3a633b25b26"),
-                            UpdatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(6490)
+                            ProductSizeTypeId = new Guid("519c79e9-5444-4109-bec6-44eec7235ba5"),
+                            UpdatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9574)
                         },
                         new
                         {
-                            Id = new Guid("c93e64a9-2d96-400b-b80f-9a9f6df704ff"),
-                            CreatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(6493),
+                            Id = new Guid("ceda27fd-1a98-4d0d-bec9-4eb5867938b2"),
+                            CreatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9576),
                             Name = "Cerimonia",
-                            ProductSizeTypeId = new Guid("30622354-36db-4221-9903-d3a633b25b26"),
-                            UpdatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(6493)
+                            ProductSizeTypeId = new Guid("519c79e9-5444-4109-bec6-44eec7235ba5"),
+                            UpdatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9577)
                         },
                         new
                         {
-                            Id = new Guid("7d05707f-7261-4a28-b616-2869109e4ede"),
-                            CreatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(6503),
+                            Id = new Guid("e3d1ae82-0fb2-475f-b648-8b04c194d7aa"),
+                            CreatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9588),
                             Name = "Sneakers",
-                            ProductSizeTypeId = new Guid("91fab09e-daf4-477c-b585-8621021a85f3"),
-                            UpdatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(6503)
+                            ProductSizeTypeId = new Guid("3e13d40c-6b24-4c7f-90fc-d5654e42a2a1"),
+                            UpdatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9588)
                         },
                         new
                         {
-                            Id = new Guid("2dda20b1-9b84-4eea-812c-ab281088f828"),
-                            CreatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(6506),
+                            Id = new Guid("063798c4-b562-44d1-9365-49dfac325675"),
+                            CreatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9592),
                             Name = "Sandali",
-                            ProductSizeTypeId = new Guid("91fab09e-daf4-477c-b585-8621021a85f3"),
-                            UpdatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(6506)
+                            ProductSizeTypeId = new Guid("3e13d40c-6b24-4c7f-90fc-d5654e42a2a1"),
+                            UpdatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9592)
                         },
                         new
                         {
-                            Id = new Guid("2f6f27db-3de4-47fb-b61b-2662f515954f"),
-                            CreatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(6509),
+                            Id = new Guid("7fcc62ad-2009-4caa-8a1f-763797007bf2"),
+                            CreatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9595),
                             Name = "Ciabatte",
-                            ProductSizeTypeId = new Guid("91fab09e-daf4-477c-b585-8621021a85f3"),
-                            UpdatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(6509)
+                            ProductSizeTypeId = new Guid("3e13d40c-6b24-4c7f-90fc-d5654e42a2a1"),
+                            UpdatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9595)
                         },
                         new
                         {
-                            Id = new Guid("f3f28a16-0b68-4246-9e5f-edeec97043b6"),
-                            CreatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(6512),
+                            Id = new Guid("808af10d-c5a0-4959-8919-fdf4135053dc"),
+                            CreatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9597),
                             Name = "Stivaletti",
-                            ProductSizeTypeId = new Guid("91fab09e-daf4-477c-b585-8621021a85f3"),
-                            UpdatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(6512)
+                            ProductSizeTypeId = new Guid("3e13d40c-6b24-4c7f-90fc-d5654e42a2a1"),
+                            UpdatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9598)
                         },
                         new
                         {
-                            Id = new Guid("d4f5635b-f782-4f68-9ba5-c9b8372f957d"),
-                            CreatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(6514),
+                            Id = new Guid("e451fa7d-c237-41bd-96c5-34981d7b1524"),
+                            CreatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9600),
                             Name = "Stivali",
-                            ProductSizeTypeId = new Guid("91fab09e-daf4-477c-b585-8621021a85f3"),
-                            UpdatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(6515)
+                            ProductSizeTypeId = new Guid("3e13d40c-6b24-4c7f-90fc-d5654e42a2a1"),
+                            UpdatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9600)
                         },
                         new
                         {
-                            Id = new Guid("a3bb88cf-8979-438b-89d9-d5f59fee02de"),
-                            CreatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(6517),
+                            Id = new Guid("920ec65b-5903-4465-aa4c-ae6afefcc79d"),
+                            CreatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9605),
                             Name = "Mare",
-                            ProductSizeTypeId = new Guid("91fab09e-daf4-477c-b585-8621021a85f3"),
-                            UpdatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(6517)
+                            ProductSizeTypeId = new Guid("3e13d40c-6b24-4c7f-90fc-d5654e42a2a1"),
+                            UpdatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9605)
                         },
                         new
                         {
-                            Id = new Guid("3750e694-4a88-482f-b9cf-d1ce52c48460"),
-                            CreatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(6522),
+                            Id = new Guid("e2667c16-e328-45aa-a416-9a04cb234fdf"),
+                            CreatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9608),
                             Name = "Sportive",
-                            ProductSizeTypeId = new Guid("91fab09e-daf4-477c-b585-8621021a85f3"),
-                            UpdatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(6522)
+                            ProductSizeTypeId = new Guid("3e13d40c-6b24-4c7f-90fc-d5654e42a2a1"),
+                            UpdatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9608)
                         },
                         new
                         {
-                            Id = new Guid("8fa8ed65-fd14-4aac-8db7-c58fbc193779"),
-                            CreatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(6525),
+                            Id = new Guid("c162f611-ee91-4823-95e6-c0548e0aafc4"),
+                            CreatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9610),
                             Name = "Cerimonia",
-                            ProductSizeTypeId = new Guid("91fab09e-daf4-477c-b585-8621021a85f3"),
-                            UpdatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(6525)
+                            ProductSizeTypeId = new Guid("3e13d40c-6b24-4c7f-90fc-d5654e42a2a1"),
+                            UpdatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9611)
                         });
                 });
 
@@ -645,39 +645,54 @@ namespace Troonch.RetailSales.Product.DataAccess.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("28f151a9-36c0-45a8-9256-a582a76ba057"),
-                            CreatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(5675),
+                            Id = new Guid("0e3f5c60-048b-4347-b344-a1a4e26553fa"),
+                            CreatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(8680),
                             Name = "Uomo",
-                            UpdatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(5679)
+                            UpdatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(8683)
                         },
                         new
                         {
-                            Id = new Guid("d1ea6acf-0d5b-4b25-bf4b-03906ad51565"),
-                            CreatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(5682),
+                            Id = new Guid("4188e08c-dc8c-40fd-9ae1-8ef4a533e5d1"),
+                            CreatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(8686),
                             Name = "Donna",
-                            UpdatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(5682)
+                            UpdatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(8686)
                         },
                         new
                         {
-                            Id = new Guid("7dafb481-82c5-460e-a436-dbbbb92cd226"),
-                            CreatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(5683),
+                            Id = new Guid("78414112-893f-48cb-b0fd-3ac78f7c3bf1"),
+                            CreatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(8687),
                             Name = "Bambino",
-                            UpdatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(5683)
+                            UpdatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(8688)
                         },
                         new
                         {
-                            Id = new Guid("f65e9f97-bc3a-4e96-84d1-aa82e50a4fc5"),
-                            CreatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(5684),
+                            Id = new Guid("b3fd62d4-337d-49ad-aa7d-812a6c742663"),
+                            CreatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(8689),
                             Name = "Bambina",
-                            UpdatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(5685)
+                            UpdatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(8689)
                         },
                         new
                         {
-                            Id = new Guid("3b5cdea3-7de0-478b-94ac-21c327db0654"),
-                            CreatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(5686),
+                            Id = new Guid("dc874f0a-f221-4897-82fb-8edba4215e95"),
+                            CreatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(8692),
                             Name = "Neonato",
-                            UpdatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(5686)
+                            UpdatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(8692)
                         });
+                });
+
+            modelBuilder.Entity("Troonch.Sales.Domain.Entities.ProductGenderSizeTypeLookup", b =>
+                {
+                    b.Property<Guid>("ProductGenderId")
+                        .HasColumnType("char(36)");
+
+                    b.Property<Guid>("ProductSizeTypeId")
+                        .HasColumnType("char(36)");
+
+                    b.HasKey("ProductGenderId", "ProductSizeTypeId");
+
+                    b.HasIndex("ProductSizeTypeId");
+
+                    b.ToTable("ProductGenderSizeTypeLookup");
                 });
 
             modelBuilder.Entity("Troonch.Sales.Domain.Entities.ProductItem", b =>
@@ -762,44 +777,44 @@ namespace Troonch.RetailSales.Product.DataAccess.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("f82bf43b-42ed-4fd4-ae3f-79bbdab4f7b2"),
-                            CreatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(5769),
-                            UpdatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(5769),
+                            Id = new Guid("aca9122c-a17b-4a3c-8913-c0fb0801b2d5"),
+                            CreatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(8781),
+                            UpdatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(8782),
                             Value = "Cotone"
                         },
                         new
                         {
-                            Id = new Guid("1a7a6ee4-2679-4891-9215-9639a53c22be"),
-                            CreatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(5772),
-                            UpdatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(5772),
+                            Id = new Guid("944556e2-43ad-4ce0-a9df-a568ec2b9da3"),
+                            CreatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(8785),
+                            UpdatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(8786),
                             Value = "Lana"
                         },
                         new
                         {
-                            Id = new Guid("692c9046-c9b9-4efe-b555-5eddec9aeabf"),
-                            CreatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(5774),
-                            UpdatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(5774),
+                            Id = new Guid("26b1aacf-51cd-4f3d-ba19-ce62f0800a8b"),
+                            CreatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(8800),
+                            UpdatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(8800),
                             Value = "Seta"
                         },
                         new
                         {
-                            Id = new Guid("a360bbdf-6632-4bd4-9e4c-c5c687a0b39e"),
-                            CreatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(5778),
-                            UpdatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(5779),
+                            Id = new Guid("f118b361-5523-4499-8ce8-e3c330b648a4"),
+                            CreatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(8802),
+                            UpdatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(8802),
                             Value = "Lino"
                         },
                         new
                         {
-                            Id = new Guid("309726b4-c4e4-44b9-85e5-38fe3182e28e"),
-                            CreatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(5780),
-                            UpdatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(5780),
+                            Id = new Guid("c2968670-3385-4234-b4f6-86d2b7cad132"),
+                            CreatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(8804),
+                            UpdatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(8804),
                             Value = "Canapa"
                         },
                         new
                         {
-                            Id = new Guid("fdf51d3c-b072-4e8f-abbb-4a37854cb9cc"),
-                            CreatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(5783),
-                            UpdatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(5784),
+                            Id = new Guid("468a4817-7f07-431a-8967-8f97b8f378c7"),
+                            CreatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(8807),
+                            UpdatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(8807),
                             Value = "Bamboo"
                         });
                 });
@@ -836,587 +851,587 @@ namespace Troonch.RetailSales.Product.DataAccess.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("10bb7da3-0251-447c-a4ee-0d0bce2feacf"),
-                            CreatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(5902),
-                            ProductSizeTypeId = new Guid("e9424a4f-c953-4a93-ba77-bfbe21ae43e7"),
+                            Id = new Guid("462780bb-247b-40be-b70d-72644124bbe4"),
+                            CreatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(8957),
+                            ProductSizeTypeId = new Guid("bac9f80e-c261-4d89-8124-9a5c52819828"),
                             Sort = 1,
-                            UpdatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(5902),
+                            UpdatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(8958),
                             Value = "Taglia Unica"
                         },
                         new
                         {
-                            Id = new Guid("c0523acb-d99d-45ca-893e-ff3bb91dba1a"),
-                            CreatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(5925),
-                            ProductSizeTypeId = new Guid("30622354-36db-4221-9903-d3a633b25b26"),
+                            Id = new Guid("131283fa-bc71-4bb0-b1d3-b83db8bddda2"),
+                            CreatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(8983),
+                            ProductSizeTypeId = new Guid("519c79e9-5444-4109-bec6-44eec7235ba5"),
                             Sort = 1,
-                            UpdatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(5926),
+                            UpdatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(8983),
                             Value = "35"
                         },
                         new
                         {
-                            Id = new Guid("8bd6175a-b5ab-4922-a91b-635314d6e49d"),
-                            CreatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(5930),
-                            ProductSizeTypeId = new Guid("30622354-36db-4221-9903-d3a633b25b26"),
+                            Id = new Guid("0b81185d-a24d-47c9-83a7-5cfba9ed7288"),
+                            CreatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(8988),
+                            ProductSizeTypeId = new Guid("519c79e9-5444-4109-bec6-44eec7235ba5"),
                             Sort = 2,
-                            UpdatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(5930),
+                            UpdatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(8988),
                             Value = "36"
                         },
                         new
                         {
-                            Id = new Guid("eb5f5cf5-9f1b-4ceb-bb0b-67d6c60a08f0"),
-                            CreatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(5934),
-                            ProductSizeTypeId = new Guid("30622354-36db-4221-9903-d3a633b25b26"),
+                            Id = new Guid("ffced20c-0677-49bc-8d4d-8ce48c55e04c"),
+                            CreatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(8992),
+                            ProductSizeTypeId = new Guid("519c79e9-5444-4109-bec6-44eec7235ba5"),
                             Sort = 3,
-                            UpdatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(5934),
+                            UpdatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(8992),
                             Value = "37"
                         },
                         new
                         {
-                            Id = new Guid("05ac0bf7-82d2-4872-b4f3-50870c49ea88"),
-                            CreatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(5938),
-                            ProductSizeTypeId = new Guid("30622354-36db-4221-9903-d3a633b25b26"),
+                            Id = new Guid("4ba12a88-20ef-4675-a5da-c849e95f3926"),
+                            CreatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(8995),
+                            ProductSizeTypeId = new Guid("519c79e9-5444-4109-bec6-44eec7235ba5"),
                             Sort = 4,
-                            UpdatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(5938),
+                            UpdatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(8996),
                             Value = "38"
                         },
                         new
                         {
-                            Id = new Guid("cb82432e-f4ac-4228-bc19-907bc426f5c5"),
-                            CreatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(5942),
-                            ProductSizeTypeId = new Guid("30622354-36db-4221-9903-d3a633b25b26"),
+                            Id = new Guid("798d6a95-6322-400c-9c10-15687dadcc0a"),
+                            CreatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9000),
+                            ProductSizeTypeId = new Guid("519c79e9-5444-4109-bec6-44eec7235ba5"),
                             Sort = 5,
-                            UpdatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(5943),
+                            UpdatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9000),
                             Value = "39"
                         },
                         new
                         {
-                            Id = new Guid("bed10d28-7639-46ee-95ba-54106b97aab9"),
-                            CreatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(5946),
-                            ProductSizeTypeId = new Guid("30622354-36db-4221-9903-d3a633b25b26"),
+                            Id = new Guid("3065692e-eccf-43f8-b296-c40593f0b0ed"),
+                            CreatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9003),
+                            ProductSizeTypeId = new Guid("519c79e9-5444-4109-bec6-44eec7235ba5"),
                             Sort = 6,
-                            UpdatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(5946),
+                            UpdatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9004),
                             Value = "40"
                         },
                         new
                         {
-                            Id = new Guid("d5c7e284-4a7a-46b8-91ce-96e64a2a6ed4"),
-                            CreatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(5950),
-                            ProductSizeTypeId = new Guid("30622354-36db-4221-9903-d3a633b25b26"),
+                            Id = new Guid("ba3b6b2b-e323-4990-87bd-5c747b8780ab"),
+                            CreatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9010),
+                            ProductSizeTypeId = new Guid("519c79e9-5444-4109-bec6-44eec7235ba5"),
                             Sort = 7,
-                            UpdatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(5950),
+                            UpdatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9011),
                             Value = "41"
                         },
                         new
                         {
-                            Id = new Guid("ced1044c-8d4a-43ee-8981-114626c38345"),
-                            CreatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(5956),
-                            ProductSizeTypeId = new Guid("30622354-36db-4221-9903-d3a633b25b26"),
+                            Id = new Guid("066bdd5d-fa22-49c7-906a-999beb5af96c"),
+                            CreatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9014),
+                            ProductSizeTypeId = new Guid("519c79e9-5444-4109-bec6-44eec7235ba5"),
                             Sort = 8,
-                            UpdatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(5956),
+                            UpdatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9014),
                             Value = "42"
                         },
                         new
                         {
-                            Id = new Guid("1583a451-303d-44ba-895c-63bec8542922"),
-                            CreatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(5961),
-                            ProductSizeTypeId = new Guid("30622354-36db-4221-9903-d3a633b25b26"),
+                            Id = new Guid("3126025f-4205-4127-bbe3-de6116c09bf1"),
+                            CreatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9019),
+                            ProductSizeTypeId = new Guid("519c79e9-5444-4109-bec6-44eec7235ba5"),
                             Sort = 9,
-                            UpdatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(5961),
+                            UpdatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9019),
                             Value = "43"
                         },
                         new
                         {
-                            Id = new Guid("36d1bc98-3448-4c70-8d2e-600a3fda3165"),
-                            CreatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(5965),
-                            ProductSizeTypeId = new Guid("30622354-36db-4221-9903-d3a633b25b26"),
+                            Id = new Guid("8180c529-019b-4143-957d-ac4c4e4c3a81"),
+                            CreatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9022),
+                            ProductSizeTypeId = new Guid("519c79e9-5444-4109-bec6-44eec7235ba5"),
                             Sort = 10,
-                            UpdatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(5965),
+                            UpdatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9023),
                             Value = "44"
                         },
                         new
                         {
-                            Id = new Guid("ffd4f18a-a208-4245-8359-957e53703c01"),
-                            CreatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(5969),
-                            ProductSizeTypeId = new Guid("30622354-36db-4221-9903-d3a633b25b26"),
+                            Id = new Guid("e457cd6d-8c7a-4931-80b4-3c665aaf04c5"),
+                            CreatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9026),
+                            ProductSizeTypeId = new Guid("519c79e9-5444-4109-bec6-44eec7235ba5"),
                             Sort = 11,
-                            UpdatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(5969),
+                            UpdatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9026),
                             Value = "45"
                         },
                         new
                         {
-                            Id = new Guid("b5479996-be88-4653-9452-560d97418ea6"),
-                            CreatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(5972),
-                            ProductSizeTypeId = new Guid("30622354-36db-4221-9903-d3a633b25b26"),
+                            Id = new Guid("83f498c1-5e93-42f7-8b35-65766cfebe12"),
+                            CreatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9030),
+                            ProductSizeTypeId = new Guid("519c79e9-5444-4109-bec6-44eec7235ba5"),
                             Sort = 12,
-                            UpdatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(5972),
+                            UpdatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9030),
                             Value = "46"
                         },
                         new
                         {
-                            Id = new Guid("3e6fd2ec-527c-427f-8287-91d97915705f"),
-                            CreatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(5981),
-                            ProductSizeTypeId = new Guid("91fab09e-daf4-477c-b585-8621021a85f3"),
+                            Id = new Guid("c70188d6-0426-4a69-9006-a54ec2a23b24"),
+                            CreatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9042),
+                            ProductSizeTypeId = new Guid("3e13d40c-6b24-4c7f-90fc-d5654e42a2a1"),
                             Sort = 1,
-                            UpdatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(5981),
+                            UpdatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9043),
                             Value = "14"
                         },
                         new
                         {
-                            Id = new Guid("3ab6c9bb-b4a8-416b-9c85-7ab6883f5531"),
-                            CreatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(5985),
-                            ProductSizeTypeId = new Guid("91fab09e-daf4-477c-b585-8621021a85f3"),
+                            Id = new Guid("23acc23d-8db9-477a-b55b-c61ef8aae22b"),
+                            CreatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9047),
+                            ProductSizeTypeId = new Guid("3e13d40c-6b24-4c7f-90fc-d5654e42a2a1"),
                             Sort = 2,
-                            UpdatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(5985),
+                            UpdatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9047),
                             Value = "15"
                         },
                         new
                         {
-                            Id = new Guid("cb1bdd43-1dde-4038-b976-b80c41be4643"),
-                            CreatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(5988),
-                            ProductSizeTypeId = new Guid("91fab09e-daf4-477c-b585-8621021a85f3"),
+                            Id = new Guid("52440b1c-7a4f-4481-9925-41a6019c162c"),
+                            CreatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9052),
+                            ProductSizeTypeId = new Guid("3e13d40c-6b24-4c7f-90fc-d5654e42a2a1"),
                             Sort = 3,
-                            UpdatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(5988),
+                            UpdatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9052),
                             Value = "16"
                         },
                         new
                         {
-                            Id = new Guid("1cfb6540-7c5c-4e3d-872e-e239418c4e8d"),
-                            CreatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(6014),
-                            ProductSizeTypeId = new Guid("91fab09e-daf4-477c-b585-8621021a85f3"),
+                            Id = new Guid("598dc821-c0ee-495a-be7f-5c5fabe39d68"),
+                            CreatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9056),
+                            ProductSizeTypeId = new Guid("3e13d40c-6b24-4c7f-90fc-d5654e42a2a1"),
                             Sort = 4,
-                            UpdatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(6014),
+                            UpdatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9056),
                             Value = "17"
                         },
                         new
                         {
-                            Id = new Guid("88fcf83d-7187-4d6d-b44b-56a911c12bce"),
-                            CreatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(6019),
-                            ProductSizeTypeId = new Guid("91fab09e-daf4-477c-b585-8621021a85f3"),
+                            Id = new Guid("dd0a027c-d1f2-4204-9f08-62849bce3caa"),
+                            CreatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9060),
+                            ProductSizeTypeId = new Guid("3e13d40c-6b24-4c7f-90fc-d5654e42a2a1"),
                             Sort = 5,
-                            UpdatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(6019),
+                            UpdatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9061),
                             Value = "18"
                         },
                         new
                         {
-                            Id = new Guid("b7e2359c-6c7b-444b-b534-deed2f95bc7a"),
-                            CreatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(6023),
-                            ProductSizeTypeId = new Guid("91fab09e-daf4-477c-b585-8621021a85f3"),
+                            Id = new Guid("6f25f3ea-2f72-400c-86d2-8390b6d8531b"),
+                            CreatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9064),
+                            ProductSizeTypeId = new Guid("3e13d40c-6b24-4c7f-90fc-d5654e42a2a1"),
                             Sort = 6,
-                            UpdatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(6023),
+                            UpdatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9064),
                             Value = "19"
                         },
                         new
                         {
-                            Id = new Guid("ee0a70a0-376d-422e-a432-cae2f5a071d2"),
-                            CreatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(6026),
-                            ProductSizeTypeId = new Guid("91fab09e-daf4-477c-b585-8621021a85f3"),
+                            Id = new Guid("86fa4630-afad-4c7b-8c2f-81dfd819c20c"),
+                            CreatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9067),
+                            ProductSizeTypeId = new Guid("3e13d40c-6b24-4c7f-90fc-d5654e42a2a1"),
                             Sort = 7,
-                            UpdatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(6026),
+                            UpdatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9068),
                             Value = "20"
                         },
                         new
                         {
-                            Id = new Guid("710f869d-0478-44f6-921e-0f8bff45ec45"),
-                            CreatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(6029),
-                            ProductSizeTypeId = new Guid("91fab09e-daf4-477c-b585-8621021a85f3"),
+                            Id = new Guid("0f267bcf-9505-4bcc-af18-a6b5745b4eff"),
+                            CreatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9071),
+                            ProductSizeTypeId = new Guid("3e13d40c-6b24-4c7f-90fc-d5654e42a2a1"),
                             Sort = 8,
-                            UpdatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(6029),
+                            UpdatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9071),
                             Value = "21"
                         },
                         new
                         {
-                            Id = new Guid("4b9bf4ff-a015-472a-8d07-055de14631ea"),
-                            CreatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(6031),
-                            ProductSizeTypeId = new Guid("91fab09e-daf4-477c-b585-8621021a85f3"),
+                            Id = new Guid("3cab32ec-d258-4ce1-b6b7-062761795066"),
+                            CreatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9074),
+                            ProductSizeTypeId = new Guid("3e13d40c-6b24-4c7f-90fc-d5654e42a2a1"),
                             Sort = 9,
-                            UpdatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(6032),
+                            UpdatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9075),
                             Value = "22"
                         },
                         new
                         {
-                            Id = new Guid("91e72335-942c-4e79-8576-991d08321f3f"),
-                            CreatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(6034),
-                            ProductSizeTypeId = new Guid("91fab09e-daf4-477c-b585-8621021a85f3"),
+                            Id = new Guid("18977de6-5c2d-4c10-b722-5e423af4cfbc"),
+                            CreatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9078),
+                            ProductSizeTypeId = new Guid("3e13d40c-6b24-4c7f-90fc-d5654e42a2a1"),
                             Sort = 10,
-                            UpdatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(6035),
+                            UpdatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9078),
                             Value = "23"
                         },
                         new
                         {
-                            Id = new Guid("fd57a2ff-d49d-4de4-a05e-7d24afef7ae9"),
-                            CreatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(6038),
-                            ProductSizeTypeId = new Guid("91fab09e-daf4-477c-b585-8621021a85f3"),
+                            Id = new Guid("61151ae8-efa6-4daa-b423-95507d5a3b24"),
+                            CreatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9083),
+                            ProductSizeTypeId = new Guid("3e13d40c-6b24-4c7f-90fc-d5654e42a2a1"),
                             Sort = 11,
-                            UpdatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(6039),
+                            UpdatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9083),
                             Value = "24"
                         },
                         new
                         {
-                            Id = new Guid("5d0fa23e-c770-45e7-b33b-37861cce2e72"),
-                            CreatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(6043),
-                            ProductSizeTypeId = new Guid("91fab09e-daf4-477c-b585-8621021a85f3"),
+                            Id = new Guid("2b6f5ec1-15f8-40c9-a826-c136df9309e2"),
+                            CreatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9087),
+                            ProductSizeTypeId = new Guid("3e13d40c-6b24-4c7f-90fc-d5654e42a2a1"),
                             Sort = 12,
-                            UpdatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(6043),
+                            UpdatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9088),
                             Value = "25"
                         },
                         new
                         {
-                            Id = new Guid("f5884774-87f9-4e72-ab46-9a3b370507e4"),
-                            CreatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(6046),
-                            ProductSizeTypeId = new Guid("91fab09e-daf4-477c-b585-8621021a85f3"),
+                            Id = new Guid("0887bf64-78e1-4adc-9f08-10c2d1affd7a"),
+                            CreatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9091),
+                            ProductSizeTypeId = new Guid("3e13d40c-6b24-4c7f-90fc-d5654e42a2a1"),
                             Sort = 13,
-                            UpdatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(6046),
+                            UpdatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9091),
                             Value = "26"
                         },
                         new
                         {
-                            Id = new Guid("b611d421-098c-4bac-8d9a-5d3027e4f608"),
-                            CreatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(6049),
-                            ProductSizeTypeId = new Guid("91fab09e-daf4-477c-b585-8621021a85f3"),
+                            Id = new Guid("e05f210f-2a6e-4e85-af99-f598c0dc3deb"),
+                            CreatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9094),
+                            ProductSizeTypeId = new Guid("3e13d40c-6b24-4c7f-90fc-d5654e42a2a1"),
                             Sort = 14,
-                            UpdatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(6049),
+                            UpdatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9094),
                             Value = "27"
                         },
                         new
                         {
-                            Id = new Guid("dbb46671-45bb-43ab-893d-5d28251db30c"),
-                            CreatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(6052),
-                            ProductSizeTypeId = new Guid("91fab09e-daf4-477c-b585-8621021a85f3"),
+                            Id = new Guid("76e8e6e6-73c3-408b-96c9-1f0d93ab1a08"),
+                            CreatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9098),
+                            ProductSizeTypeId = new Guid("3e13d40c-6b24-4c7f-90fc-d5654e42a2a1"),
                             Sort = 15,
-                            UpdatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(6052),
+                            UpdatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9098),
                             Value = "28"
                         },
                         new
                         {
-                            Id = new Guid("432c79a2-aba1-4e0d-947a-b8f7eaafe7a4"),
-                            CreatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(6055),
-                            ProductSizeTypeId = new Guid("91fab09e-daf4-477c-b585-8621021a85f3"),
+                            Id = new Guid("4f624396-fa8e-4f73-97c9-b4af9a90e84b"),
+                            CreatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9101),
+                            ProductSizeTypeId = new Guid("3e13d40c-6b24-4c7f-90fc-d5654e42a2a1"),
                             Sort = 16,
-                            UpdatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(6055),
+                            UpdatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9101),
                             Value = "29"
                         },
                         new
                         {
-                            Id = new Guid("3ae5e2f5-b7c7-42e4-a656-21f9cd95dafd"),
-                            CreatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(6058),
-                            ProductSizeTypeId = new Guid("91fab09e-daf4-477c-b585-8621021a85f3"),
+                            Id = new Guid("b8e12f0a-f132-4f1a-812c-fe9e1e5edf9d"),
+                            CreatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9104),
+                            ProductSizeTypeId = new Guid("3e13d40c-6b24-4c7f-90fc-d5654e42a2a1"),
                             Sort = 17,
-                            UpdatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(6058),
+                            UpdatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9104),
                             Value = "30"
                         },
                         new
                         {
-                            Id = new Guid("53bbe74c-47e3-4ac1-96eb-4c020a9fed7b"),
-                            CreatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(6061),
-                            ProductSizeTypeId = new Guid("91fab09e-daf4-477c-b585-8621021a85f3"),
+                            Id = new Guid("833bc394-9239-4a1f-9fc8-70880d8fd13c"),
+                            CreatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9107),
+                            ProductSizeTypeId = new Guid("3e13d40c-6b24-4c7f-90fc-d5654e42a2a1"),
                             Sort = 18,
-                            UpdatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(6061),
+                            UpdatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9108),
                             Value = "31"
                         },
                         new
                         {
-                            Id = new Guid("0ee41eb2-172f-4202-942e-c25b62d9fd53"),
-                            CreatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(6064),
-                            ProductSizeTypeId = new Guid("91fab09e-daf4-477c-b585-8621021a85f3"),
+                            Id = new Guid("42a58a83-2d16-43c4-9148-942e18cec4ca"),
+                            CreatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9112),
+                            ProductSizeTypeId = new Guid("3e13d40c-6b24-4c7f-90fc-d5654e42a2a1"),
                             Sort = 19,
-                            UpdatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(6064),
+                            UpdatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9113),
                             Value = "32"
                         },
                         new
                         {
-                            Id = new Guid("435780d2-4638-42cd-be8c-974e042c8e13"),
-                            CreatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(6069),
-                            ProductSizeTypeId = new Guid("91fab09e-daf4-477c-b585-8621021a85f3"),
+                            Id = new Guid("089ef285-6c22-4904-ac18-17a4b9761046"),
+                            CreatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9116),
+                            ProductSizeTypeId = new Guid("3e13d40c-6b24-4c7f-90fc-d5654e42a2a1"),
                             Sort = 20,
-                            UpdatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(6069),
+                            UpdatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9116),
                             Value = "33"
                         },
                         new
                         {
-                            Id = new Guid("11bc1389-570c-439a-a342-c2dac8f8971b"),
-                            CreatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(6073),
-                            ProductSizeTypeId = new Guid("91fab09e-daf4-477c-b585-8621021a85f3"),
+                            Id = new Guid("a9fce661-3230-409c-afe7-bab74375291e"),
+                            CreatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9149),
+                            ProductSizeTypeId = new Guid("3e13d40c-6b24-4c7f-90fc-d5654e42a2a1"),
                             Sort = 21,
-                            UpdatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(6073),
+                            UpdatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9149),
                             Value = "34"
                         },
                         new
                         {
-                            Id = new Guid("fb693e76-56d0-4e25-8120-69dd444ffe21"),
-                            CreatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(6084),
-                            ProductSizeTypeId = new Guid("9fe00ea4-831a-4044-b45b-556c81017fff"),
+                            Id = new Guid("32e1a590-a3a2-4cd1-8fd1-deb4b1ec4a63"),
+                            CreatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9163),
+                            ProductSizeTypeId = new Guid("2870acf6-f145-4714-95b6-168588555c32"),
                             Sort = 1,
-                            UpdatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(6085),
+                            UpdatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9163),
                             Value = "XXS"
                         },
                         new
                         {
-                            Id = new Guid("3eceeef6-9b55-47ce-aed1-af597e6e267e"),
-                            CreatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(6088),
-                            ProductSizeTypeId = new Guid("9fe00ea4-831a-4044-b45b-556c81017fff"),
+                            Id = new Guid("b2a97de3-d669-4ea4-aa2d-1f58ac1a6c63"),
+                            CreatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9167),
+                            ProductSizeTypeId = new Guid("2870acf6-f145-4714-95b6-168588555c32"),
                             Sort = 2,
-                            UpdatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(6088),
+                            UpdatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9167),
                             Value = "XS"
                         },
                         new
                         {
-                            Id = new Guid("3906c06f-add5-4e55-a64a-4085f4d83e99"),
-                            CreatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(6090),
-                            ProductSizeTypeId = new Guid("9fe00ea4-831a-4044-b45b-556c81017fff"),
+                            Id = new Guid("2621d23a-79c4-41d7-bf85-0023ba811934"),
+                            CreatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9170),
+                            ProductSizeTypeId = new Guid("2870acf6-f145-4714-95b6-168588555c32"),
                             Sort = 3,
-                            UpdatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(6091),
+                            UpdatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9170),
                             Value = "S"
                         },
                         new
                         {
-                            Id = new Guid("2a746f95-6ba0-47e9-8c51-fe8988cea2a5"),
-                            CreatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(6093),
-                            ProductSizeTypeId = new Guid("9fe00ea4-831a-4044-b45b-556c81017fff"),
+                            Id = new Guid("810b9982-d05c-45d5-a84e-05288fe9d547"),
+                            CreatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9173),
+                            ProductSizeTypeId = new Guid("2870acf6-f145-4714-95b6-168588555c32"),
                             Sort = 4,
-                            UpdatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(6093),
+                            UpdatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9173),
                             Value = "M"
                         },
                         new
                         {
-                            Id = new Guid("3233fafb-0ce6-4319-a7dd-2e60276ed86d"),
-                            CreatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(6096),
-                            ProductSizeTypeId = new Guid("9fe00ea4-831a-4044-b45b-556c81017fff"),
+                            Id = new Guid("16e5c269-b20c-4ffe-8747-89a1b8d5be62"),
+                            CreatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9176),
+                            ProductSizeTypeId = new Guid("2870acf6-f145-4714-95b6-168588555c32"),
                             Sort = 5,
-                            UpdatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(6096),
+                            UpdatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9176),
                             Value = "L"
                         },
                         new
                         {
-                            Id = new Guid("637938b4-87b2-48c1-b8c7-686b7d5011d6"),
-                            CreatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(6098),
-                            ProductSizeTypeId = new Guid("9fe00ea4-831a-4044-b45b-556c81017fff"),
+                            Id = new Guid("3eff79d1-9b39-43c2-b733-667d6447d405"),
+                            CreatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9181),
+                            ProductSizeTypeId = new Guid("2870acf6-f145-4714-95b6-168588555c32"),
                             Sort = 6,
-                            UpdatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(6099),
+                            UpdatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9181),
                             Value = "XL"
                         },
                         new
                         {
-                            Id = new Guid("28b71614-541b-4f12-9fe6-2f0b5a060166"),
-                            CreatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(6103),
-                            ProductSizeTypeId = new Guid("9fe00ea4-831a-4044-b45b-556c81017fff"),
+                            Id = new Guid("e4ebceb7-02f3-4282-8cb7-376a3cfce266"),
+                            CreatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9183),
+                            ProductSizeTypeId = new Guid("2870acf6-f145-4714-95b6-168588555c32"),
                             Sort = 7,
-                            UpdatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(6103),
+                            UpdatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9184),
                             Value = "XXL"
                         },
                         new
                         {
-                            Id = new Guid("847429c0-c5b6-40b1-968c-bc8ae6438917"),
-                            CreatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(6106),
-                            ProductSizeTypeId = new Guid("9fe00ea4-831a-4044-b45b-556c81017fff"),
+                            Id = new Guid("591391ad-ef0c-46f7-ac01-1123da689ede"),
+                            CreatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9186),
+                            ProductSizeTypeId = new Guid("2870acf6-f145-4714-95b6-168588555c32"),
                             Sort = 8,
-                            UpdatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(6106),
+                            UpdatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9186),
                             Value = "XXXL"
                         },
                         new
                         {
-                            Id = new Guid("c785f10d-ef99-4ab1-b85f-aef5466efff8"),
-                            CreatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(6118),
-                            ProductSizeTypeId = new Guid("b6829a28-318b-46ff-a059-d6f91743f92c"),
+                            Id = new Guid("0a2f330e-d61a-424f-a3bb-0874f03a9162"),
+                            CreatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9202),
+                            ProductSizeTypeId = new Guid("b9c10a10-806c-4db3-94ac-87a9b5657442"),
                             Sort = 1,
-                            UpdatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(6119),
+                            UpdatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9202),
                             Value = "4M"
                         },
                         new
                         {
-                            Id = new Guid("546bc6c2-499a-4a9c-8364-a97e9ff839cf"),
-                            CreatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(6122),
-                            ProductSizeTypeId = new Guid("b6829a28-318b-46ff-a059-d6f91743f92c"),
+                            Id = new Guid("964b412c-d4d7-4e9c-8519-163141fd5093"),
+                            CreatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9205),
+                            ProductSizeTypeId = new Guid("b9c10a10-806c-4db3-94ac-87a9b5657442"),
                             Sort = 2,
-                            UpdatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(6122),
+                            UpdatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9205),
                             Value = "5M"
                         },
                         new
                         {
-                            Id = new Guid("a7958864-e7ed-4028-86c1-fa054efff765"),
-                            CreatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(6124),
-                            ProductSizeTypeId = new Guid("b6829a28-318b-46ff-a059-d6f91743f92c"),
+                            Id = new Guid("5897a1c7-2b4b-420f-9230-484b72f03d68"),
+                            CreatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9207),
+                            ProductSizeTypeId = new Guid("b9c10a10-806c-4db3-94ac-87a9b5657442"),
                             Sort = 3,
-                            UpdatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(6125),
+                            UpdatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9207),
                             Value = "6M"
                         },
                         new
                         {
-                            Id = new Guid("93d695b8-b159-4814-b14a-2ef5b0f81ae2"),
-                            CreatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(6127),
-                            ProductSizeTypeId = new Guid("b6829a28-318b-46ff-a059-d6f91743f92c"),
+                            Id = new Guid("4c2dd2eb-2a83-4424-8d97-d106ccd115d9"),
+                            CreatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9209),
+                            ProductSizeTypeId = new Guid("b9c10a10-806c-4db3-94ac-87a9b5657442"),
                             Sort = 4,
-                            UpdatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(6127),
+                            UpdatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9210),
                             Value = "7M"
                         },
                         new
                         {
-                            Id = new Guid("f747f60a-332a-40a9-adc2-d7bc561ab0ca"),
-                            CreatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(6129),
-                            ProductSizeTypeId = new Guid("b6829a28-318b-46ff-a059-d6f91743f92c"),
+                            Id = new Guid("b96b3380-5333-42f8-9a04-41474ee6fcc6"),
+                            CreatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9212),
+                            ProductSizeTypeId = new Guid("b9c10a10-806c-4db3-94ac-87a9b5657442"),
                             Sort = 5,
-                            UpdatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(6129),
+                            UpdatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9212),
                             Value = "8M"
                         },
                         new
                         {
-                            Id = new Guid("ed386f36-afd7-4822-a902-aa633cd79a4c"),
-                            CreatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(6132),
-                            ProductSizeTypeId = new Guid("b6829a28-318b-46ff-a059-d6f91743f92c"),
+                            Id = new Guid("4d6be206-95b2-4401-9ac6-d4471da04fd0"),
+                            CreatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9216),
+                            ProductSizeTypeId = new Guid("b9c10a10-806c-4db3-94ac-87a9b5657442"),
                             Sort = 6,
-                            UpdatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(6132),
+                            UpdatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9216),
                             Value = "10M"
                         },
                         new
                         {
-                            Id = new Guid("59fe5558-31ce-4f4b-bd37-1e29fa505ca4"),
-                            CreatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(6136),
-                            ProductSizeTypeId = new Guid("b6829a28-318b-46ff-a059-d6f91743f92c"),
+                            Id = new Guid("b807319d-684d-4dec-aeb2-12e1d87fc6f7"),
+                            CreatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9218),
+                            ProductSizeTypeId = new Guid("b9c10a10-806c-4db3-94ac-87a9b5657442"),
                             Sort = 7,
-                            UpdatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(6136),
+                            UpdatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9219),
                             Value = "12M"
                         },
                         new
                         {
-                            Id = new Guid("b5cc9ac6-c4ee-4b03-bd99-e955aa0adf52"),
-                            CreatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(6156),
-                            ProductSizeTypeId = new Guid("b6829a28-318b-46ff-a059-d6f91743f92c"),
+                            Id = new Guid("2cf00f74-908b-43dd-b5b2-87b20dbe3d32"),
+                            CreatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9221),
+                            ProductSizeTypeId = new Guid("b9c10a10-806c-4db3-94ac-87a9b5657442"),
                             Sort = 8,
-                            UpdatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(6157),
+                            UpdatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9221),
                             Value = "16M"
                         },
                         new
                         {
-                            Id = new Guid("10a8a0b4-de2c-4102-89b8-7301251eb5b9"),
-                            CreatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(6159),
-                            ProductSizeTypeId = new Guid("b6829a28-318b-46ff-a059-d6f91743f92c"),
+                            Id = new Guid("25fc86e4-19e2-47ab-933d-3b5835133ebd"),
+                            CreatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9223),
+                            ProductSizeTypeId = new Guid("b9c10a10-806c-4db3-94ac-87a9b5657442"),
                             Sort = 9,
-                            UpdatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(6159),
+                            UpdatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9223),
                             Value = "24M"
                         },
                         new
                         {
-                            Id = new Guid("9fbed59f-ec7a-47b9-9bb6-1e11c92b9021"),
-                            CreatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(6162),
-                            ProductSizeTypeId = new Guid("b6829a28-318b-46ff-a059-d6f91743f92c"),
+                            Id = new Guid("fd9956c7-c37c-4fdb-ad4d-8c78da5d4350"),
+                            CreatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9225),
+                            ProductSizeTypeId = new Guid("b9c10a10-806c-4db3-94ac-87a9b5657442"),
                             Sort = 10,
-                            UpdatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(6162),
+                            UpdatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9226),
                             Value = "3Y/A"
                         },
                         new
                         {
-                            Id = new Guid("48d87eb4-66fc-4f69-9d91-90866b4878ef"),
-                            CreatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(6165),
-                            ProductSizeTypeId = new Guid("b6829a28-318b-46ff-a059-d6f91743f92c"),
+                            Id = new Guid("c2546685-c950-498c-bbb7-f560bf0cec72"),
+                            CreatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9228),
+                            ProductSizeTypeId = new Guid("b9c10a10-806c-4db3-94ac-87a9b5657442"),
                             Sort = 11,
-                            UpdatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(6165),
+                            UpdatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9228),
                             Value = "4Y/A"
                         },
                         new
                         {
-                            Id = new Guid("4de9d124-4c5e-45d8-9edc-e4b301c9f822"),
-                            CreatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(6167),
-                            ProductSizeTypeId = new Guid("b6829a28-318b-46ff-a059-d6f91743f92c"),
+                            Id = new Guid("7be0770b-23b6-4049-974b-513e70cf2428"),
+                            CreatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9230),
+                            ProductSizeTypeId = new Guid("b9c10a10-806c-4db3-94ac-87a9b5657442"),
                             Sort = 12,
-                            UpdatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(6167),
+                            UpdatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9230),
                             Value = "5Y/A"
                         },
                         new
                         {
-                            Id = new Guid("3c187a23-ba5c-471f-bfe6-92f8e00b56f3"),
-                            CreatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(6170),
-                            ProductSizeTypeId = new Guid("b6829a28-318b-46ff-a059-d6f91743f92c"),
+                            Id = new Guid("24cecfc4-9827-4ebf-9120-ccd0a332f66a"),
+                            CreatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9233),
+                            ProductSizeTypeId = new Guid("b9c10a10-806c-4db3-94ac-87a9b5657442"),
                             Sort = 13,
-                            UpdatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(6170),
+                            UpdatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9233),
                             Value = "6Y/A"
                         },
                         new
                         {
-                            Id = new Guid("8c475d22-07d7-44f6-9659-29d77a31b58d"),
-                            CreatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(6172),
-                            ProductSizeTypeId = new Guid("b6829a28-318b-46ff-a059-d6f91743f92c"),
+                            Id = new Guid("cda752be-8933-4fb5-9737-ad00f45bc130"),
+                            CreatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9237),
+                            ProductSizeTypeId = new Guid("b9c10a10-806c-4db3-94ac-87a9b5657442"),
                             Sort = 14,
-                            UpdatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(6172),
+                            UpdatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9237),
                             Value = "7Y/A"
                         },
                         new
                         {
-                            Id = new Guid("3abcf5bb-3582-4336-840e-948ef1fb768f"),
-                            CreatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(6176),
-                            ProductSizeTypeId = new Guid("b6829a28-318b-46ff-a059-d6f91743f92c"),
+                            Id = new Guid("71ce9e4c-012e-4591-90bd-1c0c6b1c32d1"),
+                            CreatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9239),
+                            ProductSizeTypeId = new Guid("b9c10a10-806c-4db3-94ac-87a9b5657442"),
                             Sort = 15,
-                            UpdatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(6176),
+                            UpdatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9239),
                             Value = "8Y/A"
                         },
                         new
                         {
-                            Id = new Guid("51976a5b-294a-4e01-b82c-1472df1f61bf"),
-                            CreatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(6179),
-                            ProductSizeTypeId = new Guid("b6829a28-318b-46ff-a059-d6f91743f92c"),
+                            Id = new Guid("51291fb1-6bd2-46a7-aaa8-f294431e2527"),
+                            CreatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9241),
+                            ProductSizeTypeId = new Guid("b9c10a10-806c-4db3-94ac-87a9b5657442"),
                             Sort = 16,
-                            UpdatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(6179),
+                            UpdatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9241),
                             Value = "9Y/A"
                         },
                         new
                         {
-                            Id = new Guid("acb75a1e-2f2c-4dd8-a06f-489bfb771205"),
-                            CreatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(6181),
-                            ProductSizeTypeId = new Guid("b6829a28-318b-46ff-a059-d6f91743f92c"),
+                            Id = new Guid("2a5ad503-2b8a-49b1-83a8-4dd8d34ec031"),
+                            CreatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9243),
+                            ProductSizeTypeId = new Guid("b9c10a10-806c-4db3-94ac-87a9b5657442"),
                             Sort = 17,
-                            UpdatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(6181),
+                            UpdatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9243),
                             Value = "10Y/A"
                         },
                         new
                         {
-                            Id = new Guid("913cd9cc-ac68-4709-ae5b-ac51334d09a8"),
-                            CreatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(6184),
-                            ProductSizeTypeId = new Guid("b6829a28-318b-46ff-a059-d6f91743f92c"),
+                            Id = new Guid("ba2094e7-4640-4eef-b6c2-edaffd3bfc49"),
+                            CreatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9245),
+                            ProductSizeTypeId = new Guid("b9c10a10-806c-4db3-94ac-87a9b5657442"),
                             Sort = 18,
-                            UpdatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(6184),
+                            UpdatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9246),
                             Value = "11Y/A"
                         },
                         new
                         {
-                            Id = new Guid("d73b277b-22ec-4b30-9d64-6a891ca5509e"),
-                            CreatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(6186),
-                            ProductSizeTypeId = new Guid("b6829a28-318b-46ff-a059-d6f91743f92c"),
+                            Id = new Guid("ace2c2fa-974d-4766-aa5e-c5abb09baf08"),
+                            CreatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9248),
+                            ProductSizeTypeId = new Guid("b9c10a10-806c-4db3-94ac-87a9b5657442"),
                             Sort = 19,
-                            UpdatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(6186),
+                            UpdatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9248),
                             Value = "12Y/A"
                         },
                         new
                         {
-                            Id = new Guid("ad79f158-8db8-4aac-b17a-c70e6b684adb"),
-                            CreatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(6189),
-                            ProductSizeTypeId = new Guid("b6829a28-318b-46ff-a059-d6f91743f92c"),
+                            Id = new Guid("91c9a320-b6e6-4c3f-bd4b-6c0b257d599d"),
+                            CreatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9250),
+                            ProductSizeTypeId = new Guid("b9c10a10-806c-4db3-94ac-87a9b5657442"),
                             Sort = 20,
-                            UpdatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(6189),
+                            UpdatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9250),
                             Value = "13Y/A"
                         },
                         new
                         {
-                            Id = new Guid("5a11cc7c-8a7e-488a-9ca5-6d9b253d0080"),
-                            CreatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(6191),
-                            ProductSizeTypeId = new Guid("b6829a28-318b-46ff-a059-d6f91743f92c"),
+                            Id = new Guid("238011d4-bdba-4f0f-b8d4-e0a484d8c859"),
+                            CreatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9252),
+                            ProductSizeTypeId = new Guid("b9c10a10-806c-4db3-94ac-87a9b5657442"),
                             Sort = 21,
-                            UpdatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(6191),
+                            UpdatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9252),
                             Value = "14Y/A"
                         },
                         new
                         {
-                            Id = new Guid("28169b5e-3fee-4af0-8cc1-1a4d2fb5faf1"),
-                            CreatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(6194),
-                            ProductSizeTypeId = new Guid("b6829a28-318b-46ff-a059-d6f91743f92c"),
+                            Id = new Guid("26fd8fa0-e4c0-4909-8fc3-059bfc8a46ce"),
+                            CreatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9256),
+                            ProductSizeTypeId = new Guid("b9c10a10-806c-4db3-94ac-87a9b5657442"),
                             Sort = 22,
-                            UpdatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(6194),
+                            UpdatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9256),
                             Value = "15Y/A"
                         },
                         new
                         {
-                            Id = new Guid("52ad1ac7-5dd2-4bfc-8317-729258f616e4"),
-                            CreatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(6198),
-                            ProductSizeTypeId = new Guid("b6829a28-318b-46ff-a059-d6f91743f92c"),
+                            Id = new Guid("3594dfbe-ae5c-4be6-ab0e-fd67134bf2ff"),
+                            CreatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9258),
+                            ProductSizeTypeId = new Guid("b9c10a10-806c-4db3-94ac-87a9b5657442"),
                             Sort = 23,
-                            UpdatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(6198),
+                            UpdatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(9259),
                             Value = "16Y/A"
                         });
                 });
@@ -1445,38 +1460,38 @@ namespace Troonch.RetailSales.Product.DataAccess.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("b6829a28-318b-46ff-a059-d6f91743f92c"),
-                            CreatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(5827),
+                            Id = new Guid("b9c10a10-806c-4db3-94ac-87a9b5657442"),
+                            CreatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(8849),
                             Name = "Abiti - Completi - Vestiti - Bambino/a",
-                            UpdatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(5827)
+                            UpdatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(8849)
                         },
                         new
                         {
-                            Id = new Guid("9fe00ea4-831a-4044-b45b-556c81017fff"),
-                            CreatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(5830),
+                            Id = new Guid("2870acf6-f145-4714-95b6-168588555c32"),
+                            CreatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(8852),
                             Name = "Abiti - Vestiti - Uomo/Donna",
-                            UpdatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(5830)
+                            UpdatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(8852)
                         },
                         new
                         {
-                            Id = new Guid("e9424a4f-c953-4a93-ba77-bfbe21ae43e7"),
-                            CreatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(5832),
+                            Id = new Guid("bac9f80e-c261-4d89-8124-9a5c52819828"),
+                            CreatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(8854),
                             Name = "Accessori",
-                            UpdatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(5832)
+                            UpdatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(8854)
                         },
                         new
                         {
-                            Id = new Guid("91fab09e-daf4-477c-b585-8621021a85f3"),
-                            CreatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(5833),
+                            Id = new Guid("3e13d40c-6b24-4c7f-90fc-d5654e42a2a1"),
+                            CreatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(8885),
                             Name = "Scarpe Bambino/a",
-                            UpdatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(5833)
+                            UpdatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(8885)
                         },
                         new
                         {
-                            Id = new Guid("30622354-36db-4221-9903-d3a633b25b26"),
-                            CreatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(5835),
+                            Id = new Guid("519c79e9-5444-4109-bec6-44eec7235ba5"),
+                            CreatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(8889),
                             Name = "Scarpe Uomo/Donna",
-                            UpdatedOn = new DateTime(2024, 7, 7, 10, 34, 51, 230, DateTimeKind.Utc).AddTicks(5835)
+                            UpdatedOn = new DateTime(2024, 7, 10, 6, 32, 7, 135, DateTimeKind.Utc).AddTicks(8889)
                         });
                 });
 
@@ -1561,6 +1576,25 @@ namespace Troonch.RetailSales.Product.DataAccess.Migrations
                     b.Navigation("ProductSizeType");
                 });
 
+            modelBuilder.Entity("Troonch.Sales.Domain.Entities.ProductGenderSizeTypeLookup", b =>
+                {
+                    b.HasOne("Troonch.Sales.Domain.Entities.ProductGender", "ProductGender")
+                        .WithMany("ProductSizeTypes")
+                        .HasForeignKey("ProductGenderId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Troonch.Sales.Domain.Entities.ProductSizeType", "ProductSizeType")
+                        .WithMany("ProductGenders")
+                        .HasForeignKey("ProductSizeTypeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("ProductGender");
+
+                    b.Navigation("ProductSizeType");
+                });
+
             modelBuilder.Entity("Troonch.Sales.Domain.Entities.ProductItem", b =>
                 {
                     b.HasOne("Troonch.Sales.Domain.Entities.Product", "Product")
@@ -1629,6 +1663,8 @@ namespace Troonch.RetailSales.Product.DataAccess.Migrations
 
             modelBuilder.Entity("Troonch.Sales.Domain.Entities.ProductGender", b =>
                 {
+                    b.Navigation("ProductSizeTypes");
+
                     b.Navigation("Products");
                 });
 
@@ -1645,6 +1681,8 @@ namespace Troonch.RetailSales.Product.DataAccess.Migrations
             modelBuilder.Entity("Troonch.Sales.Domain.Entities.ProductSizeType", b =>
                 {
                     b.Navigation("ProductCategories");
+
+                    b.Navigation("ProductGenders");
 
                     b.Navigation("ProductSizeOptions");
                 });
