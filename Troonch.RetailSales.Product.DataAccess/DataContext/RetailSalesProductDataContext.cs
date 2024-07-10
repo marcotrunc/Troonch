@@ -19,6 +19,7 @@ namespace Troonch.Sales.DataAccess
         public DbSet<ProductMaterial> ProductMaterials { get; set; }
         public DbSet<ProductSizeOption> ProductSizeOptions { get; set; }
         public DbSet<ProductSizeType> ProductSizeTypes { get; set; }
+        public DbSet<ProductGenderSizeTypeLookup> ProductGenderSizeTypeLookup { get; set; }
         public DbSet<ProductTag> ProductTag { get; set; }
         public DbSet<ProductTag> ProductTagLookup { get; set; }
 
