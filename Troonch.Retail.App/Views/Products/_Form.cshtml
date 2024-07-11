@@ -37,13 +37,14 @@
 
             <div class="form-group col-12 col-md-6">
                 @Html.LabelFor(m => m.ProductGenderId, "Sesso")
-                @Html.DropDownListFor(m => m.ProductGenderId, new SelectList(ViewBag.Genders, "Id", "Name"), new { @class = "col-md-6 form-control", @id = "gender" })
+                @Html.DropDownListFor(m => m.ProductGenderId, new SelectList(ViewBag.Genders, "Id", "Name", null),"",new { @class = "col-md-6 form-control", @id = "gender", @onchange = $"updateCategoriesOptionsByGender(this,{@Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(ViewBag.GenderSizeTypes))},{@Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(ViewBag.Categories))})" })
                 @Html.ValidationMessageFor(m => m.ProductGenderId, "", new { @class = "text-danger mt-1 my-2 ms-1 d-block error-message", data_error = "productgenderid" })
             </div>
             
             <div class="form-group col-12 col-md-6">
                 @Html.LabelFor(m => m.ProductCategoryId, "Categoria")
-                @Html.DropDownListFor(m => m.ProductCategoryId, new SelectList(ViewBag.Categories,"Id","Name"), new {@class="col-md-6 form-control", @id="category"} )
+                @Html.DropDownListFor(m => m.ProductCategoryId, new SelectList(new List<dynamic>(), "Id", "Name", null), "", new { @class = "col-md-6 form-control", @id = "category-empty" })
+                @Html.DropDownListFor(m => m.ProductCategoryId, new SelectList(ViewBag.Categories, "Id", "Name"), new { @class = "col-md-6 form-control d-none", @id = "category" })
                 @Html.ValidationMessageFor(m => m.ProductCategoryId,"", new { @class="text-danger mt-1 my-2 ms-1 d-block error-message", data_error="productcategoryid"})
             </div>
 
@@ -81,6 +82,8 @@
             </div>
         }
 </div>
+
+
 
 
 
