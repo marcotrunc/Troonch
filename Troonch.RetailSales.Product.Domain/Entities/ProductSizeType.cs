@@ -12,7 +12,6 @@ namespace Troonch.Sales.Domain.Entities
         #region Navigation Properties
         public ICollection<ProductSizeOption> ProductSizeOptions { get; set; } = new List<ProductSizeOption>();
         public ICollection<ProductCategory> ProductCategories { get; set; } = new List<ProductCategory>();
-        public List<ProductGenderSizeTypeLookup> ProductGenders { get; } = new List<ProductGenderSizeTypeLookup>();
         #endregion
     }
 }

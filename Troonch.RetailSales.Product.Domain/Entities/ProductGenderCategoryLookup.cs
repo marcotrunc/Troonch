@@ -2,14 +2,14 @@
 
 namespace Troonch.Sales.Domain.Entities
 {
-    public class ProductGenderSizeTypeLookup 
+    public class ProductGenderCategoryLookup 
     {
         public Guid ProductGenderId { get; set; }
-        public Guid ProductSizeTypeId { get; set; }
+        public Guid ProductCategoryId { get; set; }
 
         #region Navigation Properties
         public ProductGender ProductGender { get; set; }
-        public ProductSizeType ProductSizeType { get; set; }
+        public ProductCategory ProductCategory { get; set; }
         #endregion
     }
 }

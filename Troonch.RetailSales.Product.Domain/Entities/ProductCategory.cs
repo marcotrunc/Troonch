@@ -13,6 +13,7 @@ namespace Troonch.Sales.Domain.Entities
         #region Navigation Properties
         public ProductSizeType ProductSizeType { get; set; }
         public ICollection<Product> Products { get; set; } = new List<Product>();
+        public List<ProductGenderCategoryLookup> ProductGenders { get; } = new List<ProductGenderCategoryLookup>();
         #endregion
     }
 }
