@@ -19,7 +19,7 @@ public class ProductGenderConfiguration : BaseEntityConfiguration<ProductGender>
             .HasForeignKey(pg => pg.ProductGenderId)
             .IsRequired();
 
-        builder.HasMany(pg => pg.ProductSizeTypes)
+        builder.HasMany(pg => pg.ProductCategories)
             .WithOne(psl =>psl.ProductGender)
             .HasForeignKey(psl => psl.ProductGenderId)
             .IsRequired();

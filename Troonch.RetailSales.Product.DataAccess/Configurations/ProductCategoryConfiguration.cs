@@ -29,6 +29,11 @@ namespace Troonch.Sales.DataAccess.Configurations
                 .HasForeignKey(p => p.ProductCategoryId)
                 .IsRequired()
                 .OnDelete(Microsoft.EntityFrameworkCore.DeleteBehavior.NoAction);
+
+            builder.HasMany(pc => pc.ProductGenders)
+                .WithOne(pgc => pgc.ProductCategory)
+                .HasForeignKey(pgc => pgc.ProductCategoryId)
+                .IsRequired();
         }
     }
 }
