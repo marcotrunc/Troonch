@@ -36,7 +36,7 @@ public class ProductCategoryServices
 
 
         var productCategoriesMapped = productCategories.Select(pc => new ProductCategoryResponseDTO
-        { Id = pc.Id, Name = pc.Name, ProductSizeTypeId = pc.ProductSizeTypeId, ProductSizeTypeName = pc.ProductSizeType.Name, CreatedOn = pc.CreatedOn, UpdatedOn = pc.UpdatedOn });
+        { Id = pc.Id, Name = pc.Name, ProductSizeTypeId = pc.ProductSizeTypeId, ProductSizeTypeName = pc.ProductSizeType.Name, CreatedOn = pc.CreatedOn, UpdatedOn = pc.UpdatedOn, ProductGenders = pc.ProductGenders.Select(item => item.ProductGenderId).Distinct().ToList()  });
 
 
         return PagedList<ProductCategoryResponseDTO>.Create(productCategoriesMapped, page ,pagesize); 

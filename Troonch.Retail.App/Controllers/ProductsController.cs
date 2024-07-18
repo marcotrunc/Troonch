@@ -8,6 +8,7 @@ using Troonch.Retail.App.Models;
 using Troonch.RetailSales.Product.Application.Services;
 using Troonch.RetailSales.Product.Domain.DTOs.Requests;
 using Troonch.RetailSales.Product.Domain.DTOs.Responses;
+using Troonch.Sales.Domain.Entities;
 
 namespace Troonch.Retail.App.Controllers
 {
@@ -21,6 +22,7 @@ namespace Troonch.Retail.App.Controllers
         private readonly ProductCategoryServices _categoryService;
         private readonly ProductGenderService _productGenderService;
         private readonly ProductMaterialService _productMaterialService;
+        private readonly ProductGenderCategoryService _productGenderCategoryService;
 
         [ActivatorUtilitiesConstructor]
         public ProductsController(
@@ -29,7 +31,8 @@ namespace Troonch.Retail.App.Controllers
                                     ProductBrandService brandService,
                                     ProductCategoryServices categoryService,
                                     ProductGenderService productGenderService,
-                                    ProductMaterialService productMaterialService)
+                                    ProductMaterialService productMaterialService,
+                                    ProductGenderCategoryService productGenderCategoryService)
         {
             _logger = logger;
             _productService = productService;
@@ -37,6 +40,7 @@ namespace Troonch.Retail.App.Controllers
             _categoryService = categoryService;
             _productGenderService = productGenderService;
             _productMaterialService = productMaterialService;
+            _productGenderCategoryService = productGenderCategoryService;
         }
 
 
@@ -110,6 +114,7 @@ namespace Troonch.Retail.App.Controllers
                 if (!String.IsNullOrEmpty(id))
                 {
                     productModel = await _productService.GetProductByIdForUpdateAsync(Guid.Parse(id));
+                    await InserCategorySelectedInViewBag(productModel.ProductCategoryId);
                 }
 
                 return PartialView("_Form", productModel);
@@ -240,7 +245,24 @@ namespace Troonch.Retail.App.Controllers
             ViewBag.Categories = categories.Collections.OrderBy(c => c.Name);
 
             ViewBag.Genders = await _productGenderService.GetProductGendersAsync();
+
+
             ViewBag.Materials = await _productMaterialService.GetAllProductMaterialAsync();
+            var genderCategories = await _productGenderCategoryService.GetProductGenderCategoriesAsync();
+            ViewBag.GenderCategories = genderCategories.Select(gc => new { ProductGenderId = gc.ProductGenderId, ProductCategoryId = gc.ProductCategoryId });
+        }
+        
+        private async Task InserCategorySelectedInViewBag(Guid categoryId)
+        {
+            var categoriesViewBag = new List<ProductCategoryResponseDTO>();
+            var category = await _categoryService.GetProductCategoryByIdAsync(categoryId);
+
+            if (category != null) 
+            { 
+                categoriesViewBag.Add(category);
+            }
+
+            ViewBag.Categories = categoriesViewBag;
         }
     }
 }

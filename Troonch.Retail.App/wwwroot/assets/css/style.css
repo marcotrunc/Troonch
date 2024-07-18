@@ -10523,7 +10523,7 @@ progress {
 .form-control:disabled, .typeahead:disabled,
 .tt-query:disabled,
 .tt-hint:disabled, .select2-container--default .select2-selection--single .select2-search__field:disabled, .select2-container--default .select2-selection--single:disabled {
-  background-color: var(--bs-secondary-bg);
+  background-color: var(--bs-gray-100);
   opacity: 1;
 }
 .form-control::file-selector-button, .typeahead::file-selector-button,
@@ -10552,7 +10552,7 @@ progress {
 .form-control:hover:not(:disabled):not([readonly])::file-selector-button, .typeahead:hover:not(:disabled):not([readonly])::file-selector-button,
 .tt-query:hover:not(:disabled):not([readonly])::file-selector-button,
 .tt-hint:hover:not(:disabled):not([readonly])::file-selector-button, .select2-container--default .select2-selection--single .select2-search__field:hover:not(:disabled):not([readonly])::file-selector-button, .select2-container--default .select2-selection--single:hover:not(:disabled):not([readonly])::file-selector-button {
-  background-color: var(--bs-secondary-bg);
+    background-color: var(--bs-gray-100);
 }
 
 .form-control-plaintext {
@@ -10667,7 +10667,7 @@ textarea.form-control-lg {
   background-image: none;
 }
 .form-select:disabled {
-  background-color: var(--bs-secondary-bg);
+    background-color: var(--bs-gray-100);
 }
 .form-select:-moz-focusring {
   color: transparent;

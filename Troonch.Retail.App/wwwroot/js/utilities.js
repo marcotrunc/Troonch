@@ -62,9 +62,12 @@ const disableForm = (id) => {
     [...form.elements].forEach(input => input.disabled = true);
 }
 
-const enableForm = (id) => {
+const enableForm = (id, fieldIdToNotDisable = []) => {
     const form = document.getElementById(id);
-    [...form.elements].forEach(input => input.disabled = false);
+    console.log([...form.elements].filter(element => !fieldIdToNotDisable.includes(element.id)));
+    [...form.elements]
+        .filter(element => !fieldIdToNotDisable.includes(element.id))
+        .forEach(input => input.disabled = false);
 } 
 
 const setPayloadFromFormData = (formData) => {
@@ -138,7 +141,7 @@ const renderHTML = async (action, containerId, modalId = null) => {
 }
 
 
-const handleRequestInError = async (response, formId = null) => {
+const handleRequestInError = async (response, formId = null, fieldIdToNotDisable = []) => {
     const errorResult = await response.json();
 
     if (!errorResult) {
@@ -147,7 +150,7 @@ const handleRequestInError = async (response, formId = null) => {
 
     if (formId != null && response.status == errorCodes.validation) {
         showNotification(true);
-        enableForm(formId);
+        enableForm(formId, fieldIdToNotDisable);
         return showErrors(errorResult.error)
     }
 
@@ -158,7 +161,7 @@ const handleRequestInError = async (response, formId = null) => {
     showNotification(true, errorResult.error.message);
 
     if (formId != null) {
-        enableForm(formId);
+        enableForm(formId, fieldIdToNotDisable);
     }
     
 }

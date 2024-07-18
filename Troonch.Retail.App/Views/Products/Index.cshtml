@@ -158,7 +158,7 @@
         }
 
 
-        const updateCategoriesOptionsByGender = (element, productGenderSizeTypesLookup, categories) => {
+        const updateCategoriesOptionsByGender = (element, productGenderCategoriesLookup, categories) => {
 
             const genderDropdown = document.getElementById('gender');
             const categoryEmpty = document.getElementById('category-empty');
@@ -172,9 +172,10 @@
                 return;
             }
 
-            const sizeTypesByGender = productGenderSizeTypesLookup.filter(item => item.ProductGenderId == selectedGenderId).map(item => item.ProductSizeTypeId);
+            const cateogoriesByGenderId = productGenderCategoriesLookup.filter(item => item.ProductGenderId == selectedGenderId).map(item => item.ProductCategoryId);
 
-            const categoriesFiltered = categories.filter(category => sizeTypesByGender.includes(category.ProductSizeTypeId));
+
+            const categoriesFiltered = categories.filter(category => cateogoriesByGenderId.includes(category.Id));
 
             categoryDropdown.innerHTML = '';
 

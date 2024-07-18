@@ -6,6 +6,7 @@ using Troonch.Application.Base.Utilities;
 using Troonch.Domain.Base.DTOs.Response;
 using Troonch.RetailSales.Product.Application.Services;
 using Troonch.RetailSales.Product.Domain.DTOs.Requests;
+using Troonch.Sales.Domain.Entities;
 
 namespace Troonch.RetailSales.Product.Presentation.Controllers;
 
@@ -15,14 +16,17 @@ public class CategoriesController : Controller
     private readonly ILogger<CategoriesController> _logger;
     private readonly ProductCategoryServices _productCategoryServices;
     private readonly ProductSizeTypeService _productSizeTypesService;
+    private readonly ProductGenderCategoryService _productGenderCategoryService;
     public CategoriesController(
             ILogger<CategoriesController> logger,
             ProductCategoryServices productCategoryServices,
-            ProductSizeTypeService productSizeTypesService)
+            ProductSizeTypeService productSizeTypesService,
+            ProductGenderCategoryService productGenderCategoryService)
     {
         _logger = logger;
         _productCategoryServices = productCategoryServices;
         _productSizeTypesService = productSizeTypesService;
+        _productGenderCategoryService = productGenderCategoryService;
     }
 
     [HttpGet]
@@ -93,6 +97,8 @@ public class CategoriesController : Controller
 
         try
         {
+            categoryModel.Id = Guid.NewGuid();
+
             var isCategoryAdded = await _productCategoryServices.AddProductCategoryAsync(categoryModel);
             responseModel.Data = isCategoryAdded;
 
@@ -101,6 +107,18 @@ public class CategoriesController : Controller
                 throw new Exception(nameof(isCategoryAdded));
             }
 
+            Guid categoryIdToHandle = categoryModel.Id ?? throw new ArgumentException(nameof(categoryModel.Id));
+
+            var isProductGendersAdded = await _productGenderCategoryService
+                                                .HandleProductGenderCategoriesByCatgoryId(
+                                                    categoryIdToHandle,
+                                                    categoryModel.Genders.Select(g => new ProductGenderCategoryLookup { ProductGenderId = categoryIdToHandle, ProductCategoryId = g }).ToList());
+                
+
+            if (!isProductGendersAdded)
+            {
+                throw new Exception(nameof(isProductGendersAdded));
+            }
 
             return StatusCode(200, responseModel);
         }
@@ -121,7 +139,6 @@ public class CategoriesController : Controller
         catch (Exception ex)
         {
             _logger.LogError($"CategoriesController::Create POST -> {ex.Message}");
-            _logger.LogError($"ProductItemsController::Create -> {ex.Message}");
             responseModel.Status = ResponseStatus.Error.ToString();
             responseModel.Error.Message = "Internal Server Error";
             return StatusCode(500, responseModel);

@@ -26,11 +26,13 @@
             body: jsonData
         })
 
+        const fieldsToNoEnable = ["category", "gender"];
+
         if (!response.ok) {
-            return await handleRequestInError(response, formId);
+            return await handleRequestInError(response, formId, fieldsToNoEnable);
         }
 
-        enableForm(formId);
+        enableForm(formId, fieldsToNoEnable);
         showNotification(false);
 
 

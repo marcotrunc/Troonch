@@ -102,5 +102,38 @@
             await renderHTML(`@Url.Action("GetProductForm","Products", new {@id= Model.Id})`, 'product-form-container');
             await renderHTML(`@Url.Action("Index","Items", new {@productId= Model.Id})`, 'product-item-list-container');
         }); 
+
+
+        const updateCategoriesOptionsByGender = (element, productGenderCategoriesLookup, categories) => {
+
+            const genderDropdown = document.getElementById('gender');
+            const categoryEmpty = document.getElementById('category-empty');
+            let categoryDropdown = document.getElementById('category');
+
+            const selectedGenderId = element.value;
+
+            if (!selectedGenderId || selectedGenderId == "") {
+                categoryEmpty.classList.remove('d-none')
+                categoryDropdown.classList.add('d-none')
+                return;
+            }
+
+            const cateogoriesByGenderId = productGenderCategoriesLookup.filter(item => item.ProductGenderId == selectedGenderId).map(item => item.ProductCategoryId);
+
+
+            const categoriesFiltered = categories.filter(category => cateogoriesByGenderId.includes(category.Id));
+
+            categoryDropdown.innerHTML = '';
+
+            categoriesFiltered.forEach((category) => {
+                var option = document.createElement('option');
+                option.value = category.Id;
+                option.text = category.Name;
+                categoryDropdown.appendChild(option);
+            });
+
+            categoryEmpty.classList.add('d-none')
+            categoryDropdown.classList.remove('d-none')
+        }
     </script>
 }

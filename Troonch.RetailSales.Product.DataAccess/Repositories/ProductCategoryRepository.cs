@@ -31,7 +31,8 @@ public sealed class ProductCategoryRepository : BaseRepository<ProductCategory, 
         IQueryable<ProductCategory> productCategoryQuery = _dbContext.ProductCategories
             .AsNoTracking()
             .OrderByDescending(pc => pc.UpdatedOn)
-            .Include(pc => pc.ProductSizeType);
+            .Include(pc => pc.ProductSizeType)
+            .Include(pc => pc.ProductGenders);
 
         if (!String.IsNullOrWhiteSpace(searchTerm)) 
         {
