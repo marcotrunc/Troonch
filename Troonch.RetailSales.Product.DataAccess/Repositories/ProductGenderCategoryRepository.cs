@@ -46,12 +46,18 @@ public sealed class ProductGenderCategoryRepository : IProductGenderCategoryRepo
             .ToListAsync();
     }
 
+    public async Task AddAsync(List<ProductGenderCategoryLookup> productGenderCategoryLookups)
+    {
+        await _dbContext.ProductGenderCategoryLookup
+            .AddRangeAsync(productGenderCategoryLookups);
+    }
+
     public void Delete(ProductGenderCategoryLookup productGenderCategoryLookup)
     {
         _dbContext.ProductGenderCategoryLookup.Remove(productGenderCategoryLookup);
     }
 
-    public async Task BulkDeleteByCategoryId(Guid categoryId)
+    public async Task BulkDeleteByCategoryIdAsync(Guid categoryId)
     {
 
         if (categoryId == Guid.Empty)
@@ -64,7 +70,7 @@ public sealed class ProductGenderCategoryRepository : IProductGenderCategoryRepo
             .ExecuteDeleteAsync();
     }
 
-    public async Task BulkDeleteByGenderId(Guid genderId)
+    public async Task BulkDeleteByGenderIdAsync(Guid genderId)
     {
 
         if (genderId == Guid.Empty)
@@ -77,4 +83,6 @@ public sealed class ProductGenderCategoryRepository : IProductGenderCategoryRepo
             .Where(pgcl => pgcl.ProductGenderId.Equals(genderId))
             .ExecuteDeleteAsync();
     }
+
+    
 }
