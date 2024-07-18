@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
 using System.Reflection;
 using Troonch.Sales.Domain.Entities;
 using static System.Reflection.Metadata.BlobBuilder;
@@ -138,52 +139,6 @@ namespace Troonch.Sales.DataAccess
             }
 
             modelBuilder.Entity<ProductSizeType>().HasData(productSizeTypes);
-            #endregion
-
-            #region ProductGenderSizeTypeLookup Seeding
-            var productGenderSizeTypes = new List<ProductGenderSizeTypeLookup>();
-
-            foreach (var sizeType in productSizeTypes)
-            {
-                if (sizeType.Name.Contains("Bambino/a"))
-                {
-                    var productGenderSizeTypeBoy = new ProductGenderSizeTypeLookup();
-                    productGenderSizeTypeBoy.ProductSizeTypeId = sizeType.Id;
-                    productGenderSizeTypeBoy.ProductGenderId = productGenders.Where(pg => pg.Name.Contains("Bambino")).First().Id;
-                    productGenderSizeTypes.Add(productGenderSizeTypeBoy);
-
-
-                    var productGenderSizeTypeGirl = new ProductGenderSizeTypeLookup();
-                    productGenderSizeTypeGirl.ProductSizeTypeId = sizeType.Id;
-                    productGenderSizeTypeGirl.ProductGenderId = productGenders.Where(pg => pg.Name.Contains("Bambina")).First().Id;
-                    productGenderSizeTypes.Add(productGenderSizeTypeGirl);
-                }
-
-                if (sizeType.Name.Contains("Uomo/Donna"))
-                {
-                    var productGenderSizeTypeMan = new ProductGenderSizeTypeLookup();
-                    productGenderSizeTypeMan.ProductSizeTypeId = sizeType.Id;
-                    productGenderSizeTypeMan.ProductGenderId = productGenders.Where(pg => pg.Name.Contains("Uomo")).First().Id;
-                    productGenderSizeTypes.Add(productGenderSizeTypeMan);
-
-                    var productGenderSizeTypeWoman = new ProductGenderSizeTypeLookup();
-                    productGenderSizeTypeWoman.ProductSizeTypeId = sizeType.Id;
-                    productGenderSizeTypeWoman.ProductGenderId = productGenders.Where(pg => pg.Name.Contains("Donna")).First().Id;
-                    productGenderSizeTypes.Add(productGenderSizeTypeWoman);
-                }
-
-                if (sizeType.Name.Contains("Accessori"))
-                {
-                    foreach(var gender in productGenders)
-                    {
-                        var productGenderSizeTypeAcc = new ProductGenderSizeTypeLookup();
-                        productGenderSizeTypeAcc.ProductSizeTypeId = sizeType.Id;
-                        productGenderSizeTypeAcc.ProductGenderId = gender.Id;
-                        productGenderSizeTypes.Add(productGenderSizeTypeAcc);
-                    }
-                }
-            }
-                modelBuilder.Entity<ProductGenderSizeTypeLookup>().HasData(productGenderSizeTypes);
             #endregion
 
             #region ProductSizeOption Seeding
@@ -327,6 +282,8 @@ namespace Troonch.Sales.DataAccess
                 "Shorts",
             };
 
+            var productGenderCategoryList = new List<ProductGenderCategoryLookup>();
+
             foreach (var category in productCategoryKids)
             {
                 var productCategory = new ProductCategory();
@@ -336,15 +293,40 @@ namespace Troonch.Sales.DataAccess
                 productCategory.CreatedOn = DateTime.UtcNow;
                 productCategory.UpdatedOn = DateTime.UtcNow;
                 productCategories.Add(productCategory);
+
+                var productGenderBoyCategory = new ProductGenderCategoryLookup();
+                productGenderBoyCategory.ProductGenderId = productGenders.Where(pg => pg.Name.Contains("Bambino")).First().Id;
+                productGenderBoyCategory.ProductCategoryId = productCategory.Id;
+                productGenderCategoryList.Add(productGenderBoyCategory);
+
+                var productGenderGirlCategory = new ProductGenderCategoryLookup();
+                productGenderGirlCategory.ProductGenderId = productGenders.Where(pg => pg.Name.Contains("Bambina")).First().Id; ;
+                productGenderGirlCategory.ProductCategoryId = productCategory.Id;
+                productGenderCategoryList.Add(productGenderGirlCategory);
             }
             #endregion
 
             #region ProductCategory Seeding (Adult)
+                var productCategoryAdultsMan = new List<string>()
+                {
+                    "Giacche",
+                    "Gilet",
+                    "Camicie",
+                    "Magliette",
+                    "Felpe",
+                    "Shorts",
+                    "Pantaloni",
+                    "Jeans",
+                    "Intimo",
+                    "Costumi da Bagno",
+                    "Polo",
+                    "Maglioncini",
+                };
 
                 var productCategoryAdults = new List<string>()
                 {
-                "Giacche | Trench",
-                "Blazer | Gilet",
+                "Trench",
+                "Blazer",
                 "Vestiti",
                 "Body | Top",
                 "Camicie",
@@ -356,7 +338,6 @@ namespace Troonch.Sales.DataAccess
                 "Jeans",
                 "Intimo",
                 "Costumi da Bagno",
-                "Polo",
                 "Maglioncini",
             };
 
@@ -369,10 +350,34 @@ namespace Troonch.Sales.DataAccess
                 productCategory.CreatedOn = DateTime.UtcNow;
                 productCategory.UpdatedOn = DateTime.UtcNow;
                 productCategories.Add(productCategory);
+
+                var productGenderWomanCategory = new ProductGenderCategoryLookup();
+                productGenderWomanCategory.ProductGenderId = productGenders.Where(pg => pg.Name.Contains("Donna")).First().Id; 
+                productGenderWomanCategory.ProductCategoryId = productCategory.Id;
+                productGenderCategoryList.Add(productGenderWomanCategory);
+
+                if(productCategoryAdultsMan.Any(categoryMan => categoryMan == category))
+                {
+                    var productGenderManCategory = new ProductGenderCategoryLookup();
+                    productGenderManCategory.ProductGenderId = productGenders.Where(pg => pg.Name.Contains("Uomo")).First().Id;
+                    productGenderManCategory.ProductCategoryId = productCategory.Id;
+                    productGenderCategoryList.Add(productGenderManCategory);
+                }
+            }
+
+            var duplicates = productGenderCategoryList
+            .GroupBy(x => new { x.ProductGenderId, x.ProductCategoryId })
+            .Where(g => g.Count() > 1)
+            .Select(g => g.Key)
+            .ToList();
+            if (duplicates.Any())
+            {
+                Console.WriteLine("1");
             }
 
 
-            var productCategoriesAccessories = new List<string>()
+
+                var productCategoriesAccessories = new List<string>()
             {
                 "Borse",
                 "Gioielli",
@@ -396,6 +401,30 @@ namespace Troonch.Sales.DataAccess
                 productCategory.CreatedOn = DateTime.UtcNow;
                 productCategory.UpdatedOn = DateTime.UtcNow;
                 productCategories.Add(productCategory);
+
+                foreach(var gender in  productGenders)
+                {
+                    if (gender.Name.ToLower().Contains("neonato"))
+                    {
+                        continue;
+                    }
+
+                    var productGenderAccessories = new ProductGenderCategoryLookup();
+                    productGenderAccessories.ProductGenderId = gender.Id ;
+                    productGenderAccessories.ProductCategoryId = productCategory.Id;
+                    productGenderCategoryList.Add(productGenderAccessories);
+                }
+            }
+
+
+             duplicates = productGenderCategoryList
+            .GroupBy(x => new { x.ProductGenderId, x.ProductCategoryId })
+            .Where(g => g.Count() > 1)
+            .Select(g => g.Key)
+            .ToList();
+            if (duplicates.Any())
+            {
+                Console.WriteLine("2");
             }
 
 
@@ -414,6 +443,12 @@ namespace Troonch.Sales.DataAccess
                 "Cerimonia"
             };
 
+            var productCategoriesOnlyForWoman = new List<string>()
+            {
+                "Ballerine",
+                "Tacchi",
+            };
+
             foreach (var category in productCategoriesShoesAdults)
             {
                 var productCategory = new ProductCategory();
@@ -423,6 +458,32 @@ namespace Troonch.Sales.DataAccess
                 productCategory.CreatedOn = DateTime.UtcNow;
                 productCategory.UpdatedOn = DateTime.UtcNow;
                 productCategories.Add(productCategory);
+
+
+
+                var productGenderShoesWoman = new ProductGenderCategoryLookup();
+                productGenderShoesWoman.ProductGenderId = productGenders.Where(pg => pg.Name.Contains("Donna")).First().Id;
+                productGenderShoesWoman.ProductCategoryId = productCategory.Id;
+                productGenderCategoryList.Add(productGenderShoesWoman);
+
+                if(!productCategoriesOnlyForWoman.Any(pcow => pcow.ToLower() == category.ToLower()))
+                {
+                    var productGenderShoesMan = new ProductGenderCategoryLookup();
+                    productGenderShoesMan.ProductGenderId = productGenders.Where(pg => pg.Name.Contains("Uomo")).First().Id;
+                    productGenderShoesMan.ProductCategoryId = productCategory.Id;
+                    productGenderCategoryList.Add(productGenderShoesMan);
+                }
+
+            }
+
+            duplicates = productGenderCategoryList
+            .GroupBy(x => new { x.ProductGenderId, x.ProductCategoryId })
+            .Where(g => g.Count() > 1)
+            .Select(g => g.Key)
+            .ToList();
+            if (duplicates.Any())
+            {
+                Console.WriteLine("3");
             }
 
             var productCategoriesShoesKids = new List<string>()
@@ -431,7 +492,6 @@ namespace Troonch.Sales.DataAccess
                  "Sandali",
                  "Ciabatte",
                  "Stivaletti",
-                 "Stivali",
                  "Mare",
                  "Sportive",
                  "Cerimonia"
@@ -446,9 +506,22 @@ namespace Troonch.Sales.DataAccess
                 productCategory.CreatedOn = DateTime.UtcNow;
                 productCategory.UpdatedOn = DateTime.UtcNow;
                 productCategories.Add(productCategory);
+
+                var productGenderBoyCategory = new ProductGenderCategoryLookup();
+                productGenderBoyCategory.ProductGenderId = productGenders.Where(pg => pg.Name.Contains("Bambino")).First().Id;
+                productGenderBoyCategory.ProductCategoryId = productCategory.Id;
+                productGenderCategoryList.Add(productGenderBoyCategory);
+
+                var productGenderGirlCategory = new ProductGenderCategoryLookup();
+                productGenderGirlCategory.ProductGenderId = productGenders.Where(pg => pg.Name.Contains("Bambina")).First().Id; ;
+                productGenderGirlCategory.ProductCategoryId = productCategory.Id;
+                productGenderCategoryList.Add(productGenderGirlCategory);
+
             }
 
+
             modelBuilder.Entity<ProductCategory>().HasData(productCategories);
+            modelBuilder.Entity<ProductGenderCategoryLookup>().HasData(productGenderCategoryList);
             #endregion
         }
     }
