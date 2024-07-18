@@ -46,7 +46,7 @@ public sealed class ProductGenderCategoryRepository : IProductGenderCategoryRepo
             .ToListAsync();
     }
 
-    public async Task AddAsync(List<ProductGenderCategoryLookup> productGenderCategoryLookups)
+    public async Task AddRangeAsync(List<ProductGenderCategoryLookup> productGenderCategoryLookups)
     {
         await _dbContext.ProductGenderCategoryLookup
             .AddRangeAsync(productGenderCategoryLookups);

@@ -7,7 +7,7 @@ namespace Troonch.RetailSales.Product.DataAccess.Repositories.Interfaces
         Task BulkDeleteByCategoryIdAsync(Guid categoryId);
         Task BulkDeleteByGenderIdAsync(Guid genderId);
         void Delete(ProductGenderCategoryLookup productGenderCategoryLookup);
-        Task AddAsync(List<ProductGenderCategoryLookup> productGenderCategoryLookups);
+        Task AddRangeAsync(List<ProductGenderCategoryLookup> productGenderCategoryLookups);
         Task<List<ProductGenderCategoryLookup>> GetAllAsync();
         Task<List<ProductGenderCategoryLookup>> GetProductGenderCategoryByCategoryIdAsync(Guid categoryId);
         Task<List<ProductGenderCategoryLookup>> GetProductGenderCategoryByGenderIdAsync(Guid genderId);
