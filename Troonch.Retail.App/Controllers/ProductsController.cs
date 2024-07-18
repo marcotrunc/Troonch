@@ -21,7 +21,6 @@ namespace Troonch.Retail.App.Controllers
         private readonly ProductCategoryServices _categoryService;
         private readonly ProductGenderService _productGenderService;
         private readonly ProductMaterialService _productMaterialService;
-        private readonly ProductGenderSizeTypeLookupService _genderSizeTypeLookupService;
 
         [ActivatorUtilitiesConstructor]
         public ProductsController(
@@ -30,8 +29,7 @@ namespace Troonch.Retail.App.Controllers
                                     ProductBrandService brandService,
                                     ProductCategoryServices categoryService,
                                     ProductGenderService productGenderService,
-                                    ProductMaterialService productMaterialService,
-                                    ProductGenderSizeTypeLookupService genderSizeTypeLookupService)
+                                    ProductMaterialService productMaterialService)
         {
             _logger = logger;
             _productService = productService;
@@ -39,7 +37,6 @@ namespace Troonch.Retail.App.Controllers
             _categoryService = categoryService;
             _productGenderService = productGenderService;
             _productMaterialService = productMaterialService;
-            _genderSizeTypeLookupService = genderSizeTypeLookupService;
         }
 
 
@@ -242,7 +239,6 @@ namespace Troonch.Retail.App.Controllers
             var categories = await _categoryService.GetProductCategoriesAsync(null,1, 10000);
             ViewBag.Categories = categories.Collections.OrderBy(c => c.Name);
 
-            ViewBag.GenderSizeTypes = await _genderSizeTypeLookupService.GetAllProductGenderSizeTypesAsync();
             ViewBag.Genders = await _productGenderService.GetProductGendersAsync();
             ViewBag.Materials = await _productMaterialService.GetAllProductMaterialAsync();
         }
