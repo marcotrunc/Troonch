@@ -20,6 +20,7 @@ public class ProductBrandConfiguration : BaseEntityConfiguration<ProductBrand>
         builder.HasMany(pb => pb.Products)
             .WithOne(p => p.ProductBrand)
             .HasForeignKey(p => p.ProductBrandId)
-            .IsRequired();
+            .IsRequired()
+            .OnDelete(Microsoft.EntityFrameworkCore.DeleteBehavior.NoAction);
     }
 }

@@ -270,16 +270,10 @@ namespace Troonch.Sales.DataAccess
             {
                 "Abiti - Completi",
                 "Giubbino",
-                "Felpa",
-                "Jeans",
                 "Cardigan",
                 "Pigiama",
                 "Top",
-                "Maglie",
-                "Pantaloni",
                 "Salopette",
-                "Camicia",
-                "Shorts",
             };
 
             var productGenderCategoryList = new List<ProductGenderCategoryLookup>();
@@ -433,11 +427,9 @@ namespace Troonch.Sales.DataAccess
                 "Sneakers",
                 "Sandali",
                 "Tacchi",
-                "Ciabatte",
                 "Stivaletti",
                 "Stivali",
                 "Ballerine",
-                "Mare",
                 "Mocassini",
                 "Basse",
                 "Cerimonia"
@@ -488,13 +480,8 @@ namespace Troonch.Sales.DataAccess
 
             var productCategoriesShoesKids = new List<string>()
             {
-                 "Sneakers",
-                 "Sandali",
                  "Ciabatte",
-                 "Stivaletti",
-                 "Mare",
                  "Sportive",
-                 "Cerimonia"
             };
 
             foreach(var category in productCategoriesShoesKids)

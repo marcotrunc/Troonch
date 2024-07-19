@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Troonch.DataAccess.Base;
 using Troonch.Sales.Domain.Entities;
 
@@ -17,11 +18,13 @@ public class ProductGenderConfiguration : BaseEntityConfiguration<ProductGender>
         builder.HasMany(pg => pg.Products)
             .WithOne(p => p.ProductGender)
             .HasForeignKey(pg => pg.ProductGenderId)
-            .IsRequired();
+            .IsRequired()
+            .OnDelete(DeleteBehavior.NoAction); 
 
         builder.HasMany(pg => pg.ProductCategories)
             .WithOne(psl =>psl.ProductGender)
             .HasForeignKey(psl => psl.ProductGenderId)
-            .IsRequired();
+            .IsRequired()
+            .OnDelete(DeleteBehavior.NoAction);
     }
 }

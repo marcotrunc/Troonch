@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,13 +21,14 @@ namespace Troonch.Sales.DataAccess.Configurations
             builder.HasMany(pst => pst.ProductSizeOptions)
                 .WithOne(pso => pso.ProductSizeType)
                 .HasForeignKey(pso => pso.ProductSizeTypeId)
-                .IsRequired();
+                .IsRequired()
+                .OnDelete(DeleteBehavior.Cascade); ;
 
             builder.HasMany(pst => pst.ProductCategories)
                 .WithOne(pc => pc.ProductSizeType)
                 .HasForeignKey(pc => pc.ProductSizeTypeId)
-                .IsRequired();
-
+                .IsRequired()
+                .OnDelete(DeleteBehavior.NoAction); 
         }
     }
 

@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Troonch.DataAccess.Base;
 using Troonch.Sales.Domain.Entities;
 
@@ -15,7 +16,8 @@ namespace Troonch.Sales.DataAccess.Configurations
             builder.HasMany(pm => pm.Products)
                 .WithOne(p => p.ProductMaterial)
                 .HasForeignKey(p => p.ProductMaterialId)
-                .IsRequired(false);
+                .IsRequired(false)
+                .OnDelete(DeleteBehavior.NoAction);
         }
     }
 }
