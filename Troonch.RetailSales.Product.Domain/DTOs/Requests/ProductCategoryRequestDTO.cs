@@ -9,6 +9,6 @@ namespace Troonch.RetailSales.Product.Domain.DTOs.Requests
         public Guid? Id { get; set; } = Guid.Empty;
         public string Name { get; set; }
         public Guid ProductSizeTypeId { get; set; }
-        public List<Guid> Genders { get; set; }
+        public List<Guid> Genders { get; set; } = new List<Guid>();
     }
 }

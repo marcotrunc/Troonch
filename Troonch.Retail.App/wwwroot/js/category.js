@@ -47,6 +47,23 @@ const resetCategoryIndexPage = async () => {
 const showCategoryModal = async () => 
     await renderHTML(`Categories\\GetCategoryForm\\${categoryIdSelected}`, 'category-modal-body', 'category-modal');
 
+const getElementCheckedValue = (formId, nameInput) => {
+
+    let values = [];
+
+    const form = document.getElementById(formId);
+
+    const checkboxes = form.querySelectorAll(`input[name="${nameInput}"]`);
+
+    checkboxes.forEach(checkbox => {
+        if (checkbox.checked) {
+            values.push(checkbox.value);
+        }
+    });
+
+    return values;
+}
+
 const submitCategoryForm = async (event) => {
     try {
         
@@ -61,6 +78,9 @@ const submitCategoryForm = async (event) => {
         cleanFormFromErrorMessage();
 
         let payload = setPayloadFromFormData(formData);
+
+        payload.Genders = getElementCheckedValue(formId,"Genders");
+
 
         disableForm(formId);
 
@@ -101,6 +121,8 @@ const submitCategoryFormInUpdated = async (event) => {
         cleanFormFromErrorMessage();
 
         let payload = setPayloadFromFormData(formData);
+
+        payload.Genders = getElementCheckedValue(formId, "Genders");
 
         disableForm(formId);
 

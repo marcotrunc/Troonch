@@ -8,12 +8,19 @@ const showVariationModal = async (path) => {
 
 
 const handleVariation = (checkbox = null) => {
+    
     const buttonBox = document.getElementById('variation-products-buttons');
     const addVariationButton = document.getElementById('add-variation-button-product');
     const table = document.getElementById('variations-table');
     const list = document.getElementById('variations-list');
-
+    if (!table) {
+        return;
+    }
     const checkboxes = table.querySelectorAll("input[type='checkbox']");
+
+    if (!list) {
+        return;
+    }
     const lCheckBoxes = list.querySelectorAll("input[type='checkbox']");
 
     checkboxes.forEach(item => {

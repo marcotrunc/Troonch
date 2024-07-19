@@ -57,14 +57,15 @@ public sealed class ProductGenderCategoryRepository : IProductGenderCategoryRepo
         _dbContext.ProductGenderCategoryLookup.Remove(productGenderCategoryLookup);
     }
 
-    public async Task BulkDeleteByCategoryIdAsync(Guid categoryId)
+    public async Task<int> BulkDeleteByCategoryIdAsync(Guid categoryId)
     {
 
         if (categoryId == Guid.Empty)
         {
             throw new ArgumentNullException(nameof(categoryId));
         }
-        await _dbContext.ProductGenderCategoryLookup
+
+        return await _dbContext.ProductGenderCategoryLookup
             .AsNoTracking()
             .Where(pgcl => pgcl.ProductCategoryId.Equals(categoryId))
             .ExecuteDeleteAsync();

@@ -4,7 +4,7 @@ namespace Troonch.RetailSales.Product.DataAccess.Repositories.Interfaces
 {
     public interface IProductGenderCategoryRepository
     {
-        Task BulkDeleteByCategoryIdAsync(Guid categoryId);
+        Task<int> BulkDeleteByCategoryIdAsync(Guid categoryId);
         Task BulkDeleteByGenderIdAsync(Guid genderId);
         void Delete(ProductGenderCategoryLookup productGenderCategoryLookup);
         Task AddRangeAsync(List<ProductGenderCategoryLookup> productGenderCategoryLookups);

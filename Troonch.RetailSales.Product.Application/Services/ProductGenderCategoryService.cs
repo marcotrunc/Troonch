@@ -117,10 +117,9 @@ public class ProductGenderCategoryService
             return true;
         }
 
-        await _productGenderCategoryRepository
-               .BulkDeleteByCategoryIdAsync(categoryId);
-
-        return await _unitOfWork.CommitAsync();
+        return await _productGenderCategoryRepository
+               .BulkDeleteByCategoryIdAsync(categoryId) > 0;
+        
     }
     #endregion
 }

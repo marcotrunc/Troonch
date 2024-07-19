@@ -1,4 +1,5 @@
 ﻿@using Troonch.RetailSales.Product.Domain.DTOs.Requests;
+@using Troonch.Sales.Domain.Entities;
 
 @model ProductCategoryRequestDTO;
 
@@ -19,6 +20,22 @@
             @Html.LabelFor(m => m.ProductSizeTypeId, "Tipo di taglie")
             @Html.DropDownListFor(m => m.ProductSizeTypeId, new SelectList(ViewBag.ProductSizeTypes, "Id", "Name"), new { @class = "col-md-6 form-control", @id = "productSizeTypeId" })
             @Html.ValidationMessageFor(m => m.ProductSizeTypeId, "", new { @class = "text-danger mt-1 my-2 ms-1 d-block error-message", data_error = "productsizetypeid" })
+        </div>
+
+        <h6>
+            Pensata per:
+        </h6>
+        <div id="category-gender-form-group" class="form-group">
+            @foreach (var gender in ViewBag.Genders as IEnumerable<ProductGender>)
+            {
+                <div class="form-check">
+                    <label class="form-check-label">
+                        <input id="@gender.Id" type="checkbox" name="Genders" class="form-check-input" value="@gender.Id" @(Model.Genders.Contains(gender.Id) ? "checked" : "") />
+                        @gender.Name 
+                        <i class="input-helper"></i>
+                    </label>
+                </div>
+            }
         </div>
 
         <div>

@@ -13,12 +13,14 @@ namespace Troonch.Sales.DataAccess.Configurations
             builder.HasOne(pgcl => pgcl.ProductGender)
                 .WithMany(pg => pg.ProductCategories)
                 .HasForeignKey(pgcl => pgcl.ProductGenderId)
-                .IsRequired();
+                .IsRequired()
+                .OnDelete(DeleteBehavior.NoAction);
 
             builder.HasOne(pgcl => pgcl.ProductCategory)
                 .WithMany(pst => pst.ProductGenders)
                 .HasForeignKey(pgcl => pgcl.ProductCategoryId)
-                .IsRequired();
+                .IsRequired()
+                .OnDelete(DeleteBehavior.NoAction); 
         }
     }
 }

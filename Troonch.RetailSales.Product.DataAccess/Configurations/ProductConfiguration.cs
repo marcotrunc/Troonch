@@ -26,7 +26,8 @@ public class ProductConfiguration : BaseEntityConfiguration<Product>
         builder.HasMany(p => p.ProductItems)
             .WithOne(pi => pi.Product)
             .HasForeignKey(pi => pi.ProductId)
-            .IsRequired();
+            .IsRequired()
+            .OnDelete(DeleteBehavior.Cascade);
 
         builder.HasOne(p => p.ProductGender)
             .WithMany(pg => pg.Products)
@@ -51,6 +52,7 @@ public class ProductConfiguration : BaseEntityConfiguration<Product>
         builder.HasMany(p => p.ProductTags)
             .WithOne(ptl => ptl.Product)
             .HasForeignKey(ptl => ptl.ProductId)
-            .IsRequired();
+            .IsRequired()
+            .OnDelete(DeleteBehavior.Cascade);
     }
 }

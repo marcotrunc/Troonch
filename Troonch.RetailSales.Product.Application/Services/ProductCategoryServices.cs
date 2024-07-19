@@ -79,6 +79,7 @@ public class ProductCategoryServices
 
         var categoryToAdd = new ProductCategory
         {
+            Id = productCategoryRequest.Id ?? Guid.NewGuid(),
             Name = productCategoryRequest.Name.Trim(),
             ProductSizeTypeId = productCategoryRequest.ProductSizeTypeId,
         };

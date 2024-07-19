@@ -247,7 +247,12 @@ namespace Troonch.Retail.App.Controllers
             ViewBag.Genders = await _productGenderService.GetProductGendersAsync();
 
 
-            ViewBag.Materials = await _productMaterialService.GetAllProductMaterialAsync();
+            var materials = await _productMaterialService.GetAllProductMaterialAsync();
+            var materialsListed = materials.ToList();
+            materialsListed.Add(new ProductMaterial { Id = Guid.Empty, Value = "Scegli Materiale..." });
+            ViewBag.Materials = materialsListed;
+
+
             var genderCategories = await _productGenderCategoryService.GetProductGenderCategoriesAsync();
             ViewBag.GenderCategories = genderCategories.Select(gc => new { ProductGenderId = gc.ProductGenderId, ProductCategoryId = gc.ProductCategoryId });
         }

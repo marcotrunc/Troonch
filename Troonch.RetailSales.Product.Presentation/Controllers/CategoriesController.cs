@@ -16,17 +16,22 @@ public class CategoriesController : Controller
     private readonly ILogger<CategoriesController> _logger;
     private readonly ProductCategoryServices _productCategoryServices;
     private readonly ProductSizeTypeService _productSizeTypesService;
+    private readonly ProductGenderService _productGenderService;
     private readonly ProductGenderCategoryService _productGenderCategoryService;
+
     public CategoriesController(
             ILogger<CategoriesController> logger,
             ProductCategoryServices productCategoryServices,
             ProductSizeTypeService productSizeTypesService,
-            ProductGenderCategoryService productGenderCategoryService)
+            ProductGenderService productGenderService,
+            ProductGenderCategoryService productGenderCategorieService)
+
     {
         _logger = logger;
         _productCategoryServices = productCategoryServices;
         _productSizeTypesService = productSizeTypesService;
-        _productGenderCategoryService = productGenderCategoryService;
+        _productGenderService = productGenderService;
+        _productGenderCategoryService = productGenderCategorieService;
     }
 
     [HttpGet]
@@ -109,15 +114,15 @@ public class CategoriesController : Controller
 
             Guid categoryIdToHandle = categoryModel.Id ?? throw new ArgumentException(nameof(categoryModel.Id));
 
-            var isProductGendersAdded = await _productGenderCategoryService
+            var isProductGendersHandled = await _productGenderCategoryService
                                                 .HandleProductGenderCategoriesByCatgoryId(
                                                     categoryIdToHandle,
-                                                    categoryModel.Genders.Select(g => new ProductGenderCategoryLookup { ProductGenderId = categoryIdToHandle, ProductCategoryId = g }).ToList());
-                
+                                                    categoryModel.Genders.Select(g => new ProductGenderCategoryLookup { ProductGenderId = g, ProductCategoryId = categoryIdToHandle }).ToList());
 
-            if (!isProductGendersAdded)
+
+            if (!isProductGendersHandled)
             {
-                throw new Exception(nameof(isProductGendersAdded));
+                throw new Exception(nameof(isProductGendersHandled));
             }
 
             return StatusCode(200, responseModel);
@@ -153,6 +158,24 @@ public class CategoriesController : Controller
         {
             var isCategoryUpdated = await _productCategoryServices.UpdateProductCategoryAsync(categoryModel.Id ?? Guid.Empty, categoryModel);
             responseModel.Data = isCategoryUpdated;
+
+            if (!isCategoryUpdated)
+            {
+                throw new Exception(nameof(isCategoryUpdated));
+            }
+
+            Guid categoryIdToHandle = categoryModel.Id ?? throw new ArgumentException(nameof(categoryModel.Id));
+
+            var isProductGendersHandled = await _productGenderCategoryService
+                                                .HandleProductGenderCategoriesByCatgoryId(
+                                                    categoryIdToHandle,
+                                                    categoryModel.Genders.Select(g => new ProductGenderCategoryLookup { ProductGenderId = g, ProductCategoryId = categoryIdToHandle }).ToList());
+
+
+            if (!isProductGendersHandled)
+            {
+                throw new Exception(nameof(isProductGendersHandled));
+            }
 
             return StatusCode(200, responseModel);
         }
@@ -192,7 +215,15 @@ public class CategoriesController : Controller
                 _logger.LogError($"CategoriesController::Delete id - {id} not parsed");
                 throw new ArgumentNullException(nameof(id));
             }
-            
+
+            var isProductGendersHandled = await _productGenderCategoryService
+                                                .HandleProductGenderCategoriesByCatgoryId(categoryId, []);
+
+            if (!isProductGendersHandled)
+            {
+                throw new Exception(nameof(isProductGendersHandled));
+            }
+
             var isCategoryDeleted = await _productCategoryServices.RemoveProductCategoryAsync(categoryId);
             
             responseModel.Data = isCategoryDeleted;
@@ -237,6 +268,8 @@ public class CategoriesController : Controller
             if (!String.IsNullOrWhiteSpace(categoryId) && Guid.TryParse(categoryId, out Guid categoryIdParsed))
             {
                 categoryModel = await _productCategoryServices.BuildProductCategoryToUpdateAsync(categoryIdParsed);
+                var gendersByCategory = await _productGenderCategoryService.GetProductGenderCategoriesByCateogryIdAsync(categoryIdParsed);
+                categoryModel.Genders = gendersByCategory.Select(gender => gender.ProductGenderId).ToList();
             }
 
 
@@ -247,7 +280,7 @@ public class CategoriesController : Controller
             _logger.LogError($"CategoriesController::GetCategoryForm GET -> {ex.Message}");
             var responseModel = new ResponseModel<bool>();
             responseModel.Status = ResponseStatus.Error.ToString();
-            responseModel.Error.Message = ex.Message;
+            responseModel.Error.Message = "Operation not completed";
             return StatusCode(400, responseModel);
         }
         catch (Exception ex)
@@ -266,6 +299,8 @@ public class CategoriesController : Controller
     private async Task GetProductCategoryBagForm()
     {
         ViewBag.ProductSizeTypes = await _productSizeTypesService.GetAllProductSizeTypesAsync();
+        var genders = await _productGenderService.GetProductGendersAsync();
+        ViewBag.Genders = genders.OrderBy(gender => gender.Name);
     }
 
     #endregion
