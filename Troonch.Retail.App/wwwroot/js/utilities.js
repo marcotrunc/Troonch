@@ -190,3 +190,31 @@ const handleNotificationFromServer = (boolValue, message) => {
         console.error(error);
     }
 }
+
+
+const showConfiramtionModal = async(title, answer, functionParam) => {
+
+    let titleElement = document.getElementById('confirm-modal-title');
+    if (!titleElement || !title) {
+        return;
+    }
+    titleElement.innerHTML = title;
+
+    let answerElement = document.getElementById('confirm-modal-answer');
+    if (!answerElement || !answer) {
+        return;
+    }
+    answerElement.innerHTML = answer;
+
+
+    let confirmButton = document.getElementById('confirm-modal-button');
+    if (!confirmButton || !functionParam) {
+        return;
+    }
+    confirmButton.addEventListener('click', functionParam);
+
+
+    const confirmUserModal = new bootstrap.Modal(document.getElementById('confirm-modal'));
+    confirmUserModal.show();
+
+}

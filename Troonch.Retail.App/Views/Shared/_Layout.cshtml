@@ -48,6 +48,30 @@
             await Html.RenderPartialAsync("_Footer");
         }
     </div>
+
+    <div id="confirm-modal" class="modal fade" tabindex="-1" aria-labelledby="ConfirmModal" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 id="confirm-modal-title" class="modal-title"></h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div id="confirm-modal-body" class="modal-body">
+                    <p id="confirm-modal-answer"></p>
+
+                    <div class="d-flex justify-content-end">
+                        <button type="button" class="btn btn-sm btn-secondary mx-3" data-bs-dismiss="modal" aria-label="Close">
+                            <i class="mdi mdi-close-circle mx-2"></i> Cancel
+                        </button>
+                        <button id="confirm-modal-button" type="button" class="btn btn-sm btn-primary" onclick="onClickConfirmUserModal(this)">
+                            <i class="mdi mdi-checkbox-marked-circle mx-1"></i> Conferma
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!----------------------------------->
    
     <script src="~/assets/vendors/js/vendor.bundle.base.js"></script>

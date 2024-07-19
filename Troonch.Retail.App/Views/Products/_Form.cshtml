@@ -90,7 +90,7 @@
 
             <div class="form-group col-12">
                 @Html.LabelFor(m => m.Description, "Descrizione")
-                @Html.TextAreaFor(m => m.Description, new { @class="form-control", @id="description"})
+                @Html.TextAreaFor(m => m.Description, new { @class="form-control", @id="description", @rows= ((isUpdate) ? "15": "5")})
                 @Html.ValidationMessageFor(m => m.Description,"", new { @class="text-danger mt-1 my-2 ms-1 d-block error-message", data_error="description"})
             </div>
             

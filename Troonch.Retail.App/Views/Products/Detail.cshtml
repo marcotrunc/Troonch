@@ -11,8 +11,8 @@
    @* Product Form Container*@
     <div class="col-md-8 grid-margin stretch-card">
         <div class="card">
-            <div class="px-2 py-2">
-                <h4 class="card-title float-start">Prodotto</h4>
+            <div class="px-4 py-4">
+                <h4 class="card-title float-start">Informazioni</h4>
             </div>
             <div class="card-body">
                 <section id="product-form-container">
@@ -21,15 +21,26 @@
         </div>
     </div>
 
-    @* Product Tags Form Container*@
+    @* Product Gallery Container*@
     <div class="col-md-4 grid-margin stretch-card">
         <div class="card">
             <div class="card-body">
-                <div class="clearfix">
-                    <h4 class="card-title float-start">Prodotto</h4>
-                    <section>
-                    </section>
-                </div>
+                <h4 class="card-title">Galleria</h4>
+                <section class="mb-4">
+                    <div class="drop_box">
+                        <header>
+                        <h4>Aggiungi nuova immagine</h4>
+                        </header>
+                        <p>File supportati: JPG, JPEG, PNG</p>
+                        <input type="file" hidden accept=".jpg,.jpeg,.png" id="fileID" style="display:none;">
+                        <button class="btn btn-gradient-primary">Scegli File</button>
+                    </div>
+                </section>
+                <section>
+                    <div>
+                        <img src="https://static.zara.net/assets/public/47a3/2399/f91d4984bcc9/566881ec3896/1689085196541/1689085196541.jpg?ts=1701856748172&w=551" width="100%" class="object-fit-contain rounded" alt="Img">
+                    </div>
+                </section>
             </div>
         </div>
     </div>
@@ -37,9 +48,9 @@
     @* Product Item Form Container*@
     <div class="col-12 grid-margin stretch-card">
         <div class="card">
-            <div class="card-body">
-                <div class="d-flex justify-content-between align-items-center mb-2">
-                    <h4 class="card-title">Variazioni</h4>
+            <div class="card-body px-4 py-4">
+                <h4 class="card-title">Variazioni</h4>
+                <div class="d-flex justify-content-end align-items-center mb-2">
                     @* Add Buttons*@
                     <div id="add-variation-button-product">
                         <button type="button" class="btn btn-outline-primary btn-icon-text d-none d-md-block" onclick="showVariationModal('@Url.Action("GetProductItemsForm","Items",new { categoryId = Model.ProductCategoryId, productId = Model.Id,})')">
@@ -82,14 +93,20 @@
 
 
 
-<!-- Setting Section -->
+<!-- Other Action Section -->
 <div class="row">
     <section class="col-12 grid-margin stretch-card">
         <div class="card">
-            <div class="card-body d-flex justify-content-end">
-                <button type="button" class="btn btn-outline-danger btn-icon-text d-none d-md-inline">
-                    <i class="mdi mdi-delete-forever btn-icon-prepend"></i> Elimina Prodotto
-                </button>
+            <div class="card-body px-4 py-4">
+                <h4 class="card-title">Altre Azioni</h4>
+                <div class="d-flex flex-column flex-md-row justify-content-md-around">
+                    <button type="button" class="mb-2 btn btn-outline-danger btn-icon-text d-inline" onclick="showConfiramtionModal('Sei Sicuro di voler eliminare il prodotto?','Il prodotto verrà eliminato definitivamente',showAlert)">
+                        <i class="mdi mdi-delete-forever btn-icon-prepend"></i> Elimina Prodotto
+                    </button>
+                    <button type="button" class="btn btn-outline-danger btn-icon-text d-inline" onclick="showConfiramtionModal('Sei Sicuro di voler eliminare il prodotto?','Il prodotto verrà eliminato definitivamente',showAlert)">
+                        <i class="mdi mdi-delete-forever btn-icon-prepend"></i> Elimina Prodotto
+                    </button>
+                </div>
             </div>
         </div>
     </section>
@@ -120,6 +137,9 @@
             await renderHTML(`@Url.Action("Index","Items", new {@productId= Model.Id})`, 'product-item-list-container');
         }); 
 
+        const showAlert = () =>{
+            alert('Hello World');
+        }
 
         const updateCategoriesOptionsByGender = (element, productGenderCategoriesLookup, categories) => {
 
@@ -152,5 +172,56 @@
             categoryEmpty.classList.add('d-none')
             categoryDropdown.classList.remove('d-none')
         }
+    
+        //Gallery Handler
+
+        const dropArea = document.querySelector(".drop_box");
+        const button = dropArea.querySelector("button");
+        const input = dropArea.querySelector("input");
+        
+        button.onclick = () => {
+            input.click();
+        };
+
+        input.addEventListener("change", async (e) => {
+            debugger;
+
+            if(e.target.files.length > 1){
+                showNotification(true, "Puoi selezionare solo un file");
+                return;
+            }
+            
+
+            let file = e.target.files[0];
+            if (!file) { 
+                showNotification(true, "Seleziona un file valido")
+                return;
+            }
+            
+            let formData = new FormData();
+            formData.append('file', file);
+
+            try{
+                const response = await fetch('@Url.Action("UploadImage","Products", new {userId = Model.Id})',{
+                    method:'POST',
+                    body: formData
+                });
+
+                if (!response.ok) {
+                    return await handleRequestInError(response);
+                }
+
+                showNotification(false);
+
+
+                setTimeout(() => {
+                    window.location.reload();
+                }, 1000);
+
+            }
+            catch(error){
+                handleExceptionInFormWithRedirect(error);
+            }
+        });
     </script>
 }

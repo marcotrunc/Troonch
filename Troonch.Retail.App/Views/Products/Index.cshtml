@@ -25,10 +25,11 @@
         </nav>
     </div>
 
+
     @if (Model.Collections.Any())
     {
         <div class="row">
-            @foreach (var product in Model.Collections)
+            @foreach (var product in Model.Collections as List<ProductResponseDTO>)
             {
                 <div class="col-12 col-md-4 mb-4">
                     <div class="card border shadow-none mb-0">
